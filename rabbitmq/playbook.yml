@@ -1,0 +1,271 @@
+---
+# Ubuntu 24.04 + RabbitMQ 3.12: legacy classic mirroring lab, not production.
+# First host of group rabbitmq is the seed. Add any number of unique short names.
+- name: Install and prepare RabbitMQ nodes
+  hosts: rabbitmq
+  become: true
+  tasks:
+    - name: Require supported OS and explicit password
+      ansible.builtin.assert:
+        that:
+          - ansible_distribution == 'Ubuntu'
+          - ansible_distribution_version == '24.04'
+          - rabbitmq_admin_password is defined
+          - rabbitmq_admin_password | length >= 16
+        quiet: true
+      no_log: true
+
+    - name: Set unique short hostname
+      ansible.builtin.hostname:
+        name: "{{ inventory_hostname }}"
+
+    - name: Resolve all cluster members through hosts
+      ansible.builtin.blockinfile:
+        path: /etc/hosts
+        marker: '# {mark} ANSIBLE RABBITMQ'
+        block: |
+          {% for node in groups['rabbitmq'] %}
+          {{ hostvars[node].ansible_host }} {{ node }}
+          {% endfor %}
+
+    - name: Disable cloud-init rewriting hosts
+      ansible.builtin.copy:
+        dest: /etc/cloud/cloud.cfg.d/99-rabbitmq-hosts.cfg
+        content: "manage_etc_hosts: false\n"
+        mode: '0644'
+
+    - name: Install native Ubuntu packages
+      ansible.builtin.apt:
+        name: [rabbitmq-server, python3, curl]
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Read installed RabbitMQ version
+      ansible.builtin.command: dpkg-query -W -f=${Version} rabbitmq-server
+      register: rabbitmq_version
+      changed_when: false
+
+    - name: Refuse RabbitMQ without classic queue mirroring
+      ansible.builtin.assert:
+        that: rabbitmq_version.stdout is match('^3\.(12|13)\.')
+        fail_msg: 'This legacy ha-all exercise requires RabbitMQ 3.12/3.13, not 4.x.'
+
+    - name: Read seed cookie without logging it
+      ansible.builtin.slurp:
+        src: /var/lib/rabbitmq/.erlang.cookie
+      run_once: true
+      delegate_to: "{{ groups['rabbitmq'][0] }}"
+      register: seed_cookie
+      no_log: true
+
+    - name: Read local cookie without logging it
+      ansible.builtin.slurp:
+        src: /var/lib/rabbitmq/.erlang.cookie
+      register: local_cookie
+      no_log: true
+
+    - name: Stop service only if cookie needs changing
+      ansible.builtin.service:
+        name: rabbitmq-server
+        state: stopped
+      when: local_cookie.content != seed_cookie.content
+      no_log: true
+
+    - name: Share seed cookie securely
+      ansible.builtin.copy:
+        dest: /var/lib/rabbitmq/.erlang.cookie
+        content: "{{ seed_cookie.content | b64decode }}"
+        owner: rabbitmq
+        group: rabbitmq
+        mode: '0400'
+      no_log: true
+
+    - name: Bind AMQP and management to host-only and loopback
+      ansible.builtin.copy:
+        dest: /etc/rabbitmq/rabbitmq.conf
+        mode: '0644'
+        content: |
+          listeners.tcp.1 = 127.0.0.1:5672
+          listeners.tcp.2 = {{ ansible_host }}:5672
+          management.tcp.ip = {{ ansible_host }}
+          management.tcp.port = 15672
+          {% if rabbitmq_allow_remote_guest | default(false) | bool %}
+          # Lab only: original Netology scripts use implicit guest/guest.
+          loopback_users = none
+          {% endif %}
+      notify: Restart RabbitMQ
+
+    - name: Enable management plugin offline
+      ansible.builtin.command: rabbitmq-plugins enable --offline rabbitmq_management
+      register: plugin_enable
+      changed_when: "'The following plugins have been enabled' in plugin_enable.stdout"
+      notify: Restart RabbitMQ
+
+    - name: Apply configuration before readiness check
+      ansible.builtin.meta: flush_handlers
+
+    - name: Ensure RabbitMQ service is enabled and started
+      ansible.builtin.service:
+        name: rabbitmq-server
+        enabled: true
+        state: started
+
+    - name: Wait for local RabbitMQ application
+      ansible.builtin.command: rabbitmq-diagnostics -q check_running
+      register: rabbit_ready
+      changed_when: false
+      retries: 30
+      delay: 2
+      until: rabbit_ready.rc == 0
+
+  handlers:
+    - name: Restart RabbitMQ
+      ansible.builtin.service:
+        name: rabbitmq-server
+        state: restarted
+
+- name: Join each new node to the seed without resetting existing members
+  hosts: rabbitmq
+  serial: 1
+  become: true
+  vars:
+    seed: "rabbit@{{ groups['rabbitmq'][0] }}"
+  tasks:
+    - name: Inspect current membership
+      ansible.builtin.command: rabbitmqctl cluster_status --formatter json
+      register: membership
+      changed_when: false
+
+    - name: Join a standalone non-seed node
+      when:
+        - inventory_hostname != groups['rabbitmq'][0]
+        - seed not in (membership.stdout | from_json).disk_nodes
+      block:
+        - name: Refuse to reset a node with existing queues or another cluster
+          ansible.builtin.command: rabbitmqctl list_queues name --formatter json
+          register: existing_queues
+          changed_when: false
+        - name: Require an empty standalone node before joining
+          ansible.builtin.assert:
+            that:
+              - (existing_queues.stdout | from_json) | length == 0
+              - (membership.stdout | from_json).disk_nodes | length == 1
+            fail_msg: 'Refusing destructive reset: migrate queues/foreign cluster first.'
+        - name: Stop RabbitMQ application
+          ansible.builtin.command: rabbitmqctl stop_app
+          changed_when: true
+        - name: Reset empty standalone node
+          ansible.builtin.command: rabbitmqctl reset
+          changed_when: true
+        - name: Join seed cluster
+          ansible.builtin.command:
+            argv: [rabbitmqctl, join_cluster, "{{ seed }}"]
+          changed_when: true
+      always:
+        - name: Start RabbitMQ application even after a failed join
+          ansible.builtin.command: rabbitmqctl start_app
+          changed_when: true
+
+- name: Create management user and ha-all policy
+  hosts: rabbitmq
+  become: true
+  tasks:
+    - name: Read users on seed
+      ansible.builtin.command: rabbitmqctl list_users --formatter json
+      register: users
+      run_once: true
+      changed_when: false
+
+    - name: Create private management user
+      ansible.builtin.command:
+        argv: [rabbitmqctl, add_user, labadmin, "{{ rabbitmq_admin_password }}"]
+      when: "'labadmin' not in (users.stdout | from_json | map(attribute='user') | list)"
+      run_once: true
+      no_log: true
+      changed_when: true
+
+    - name: Update management password only when authentication fails
+      ansible.builtin.command:
+        argv: [rabbitmqctl, authenticate_user, labadmin, "{{ rabbitmq_admin_password }}"]
+      register: user_auth
+      failed_when: false
+      changed_when: false
+      run_once: true
+      no_log: true
+
+    - name: Set requested password
+      ansible.builtin.command:
+        argv: [rabbitmqctl, change_password, labadmin, "{{ rabbitmq_admin_password }}"]
+      when: user_auth.rc != 0
+      run_once: true
+      no_log: true
+      changed_when: true
+
+    - name: Ensure administrator tag
+      ansible.builtin.command: rabbitmqctl set_user_tags labadmin administrator
+      when: >-
+        users.stdout | from_json | selectattr('user', 'equalto', 'labadmin') |
+        map(attribute='tags') | list != [['administrator']]
+      run_once: true
+      changed_when: true
+
+    - name: Read permissions
+      ansible.builtin.command: rabbitmqctl list_user_permissions labadmin --formatter json
+      register: permissions
+      changed_when: false
+      run_once: true
+
+    - name: Grant permissions in lab vhost
+      ansible.builtin.command:
+        argv: [rabbitmqctl, set_permissions, -p, '/', labadmin, '.*', '.*', '.*']
+      when: >-
+        permissions.stdout | from_json | selectattr('vhost', 'equalto', '/') |
+        selectattr('configure', 'equalto', '.*') | selectattr('write', 'equalto', '.*') |
+        selectattr('read', 'equalto', '.*') | list | length == 0
+      changed_when: true
+      run_once: true
+
+    - name: Read existing policies
+      ansible.builtin.command: rabbitmqctl list_policies --formatter json
+      register: policies
+      changed_when: false
+      run_once: true
+
+    - name: Select existing ha-all policy
+      ansible.builtin.set_fact:
+        ha_existing: "{{ policies.stdout | from_json | selectattr('name', 'equalto', 'ha-all') | list }}"
+      run_once: true
+
+    - name: Create ha-all on every classic queue in default vhost
+      ansible.builtin.command:
+        argv:
+          - rabbitmqctl
+          - set_policy
+          - --apply-to
+          - queues
+          - -p
+          - '/'
+          - ha-all
+          - '.*'
+          - '{"ha-mode":"all","ha-sync-mode":"automatic"}'
+      when: >-
+        ha_existing | length == 0 or
+        ha_existing[0].pattern != '.*' or
+        ha_existing[0]['apply-to'] != 'queues' or
+        (ha_existing[0].definition | from_json) != {'ha-mode': 'all', 'ha-sync-mode': 'automatic'}
+      run_once: true
+      changed_when: true
+
+    - name: Verify all requested disk nodes are running
+      ansible.builtin.command: rabbitmqctl cluster_status --formatter json
+      register: final_cluster
+      changed_when: false
+
+    - name: Require complete cluster membership
+      ansible.builtin.assert:
+        that:
+          - >-
+            (groups['rabbitmq'] | map('regex_replace', '^', 'rabbit@') | list |
+            difference((final_cluster.stdout | from_json).running_nodes)) | length == 0
+        quiet: true

@@ -1,0 +1,96 @@
+$ hostname
+rmq01
+exit=0
+
+$ lsb_release -ds
+Ubuntu 24.04.5 LTS
+exit=0
+
+$ systemctl is-active rabbitmq-server
+active
+exit=0
+
+$ rabbitmqctl cluster_status
+Cluster status of node rabbit@rmq01 ...
+Basics
+
+Cluster name: rabbitmq-lab
+Total CPU cores available cluster-wide: 4
+
+Disk Nodes
+
+rabbit@rmq01
+rabbit@rmq02
+
+Running Nodes
+
+rabbit@rmq01
+rabbit@rmq02
+
+Versions
+
+rabbit@rmq01: RabbitMQ 3.12.1 on Erlang 25.3.2.8
+rabbit@rmq02: RabbitMQ 3.12.1 on Erlang 25.3.2.8
+
+CPU Cores
+
+Node: rabbit@rmq01, available CPU cores: 2
+Node: rabbit@rmq02, available CPU cores: 2
+
+Maintenance status
+
+Node: rabbit@rmq01, status: not under maintenance
+Node: rabbit@rmq02, status: not under maintenance
+
+Alarms
+
+(none)
+
+Network Partitions
+
+(none)
+
+Listeners
+
+Node: rabbit@rmq01, interface: 192.168.56.111, port: 15672, protocol: http, purpose: HTTP API
+Node: rabbit@rmq01, interface: [::], port: 25672, protocol: clustering, purpose: inter-node and CLI tool communication
+Node: rabbit@rmq01, interface: 192.168.56.111, port: 5672, protocol: amqp, purpose: AMQP 0-9-1 and AMQP 1.0
+Node: rabbit@rmq01, interface: 127.0.0.1, port: 5672, protocol: amqp, purpose: AMQP 0-9-1 and AMQP 1.0
+Node: rabbit@rmq02, interface: 192.168.56.112, port: 15672, protocol: http, purpose: HTTP API
+Node: rabbit@rmq02, interface: [::], port: 25672, protocol: clustering, purpose: inter-node and CLI tool communication
+Node: rabbit@rmq02, interface: 192.168.56.112, port: 5672, protocol: amqp, purpose: AMQP 0-9-1 and AMQP 1.0
+Node: rabbit@rmq02, interface: 127.0.0.1, port: 5672, protocol: amqp, purpose: AMQP 0-9-1 and AMQP 1.0
+
+Feature flags
+
+Flag: classic_mirrored_queue_version, state: enabled
+Flag: classic_queue_type_delivery_support, state: enabled
+Flag: direct_exchange_routing_v2, state: enabled
+Flag: drop_unroutable_metric, state: enabled
+Flag: empty_basic_get_metric, state: enabled
+Flag: feature_flags_v2, state: enabled
+Flag: implicit_default_bindings, state: enabled
+Flag: listener_records_in_ets, state: enabled
+Flag: maintenance_mode_status, state: enabled
+Flag: quorum_queue, state: enabled
+Flag: restart_streams, state: enabled
+Flag: stream_queue, state: enabled
+Flag: stream_sac_coordinator_unblock_group, state: enabled
+Flag: stream_single_active_consumer, state: enabled
+Flag: tracking_records_in_ets, state: enabled
+Flag: user_limits, state: enabled
+Flag: virtual_host_metadata, state: enabled
+exit=0
+
+$ rabbitmqctl list_policies
+Listing policies for vhost "/" ...
+vhost	name	pattern	apply-to	definition	priority
+/	ha-all	.*	queues	{"ha-mode":"all","ha-sync-mode":"automatic"}	0
+exit=0
+
+$ rabbitmqctl list_queues name policy messages pid mirror_pids synchronised_mirror_pids
+Timeout: 60.0 seconds ...
+Listing queues for vhost / ...
+name	policy	messages	pid	mirror_pids	synchronised_mirror_pids
+hello	ha-all	0	<rabbit@rmq02.1791283466.1011.0>	[<rabbit@rmq01.1791283344.532.0>]	[<rabbit@rmq01.1791283344.532.0>]
+exit=0

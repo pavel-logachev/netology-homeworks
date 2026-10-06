@@ -1,0 +1,179 @@
+
+PLAY [Install and prepare RabbitMQ nodes] **************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [rmq01]
+ok: [rmq02]
+
+TASK [Require supported OS and explicit password] ******************************
+ok: [rmq01]
+ok: [rmq02]
+
+TASK [Set unique short hostname] ***********************************************
+ok: [rmq01]
+ok: [rmq02]
+
+TASK [Resolve all cluster members through hosts] *******************************
+ok: [rmq02]
+ok: [rmq01]
+
+TASK [Disable cloud-init rewriting hosts] **************************************
+ok: [rmq02]
+ok: [rmq01]
+
+TASK [Install native Ubuntu packages] ******************************************
+ok: [rmq02]
+ok: [rmq01]
+
+TASK [Read installed RabbitMQ version] *****************************************
+ok: [rmq02]
+ok: [rmq01]
+
+TASK [Refuse RabbitMQ without classic queue mirroring] *************************
+ok: [rmq01] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [rmq02] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [Read seed cookie without logging it] *************************************
+ok: [rmq01]
+
+TASK [Read local cookie without logging it] ************************************
+ok: [rmq01]
+ok: [rmq02]
+
+TASK [Stop service only if cookie needs changing] ******************************
+skipping: [rmq01]
+skipping: [rmq02]
+
+TASK [Share seed cookie securely] **********************************************
+ok: [rmq01]
+ok: [rmq02]
+
+TASK [Bind AMQP and management to host-only and loopback] **********************
+changed: [rmq02]
+changed: [rmq01]
+
+TASK [Enable management plugin offline] ****************************************
+ok: [rmq01]
+ok: [rmq02]
+
+TASK [Apply configuration before readiness check] ******************************
+
+TASK [Apply configuration before readiness check] ******************************
+
+RUNNING HANDLER [Restart RabbitMQ] *********************************************
+changed: [rmq01]
+changed: [rmq02]
+
+TASK [Ensure RabbitMQ service is enabled and started] **************************
+ok: [rmq01]
+ok: [rmq02]
+
+TASK [Wait for local RabbitMQ application] *************************************
+ok: [rmq01]
+ok: [rmq02]
+
+PLAY [Join each new node to the seed without resetting existing members] *******
+
+TASK [Gathering Facts] *********************************************************
+ok: [rmq01]
+
+TASK [Inspect current membership] **********************************************
+ok: [rmq01]
+
+TASK [Refuse to reset a node with existing queues or another cluster] **********
+skipping: [rmq01]
+
+TASK [Require an empty standalone node before joining] *************************
+skipping: [rmq01]
+
+TASK [Stop RabbitMQ application] ***********************************************
+skipping: [rmq01]
+
+TASK [Reset empty standalone node] *********************************************
+skipping: [rmq01]
+
+TASK [Join seed cluster] *******************************************************
+skipping: [rmq01]
+
+TASK [Start RabbitMQ application even after a failed join] *********************
+skipping: [rmq01]
+
+PLAY [Join each new node to the seed without resetting existing members] *******
+
+TASK [Gathering Facts] *********************************************************
+ok: [rmq02]
+
+TASK [Inspect current membership] **********************************************
+ok: [rmq02]
+
+TASK [Refuse to reset a node with existing queues or another cluster] **********
+skipping: [rmq02]
+
+TASK [Require an empty standalone node before joining] *************************
+skipping: [rmq02]
+
+TASK [Stop RabbitMQ application] ***********************************************
+skipping: [rmq02]
+
+TASK [Reset empty standalone node] *********************************************
+skipping: [rmq02]
+
+TASK [Join seed cluster] *******************************************************
+skipping: [rmq02]
+
+TASK [Start RabbitMQ application even after a failed join] *********************
+skipping: [rmq02]
+
+PLAY [Create management user and ha-all policy] ********************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [rmq01]
+ok: [rmq02]
+
+TASK [Read users on seed] ******************************************************
+ok: [rmq01]
+
+TASK [Create private management user] ******************************************
+skipping: [rmq01]
+
+TASK [Update management password only when authentication fails] ***************
+ok: [rmq01]
+
+TASK [Set requested password] **************************************************
+skipping: [rmq01]
+
+TASK [Ensure administrator tag] ************************************************
+skipping: [rmq01]
+
+TASK [Read permissions] ********************************************************
+ok: [rmq01]
+
+TASK [Grant permissions in lab vhost] ******************************************
+skipping: [rmq01]
+
+TASK [Read existing policies] **************************************************
+ok: [rmq01]
+
+TASK [Select existing ha-all policy] *******************************************
+ok: [rmq01]
+
+TASK [Create ha-all on every classic queue in default vhost] *******************
+skipping: [rmq01]
+
+TASK [Verify all requested disk nodes are running] *****************************
+ok: [rmq01]
+ok: [rmq02]
+
+TASK [Require complete cluster membership] *************************************
+ok: [rmq01]
+ok: [rmq02]
+
+PLAY RECAP *********************************************************************
+rmq01                      : ok=26   changed=2    unreachable=0    failed=0    skipped=12   rescued=0    ignored=0
+rmq02                      : ok=20   changed=2    unreachable=0    failed=0    skipped=7    rescued=0    ignored=0

@@ -1,0 +1,8 @@
+__pycache__/
+.venv/
+.venv39/
+secrets*.yml
+*.key
+*.vdi
+*.vmdk
+*.iso

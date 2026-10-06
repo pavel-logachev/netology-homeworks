@@ -1,0 +1,2 @@
+# Course consumer uses the pre-1.0 callback-first basic_consume API.
+pika==0.13.1
