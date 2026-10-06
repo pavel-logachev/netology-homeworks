@@ -1,0 +1,19 @@
+DO
+    table_name     |               conname               |                                    definition
+-------------------+-------------------------------------+----------------------------------------------------------------------------------
+ department_types  | department_types_pkey               | PRIMARY KEY (department_type_id)
+ positions         | positions_pkey                      | PRIMARY KEY (position_id)
+ branches          | branches_pkey                       | PRIMARY KEY (branch_id)
+ departments       | departments_department_type_id_fkey | FOREIGN KEY (department_type_id) REFERENCES department_types(department_type_id)
+ departments       | departments_pkey                    | PRIMARY KEY (department_id)
+ projects          | projects_pkey                       | PRIMARY KEY (project_id)
+ employees         | employees_branch_id_fkey            | FOREIGN KEY (branch_id) REFERENCES branches(branch_id)
+ employees         | employees_department_id_fkey        | FOREIGN KEY (department_id) REFERENCES departments(department_id)
+ employees         | employees_pkey                      | PRIMARY KEY (employee_id)
+ employees         | employees_position_id_fkey          | FOREIGN KEY (position_id) REFERENCES positions(position_id)
+ employee_projects | employee_projects_employee_id_fkey  | FOREIGN KEY (employee_id) REFERENCES employees(employee_id) ON DELETE CASCADE
+ employee_projects | employee_projects_pkey              | PRIMARY KEY (employee_id, project_id)
+ employee_projects | employee_projects_project_id_fkey   | FOREIGN KEY (project_id) REFERENCES projects(project_id)
+(13 rows)
+
+psql:/tmp/verify.sql:25: NOTICE:  PASS: 7 tables, 7 PK, 6 FK, 20 NOT NULL columns, 6 identities, numeric/date, composite PK.

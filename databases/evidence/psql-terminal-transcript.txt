@@ -1,0 +1,39 @@
+>docker exec -it netology-12-01-postgres psql -U postgres
+psql (18.6 (Debian 18.6-1.pgdg13+2))
+Type "help" for help.
+
+postgres=# DROP DATABASE netology_databases;
+DROP DATABASE
+postgres=# CREATE DATABASE netology_databases;
+CREATE DATABASE
+postgres=# \c netology_databases
+You are now connected to database "netology_databases" as user "postgres".
+netology_databases=# \i /tmp/schema.sql
+BEGIN
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+COMMIT
+netology_databases=# \dt
+                List of tables
+ Schema |       Name        | Type  |  Owner
+--------+-------------------+-------+----------
+ public | branches          | table | postgres
+ public | department_types  | table | postgres
+ public | departments       | table | postgres
+ public | employee_projects | table | postgres
+ public | employees         | table | postgres
+ public | positions         | table | postgres
+ public | projects          | table | postgres
+(7 rows)
+
+netology_databases=#

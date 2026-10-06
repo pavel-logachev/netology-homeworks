@@ -1,0 +1,31 @@
+{
+  "source_url": "https://raw.githubusercontent.com/netology-code/sdb-homeworks/main/resources/hw-12-1.xlsx",
+  "sha256": "63650772ee3c90fcb5999d62f4c9300e1cd6106ba3ec99ac52821d22bac3ae90",
+  "sheets": [
+    "Лист1"
+  ],
+  "rows": 29,
+  "headers": [
+    "ФИО сотрудника",
+    "Оклад",
+    "Должность",
+    "Тип подразделения",
+    "Структурное подразделение",
+    "Дата найма",
+    "Адрес филиала",
+    "Проект на который назначен"
+  ],
+  "counts": {
+    "employees": 29,
+    "positions": 15,
+    "department_types": 3,
+    "departments": 16,
+    "branches": 3,
+    "projects": 31,
+    "employee_projects": 33
+  },
+  "multi_project_rows": 4,
+  "date_min": "2012-03-01",
+  "date_max": "2020-07-13",
+  "date_interpretation": "Assumption: numeric DDMMYY, zero-padded to 6 digits; YY interpreted as 20YY. Original cells are General, not Excel dates. Confirm with customer before production import."
+}
