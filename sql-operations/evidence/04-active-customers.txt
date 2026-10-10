@@ -1,0 +1,16 @@
+--------------
+SELECT LOWER(last_name) AS last_name,
+       REPLACE(LOWER(first_name), 'll', 'pp') AS first_name
+FROM customer
+WHERE active = 1 AND first_name IN ('Kelly', 'Willie')
+ORDER BY last_name, first_name
+--------------
+
++-----------+------------+
+| last_name | first_name |
++-----------+------------+
+| howell    | wippie     |
+| knott     | keppy      |
+| markham   | wippie     |
+| torres    | keppy      |
++-----------+------------+

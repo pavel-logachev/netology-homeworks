@@ -1,0 +1,19 @@
+--------------
+SELECT DISTINCT district
+FROM address
+WHERE district COLLATE utf8mb4_bin LIKE 'K%a'
+  AND district NOT LIKE '% %'
+ORDER BY district
+--------------
+
++-----------+
+| district  |
++-----------+
+| Kaduna    |
+| Kalmykia  |
+| Kanagawa  |
+| Karnataka |
+| Kerala    |
+| Kitaa     |
+| Kütahya   |
++-----------+

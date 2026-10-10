@@ -1,0 +1,79 @@
+--------------
+SELECT COUNT(DISTINCT district) AS task1_rows FROM address
+WHERE district COLLATE utf8mb4_bin LIKE 'K%a' AND district NOT LIKE '% %'
+--------------
+
++------------+
+| task1_rows |
++------------+
+|          7 |
++------------+
+--------------
+SELECT DISTINCT district AS plain_like_district FROM address
+WHERE district LIKE 'K%a' AND district NOT LIKE '% %' ORDER BY district
+--------------
+
++---------------------+
+| plain_like_district |
++---------------------+
+| Kaduna              |
+| Kalmykia            |
+| Kanagawa            |
+| Karnataka           |
+| Kerala              |
+| Kitaa               |
+| Kütahya             |
++---------------------+
+--------------
+SELECT COUNT(*) AS task2_rows FROM payment
+WHERE payment_date >= '2005-06-15' AND payment_date < '2005-06-19'
+  AND amount > 10.00
+--------------
+
++------------+
+| task2_rows |
++------------+
+|          7 |
++------------+
+--------------
+SELECT COUNT(*) AS task3_rows FROM
+ (SELECT rental_id FROM rental ORDER BY rental_date DESC, rental_id DESC LIMIT 5) AS r
+--------------
+
++------------+
+| task3_rows |
++------------+
+|          5 |
++------------+
+--------------
+SELECT COUNT(*) AS task4_rows FROM customer
+WHERE active = 1 AND first_name IN ('Kelly', 'Willie')
+--------------
+
++------------+
+| task4_rows |
++------------+
+|          4 |
++------------+
+--------------
+SELECT COUNT(*) AS task5_rows, COUNT(*) AS task6_rows,
+       SUM(email IS NULL) AS null_emails,
+       SUM(LENGTH(email) - LENGTH(REPLACE(email, '@', '')) <> 1) AS invalid_at_count
+FROM customer
+--------------
+
++------------+------------+-------------+------------------+
+| task5_rows | task6_rows | null_emails | invalid_at_count |
++------------+------------+-------------+------------------+
+|        599 |        599 |           0 |                0 |
++------------+------------+-------------+------------------+
+--------------
+SELECT character_set_name, collation_name FROM information_schema.COLUMNS
+WHERE TABLE_SCHEMA = 'sakila' AND TABLE_NAME = 'address' AND COLUMN_NAME = 'district'
+--------------
+
++--------------------+--------------------+
+| CHARACTER_SET_NAME | COLLATION_NAME     |
++--------------------+--------------------+
+| utf8mb4            | utf8mb4_0900_ai_ci |
++--------------------+--------------------+
