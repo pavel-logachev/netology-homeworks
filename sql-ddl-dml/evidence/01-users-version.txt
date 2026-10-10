@@ -1,0 +1,23 @@
+--------------
+SELECT VERSION() AS mysql_version
+--------------
+
++---------------+
+| mysql_version |
++---------------+
+| 8.0.46        |
++---------------+
+--------------
+SELECT User, Host, plugin FROM mysql.user ORDER BY User, Host
+--------------
+
++------------------+-----------+-----------------------+
+| User             | Host      | plugin                |
++------------------+-----------+-----------------------+
+| mysql.infoschema | localhost | caching_sha2_password |
+| mysql.session    | localhost | caching_sha2_password |
+| mysql.sys        | localhost | caching_sha2_password |
+| root             | %         | caching_sha2_password |
+| root             | localhost | caching_sha2_password |
+| sys_temp         | localhost | mysql_native_password |
++------------------+-----------+-----------------------+

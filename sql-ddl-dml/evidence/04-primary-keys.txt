@@ -1,0 +1,35 @@
+--------------
+SELECT t.TABLE_NAME AS table_name,
+       GROUP_CONCAT(k.COLUMN_NAME ORDER BY k.ORDINAL_POSITION
+                    SEPARATOR ', ') AS primary_key_columns
+FROM information_schema.TABLES AS t
+JOIN information_schema.TABLE_CONSTRAINTS AS c
+  ON c.TABLE_SCHEMA = t.TABLE_SCHEMA AND c.TABLE_NAME = t.TABLE_NAME
+ AND c.CONSTRAINT_TYPE = 'PRIMARY KEY'
+JOIN information_schema.KEY_COLUMN_USAGE AS k
+  ON k.CONSTRAINT_SCHEMA = c.CONSTRAINT_SCHEMA
+ AND k.TABLE_NAME = c.TABLE_NAME AND k.CONSTRAINT_NAME = c.CONSTRAINT_NAME
+WHERE t.TABLE_SCHEMA = 'sakila' AND t.TABLE_TYPE = 'BASE TABLE'
+GROUP BY t.TABLE_NAME ORDER BY t.TABLE_NAME
+--------------
+
++---------------+----------------------+
+| table_name    | primary_key_columns  |
++---------------+----------------------+
+| actor         | actor_id             |
+| address       | address_id           |
+| category      | category_id          |
+| city          | city_id              |
+| country       | country_id           |
+| customer      | customer_id          |
+| film          | film_id              |
+| film_actor    | actor_id, film_id    |
+| film_category | film_id, category_id |
+| film_text     | film_id              |
+| inventory     | inventory_id         |
+| language      | language_id          |
+| payment       | payment_id           |
+| rental        | rental_id            |
+| staff         | staff_id             |
+| store         | store_id             |
++---------------+----------------------+

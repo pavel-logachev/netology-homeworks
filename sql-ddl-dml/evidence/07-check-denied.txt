@@ -1,0 +1,16 @@
+--------------
+INSERT INTO sakila.customer (store_id, first_name, last_name, address_id)
+SELECT 1, 'CHECK', 'NOOP', 1 WHERE FALSE
+--------------
+
+ERROR 1142 (42000) at line 3: INSERT command denied to user 'sys_temp'@'localhost' for table 'customer'
+--------------
+UPDATE sakila.customer SET first_name = first_name WHERE FALSE
+--------------
+
+ERROR 1142 (42000) at line 5: UPDATE command denied to user 'sys_temp'@'localhost' for table 'customer'
+--------------
+DELETE FROM sakila.customer WHERE FALSE
+--------------
+
+ERROR 1142 (42000) at line 6: DELETE command denied to user 'sys_temp'@'localhost' for table 'customer'

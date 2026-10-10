@@ -1,0 +1,19 @@
+--------------
+SELECT TABLE_TYPE, COUNT(*) AS objects FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'sakila' GROUP BY TABLE_TYPE ORDER BY TABLE_TYPE
+--------------
+
++------------+---------+
+| TABLE_TYPE | objects |
++------------+---------+
+| BASE TABLE |      16 |
+| VIEW       |       7 |
++------------+---------+
+--------------
+SELECT (SELECT COUNT(*) FROM customer) AS customers, (SELECT COUNT(*) FROM rental) AS rentals, (SELECT COUNT(*) FROM payment) AS payments
+--------------
+
++-----------+---------+----------+
+| customers | rentals | payments |
++-----------+---------+----------+
+|       599 |   16044 |    16044 |
++-----------+---------+----------+

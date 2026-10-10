@@ -1,0 +1,13 @@
+-- Task 2: base tables only; ordered complete composite primary keys.
+SELECT t.TABLE_NAME AS table_name,
+       GROUP_CONCAT(k.COLUMN_NAME ORDER BY k.ORDINAL_POSITION
+                    SEPARATOR ', ') AS primary_key_columns
+FROM information_schema.TABLES AS t
+JOIN information_schema.TABLE_CONSTRAINTS AS c
+  ON c.TABLE_SCHEMA = t.TABLE_SCHEMA AND c.TABLE_NAME = t.TABLE_NAME
+ AND c.CONSTRAINT_TYPE = 'PRIMARY KEY'
+JOIN information_schema.KEY_COLUMN_USAGE AS k
+  ON k.CONSTRAINT_SCHEMA = c.CONSTRAINT_SCHEMA
+ AND k.TABLE_NAME = c.TABLE_NAME AND k.CONSTRAINT_NAME = c.CONSTRAINT_NAME
+WHERE t.TABLE_SCHEMA = 'sakila' AND t.TABLE_TYPE = 'BASE TABLE'
+GROUP BY t.TABLE_NAME ORDER BY t.TABLE_NAME;

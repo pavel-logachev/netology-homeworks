@@ -1,0 +1,9 @@
+--------------
+SELECT CURRENT_USER() AS authenticated_as, COUNT(*) AS customers FROM sakila.customer
+--------------
+
++--------------------+-----------+
+| authenticated_as   | customers |
++--------------------+-----------+
+| sys_temp@localhost |       599 |
++--------------------+-----------+

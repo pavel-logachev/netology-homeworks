@@ -1,0 +1,18 @@
+--------------
+SELECT USER() AS connected_as, CURRENT_USER() AS authenticated_as
+--------------
+
++--------------------+--------------------+
+| connected_as       | authenticated_as   |
++--------------------+--------------------+
+| sys_temp@localhost | sys_temp@localhost |
++--------------------+--------------------+
+--------------
+SELECT User, Host, plugin FROM mysql.user WHERE User = 'sys_temp'
+--------------
+
++----------+-----------+-----------------------+
+| User     | Host      | plugin                |
++----------+-----------+-----------------------+
+| sys_temp | localhost | mysql_native_password |
++----------+-----------+-----------------------+
