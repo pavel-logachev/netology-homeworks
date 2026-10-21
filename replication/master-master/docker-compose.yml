@@ -1,0 +1,49 @@
+name: nt-repl-mm
+services:
+  mm1:
+    image: mysql:8.0
+    container_name: nt-repl-mm1
+    hostname: nt-repl-mm1
+    environment:
+      MYSQL_ROOT_PASSWORD: ${NT_REPL_ROOT_PASSWORD:-nt-repl-lab-only}
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "127.0.0.1:13312:3306"
+    volumes:
+      - mm1-data:/var/lib/mysql
+    networks:
+      - repl
+    healthcheck:
+      test: ["CMD-SHELL", 'MYSQL_PWD="$$MYSQL_ROOT_PASSWORD" mysql --protocol=TCP -h127.0.0.1 -uroot -Nse "SELECT 1"']
+      interval: 3s
+      timeout: 3s
+      retries: 40
+      start_period: 20s
+  mm2:
+    image: mysql:8.0
+    container_name: nt-repl-mm2
+    hostname: nt-repl-mm2
+    environment:
+      MYSQL_ROOT_PASSWORD: ${NT_REPL_ROOT_PASSWORD:-nt-repl-lab-only}
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "127.0.0.1:13313:3306"
+    volumes:
+      - mm2-data:/var/lib/mysql
+    networks:
+      - repl
+    healthcheck:
+      test: ["CMD-SHELL", 'MYSQL_PWD="$$MYSQL_ROOT_PASSWORD" mysql --protocol=TCP -h127.0.0.1 -uroot -Nse "SELECT 1"']
+      interval: 3s
+      timeout: 3s
+      retries: 40
+      start_period: 20s
+networks:
+  repl:
+    name: nt-repl-mm-net
+volumes:
+  mm1-data:
+    name: nt-repl-mm1-data
+  mm2-data:
+    name: nt-repl-mm2-data
+

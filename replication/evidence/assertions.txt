@@ -1,0 +1,342 @@
+=== master | SELECT @@hostname,@@version,@@server_id,@@server_uuid,@@read_only,@@super_read_only,@@log_bin,@@binlog_format,@@gtid_mode,@@enforce_gtid_consistency,@@auto_increment_increment,@@auto_increment_offset,@@GLOBAL.gtid_executed; ===
+@@hostname	@@version	@@server_id	@@server_uuid	@@read_only	@@super_read_only	@@log_bin	@@binlog_format	@@gtid_mode	@@enforce_gtid_consistency	@@auto_increment_increment	@@auto_increment_offset	@@GLOBAL.gtid_executed
+nt-repl-master	8.0.46	101	a722a296-cd38-11f1-926f-aafb724e3047	0	0	1	ROW	ON	ON	1	1	a722a296-cd38-11f1-926f-aafb724e3047:1-4
+
+=== master | cat /etc/mysql/conf.d/*.cnf ===
+[mysqld]
+log_bin=mysql-bin
+relay_log=relay-bin
+binlog_format=ROW
+gtid_mode=ON
+enforce_gtid_consistency=ON
+log_replica_updates=ON
+skip_replica_start=ON
+sync_binlog=1
+innodb_flush_log_at_trx_commit=1
+server-id=101
+read_only=OFF
+super_read_only=OFF
+
+=== master | SHOW MASTER STATUS\G ===
+*************************** 1. row ***************************
+             File: mysql-bin.000001
+         Position: 1403
+     Binlog_Do_DB: 
+ Binlog_Ignore_DB: 
+Executed_Gtid_Set: a722a296-cd38-11f1-926f-aafb724e3047:1-4
+
+=== replica | SELECT @@hostname,@@version,@@server_id,@@server_uuid,@@read_only,@@super_read_only,@@log_bin,@@binlog_format,@@gtid_mode,@@enforce_gtid_consistency,@@auto_increment_increment,@@auto_increment_offset,@@GLOBAL.gtid_executed; ===
+@@hostname	@@version	@@server_id	@@server_uuid	@@read_only	@@super_read_only	@@log_bin	@@binlog_format	@@gtid_mode	@@enforce_gtid_consistency	@@auto_increment_increment	@@auto_increment_offset	@@GLOBAL.gtid_executed
+nt-repl-replica	8.0.46	102	a6fb6bce-cd38-11f1-877c-927ffde5ac5a	1	1	1	ROW	ON	ON	1	1	a722a296-cd38-11f1-926f-aafb724e3047:1-4
+
+=== replica | cat /etc/mysql/conf.d/*.cnf ===
+[mysqld]
+log_bin=mysql-bin
+relay_log=relay-bin
+binlog_format=ROW
+gtid_mode=ON
+enforce_gtid_consistency=ON
+log_replica_updates=ON
+skip_replica_start=ON
+sync_binlog=1
+innodb_flush_log_at_trx_commit=1
+server-id=102
+read_only=ON
+super_read_only=ON
+
+=== replica | SHOW REPLICA STATUS\G ===
+*************************** 1. row ***************************
+             Replica_IO_State: Waiting for source to send event
+                  Source_Host: nt-repl-master
+                  Source_User: repl
+                  Source_Port: 3306
+                Connect_Retry: 2
+              Source_Log_File: mysql-bin.000001
+          Read_Source_Log_Pos: 1403
+               Relay_Log_File: relay-bin.000002
+                Relay_Log_Pos: 1619
+        Relay_Source_Log_File: mysql-bin.000001
+           Replica_IO_Running: Yes
+          Replica_SQL_Running: Yes
+              Replicate_Do_DB: 
+          Replicate_Ignore_DB: 
+           Replicate_Do_Table: 
+       Replicate_Ignore_Table: 
+      Replicate_Wild_Do_Table: 
+  Replicate_Wild_Ignore_Table: 
+                   Last_Errno: 0
+                   Last_Error: 
+                 Skip_Counter: 0
+          Exec_Source_Log_Pos: 1403
+              Relay_Log_Space: 1823
+              Until_Condition: None
+               Until_Log_File: 
+                Until_Log_Pos: 0
+           Source_SSL_Allowed: No
+           Source_SSL_CA_File: 
+           Source_SSL_CA_Path: 
+              Source_SSL_Cert: 
+            Source_SSL_Cipher: 
+               Source_SSL_Key: 
+        Seconds_Behind_Source: 0
+Source_SSL_Verify_Server_Cert: No
+                Last_IO_Errno: 0
+                Last_IO_Error: 
+               Last_SQL_Errno: 0
+               Last_SQL_Error: 
+  Replicate_Ignore_Server_Ids: 
+             Source_Server_Id: 101
+                  Source_UUID: a722a296-cd38-11f1-926f-aafb724e3047
+             Source_Info_File: mysql.slave_master_info
+                    SQL_Delay: 0
+          SQL_Remaining_Delay: NULL
+    Replica_SQL_Running_State: Replica has read all relay log; waiting for more updates
+           Source_Retry_Count: 86400
+                  Source_Bind: 
+      Last_IO_Error_Timestamp: 
+     Last_SQL_Error_Timestamp: 
+               Source_SSL_Crl: 
+           Source_SSL_Crlpath: 
+           Retrieved_Gtid_Set: a722a296-cd38-11f1-926f-aafb724e3047:1-4
+            Executed_Gtid_Set: a722a296-cd38-11f1-926f-aafb724e3047:1-4
+                Auto_Position: 1
+         Replicate_Rewrite_DB: 
+                 Channel_Name: 
+           Source_TLS_Version: 
+       Source_public_key_path: 
+        Get_Source_public_key: 1
+            Network_Namespace: 
+
+=== replica | SHOW MASTER STATUS\G ===
+*************************** 1. row ***************************
+             File: mysql-bin.000001
+         Position: 1453
+     Binlog_Do_DB: 
+ Binlog_Ignore_DB: 
+Executed_Gtid_Set: a722a296-cd38-11f1-926f-aafb724e3047:1-4
+
+=== mm1 | SELECT @@hostname,@@version,@@server_id,@@server_uuid,@@read_only,@@super_read_only,@@log_bin,@@binlog_format,@@gtid_mode,@@enforce_gtid_consistency,@@auto_increment_increment,@@auto_increment_offset,@@GLOBAL.gtid_executed; ===
+@@hostname	@@version	@@server_id	@@server_uuid	@@read_only	@@super_read_only	@@log_bin	@@binlog_format	@@gtid_mode	@@enforce_gtid_consistency	@@auto_increment_increment	@@auto_increment_offset	@@GLOBAL.gtid_executed
+nt-repl-mm1	8.0.46	201	b37ee112-cd38-11f1-ae30-76834bed9ef9	0	0	1	ROW	ON	ON	2	1	b37ee112-cd38-11f1-ae30-76834bed9ef9:1-5,
+b3a5601d-cd38-11f1-b380-ca90ba484ced:1-3
+
+=== mm1 | cat /etc/mysql/conf.d/*.cnf ===
+[mysqld]
+log_bin=mysql-bin
+relay_log=relay-bin
+binlog_format=ROW
+gtid_mode=ON
+enforce_gtid_consistency=ON
+log_replica_updates=ON
+skip_replica_start=ON
+sync_binlog=1
+innodb_flush_log_at_trx_commit=1
+server-id=201
+auto_increment_increment=2
+auto_increment_offset=1
+read_only=OFF
+super_read_only=OFF
+
+=== mm1 | SHOW REPLICA STATUS\G ===
+*************************** 1. row ***************************
+             Replica_IO_State: Waiting for source to send event
+                  Source_Host: nt-repl-mm2
+                  Source_User: repl
+                  Source_Port: 3306
+                Connect_Retry: 2
+              Source_Log_File: mysql-bin.000001
+          Read_Source_Log_Pos: 2676
+               Relay_Log_File: relay-bin.000002
+                Relay_Log_Pos: 1331
+        Relay_Source_Log_File: mysql-bin.000001
+           Replica_IO_Running: Yes
+          Replica_SQL_Running: Yes
+              Replicate_Do_DB: 
+          Replicate_Ignore_DB: 
+           Replicate_Do_Table: 
+       Replicate_Ignore_Table: 
+      Replicate_Wild_Do_Table: 
+  Replicate_Wild_Ignore_Table: 
+                   Last_Errno: 0
+                   Last_Error: 
+                 Skip_Counter: 0
+          Exec_Source_Log_Pos: 2676
+              Relay_Log_Space: 1535
+              Until_Condition: None
+               Until_Log_File: 
+                Until_Log_Pos: 0
+           Source_SSL_Allowed: No
+           Source_SSL_CA_File: 
+           Source_SSL_CA_Path: 
+              Source_SSL_Cert: 
+            Source_SSL_Cipher: 
+               Source_SSL_Key: 
+        Seconds_Behind_Source: 0
+Source_SSL_Verify_Server_Cert: No
+                Last_IO_Errno: 0
+                Last_IO_Error: 
+               Last_SQL_Errno: 0
+               Last_SQL_Error: 
+  Replicate_Ignore_Server_Ids: 
+             Source_Server_Id: 202
+                  Source_UUID: b3a5601d-cd38-11f1-b380-ca90ba484ced
+             Source_Info_File: mysql.slave_master_info
+                    SQL_Delay: 0
+          SQL_Remaining_Delay: NULL
+    Replica_SQL_Running_State: Replica has read all relay log; waiting for more updates
+           Source_Retry_Count: 86400
+                  Source_Bind: 
+      Last_IO_Error_Timestamp: 
+     Last_SQL_Error_Timestamp: 
+               Source_SSL_Crl: 
+           Source_SSL_Crlpath: 
+           Retrieved_Gtid_Set: b3a5601d-cd38-11f1-b380-ca90ba484ced:1-3
+            Executed_Gtid_Set: b37ee112-cd38-11f1-ae30-76834bed9ef9:1-5,
+b3a5601d-cd38-11f1-b380-ca90ba484ced:1-3
+                Auto_Position: 1
+         Replicate_Rewrite_DB: 
+                 Channel_Name: 
+           Source_TLS_Version: 
+       Source_public_key_path: 
+        Get_Source_public_key: 1
+            Network_Namespace: 
+
+=== mm1 | SHOW MASTER STATUS\G ===
+*************************** 1. row ***************************
+             File: mysql-bin.000001
+         Position: 2662
+     Binlog_Do_DB: 
+ Binlog_Ignore_DB: 
+Executed_Gtid_Set: b37ee112-cd38-11f1-ae30-76834bed9ef9:1-5,
+b3a5601d-cd38-11f1-b380-ca90ba484ced:1-3
+
+=== mm2 | SELECT @@hostname,@@version,@@server_id,@@server_uuid,@@read_only,@@super_read_only,@@log_bin,@@binlog_format,@@gtid_mode,@@enforce_gtid_consistency,@@auto_increment_increment,@@auto_increment_offset,@@GLOBAL.gtid_executed; ===
+@@hostname	@@version	@@server_id	@@server_uuid	@@read_only	@@super_read_only	@@log_bin	@@binlog_format	@@gtid_mode	@@enforce_gtid_consistency	@@auto_increment_increment	@@auto_increment_offset	@@GLOBAL.gtid_executed
+nt-repl-mm2	8.0.46	202	b3a5601d-cd38-11f1-b380-ca90ba484ced	0	0	1	ROW	ON	ON	2	2	b37ee112-cd38-11f1-ae30-76834bed9ef9:1-5,
+b3a5601d-cd38-11f1-b380-ca90ba484ced:1-3
+
+=== mm2 | cat /etc/mysql/conf.d/*.cnf ===
+[mysqld]
+log_bin=mysql-bin
+relay_log=relay-bin
+binlog_format=ROW
+gtid_mode=ON
+enforce_gtid_consistency=ON
+log_replica_updates=ON
+skip_replica_start=ON
+sync_binlog=1
+innodb_flush_log_at_trx_commit=1
+server-id=202
+auto_increment_increment=2
+auto_increment_offset=2
+read_only=OFF
+super_read_only=OFF
+
+=== mm2 | SHOW REPLICA STATUS\G ===
+*************************** 1. row ***************************
+             Replica_IO_State: Waiting for source to send event
+                  Source_Host: nt-repl-mm1
+                  Source_User: repl
+                  Source_Port: 3306
+                Connect_Retry: 2
+              Source_Log_File: mysql-bin.000001
+          Read_Source_Log_Pos: 2662
+               Relay_Log_File: relay-bin.000002
+                Relay_Log_Pos: 1875
+        Relay_Source_Log_File: mysql-bin.000001
+           Replica_IO_Running: Yes
+          Replica_SQL_Running: Yes
+              Replicate_Do_DB: 
+          Replicate_Ignore_DB: 
+           Replicate_Do_Table: 
+       Replicate_Ignore_Table: 
+      Replicate_Wild_Do_Table: 
+  Replicate_Wild_Ignore_Table: 
+                   Last_Errno: 0
+                   Last_Error: 
+                 Skip_Counter: 0
+          Exec_Source_Log_Pos: 2662
+              Relay_Log_Space: 2079
+              Until_Condition: None
+               Until_Log_File: 
+                Until_Log_Pos: 0
+           Source_SSL_Allowed: No
+           Source_SSL_CA_File: 
+           Source_SSL_CA_Path: 
+              Source_SSL_Cert: 
+            Source_SSL_Cipher: 
+               Source_SSL_Key: 
+        Seconds_Behind_Source: 0
+Source_SSL_Verify_Server_Cert: No
+                Last_IO_Errno: 0
+                Last_IO_Error: 
+               Last_SQL_Errno: 0
+               Last_SQL_Error: 
+  Replicate_Ignore_Server_Ids: 
+             Source_Server_Id: 201
+                  Source_UUID: b37ee112-cd38-11f1-ae30-76834bed9ef9
+             Source_Info_File: mysql.slave_master_info
+                    SQL_Delay: 0
+          SQL_Remaining_Delay: NULL
+    Replica_SQL_Running_State: Replica has read all relay log; waiting for more updates
+           Source_Retry_Count: 86400
+                  Source_Bind: 
+      Last_IO_Error_Timestamp: 
+     Last_SQL_Error_Timestamp: 
+               Source_SSL_Crl: 
+           Source_SSL_Crlpath: 
+           Retrieved_Gtid_Set: b37ee112-cd38-11f1-ae30-76834bed9ef9:1-5
+            Executed_Gtid_Set: b37ee112-cd38-11f1-ae30-76834bed9ef9:1-5,
+b3a5601d-cd38-11f1-b380-ca90ba484ced:1-3
+                Auto_Position: 1
+         Replicate_Rewrite_DB: 
+                 Channel_Name: 
+           Source_TLS_Version: 
+       Source_public_key_path: 
+        Get_Source_public_key: 1
+            Network_Namespace: 
+
+=== mm2 | SHOW MASTER STATUS\G ===
+*************************** 1. row ***************************
+             File: mysql-bin.000001
+         Position: 2676
+     Binlog_Do_DB: 
+ Binlog_Ignore_DB: 
+Executed_Gtid_Set: b37ee112-cd38-11f1-ae30-76834bed9ef9:1-5,
+b3a5601d-cd38-11f1-b380-ca90ba484ced:1-3
+
+=== master | SELECT * FROM replication_demo.messages ORDER BY id; ===
+id	origin	message
+1	master	Hello from Pavel Logachev
+2	master	GTID replication works
+3	master	Live terminal check
+
+=== replica | SELECT * FROM replication_demo.messages ORDER BY id; ===
+id	origin	message
+1	master	Hello from Pavel Logachev
+2	master	GTID replication works
+3	master	Live terminal check
+
+=== mm1 | SELECT * FROM circular_demo.messages ORDER BY id; ===
+id	origin	message
+1	mm1	first odd id
+2	mm2	first even id
+3	mm1	second odd id
+4	mm2	second even id
+5	mm1	third odd id
+6	mm2	third even id
+
+=== mm2 | SELECT * FROM circular_demo.messages ORDER BY id; ===
+id	origin	message
+1	mm1	first odd id
+2	mm2	first even id
+3	mm1	second odd id
+4	mm2	second even id
+5	mm1	third odd id
+6	mm2	third even id
+
+=== replica | SELECT @@read_only,@@super_read_only; ===
+@@read_only	@@super_read_only
+1	1
+
+PASS: config files identical to host inputs; all replication channels Yes/Yes, zero error numbers and Auto_Position=1; master/replica data equal; circular data equal with ids 1,2,3,4,5,6; replica read_only/super_read_only=1/1.

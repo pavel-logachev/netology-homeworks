@@ -1,0 +1,32 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261021131409
+Username: PAVEL-PC\pavel
+RunAs User: PAVEL-PC\pavel
+Configuration Name: 
+Machine: PAVEL-PC (Microsoft Windows NT 10.0.26300.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoLogo -NoProfile -NonInteractive -Command [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($false); $OutputEncoding = [System.Text.UTF8Encoding]::new($false); Start-Transcript -Path .\evidence\compose-validation.txt; docker compose -f master-slave/docker-compose.yml config --quiet; Write-Output "master-slave config exit=$LASTEXITCODE"; docker compose -f master-master/docker-compose.yml config --quiet; Write-Output "master-master config exit=$LASTEXITCODE"; $env:NT_REPL_TTYD_BINARY='C:/Users/pavel/Documents/DeepSeekHarness/cache/netology/ttyd-12-06'; docker compose -f docker-compose.evidence.yml config --quiet; Write-Output "evidence config exit=$LASTEXITCODE"; git diff --check; Write-Output "git diff --check exit=$LASTEXITCODE (new files remain untracked)"; Get-ChildItem -Recurse -File | Select-Object FullName,Length; Stop-Transcript
+Process ID: 48780
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\evidence\compose-validation.txt
+
+master-slave config exit=0
+
+master-master config exit=0
+
+evidence config exit=0
+
+git diff --check exit=0 (new files remain untracked)
+
+**********************
+Windows PowerShell transcript end
+End time: 20261021131409
+**********************

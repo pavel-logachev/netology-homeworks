@@ -1,0 +1,31 @@
+=== nt-repl-mm1 | copied my.cnf and effective runtime ===
+[mysqld]
+log_bin=mysql-bin
+relay_log=relay-bin
+binlog_format=ROW
+gtid_mode=ON
+enforce_gtid_consistency=ON
+log_replica_updates=ON
+skip_replica_start=ON
+sync_binlog=1
+innodb_flush_log_at_trx_commit=1
+server-id=201
+auto_increment_increment=2
+auto_increment_offset=1
+read_only=OFF
+super_read_only=OFF
++-------------+---------+-----------+
+| host        | version | server_id |
++-------------+---------+-----------+
+| nt-repl-mm1 | 8.0.46  |       201 |
++-------------+---------+-----------+
++-----------+-----------------+
+| read_only | super_read_only |
++-----------+-----------------+
+|         0 |               0 |
++-----------+-----------------+
++---------+--------+------+-------------+
+| log_bin | format | gtid | consistency |
++---------+--------+------+-------------+
+|       1 | ROW    | ON   | ON          |
++---------+--------+------+-------------+

@@ -1,0 +1,9 @@
+export PS1='[Pavel Logachev | replication]$ '
+export HISTFILE=/dev/null
+m() { local host="$1"; shift; mysql --protocol=TCP -h "nt-repl-$host" -uroot --connect-timeout=5 --table "$@"; }
+sql() { local host="$1" file="$2"; echo "=== nt-repl-$host < $file ==="; m "$host" --verbose < "$file"; }
+status() { m "$1" -e 'SHOW REPLICA STATUS\G' | grep -E 'Source_Host:|Source_User:|Source_Port:|Replica_IO_Running:|Replica_SQL_Running:|Seconds_Behind_Source:|Last_IO_Errno:|Last_IO_Error:|Last_SQL_Errno:|Last_SQL_Error:|Source_Server_Id:|Retrieved_Gtid_Set:|Executed_Gtid_Set:|^[0-9a-f-]{36}:|Auto_Position:'; }
+wait_for() { local source="$1" replica="$2" gtid; gtid=$(mysql --protocol=TCP -h "nt-repl-$source" -uroot --connect-timeout=5 --batch --raw -Nse 'SELECT @@GLOBAL.gtid_executed'); m "$replica" -e "SELECT WAIT_FOR_EXECUTED_GTID_SET('$gtid',10) AS wait_result_0_is_success"; }
+echo 'MySQL 8.0 | Netology replication lab | Pavel Logachev'
+echo 'm HOST -e SQL ; sql HOST FILE ; status HOST ; wait_for SOURCE REPLICA'
+echo 'Configs injected with docker cp; effective mysqld variables checked by SQL.'

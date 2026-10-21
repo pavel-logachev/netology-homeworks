@@ -1,0 +1,6 @@
+-- Run locally on BOTH nodes before configuring either channel.
+SET SESSION sql_log_bin=0;
+CREATE USER 'repl'@'%' IDENTIFIED BY 'nt-repl-only';
+GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%';
+SET SESSION sql_log_bin=1;
+SHOW GRANTS FOR 'repl'@'%';

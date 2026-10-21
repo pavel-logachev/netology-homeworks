@@ -1,0 +1,27 @@
+name: nt-repl-evidence
+services:
+  client:
+    image: mysql:8.0
+    container_name: nt-repl-client
+    hostname: nt-repl-client
+    entrypoint: ["bash", "-c", "chmod 755 /usr/local/bin/ttyd; exec /usr/local/bin/ttyd -W -p 7681 -t fontSize=18 bash --rcfile /terminal/bashrc"]
+    environment:
+      MYSQL_PWD: ${NT_REPL_ROOT_PASSWORD:-nt-repl-lab-only}
+      TERM: xterm-256color
+    ports:
+      - "127.0.0.1:7682:7681"
+    volumes:
+      - client-data:/var/lib/mysql
+    networks:
+      - ms
+      - mm
+volumes:
+  client-data:
+    name: nt-repl-client-data
+networks:
+  ms:
+    external: true
+    name: nt-repl-ms-net
+  mm:
+    external: true
+    name: nt-repl-mm-net

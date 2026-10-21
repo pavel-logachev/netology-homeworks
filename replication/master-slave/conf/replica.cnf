@@ -1,0 +1,13 @@
+[mysqld]
+log_bin=mysql-bin
+relay_log=relay-bin
+binlog_format=ROW
+gtid_mode=ON
+enforce_gtid_consistency=ON
+log_replica_updates=ON
+skip_replica_start=ON
+sync_binlog=1
+innodb_flush_log_at_trx_commit=1
+server-id=102
+read_only=ON
+super_read_only=ON

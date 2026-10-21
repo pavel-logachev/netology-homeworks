@@ -1,0 +1,32 @@
+=== nt-repl-mm2 | writable + interleaved AUTO_INCREMENT ===
++------+------+------+------+--------+
+| id   | ro   | sro  | step | offset |
++------+------+------+------+--------+
+|  202 |    0 |    0 |    2 |      2 |
++------+------+------+------+--------+
++----+--------+----------------+
+| id | origin | message        |
++----+--------+----------------+
+|  1 | mm1    | first odd id   |
+|  2 | mm2    | first even id  |
+|  3 | mm1    | second odd id  |
+|  4 | mm2    | second even id |
+|  5 | mm1    | third odd id   |
+|  6 | mm2    | third even id  |
++----+--------+----------------+
+=== SHOW REPLICA STATUS\G | relevant fields ===
+                  Source_Host: nt-repl-mm1
+                  Source_User: repl
+                  Source_Port: 3306
+           Replica_IO_Running: Yes
+          Replica_SQL_Running: Yes
+        Seconds_Behind_Source: 0
+                Last_IO_Errno: 0
+                Last_IO_Error: 
+               Last_SQL_Errno: 0
+               Last_SQL_Error: 
+             Source_Server_Id: 201
+           Retrieved_Gtid_Set: b37ee112-cd38-11f1-ae30-76834bed9ef9:1-5
+            Executed_Gtid_Set: b37ee112-cd38-11f1-ae30-76834bed9ef9:1-5,
+b3a5601d-cd38-11f1-b380-ca90ba484ced:1-3
+                Auto_Position: 1

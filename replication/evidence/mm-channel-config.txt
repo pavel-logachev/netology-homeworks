@@ -1,0 +1,30 @@
+=== Executed channel setup inputs ===
+CHANGE REPLICATION SOURCE TO
+  SOURCE_HOST='nt-repl-mm2', SOURCE_PORT=3306,
+  SOURCE_USER='repl', SOURCE_PASSWORD='nt-repl-only',
+  SOURCE_AUTO_POSITION=1, GET_SOURCE_PUBLIC_KEY=1,
+  SOURCE_CONNECT_RETRY=2;
+START REPLICA;
+CHANGE REPLICATION SOURCE TO
+  SOURCE_HOST='nt-repl-mm1', SOURCE_PORT=3306,
+  SOURCE_USER='repl', SOURCE_PASSWORD='nt-repl-only',
+  SOURCE_AUTO_POSITION=1, GET_SOURCE_PUBLIC_KEY=1,
+  SOURCE_CONNECT_RETRY=2;
+START REPLICA;
+=== Executed schema input (mm1 only) ===
+CREATE DATABASE circular_demo;
+CREATE TABLE circular_demo.messages (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  origin VARCHAR(32) NOT NULL,
+  message VARCHAR(100) NOT NULL
+) ENGINE=InnoDB;
++--------------------------+
+| wait_result_0_is_success |
++--------------------------+
+|                        0 |
++--------------------------+
++--------------------------+
+| wait_result_0_is_success |
++--------------------------+
+|                        0 |
++--------------------------+

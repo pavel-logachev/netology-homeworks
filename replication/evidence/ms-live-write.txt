@@ -1,0 +1,33 @@
+=== nt-repl-master < /master-slave/sql/05-write-master.sql ===
+--------------
+INSERT INTO replication_demo.messages(origin,message) VALUES ('master','Live terminal check')
+--------------
+
+--------------
+SELECT LAST_INSERT_ID() AS generated_on_master
+--------------
+
++---------------------+
+| generated_on_master |
++---------------------+
+|                   3 |
++---------------------+
++--------------------------+
+| wait_result_0_is_success |
++--------------------------+
+|                        0 |
++--------------------------+
++----+--------+---------------------------+
+| id | origin | message                   |
++----+--------+---------------------------+
+|  1 | master | Hello from Pavel Logachev |
+|  2 | master | GTID replication works    |
+|  3 | master | Live terminal check       |
++----+--------+---------------------------+
++----+--------+---------------------------+
+| id | origin | message                   |
++----+--------+---------------------------+
+|  1 | master | Hello from Pavel Logachev |
+|  2 | master | GTID replication works    |
+|  3 | master | Live terminal check       |
++----+--------+---------------------------+

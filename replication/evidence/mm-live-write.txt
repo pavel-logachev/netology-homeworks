@@ -1,0 +1,48 @@
+=== nt-repl-mm1 < /master-master/sql/08-write-mm1.sql ===
+--------------
+INSERT INTO circular_demo.messages(origin,message) VALUES ('mm1','third odd id')
+--------------
+
+--------------
+SELECT LAST_INSERT_ID() AS generated_on_mm1
+--------------
+
++------------------+
+| generated_on_mm1 |
++------------------+
+|                5 |
++------------------+
++--------------------------+
+| wait_result_0_is_success |
++--------------------------+
+|                        0 |
++--------------------------+
++----+--------+--------------+
+| id | origin | message      |
++----+--------+--------------+
+|  5 | mm1    | third odd id |
++----+--------+--------------+
+=== nt-repl-mm2 < /master-master/sql/09-write-mm2.sql ===
+--------------
+INSERT INTO circular_demo.messages(origin,message) VALUES ('mm2','third even id')
+--------------
+
+--------------
+SELECT LAST_INSERT_ID() AS generated_on_mm2
+--------------
+
++------------------+
+| generated_on_mm2 |
++------------------+
+|                6 |
++------------------+
++--------------------------+
+| wait_result_0_is_success |
++--------------------------+
+|                        0 |
++--------------------------+
++----+--------+---------------+
+| id | origin | message       |
++----+--------+---------------+
+|  6 | mm2    | third even id |
++----+--------+---------------+

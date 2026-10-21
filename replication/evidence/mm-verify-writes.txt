@@ -1,0 +1,38 @@
+=== Inputs already executed, sequentially on mm1/mm2 ===
+INSERT INTO circular_demo.messages(origin,message) VALUES ('mm1','first odd id');
+SELECT LAST_INSERT_ID() AS generated_on_mm1;
+INSERT INTO circular_demo.messages(origin,message) VALUES ('mm2','first even id');
+SELECT LAST_INSERT_ID() AS generated_on_mm2;
+INSERT INTO circular_demo.messages(origin,message) VALUES ('mm1','second odd id');
+SELECT LAST_INSERT_ID() AS generated_on_mm1;
+INSERT INTO circular_demo.messages(origin,message) VALUES ('mm2','second even id');
+SELECT LAST_INSERT_ID() AS generated_on_mm2;
+=== Both nodes caught up (0 = success) ===
++--------------------------+
+| wait_result_0_is_success |
++--------------------------+
+|                        0 |
++--------------------------+
++--------------------------+
+| wait_result_0_is_success |
++--------------------------+
+|                        0 |
++--------------------------+
+=== Visible on mm1 ===
++----+--------+----------------+
+| id | origin | message        |
++----+--------+----------------+
+|  1 | mm1    | first odd id   |
+|  2 | mm2    | first even id  |
+|  3 | mm1    | second odd id  |
+|  4 | mm2    | second even id |
++----+--------+----------------+
+=== Visible on mm2 ===
++----+--------+----------------+
+| id | origin | message        |
++----+--------+----------------+
+|  1 | mm1    | first odd id   |
+|  2 | mm2    | first even id  |
+|  3 | mm1    | second odd id  |
+|  4 | mm2    | second even id |
++----+--------+----------------+

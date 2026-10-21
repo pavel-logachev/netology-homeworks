@@ -1,0 +1,49 @@
+name: nt-repl-ms
+services:
+  master:
+    image: mysql:8.0
+    container_name: nt-repl-master
+    hostname: nt-repl-master
+    environment:
+      MYSQL_ROOT_PASSWORD: ${NT_REPL_ROOT_PASSWORD:-nt-repl-lab-only}
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "127.0.0.1:13310:3306"
+    volumes:
+      - master-data:/var/lib/mysql
+    networks:
+      - repl
+    healthcheck:
+      test: ["CMD-SHELL", 'MYSQL_PWD="$$MYSQL_ROOT_PASSWORD" mysql --protocol=TCP -h127.0.0.1 -uroot -Nse "SELECT 1"']
+      interval: 3s
+      timeout: 3s
+      retries: 40
+      start_period: 20s
+  replica:
+    image: mysql:8.0
+    container_name: nt-repl-replica
+    hostname: nt-repl-replica
+    environment:
+      MYSQL_ROOT_PASSWORD: ${NT_REPL_ROOT_PASSWORD:-nt-repl-lab-only}
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "127.0.0.1:13311:3306"
+    volumes:
+      - replica-data:/var/lib/mysql
+    networks:
+      - repl
+    healthcheck:
+      test: ["CMD-SHELL", 'MYSQL_PWD="$$MYSQL_ROOT_PASSWORD" mysql --protocol=TCP -h127.0.0.1 -uroot -Nse "SELECT 1"']
+      interval: 3s
+      timeout: 3s
+      retries: 40
+      start_period: 20s
+networks:
+  repl:
+    name: nt-repl-ms-net
+volumes:
+  master-data:
+    name: nt-repl-master-data
+  replica-data:
+    name: nt-repl-replica-data
+

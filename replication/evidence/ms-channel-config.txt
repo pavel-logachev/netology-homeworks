@@ -1,0 +1,33 @@
+=== Executed setup SQL (saved inputs); privilege verification ===
+-- Disposable lab credential, not a production secret. Do not binlog local accounts.
+SET SESSION sql_log_bin=0;
+CREATE USER 'repl'@'%' IDENTIFIED BY 'nt-repl-only';
+GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%';
+SET SESSION sql_log_bin=1;
+SHOW GRANTS FOR 'repl'@'%';
+CHANGE REPLICATION SOURCE TO
+  SOURCE_HOST='nt-repl-master', SOURCE_PORT=3306,
+  SOURCE_USER='repl', SOURCE_PASSWORD='nt-repl-only',
+  SOURCE_AUTO_POSITION=1, GET_SOURCE_PUBLIC_KEY=1,
+  SOURCE_CONNECT_RETRY=2;
+START REPLICA;
++----------------------------------------------+
+| Grants for repl@%                            |
++----------------------------------------------+
+| GRANT REPLICATION SLAVE ON *.* TO `repl`@`%` |
++----------------------------------------------+
+=== Current replication channel ===
+                  Source_Host: nt-repl-master
+                  Source_User: repl
+                  Source_Port: 3306
+           Replica_IO_Running: Yes
+          Replica_SQL_Running: Yes
+        Seconds_Behind_Source: 0
+                Last_IO_Errno: 0
+                Last_IO_Error: 
+               Last_SQL_Errno: 0
+               Last_SQL_Error: 
+             Source_Server_Id: 101
+           Retrieved_Gtid_Set: a722a296-cd38-11f1-926f-aafb724e3047:1-3
+            Executed_Gtid_Set: a722a296-cd38-11f1-926f-aafb724e3047:1-3
+                Auto_Position: 1

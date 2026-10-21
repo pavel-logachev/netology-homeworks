@@ -1,0 +1,18 @@
+=== Replica write must be rejected (including root) ===
++-------------+-------------+-------------------+
+| @@server_id | @@read_only | @@super_read_only |
++-------------+-------------+-------------------+
+|         102 |           1 |                 1 |
++-------------+-------------+-------------------+
+=== nt-repl-replica < /master-slave/sql/04-write-replica.sql ===
+--------------
+INSERT INTO replication_demo.messages(origin,message) VALUES ('replica','must fail')
+--------------
+
+ERROR 1290 (HY000) at line 2: The MySQL server is running with the --super-read-only option so it cannot execute this statement
+mysql exit code=1 (expected nonzero)
++---------------------------+
+| rows_after_rejected_write |
++---------------------------+
+|                         3 |
++---------------------------+

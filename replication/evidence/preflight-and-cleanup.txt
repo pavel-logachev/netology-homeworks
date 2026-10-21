@@ -1,0 +1,36 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261021131357
+Username: PAVEL-PC\pavel
+RunAs User: PAVEL-PC\pavel
+Configuration Name: 
+Machine: PAVEL-PC (Microsoft Windows NT 10.0.26300.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoLogo -NoProfile -NonInteractive -Command [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($false); $OutputEncoding = [System.Text.UTF8Encoding]::new($false); Start-Transcript -Path .\evidence\preflight-and-cleanup.txt; Write-Output 'Blocked startup recorded by job pwsh-854: Docker Desktop returned user declined directory sharing for C:\Users\pavel\Documents\DeepSeekHarness\cache\netology\wt-12-06\replication\master-slave\conf\master.cnf. No retry or access workaround attempted.'; docker image inspect mysql:8.0 --format '{{.Id}}'; docker ps -a --filter name=nt-repl- --format "table {{.Names}}\t{{.Status}}"; docker volume ls --filter name=nt-repl-; docker network ls --filter name=nt-repl-; Write-Output 'Cleanup only the inspected nt-repl-ms resources; user explicitly requested removal of lab data at finish.'; docker compose -f master-slave/docker-compose.yml down --volumes --remove-orphans; if ($LASTEXITCODE -ne 0) { Stop-Transcript; exit $LASTEXITCODE }; docker ps -a --filter name=nt-repl- --format '{{.Names}}'; docker volume ls --filter name=nt-repl-; docker network ls --filter name=nt-repl-; docker ps --filter name=netology-12-02-mysql --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"; git -C C:\Users\pavel\Documents\Projects\devops-practice\netology-homeworks status --short --branch; git status --short --branch; Stop-Transcript
+Process ID: 44432
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\evidence\preflight-and-cleanup.txt
+Blocked startup recorded by job pwsh-854: Docker Desktop returned user declined directory sharing for C:\Users\pavel\Documents\DeepSeekHarness\cache\netology\wt-12-06\replication\master-slave\conf\master.cnf. No retry or access workaround attempted.
+
+
+
+
+Cleanup only the inspected nt-repl-ms resources; user explicitly requested removal of lab data at finish.
+
+
+
+
+
+
+
+**********************
+Windows PowerShell transcript end
+End time: 20261021131358
+**********************

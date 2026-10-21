@@ -1,0 +1,38 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261021132752
+Username: PAVEL-PC\pavel
+RunAs User: PAVEL-PC\pavel
+Configuration Name: 
+Machine: PAVEL-PC (Microsoft Windows NT 10.0.26300.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoLogo -NoProfile -NonInteractive -Command [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($false); $OutputEncoding = [System.Text.UTF8Encoding]::new($false); Start-Transcript -Path evidence\final-cleanup.txt; Write-Output 'Old client anonymous image volume was removed by compose down --volumes (inspect returned no such volume). Final client used nt-repl-client-data.'; docker ps -a --filter name=nt-repl- --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"; docker volume ls --filter name=nt-repl-; docker network ls --filter name=nt-repl-; & C:\Users\pavel\Documents\DeepSeekHarness\tools\playwright\playwright-dsh.cmd -s=repl-hw close; docker compose -f docker-compose.evidence.yml down --volumes; if($LASTEXITCODE -ne 0){Stop-Transcript;exit $LASTEXITCODE}; docker compose -f master-slave/docker-compose.yml down --volumes; if($LASTEXITCODE -ne 0){Stop-Transcript;exit $LASTEXITCODE}; docker compose -f master-master/docker-compose.yml down --volumes; if($LASTEXITCODE -ne 0){Stop-Transcript;exit $LASTEXITCODE}; Write-Output 'AFTER CLEANUP'; docker ps -a --filter name=nt-repl- --format '{{.Names}}'; docker volume ls --filter name=nt-repl-; docker network ls --filter name=nt-repl-; git -C C:\Users\pavel\Documents\Projects\devops-practice\netology-homeworks status --short --branch; git status --short --branch; docker ps --filter name=netology-12-02-mysql --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"; Stop-Transcript
+Process ID: 31568
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is evidence\final-cleanup.txt
+Old client anonymous image volume was removed by compose down --volumes (inspect returned no such volume). Final client used nt-repl-client-data.
+
+
+
+
+
+
+
+AFTER CLEANUP
+
+
+
+
+
+
+**********************
+Windows PowerShell transcript end
+End time: 20261021132801
+**********************
