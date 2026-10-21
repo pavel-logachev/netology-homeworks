@@ -1,0 +1,22 @@
+--------------
+SELECT TABLE_NAME, INDEX_NAME, INDEX_TYPE,
+       GROUP_CONCAT(COLUMN_NAME ORDER BY SEQ_IN_INDEX) AS columns_in_order
+FROM information_schema.STATISTICS
+WHERE TABLE_SCHEMA='sakila' AND TABLE_NAME IN ('payment','rental')
+GROUP BY TABLE_NAME, INDEX_NAME, INDEX_TYPE ORDER BY TABLE_NAME, INDEX_NAME
+--------------
+
++------------+--------------------------------+------------+--------------------------------------+
+| TABLE_NAME | INDEX_NAME                     | INDEX_TYPE | columns_in_order                     |
++------------+--------------------------------+------------+--------------------------------------+
+| payment    | fk_payment_rental              | BTREE      | rental_id                            |
+| payment    | idx_fk_customer_id             | BTREE      | customer_id                          |
+| payment    | idx_fk_staff_id                | BTREE      | staff_id                             |
+| payment    | idx_hw1205_payment_date_amount | BTREE      | payment_date,amount                  |
+| payment    | PRIMARY                        | BTREE      | payment_id                           |
+| rental     | idx_fk_customer_id             | BTREE      | customer_id                          |
+| rental     | idx_fk_inventory_id            | BTREE      | inventory_id                         |
+| rental     | idx_fk_staff_id                | BTREE      | staff_id                             |
+| rental     | PRIMARY                        | BTREE      | rental_id                            |
+| rental     | rental_date                    | BTREE      | rental_date,inventory_id,customer_id |
++------------+--------------------------------+------------+--------------------------------------+

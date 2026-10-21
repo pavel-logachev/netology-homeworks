@@ -1,0 +1,61 @@
+--------------
+SELECT VERSION() AS mysql_version, DATABASE() AS db,
+       CURRENT_USER() AS authenticated_as
+--------------
+
++---------------+--------+--------------------+
+| mysql_version | db     | authenticated_as   |
++---------------+--------+--------------------+
+| 8.0.46        | sakila | sys_temp@localhost |
++---------------+--------+--------------------+
+--------------
+SELECT TABLE_NAME, ENGINE FROM information_schema.TABLES
+WHERE TABLE_SCHEMA = 'sakila' AND TABLE_TYPE = 'BASE TABLE'
+ORDER BY TABLE_NAME
+--------------
+
++---------------+--------+
+| TABLE_NAME    | ENGINE |
++---------------+--------+
+| actor         | InnoDB |
+| address       | InnoDB |
+| category      | InnoDB |
+| city          | InnoDB |
+| country       | InnoDB |
+| customer      | InnoDB |
+| film          | InnoDB |
+| film_actor    | InnoDB |
+| film_category | InnoDB |
+| film_text     | InnoDB |
+| inventory     | InnoDB |
+| language      | InnoDB |
+| payment       | InnoDB |
+| rental        | InnoDB |
+| staff         | InnoDB |
+| store         | InnoDB |
++---------------+--------+
+--------------
+SELECT SUM(DATA_LENGTH) AS data_bytes, SUM(INDEX_LENGTH) AS index_bytes,
+       ROUND(100.0 * SUM(INDEX_LENGTH) / NULLIF(SUM(DATA_LENGTH), 0), 2)
+         AS index_to_data_percent_after_index
+FROM information_schema.TABLES
+WHERE TABLE_SCHEMA = 'sakila' AND TABLE_TYPE = 'BASE TABLE'
+--------------
+
++------------+-------------+-----------------------------------+
+| data_bytes | index_bytes | index_to_data_percent_after_index |
++------------+-------------+-----------------------------------+
+|    4374528 |     2670592 |                             61.05 |
++------------+-------------+-----------------------------------+
+--------------
+SELECT (SELECT COUNT(*) FROM payment) AS payments,
+       (SELECT COUNT(*) FROM rental) AS rentals,
+       (SELECT COUNT(*) FROM film) AS films,
+       (SELECT COUNT(*) FROM customer) AS customers
+--------------
+
++----------+---------+-------+-----------+
+| payments | rentals | films | customers |
++----------+---------+-------+-----------+
+|    16044 |   16044 |  1000 |       599 |
++----------+---------+-------+-----------+

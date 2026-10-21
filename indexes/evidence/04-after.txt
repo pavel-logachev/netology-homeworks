@@ -1,0 +1,22 @@
+--------------
+EXPLAIN ANALYZE
+SELECT DISTINCT CONCAT(c.last_name, ' ', c.first_name) AS customer_name,
+       SUM(p.amount) AS total_amount
+FROM payment AS p
+JOIN rental AS r ON r.rental_date = p.payment_date
+JOIN customer AS c ON c.customer_id = r.customer_id
+WHERE p.payment_date >= '2005-07-30' AND p.payment_date < '2005-07-31'
+GROUP BY c.customer_id, c.last_name, c.first_name
+--------------
+
+*************************** 1. row ***************************
+EXPLAIN: -> Sort with duplicate removal: customer_name, total_amount  (actual time=1.47..1.48 rows=391 loops=1)
+    -> Table scan on <temporary>  (actual time=1.36..1.38 rows=391 loops=1)
+        -> Aggregate using temporary table  (actual time=1.36..1.36 rows=391 loops=1)
+            -> Nested loop inner join  (cost=576 rows=642) (actual time=0.0367..1.01 rows=642 loops=1)
+                -> Nested loop inner join  (cost=351 rows=642) (actual time=0.031..0.657 rows=642 loops=1)
+                    -> Filter: ((p.payment_date >= TIMESTAMP'2005-07-30 00:00:00') and (p.payment_date < TIMESTAMP'2005-07-31 00:00:00'))  (cost=128 rows=634) (actual time=0.0257..0.113 rows=634 loops=1)
+                        -> Covering index range scan on p using idx_hw1205_payment_date_amount over ('2005-07-30 00:00:00' <= payment_date < '2005-07-31 00:00:00')  (cost=128 rows=634) (actual time=0.0239..0.0739 rows=634 loops=1)
+                    -> Covering index lookup on r using rental_date (rental_date=p.payment_date)  (cost=0.25 rows=1.01) (actual time=527e-6..763e-6 rows=1.01 loops=634)
+                -> Single-row index lookup on c using PRIMARY (customer_id=r.customer_id)  (cost=0.25 rows=1) (actual time=440e-6..457e-6 rows=1 loops=642)
+
