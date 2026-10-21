@@ -1,0 +1,53 @@
+PASS: nt-shard-replica-a replayed primary WAL through 0/303BD58
+PASS: nt-shard-replica-b replayed primary WAL through 0/303BD48
+PASS: nt-shard-users-a => 1,42,9999
+PASS: nt-shard-users-b => 10000,10001,20000
+PASS: nt-shard-replica-a => t
+PASS: nt-shard-replica-b => t
+PASS: nt-shard-catalog => 2
+PASS: nt-shard-users-a => 0
+PASS: nt-shard-users-b => 0
+PASS: nt-shard-coordinator => 0
+ERROR:  23514: no partition of relation "users" found for row
+DETAIL:  Partition key of the failing row contains (user_id) = (0).
+SCHEMA NAME:  public
+TABLE NAME:  users
+LOCATION:  ExecFindPartition, execPartition.c:328
+PASS: expected SQLSTATE 23514
+ERROR:  23505: duplicate key value violates unique constraint "users_pkey"
+DETAIL:  Key (user_id)=(1) already exists.
+CONTEXT:  remote SQL command: INSERT INTO public.users(user_id, full_name, email) VALUES ($1, $2, $3)
+LOCATION:  pgfdw_report_error, connection.c:944
+PASS: expected SQLSTATE 23505
+ERROR:  23514: new row for relation "users" violates check constraint "users_range"
+DETAIL:  Failing row contains (10000, Wrong shard, wrong@example.test).
+SCHEMA NAME:  public
+TABLE NAME:  users
+CONSTRAINT NAME:  users_range
+LOCATION:  ExecConstraints, execMain.c:2109
+PASS: expected SQLSTATE 23514
+ERROR:  23514: new row for relation "users" violates check constraint "users_range"
+DETAIL:  Failing row contains (9999, Wrong shard, wrong@example.test).
+SCHEMA NAME:  public
+TABLE NAME:  users
+CONSTRAINT NAME:  users_range
+LOCATION:  ExecConstraints, execMain.c:2109
+PASS: expected SQLSTATE 23514
+ERROR:  23503: insert or update on table "books" violates foreign key constraint "books_store_id_fkey"
+DETAIL:  Key (store_id)=(999) is not present in table "stores".
+SCHEMA NAME:  public
+TABLE NAME:  books
+CONSTRAINT NAME:  books_store_id_fkey
+LOCATION:  ri_ReportViolation, ri_triggers.c:2608
+PASS: expected SQLSTATE 23503
+ERROR:  25006: cannot execute INSERT in a read-only transaction
+LOCATION:  PreventCommandIfReadOnly, utility.c:414
+PASS: expected SQLSTATE 25006
+PASS: nt-shard-replica-a => t
+PASS: nt-shard-users-a => 1
+ERROR:  25006: cannot execute INSERT in a read-only transaction
+LOCATION:  PreventCommandIfReadOnly, utility.c:414
+PASS: expected SQLSTATE 25006
+PASS: nt-shard-replica-b => t
+PASS: nt-shard-users-b => 1
+ALL CHECKS PASSED

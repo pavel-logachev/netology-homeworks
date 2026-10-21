@@ -1,0 +1,16 @@
+﻿Cleanup verification: 2026-10-21T13:24:35.2494296+03:00 docker ps -a --filter name=nt-shard-:
+docker volume ls --filter name=nt-shard-:
+docker network ls --filter name=nt-shard-:
+Other running containers (not changed):
+nt-repl-client 127.0.0.1:7682->7681/tcp
+nt-repl-mm1 127.0.0.1:13312->3306/tcp
+nt-repl-mm2 127.0.0.1:13313->3306/tcp
+nt-repl-master 127.0.0.1:13310->3306/tcp
+nt-repl-replica 127.0.0.1:13311->3306/tcp
+nt-bkp-mysql-restore 127.0.0.1:13341->3306/tcp
+nt-bkp-mysql 127.0.0.1:13340->3306/tcp, 127.0.0.1:7684->7681/tcp
+netology-12-02-mysql 127.0.0.1:7681->7681/tcp, 127.0.0.1:13306->3306/tcp
+lead-radar-demo-hermes-1 
+fund-platform-current-pilot-web-1 80/tcp, 127.0.0.1:8092->8080/tcp
+fund-platform-current-pilot-api-1 8080/tcp
+fund-platform-current-pilot-postgres-1 5432/tcp

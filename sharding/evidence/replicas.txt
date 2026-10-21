@@ -1,0 +1,67 @@
+\set ON_ERROR_STOP on
+\pset pager off
+Pager usage is off.
+\connect shop postgres nt-shard-replica-a
+You are now connected to database "shop" as user "postgres" on host "nt-shard-replica-a" (address "172.26.0.7") at port "5432".
+\echo '=== Replica A: hot standby, read-only, rows 1 / 42 / 9999 ==='
+=== Replica A: hot standby, read-only, rows 1 / 42 / 9999 ===
+SELECT pg_is_in_recovery() AS recovery, current_setting('transaction_read_only') AS read_only;
+ recovery | read_only 
+----------+-----------
+ t        | on
+(1 row)
+
+SELECT user_id,full_name FROM users ORDER BY user_id;
+ user_id |   full_name    
+---------+----------------
+       1 | Pavel Logachev
+      42 | Anna
+    9999 | Lower boundary
+(3 rows)
+
+SELECT status,slot_name FROM pg_stat_wal_receiver;
+  status   | slot_name 
+-----------+-----------
+ streaming | replica_a
+(1 row)
+
+\connect shop postgres nt-shard-replica-b
+You are now connected to database "shop" as user "postgres" on host "nt-shard-replica-b" (address "172.26.0.5") at port "5432".
+\echo '=== Replica B: hot standby, read-only, rows 10000 / 10001 / 20000 ==='
+=== Replica B: hot standby, read-only, rows 10000 / 10001 / 20000 ===
+SELECT pg_is_in_recovery() AS recovery, current_setting('transaction_read_only') AS read_only;
+ recovery | read_only 
+----------+-----------
+ t        | on
+(1 row)
+
+SELECT user_id,full_name FROM users ORDER BY user_id;
+ user_id |   full_name    
+---------+----------------
+   10000 | Upper boundary
+   10001 | Boris
+   20000 | Vera
+(3 rows)
+
+SELECT status,slot_name FROM pg_stat_wal_receiver;
+  status   | slot_name 
+-----------+-----------
+ streaming | replica_b
+(1 row)
+
+\connect shop postgres nt-shard-users-a
+You are now connected to database "shop" as user "postgres" on host "nt-shard-users-a" (address "172.26.0.4") at port "5432".
+SELECT application_name,state,sync_state FROM pg_stat_replication;
+ application_name |   state   | sync_state 
+------------------+-----------+------------
+ replica_a        | streaming | async
+(1 row)
+
+\connect shop postgres nt-shard-users-b
+You are now connected to database "shop" as user "postgres" on host "nt-shard-users-b" (address "172.26.0.2") at port "5432".
+SELECT application_name,state,sync_state FROM pg_stat_replication;
+ application_name |   state   | sync_state 
+------------------+-----------+------------
+ replica_b        | streaming | async
+(1 row)
+

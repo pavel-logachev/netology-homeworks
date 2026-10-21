@@ -1,0 +1,377 @@
+﻿nt-shard-users-b      | ********************************************************************************
+nt-shard-users-b      | WARNING: POSTGRES_HOST_AUTH_METHOD has been set to "trust". This will allow
+nt-shard-users-b      |          anyone with access to the Postgres port to access your database without
+nt-shard-users-b      |          a password, even if POSTGRES_PASSWORD is set. See PostgreSQL
+nt-shard-users-b      |          documentation about "trust":
+nt-shard-users-b      |          https://www.postgresql.org/docs/current/auth-trust.html
+nt-shard-users-b      |          In Docker's default configuration, this is effectively any other
+nt-shard-replica-a    | waiting for checkpoint
+nt-shard-replica-a    | 30735/30735 kB (100%), 0/1 tablespace
+nt-shard-catalog      | ********************************************************************************
+nt-shard-coordinator  | ********************************************************************************
+nt-shard-catalog      | WARNING: POSTGRES_HOST_AUTH_METHOD has been set to "trust". This will allow
+nt-shard-catalog      |          anyone with access to the Postgres port to access your database without
+nt-shard-replica-b    | waiting for checkpoint
+nt-shard-replica-a    | 30735/30735 kB (100%), 1/1 tablespace
+nt-shard-replica-b    | 30735/30735 kB (100%), 0/1 tablespace
+nt-shard-replica-a    | 2026-10-21 10:14:08.174 UTC [1] LOG:  starting PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+nt-shard-replica-a    | 2026-10-21 10:14:08.174 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+nt-shard-replica-a    | 2026-10-21 10:14:08.174 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+nt-shard-replica-b    | 30735/30735 kB (100%), 1/1 tablespace
+nt-shard-replica-b    | 2026-10-21 10:14:07.088 UTC [1] LOG:  starting PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+nt-shard-replica-b    | 2026-10-21 10:14:07.088 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+nt-shard-coordinator  | WARNING: POSTGRES_HOST_AUTH_METHOD has been set to "trust". This will allow
+nt-shard-users-b      |          container on the same system.
+nt-shard-users-b      | 
+nt-shard-replica-a    | 2026-10-21 10:14:08.184 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+nt-shard-replica-b    | 2026-10-21 10:14:07.088 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+nt-shard-replica-b    | 2026-10-21 10:14:07.096 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+nt-shard-replica-b    | 2026-10-21 10:14:07.108 UTC [24] LOG:  database system was interrupted; last known up at 2026-10-21 10:14:06 UTC
+nt-shard-replica-b    | 2026-10-21 10:14:07.564 UTC [24] LOG:  entering standby mode
+nt-shard-users-a      | ********************************************************************************
+nt-shard-replica-a    | 2026-10-21 10:14:08.192 UTC [24] LOG:  database system was interrupted; last known up at 2026-10-21 10:14:07 UTC
+nt-shard-users-a      | WARNING: POSTGRES_HOST_AUTH_METHOD has been set to "trust". This will allow
+nt-shard-users-a      |          anyone with access to the Postgres port to access your database without
+nt-shard-users-a      |          a password, even if POSTGRES_PASSWORD is set. See PostgreSQL
+nt-shard-users-b      |          It is not recommended to use POSTGRES_HOST_AUTH_METHOD=trust. Replace
+nt-shard-users-b      |          it with "-e POSTGRES_PASSWORD=password" instead to set a password in
+nt-shard-users-b      |          "docker run".
+nt-shard-users-b      | ********************************************************************************
+nt-shard-replica-a    | 2026-10-21 10:14:08.428 UTC [24] LOG:  entering standby mode
+nt-shard-replica-a    | 2026-10-21 10:14:08.428 UTC [24] LOG:  starting backup recovery with redo LSN 0/2000028, checkpoint LSN 0/2000060, on timeline ID 1
+nt-shard-users-b      | The files belonging to this database system will be owned by user "postgres".
+nt-shard-users-a      |          documentation about "trust":
+nt-shard-catalog      |          a password, even if POSTGRES_PASSWORD is set. See PostgreSQL
+nt-shard-catalog      |          documentation about "trust":
+nt-shard-coordinator  |          anyone with access to the Postgres port to access your database without
+nt-shard-replica-a    | 2026-10-21 10:14:08.436 UTC [24] LOG:  redo starts at 0/2000028
+nt-shard-users-b      | This user must also own the server process.
+nt-shard-users-b      | 
+nt-shard-users-b      | The database cluster will be initialized with locale "en_US.utf8".
+nt-shard-users-b      | The default database encoding has accordingly been set to "UTF8".
+nt-shard-catalog      |          https://www.postgresql.org/docs/current/auth-trust.html
+nt-shard-catalog      |          In Docker's default configuration, this is effectively any other
+nt-shard-catalog      |          container on the same system.
+nt-shard-catalog      | 
+nt-shard-users-a      |          https://www.postgresql.org/docs/current/auth-trust.html
+nt-shard-replica-a    | 2026-10-21 10:14:08.440 UTC [24] LOG:  completed backup recovery with redo LSN 0/2000028 and end LSN 0/2000100
+nt-shard-users-a      |          In Docker's default configuration, this is effectively any other
+nt-shard-coordinator  |          a password, even if POSTGRES_PASSWORD is set. See PostgreSQL
+nt-shard-coordinator  |          documentation about "trust":
+nt-shard-coordinator  |          https://www.postgresql.org/docs/current/auth-trust.html
+nt-shard-coordinator  |          In Docker's default configuration, this is effectively any other
+nt-shard-users-b      | The default text search configuration will be set to "english".
+nt-shard-users-a      |          container on the same system.
+nt-shard-users-b      | 
+nt-shard-users-a      | 
+nt-shard-replica-b    | 2026-10-21 10:14:07.565 UTC [24] LOG:  starting backup recovery with redo LSN 0/2000028, checkpoint LSN 0/2000060, on timeline ID 1
+nt-shard-replica-b    | 2026-10-21 10:14:07.583 UTC [24] LOG:  redo starts at 0/2000028
+nt-shard-replica-a    | 2026-10-21 10:14:08.440 UTC [24] LOG:  consistent recovery state reached at 0/2000100
+nt-shard-coordinator  |          container on the same system.
+nt-shard-coordinator  | 
+nt-shard-coordinator  |          It is not recommended to use POSTGRES_HOST_AUTH_METHOD=trust. Replace
+nt-shard-users-a      |          It is not recommended to use POSTGRES_HOST_AUTH_METHOD=trust. Replace
+nt-shard-coordinator  |          it with "-e POSTGRES_PASSWORD=password" instead to set a password in
+nt-shard-users-b      | Data page checksums are disabled.
+nt-shard-coordinator  |          "docker run".
+nt-shard-users-a      |          it with "-e POSTGRES_PASSWORD=password" instead to set a password in
+nt-shard-coordinator  | ********************************************************************************
+nt-shard-replica-b    | 2026-10-21 10:14:07.589 UTC [24] LOG:  completed backup recovery with redo LSN 0/2000028 and end LSN 0/2000100
+nt-shard-catalog      |          It is not recommended to use POSTGRES_HOST_AUTH_METHOD=trust. Replace
+nt-shard-catalog      |          it with "-e POSTGRES_PASSWORD=password" instead to set a password in
+nt-shard-replica-a    | 2026-10-21 10:14:08.441 UTC [1] LOG:  database system is ready to accept read-only connections
+nt-shard-replica-a    | 2026-10-21 10:14:08.447 UTC [25] LOG:  started streaming WAL from primary at 0/3000000 on timeline 1
+nt-shard-replica-a    | 2026-10-21 10:14:31.218 UTC [77] ERROR:  cannot execute INSERT in a read-only transaction
+nt-shard-coordinator  | The files belonging to this database system will be owned by user "postgres".
+nt-shard-coordinator  | This user must also own the server process.
+nt-shard-users-a      |          "docker run".
+nt-shard-users-a      | ********************************************************************************
+nt-shard-users-b      | 
+nt-shard-replica-b    | 2026-10-21 10:14:07.589 UTC [24] LOG:  consistent recovery state reached at 0/2000100
+nt-shard-users-b      | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+nt-shard-catalog      |          "docker run".
+nt-shard-users-b      | creating subdirectories ... ok
+nt-shard-replica-a    | 2026-10-21 10:14:31.218 UTC [77] STATEMENT:  INSERT INTO users VALUES (123,'Forbidden','no@example.test')
+nt-shard-replica-b    | 2026-10-21 10:14:07.589 UTC [1] LOG:  database system is ready to accept read-only connections
+nt-shard-replica-b    | 2026-10-21 10:14:07.600 UTC [25] LOG:  started streaming WAL from primary at 0/3000000 on timeline 1
+nt-shard-replica-b    | 2026-10-21 10:14:31.238 UTC [77] ERROR:  cannot execute INSERT in a read-only transaction
+nt-shard-replica-b    | 2026-10-21 10:14:31.238 UTC [77] STATEMENT:  INSERT INTO users VALUES (123,'Forbidden','no@example.test')
+nt-shard-coordinator  | 
+nt-shard-coordinator  | The database cluster will be initialized with locale "en_US.utf8".
+nt-shard-catalog      | ********************************************************************************
+nt-shard-catalog      | The files belonging to this database system will be owned by user "postgres".
+nt-shard-catalog      | This user must also own the server process.
+nt-shard-catalog      | 
+nt-shard-catalog      | The database cluster will be initialized with locale "en_US.utf8".
+nt-shard-catalog      | The default database encoding has accordingly been set to "UTF8".
+nt-shard-catalog      | The default text search configuration will be set to "english".
+nt-shard-users-b      | selecting dynamic shared memory implementation ... posix
+nt-shard-users-b      | selecting default max_connections ... 100
+nt-shard-users-a      | The files belonging to this database system will be owned by user "postgres".
+nt-shard-coordinator  | The default database encoding has accordingly been set to "UTF8".
+nt-shard-users-b      | selecting default shared_buffers ... 128MB
+nt-shard-coordinator  | The default text search configuration will be set to "english".
+nt-shard-coordinator  | 
+nt-shard-catalog      | 
+nt-shard-users-b      | selecting default time zone ... UTC
+nt-shard-coordinator  | Data page checksums are disabled.
+nt-shard-coordinator  | 
+nt-shard-coordinator  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+nt-shard-coordinator  | creating subdirectories ... ok
+nt-shard-catalog      | Data page checksums are disabled.
+nt-shard-coordinator  | selecting dynamic shared memory implementation ... posix
+nt-shard-catalog      | 
+nt-shard-users-a      | This user must also own the server process.
+nt-shard-users-a      | 
+nt-shard-users-a      | The database cluster will be initialized with locale "en_US.utf8".
+nt-shard-users-a      | The default database encoding has accordingly been set to "UTF8".
+nt-shard-users-a      | The default text search configuration will be set to "english".
+nt-shard-users-a      | 
+nt-shard-users-a      | Data page checksums are disabled.
+nt-shard-users-a      | 
+nt-shard-users-a      | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+nt-shard-users-a      | creating subdirectories ... ok
+nt-shard-users-a      | selecting dynamic shared memory implementation ... posix
+nt-shard-users-a      | selecting default max_connections ... 100
+nt-shard-users-a      | selecting default shared_buffers ... 128MB
+nt-shard-users-a      | selecting default time zone ... UTC
+nt-shard-users-b      | creating configuration files ... ok
+nt-shard-users-b      | running bootstrap script ... ok
+nt-shard-users-b      | sh: locale: not found
+nt-shard-users-b      | 2026-10-21 10:14:00.530 UTC [36] WARNING:  no usable system locales were found
+nt-shard-coordinator  | selecting default max_connections ... 100
+nt-shard-users-a      | creating configuration files ... ok
+nt-shard-coordinator  | selecting default shared_buffers ... 128MB
+nt-shard-users-a      | running bootstrap script ... ok
+nt-shard-users-b      | performing post-bootstrap initialization ... ok
+nt-shard-users-a      | sh: locale: not found
+nt-shard-coordinator  | selecting default time zone ... UTC
+nt-shard-catalog      | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+nt-shard-users-b      | syncing data to disk ... ok
+nt-shard-users-b      | 
+nt-shard-coordinator  | creating configuration files ... ok
+nt-shard-catalog      | creating subdirectories ... ok
+nt-shard-users-b      | 
+nt-shard-catalog      | selecting dynamic shared memory implementation ... posix
+nt-shard-coordinator  | running bootstrap script ... ok
+nt-shard-coordinator  | sh: locale: not found
+nt-shard-coordinator  | 2026-10-21 10:14:06.823 UTC [36] WARNING:  no usable system locales were found
+nt-shard-users-a      | 2026-10-21 10:14:00.980 UTC [36] WARNING:  no usable system locales were found
+nt-shard-users-b      | Success. You can now start the database server using:
+nt-shard-coordinator  | performing post-bootstrap initialization ... ok
+nt-shard-coordinator  | syncing data to disk ... ok
+nt-shard-coordinator  | 
+nt-shard-coordinator  | 
+nt-shard-coordinator  | Success. You can now start the database server using:
+nt-shard-catalog      | selecting default max_connections ... 100
+nt-shard-coordinator  | 
+nt-shard-catalog      | selecting default shared_buffers ... 128MB
+nt-shard-catalog      | selecting default time zone ... UTC
+nt-shard-users-b      | 
+nt-shard-users-a      | performing post-bootstrap initialization ... ok
+nt-shard-catalog      | creating configuration files ... ok
+nt-shard-coordinator  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+nt-shard-coordinator  | 
+nt-shard-coordinator  | initdb: warning: enabling "trust" authentication for local connections
+nt-shard-users-a      | initdb: warning: enabling "trust" authentication for local connections
+nt-shard-coordinator  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+nt-shard-users-a      | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+nt-shard-catalog      | running bootstrap script ... ok
+nt-shard-users-a      | syncing data to disk ... ok
+nt-shard-coordinator  | waiting for server to start....2026-10-21 10:14:07.404 UTC [42] LOG:  starting PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+nt-shard-users-b      | initdb: warning: enabling "trust" authentication for local connections
+nt-shard-users-a      | 
+nt-shard-users-b      | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+nt-shard-users-b      |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+nt-shard-users-b      | 
+nt-shard-coordinator  | 2026-10-21 10:14:07.411 UTC [42] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+nt-shard-catalog      | sh: locale: not found
+nt-shard-catalog      | 2026-10-21 10:14:00.685 UTC [36] WARNING:  no usable system locales were found
+nt-shard-catalog      | performing post-bootstrap initialization ... ok
+nt-shard-catalog      | syncing data to disk ... ok
+nt-shard-catalog      | 
+nt-shard-coordinator  | 2026-10-21 10:14:07.430 UTC [45] LOG:  database system was shut down at 2026-10-21 10:14:07 UTC
+nt-shard-coordinator  | 2026-10-21 10:14:07.439 UTC [42] LOG:  database system is ready to accept connections
+nt-shard-coordinator  |  done
+nt-shard-users-a      | 
+nt-shard-catalog      | 
+nt-shard-users-b      | waiting for server to start....2026-10-21 10:14:01.346 UTC [42] LOG:  starting PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+nt-shard-users-b      | 2026-10-21 10:14:01.351 UTC [42] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+nt-shard-users-b      | 2026-10-21 10:14:01.375 UTC [45] LOG:  database system was shut down at 2026-10-21 10:14:00 UTC
+nt-shard-users-b      | 2026-10-21 10:14:01.394 UTC [42] LOG:  database system is ready to accept connections
+nt-shard-users-b      |  done
+nt-shard-users-a      | Success. You can now start the database server using:
+nt-shard-users-a      | 
+nt-shard-users-a      |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+nt-shard-users-a      | 
+nt-shard-users-a      | waiting for server to start....2026-10-21 10:14:01.956 UTC [42] LOG:  starting PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+nt-shard-coordinator  | server started
+nt-shard-users-a      | 2026-10-21 10:14:01.961 UTC [42] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+nt-shard-users-a      | 2026-10-21 10:14:01.984 UTC [45] LOG:  database system was shut down at 2026-10-21 10:14:01 UTC
+nt-shard-users-a      | 2026-10-21 10:14:02.004 UTC [42] LOG:  database system is ready to accept connections
+nt-shard-users-a      |  done
+nt-shard-users-a      | server started
+nt-shard-users-a      | CREATE DATABASE
+nt-shard-users-a      | 
+nt-shard-users-a      | 
+nt-shard-catalog      | Success. You can now start the database server using:
+nt-shard-catalog      | 
+nt-shard-catalog      |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+nt-shard-catalog      | 
+nt-shard-coordinator  | CREATE DATABASE
+nt-shard-coordinator  | 
+nt-shard-catalog      | initdb: warning: enabling "trust" authentication for local connections
+nt-shard-users-b      | server started
+nt-shard-users-b      | CREATE DATABASE
+nt-shard-users-b      | 
+nt-shard-coordinator  | 
+nt-shard-users-a      | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/10-schema.sql
+nt-shard-users-b      | 
+nt-shard-catalog      | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+nt-shard-catalog      | waiting for server to start....2026-10-21 10:14:01.502 UTC [42] LOG:  starting PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+nt-shard-catalog      | 2026-10-21 10:14:01.509 UTC [42] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+nt-shard-catalog      | 2026-10-21 10:14:01.528 UTC [45] LOG:  database system was shut down at 2026-10-21 10:14:00 UTC
+nt-shard-catalog      | 2026-10-21 10:14:01.537 UTC [42] LOG:  database system is ready to accept connections
+nt-shard-users-a      | CREATE ROLE
+nt-shard-catalog      |  done
+nt-shard-users-a      | CREATE ROLE
+nt-shard-catalog      | server started
+nt-shard-catalog      | CREATE DATABASE
+nt-shard-users-a      | CREATE TABLE
+nt-shard-coordinator  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/10-schema.sql
+nt-shard-catalog      | 
+nt-shard-catalog      | 
+nt-shard-catalog      | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/10-schema.sql
+nt-shard-catalog      | CREATE ROLE
+nt-shard-coordinator  | CREATE EXTENSION
+nt-shard-coordinator  | CREATE ROLE
+nt-shard-coordinator  | CREATE SERVER
+nt-shard-users-b      | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/10-schema.sql
+nt-shard-catalog      | CREATE TABLE
+nt-shard-catalog      | CREATE TABLE
+nt-shard-users-a      | GRANT
+nt-shard-users-b      | CREATE ROLE
+nt-shard-users-a      | 
+nt-shard-users-a      | 
+nt-shard-coordinator  | CREATE SERVER
+nt-shard-users-b      | CREATE ROLE
+nt-shard-users-b      | CREATE TABLE
+nt-shard-users-a      | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/20-replication.sh
+nt-shard-catalog      | CREATE INDEX
+nt-shard-catalog      | GRANT
+nt-shard-catalog      | 
+nt-shard-catalog      | 
+nt-shard-catalog      | waiting for server to shut down...2026-10-21 10:14:01.740 UTC [42] LOG:  received fast shutdown request
+nt-shard-catalog      | .2026-10-21 10:14:01.746 UTC [42] LOG:  aborting any active transactions
+nt-shard-users-a      | 
+nt-shard-catalog      | 2026-10-21 10:14:01.748 UTC [42] LOG:  background worker "logical replication launcher" (PID 48) exited with exit code 1
+nt-shard-users-a      | waiting for server to shut down....2026-10-21 10:14:02.149 UTC [42] LOG:  received fast shutdown request
+nt-shard-users-a      | 2026-10-21 10:14:02.152 UTC [42] LOG:  aborting any active transactions
+nt-shard-users-a      | 2026-10-21 10:14:02.154 UTC [42] LOG:  background worker "logical replication launcher" (PID 48) exited with exit code 1
+nt-shard-users-a      | 2026-10-21 10:14:02.154 UTC [43] LOG:  shutting down
+nt-shard-users-a      | 2026-10-21 10:14:02.158 UTC [43] LOG:  checkpoint starting: shutdown immediate
+nt-shard-users-b      | GRANT
+nt-shard-users-b      | 
+nt-shard-users-b      | 
+nt-shard-users-b      | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/20-replication.sh
+nt-shard-users-b      | 
+nt-shard-users-b      | waiting for server to shut down....2026-10-21 10:14:01.557 UTC [42] LOG:  received fast shutdown request
+nt-shard-users-b      | 2026-10-21 10:14:01.563 UTC [42] LOG:  aborting any active transactions
+nt-shard-users-a      | 2026-10-21 10:14:02.257 UTC [43] LOG:  checkpoint complete: wrote 935 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.020 s, sync=0.067 s, total=0.103 s; sync files=312, longest=0.004 s, average=0.001 s; distance=4303 kB, estimate=4303 kB; lsn=0/192AC90, redo lsn=0/192AC90
+nt-shard-users-a      | 2026-10-21 10:14:02.263 UTC [42] LOG:  database system is shut down
+nt-shard-users-a      |  done
+nt-shard-users-a      | server stopped
+nt-shard-users-a      | 
+nt-shard-users-a      | PostgreSQL init process complete; ready for start up.
+nt-shard-users-a      | 
+nt-shard-users-b      | 2026-10-21 10:14:01.565 UTC [42] LOG:  background worker "logical replication launcher" (PID 48) exited with exit code 1
+nt-shard-users-b      | 2026-10-21 10:14:01.565 UTC [43] LOG:  shutting down
+nt-shard-coordinator  | CREATE SERVER
+nt-shard-catalog      | 2026-10-21 10:14:01.748 UTC [43] LOG:  shutting down
+nt-shard-users-a      | 2026-10-21 10:14:02.371 UTC [1] LOG:  starting PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+nt-shard-users-b      | 2026-10-21 10:14:01.570 UTC [43] LOG:  checkpoint starting: shutdown immediate
+nt-shard-users-b      | 2026-10-21 10:14:01.880 UTC [43] LOG:  checkpoint complete: wrote 935 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.035 s, sync=0.249 s, total=0.315 s; sync files=312, longest=0.018 s, average=0.001 s; distance=4302 kB, estimate=4302 kB; lsn=0/192AAD0, redo lsn=0/192AAD0
+nt-shard-coordinator  | CREATE USER MAPPING
+nt-shard-coordinator  | CREATE USER MAPPING
+nt-shard-coordinator  | CREATE USER MAPPING
+nt-shard-users-a      | 2026-10-21 10:14:02.371 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+nt-shard-users-a      | 2026-10-21 10:14:02.371 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+nt-shard-coordinator  | GRANT
+nt-shard-users-a      | 2026-10-21 10:14:02.379 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+nt-shard-coordinator  | CREATE TABLE
+nt-shard-users-a      | 2026-10-21 10:14:02.388 UTC [61] LOG:  database system was shut down at 2026-10-21 10:14:02 UTC
+nt-shard-users-a      | 2026-10-21 10:14:02.396 UTC [1] LOG:  database system is ready to accept connections
+nt-shard-users-a      | 2026-10-21 10:14:06.985 UTC [59] LOG:  checkpoint starting: force wait
+nt-shard-catalog      | 2026-10-21 10:14:01.754 UTC [43] LOG:  checkpoint starting: shutdown immediate
+nt-shard-users-b      | 2026-10-21 10:14:01.886 UTC [42] LOG:  database system is shut down
+nt-shard-catalog      | 2026-10-21 10:14:01.991 UTC [43] LOG:  checkpoint complete: wrote 940 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.026 s, sync=0.192 s, total=0.243 s; sync files=317, longest=0.021 s, average=0.001 s; distance=4323 kB, estimate=4323 kB; lsn=0/192FD78, redo lsn=0/192FD78
+nt-shard-catalog      | 2026-10-21 10:14:01.996 UTC [42] LOG:  database system is shut down
+nt-shard-coordinator  | CREATE FOREIGN TABLE
+nt-shard-users-b      |  done
+nt-shard-coordinator  | CREATE FOREIGN TABLE
+nt-shard-coordinator  | CREATE FOREIGN TABLE
+nt-shard-users-b      | server stopped
+nt-shard-users-a      | 2026-10-21 10:14:07.464 UTC [59] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.419 s, sync=0.011 s, total=0.480 s; sync files=6, longest=0.005 s, average=0.002 s; distance=6996 kB, estimate=6996 kB; lsn=0/2000060, redo lsn=0/2000028
+nt-shard-catalog      |  done
+nt-shard-catalog      | server stopped
+nt-shard-catalog      | 
+nt-shard-coordinator  | CREATE FOREIGN TABLE
+nt-shard-coordinator  | GRANT
+nt-shard-coordinator  | 
+nt-shard-users-a      | 2026-10-21 10:14:31.184 UTC [138] ERROR:  duplicate key value violates unique constraint "users_pkey"
+nt-shard-users-a      | 2026-10-21 10:14:31.184 UTC [138] DETAIL:  Key (user_id)=(1) already exists.
+nt-shard-users-a      | 2026-10-21 10:14:31.184 UTC [138] STATEMENT:  INSERT INTO public.users(user_id, full_name, email) VALUES ($1, $2, $3)
+nt-shard-users-a      | 2026-10-21 10:14:31.194 UTC [139] ERROR:  new row for relation "users" violates check constraint "users_range"
+nt-shard-users-a      | 2026-10-21 10:14:31.194 UTC [139] DETAIL:  Failing row contains (10000, Wrong shard, wrong@example.test).
+nt-shard-coordinator  | 
+nt-shard-users-a      | 2026-10-21 10:14:31.194 UTC [139] STATEMENT:  INSERT INTO users VALUES (10000,'Wrong shard','wrong@example.test')
+nt-shard-coordinator  | waiting for server to shut down...2026-10-21 10:14:07.614 UTC [42] LOG:  received fast shutdown request
+nt-shard-coordinator  | .2026-10-21 10:14:07.617 UTC [42] LOG:  aborting any active transactions
+nt-shard-users-b      | 
+nt-shard-coordinator  | 2026-10-21 10:14:07.619 UTC [42] LOG:  background worker "logical replication launcher" (PID 48) exited with exit code 1
+nt-shard-coordinator  | 2026-10-21 10:14:07.619 UTC [43] LOG:  shutting down
+nt-shard-coordinator  | 2026-10-21 10:14:07.624 UTC [43] LOG:  checkpoint starting: shutdown immediate
+nt-shard-catalog      | PostgreSQL init process complete; ready for start up.
+nt-shard-catalog      | 
+nt-shard-coordinator  | 2026-10-21 10:14:07.846 UTC [43] LOG:  checkpoint complete: wrote 953 buffers (5.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.030 s, sync=0.165 s, total=0.227 s; sync files=308, longest=0.013 s, average=0.001 s; distance=4332 kB, estimate=4332 kB; lsn=0/1932410, redo lsn=0/1932410
+nt-shard-catalog      | 2026-10-21 10:14:02.072 UTC [1] LOG:  starting PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+nt-shard-coordinator  | 2026-10-21 10:14:07.852 UTC [42] LOG:  database system is shut down
+nt-shard-coordinator  |  done
+nt-shard-coordinator  | server stopped
+nt-shard-coordinator  | 
+nt-shard-catalog      | 2026-10-21 10:14:02.072 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+nt-shard-coordinator  | PostgreSQL init process complete; ready for start up.
+nt-shard-coordinator  | 
+nt-shard-coordinator  | 2026-10-21 10:14:07.943 UTC [1] LOG:  starting PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+nt-shard-catalog      | 2026-10-21 10:14:02.072 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+nt-shard-users-b      | PostgreSQL init process complete; ready for start up.
+nt-shard-catalog      | 2026-10-21 10:14:02.082 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+nt-shard-coordinator  | 2026-10-21 10:14:07.943 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+nt-shard-catalog      | 2026-10-21 10:14:02.091 UTC [60] LOG:  database system was shut down at 2026-10-21 10:14:01 UTC
+nt-shard-catalog      | 2026-10-21 10:14:02.098 UTC [1] LOG:  database system is ready to accept connections
+nt-shard-catalog      | 2026-10-21 10:14:31.211 UTC [131] ERROR:  insert or update on table "books" violates foreign key constraint "books_store_id_fkey"
+nt-shard-catalog      | 2026-10-21 10:14:31.211 UTC [131] DETAIL:  Key (store_id)=(999) is not present in table "stores".
+nt-shard-coordinator  | 2026-10-21 10:14:07.943 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+nt-shard-catalog      | 2026-10-21 10:14:31.211 UTC [131] STATEMENT:  INSERT INTO books VALUES (999,'Missing store',999,1.00)
+nt-shard-users-b      | 
+nt-shard-users-b      | 2026-10-21 10:14:01.985 UTC [1] LOG:  starting PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+nt-shard-users-b      | 2026-10-21 10:14:01.985 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+nt-shard-users-b      | 2026-10-21 10:14:01.985 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+nt-shard-coordinator  | 2026-10-21 10:14:07.954 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+nt-shard-coordinator  | 2026-10-21 10:14:07.968 UTC [60] LOG:  database system was shut down at 2026-10-21 10:14:07 UTC
+nt-shard-coordinator  | 2026-10-21 10:14:07.978 UTC [1] LOG:  database system is ready to accept connections
+nt-shard-coordinator  | 2026-10-21 10:14:31.170 UTC [117] ERROR:  no partition of relation "users" found for row
+nt-shard-coordinator  | 2026-10-21 10:14:31.170 UTC [117] DETAIL:  Partition key of the failing row contains (user_id) = (0).
+nt-shard-coordinator  | 2026-10-21 10:14:31.170 UTC [117] STATEMENT:  INSERT INTO users VALUES (0,'Invalid','invalid@example.test')
+nt-shard-coordinator  | 2026-10-21 10:14:31.184 UTC [118] ERROR:  duplicate key value violates unique constraint "users_pkey"
+nt-shard-coordinator  | 2026-10-21 10:14:31.184 UTC [118] DETAIL:  Key (user_id)=(1) already exists.
+nt-shard-coordinator  | 2026-10-21 10:14:31.184 UTC [118] CONTEXT:  remote SQL command: INSERT INTO public.users(user_id, full_name, email) VALUES ($1, $2, $3)
+nt-shard-coordinator  | 2026-10-21 10:14:31.184 UTC [118] STATEMENT:  INSERT INTO users VALUES (1,'Duplicate','dup@example.test')
+nt-shard-users-b      | 2026-10-21 10:14:01.998 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+nt-shard-users-b      | 2026-10-21 10:14:02.012 UTC [61] LOG:  database system was shut down at 2026-10-21 10:14:01 UTC
+nt-shard-users-b      | 2026-10-21 10:14:02.019 UTC [1] LOG:  database system is ready to accept connections
+nt-shard-users-b      | 2026-10-21 10:14:05.971 UTC [59] LOG:  checkpoint starting: force wait
+nt-shard-users-b      | 2026-10-21 10:14:06.438 UTC [59] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.409 s, sync=0.014 s, total=0.467 s; sync files=6, longest=0.004 s, average=0.003 s; distance=6997 kB, estimate=6997 kB; lsn=0/2000060, redo lsn=0/2000028
+nt-shard-users-b      | 2026-10-21 10:14:31.202 UTC [137] ERROR:  new row for relation "users" violates check constraint "users_range"
+nt-shard-users-b      | 2026-10-21 10:14:31.202 UTC [137] DETAIL:  Failing row contains (9999, Wrong shard, wrong@example.test).
+nt-shard-users-b      | 2026-10-21 10:14:31.202 UTC [137] STATEMENT:  INSERT INTO users VALUES (9999,'Wrong shard','wrong@example.test')

@@ -1,0 +1,116 @@
+name: nt-shard
+
+# Disposable localhost-only teaching lab. TRUST authentication is NOT for production.
+x-db: &db
+  image: postgres:16-alpine
+  environment:
+    POSTGRES_DB: shop
+    POSTGRES_HOST_AUTH_METHOD: trust
+  networks: [lab]
+  healthcheck:
+    test: [CMD-SHELL, 'pg_isready -h 127.0.0.1 -U postgres -d shop']
+    interval: 3s
+    timeout: 3s
+    retries: 30
+    start_period: 10s
+
+services:
+  nt-shard-users-a:
+    <<: *db
+    container_name: nt-shard-users-a
+    ports: ['127.0.0.1:13321:5432']
+    volumes:
+      - users-a:/var/lib/postgresql/data
+      - ./sql/users-a.sql:/docker-entrypoint-initdb.d/10-schema.sql:ro
+      - ./scripts/primary.sh:/docker-entrypoint-initdb.d/20-replication.sh:ro
+    command: [postgres, -c, wal_level=replica, -c, max_wal_senders=5, -c, max_replication_slots=5, -c, max_slot_wal_keep_size=256MB]
+
+  nt-shard-users-b:
+    <<: *db
+    container_name: nt-shard-users-b
+    ports: ['127.0.0.1:13322:5432']
+    volumes:
+      - users-b:/var/lib/postgresql/data
+      - ./sql/users-b.sql:/docker-entrypoint-initdb.d/10-schema.sql:ro
+      - ./scripts/primary.sh:/docker-entrypoint-initdb.d/20-replication.sh:ro
+    command: [postgres, -c, wal_level=replica, -c, max_wal_senders=5, -c, max_replication_slots=5, -c, max_slot_wal_keep_size=256MB]
+
+  nt-shard-catalog:
+    <<: *db
+    container_name: nt-shard-catalog
+    ports: ['127.0.0.1:13323:5432']
+    volumes:
+      - catalog:/var/lib/postgresql/data
+      - ./sql/catalog.sql:/docker-entrypoint-initdb.d/10-schema.sql:ro
+
+  nt-shard-coordinator:
+    <<: *db
+    container_name: nt-shard-coordinator
+    ports: ['127.0.0.1:13320:5432']
+    volumes:
+      - coordinator:/var/lib/postgresql/data
+      - ./sql/coordinator.sql:/docker-entrypoint-initdb.d/10-schema.sql:ro
+    depends_on:
+      nt-shard-users-a: {condition: service_healthy}
+      nt-shard-users-b: {condition: service_healthy}
+      nt-shard-catalog: {condition: service_healthy}
+
+  nt-shard-replica-a:
+    <<: *db
+    container_name: nt-shard-replica-a
+    environment:
+      PRIMARY_HOST: nt-shard-users-a
+      REPLICA_SLOT: replica_a
+      PGDATA: /var/lib/postgresql/data
+    ports: ['127.0.0.1:13324:5432']
+    volumes:
+      - replica-a:/var/lib/postgresql/data
+      - ./scripts/replica.sh:/lab/replica.sh:ro
+    entrypoint: [bash, /lab/replica.sh]
+    depends_on:
+      nt-shard-users-a: {condition: service_healthy}
+
+  nt-shard-replica-b:
+    <<: *db
+    container_name: nt-shard-replica-b
+    environment:
+      PRIMARY_HOST: nt-shard-users-b
+      REPLICA_SLOT: replica_b
+      PGDATA: /var/lib/postgresql/data
+    ports: ['127.0.0.1:13325:5432']
+    volumes:
+      - replica-b:/var/lib/postgresql/data
+      - ./scripts/replica.sh:/lab/replica.sh:ro
+    entrypoint: [bash, /lab/replica.sh]
+    depends_on:
+      nt-shard-users-b: {condition: service_healthy}
+
+  nt-shard-client:
+    image: postgres:16-alpine
+    container_name: nt-shard-client
+    networks: [lab]
+    ports: ['127.0.0.1:7683:7681']
+    volumes:
+      - .:/lab
+    working_dir: /lab
+    environment:
+      PGUSER: postgres
+      PGDATABASE: shop
+      PAGER: cat
+      PS1: 'nt-shard-client:/lab$ '
+    entrypoint: [bash, /lab/scripts/client.sh]
+    depends_on:
+      nt-shard-coordinator: {condition: service_healthy}
+      nt-shard-replica-a: {condition: service_healthy}
+      nt-shard-replica-b: {condition: service_healthy}
+
+networks:
+  lab:
+    name: nt-shard-network
+volumes:
+  users-a: {name: nt-shard-users-a-data}
+  users-b: {name: nt-shard-users-b-data}
+  catalog: {name: nt-shard-catalog-data}
+  coordinator: {name: nt-shard-coordinator-data}
+  replica-a: {name: nt-shard-replica-a-data}
+  replica-b: {name: nt-shard-replica-b-data}

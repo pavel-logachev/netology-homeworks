@@ -1,0 +1,74 @@
+Pager usage is off.
+You are now connected to database "shop" as user "app".
+=== Coordinator: real INSERT routing (including boundary keys) ===
+DELETE 6
+INSERT 0 6
+ routed_partition | user_id |   full_name    
+------------------+---------+----------------
+ users_a          |       1 | Pavel Logachev
+ users_a          |      42 | Anna
+ users_a          |    9999 | Lower boundary
+ users_b          |   10000 | Upper boundary
+ users_b          |   10001 | Boris
+ users_b          |   20000 | Vera
+(6 rows)
+
+=== Vertical domain: books and stores written through FDW ===
+DELETE 2
+DELETE 2
+INSERT 0 2
+INSERT 0 2
+ book_id |        title        |  store  |       city       
+---------+---------------------+---------+------------------
+     101 | PostgreSQL Basics   | Central | Moscow
+     102 | Distributed Systems | North   | Saint Petersburg
+(2 rows)
+
+=== Partition pruning: only users_b for user_id=10000 ===
+          QUERY PLAN           
+-------------------------------
+ Foreign Scan on users_b users
+(1 row)
+
+You are now connected to database "shop" as user "postgres" on host "nt-shard-users-a" (address "172.26.0.4") at port "5432".
+=== Direct shard A: [1,10000); primary read-write ===
+ recovery | read_only 
+----------+-----------
+ f        | off
+(1 row)
+
+ user_id |   full_name    |       email        
+---------+----------------+--------------------
+       1 | Pavel Logachev | pavel@example.test
+      42 | Anna           | anna@example.test
+    9999 | Lower boundary | lower@example.test
+(3 rows)
+
+You are now connected to database "shop" as user "postgres" on host "nt-shard-users-b" (address "172.26.0.2") at port "5432".
+=== Direct shard B: [10000,+infinity); primary read-write ===
+ recovery | read_only 
+----------+-----------
+ f        | off
+(1 row)
+
+ user_id |   full_name    |       email        
+---------+----------------+--------------------
+   10000 | Upper boundary | upper@example.test
+   10001 | Boris          | boris@example.test
+   20000 | Vera           | vera@example.test
+(3 rows)
+
+You are now connected to database "shop" as user "postgres" on host "nt-shard-catalog" (address "172.26.0.3") at port "5432".
+=== Direct catalog: physical tables and local FK ===
+ tablename 
+-----------
+ books
+ stores
+(2 rows)
+
+ book_id |        title        |  name   
+---------+---------------------+---------
+     101 | PostgreSQL Basics   | Central
+     102 | Distributed Systems | North
+(2 rows)
+

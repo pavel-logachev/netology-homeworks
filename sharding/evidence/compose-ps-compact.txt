@@ -1,0 +1,11 @@
+﻿Host command: docker compose ps --format "table {{.Name}}\t{{.Service}}\t{{.Status}}\t{{.Ports}}"
+Working directory: wt-12-07/sharding
+
+NAME                   SERVICE                STATUS                   PORTS
+nt-shard-catalog       nt-shard-catalog       Up 5 minutes (healthy)   127.0.0.1:13323->5432/tcp
+nt-shard-client        nt-shard-client        Up 4 minutes             127.0.0.1:7683->7681/tcp
+nt-shard-coordinator   nt-shard-coordinator   Up 5 minutes (healthy)   127.0.0.1:13320->5432/tcp
+nt-shard-replica-a     nt-shard-replica-a     Up 5 minutes (healthy)   127.0.0.1:13324->5432/tcp
+nt-shard-replica-b     nt-shard-replica-b     Up 5 minutes (healthy)   127.0.0.1:13325->5432/tcp
+nt-shard-users-a       nt-shard-users-a       Up 5 minutes (healthy)   127.0.0.1:13321->5432/tcp
+nt-shard-users-b       nt-shard-users-b       Up 5 minutes (healthy)   127.0.0.1:13322->5432/tcp

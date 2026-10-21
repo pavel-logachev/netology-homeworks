@@ -1,0 +1,280 @@
+﻿powershell :  Container nt-shard-users-b Running 
+At line:1 char:325
++ ... aptures.js; powershell -NoProfile -ExecutionPolicy Bypass -File .\run ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( Container nt-shard-users-b Running :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ Container nt-shard-catalog Running 
+ Container nt-shard-coordinator Running 
+ Container nt-shard-replica-a Running 
+ Container nt-shard-replica-b Running 
+ Container nt-shard-client Running 
+ Container nt-shard-users-a Running 
+ Container nt-shard-users-a Waiting 
+ Container nt-shard-users-b Waiting 
+ Container nt-shard-users-a Waiting 
+ Container nt-shard-users-b Waiting 
+ Container nt-shard-catalog Waiting 
+ Container nt-shard-users-a Healthy 
+ Container nt-shard-users-b Healthy 
+ Container nt-shard-catalog Healthy 
+ Container nt-shard-users-b Healthy 
+ Container nt-shard-users-a Healthy 
+ Container nt-shard-replica-b Waiting 
+ Container nt-shard-coordinator Waiting 
+ Container nt-shard-replica-a Waiting 
+ Container nt-shard-replica-b Healthy 
+ Container nt-shard-replica-a Healthy 
+ Container nt-shard-coordinator Healthy 
+ Container nt-shard-users-b Waiting 
+ Container nt-shard-catalog Waiting 
+ Container nt-shard-coordinator Waiting 
+ Container nt-shard-replica-a Waiting 
+ Container nt-shard-replica-b Waiting 
+ Container nt-shard-client Waiting 
+ Container nt-shard-users-a Waiting 
+ Container nt-shard-catalog Healthy 
+ Container nt-shard-replica-a Healthy 
+ Container nt-shard-client Healthy 
+ Container nt-shard-replica-b Healthy 
+ Container nt-shard-users-b Healthy 
+ Container nt-shard-coordinator Healthy 
+ Container nt-shard-users-a Healthy 
+\set ON_ERROR_STOP on
+\pset pager off
+Pager usage is off.
+\connect shop app nt-shard-coordinator
+You are now connected to database "shop" as user "app".
+\echo '=== Coordinator: real INSERT routing (including boundary keys) ==='
+=== Coordinator: real INSERT routing (including boundary keys) ===
+-- Repeatable demo; delete only this fixture, not arbitrary stand data.
+DELETE FROM users WHERE user_id IN (1,42,9999,10000,10001,20000);
+DELETE 6
+INSERT INTO users (user_id, full_name, email) VALUES
+ (1,'Pavel Logachev','pavel@example.test'),
+ (42,'Anna','anna@example.test'),
+ (9999,'Lower boundary','lower@example.test'),
+ (10000,'Upper boundary','upper@example.test'),
+ (10001,'Boris','boris@example.test'),
+ (20000,'Vera','vera@example.test');
+INSERT 0 6
+SELECT tableoid::regclass AS routed_partition, user_id, full_name FROM users ORDER BY user_id;
+ routed_partition | user_id |   full_name    
+------------------+---------+----------------
+ users_a          |       1 | Pavel Logachev
+ users_a          |      42 | Anna
+ users_a          |    9999 | Lower boundary
+ users_b          |   10000 | Upper boundary
+ users_b          |   10001 | Boris
+ users_b          |   20000 | Vera
+(6 rows)
+
+\echo '=== Vertical domain: books and stores written through FDW ==='
+=== Vertical domain: books and stores written through FDW ===
+DELETE FROM books WHERE book_id IN (101,102);
+DELETE 2
+DELETE FROM stores WHERE store_id IN (10,20);
+DELETE 2
+INSERT INTO stores VALUES (10,'Central','Moscow'),(20,'North','Saint Petersburg');
+INSERT 0 2
+INSERT INTO books VALUES (101,'PostgreSQL Basics',10,990.00),(102,'Distributed Systems',20,1490.00);
+INSERT 0 2
+SELECT b.book_id,b.title,s.name AS store,s.city FROM books b JOIN stores s USING(store_id) ORDER BY book_id;
+ book_id |        title        |  store  |       city       
+---------+---------------------+---------+------------------
+     101 | PostgreSQL Basics   | Central | Moscow
+     102 | Distributed Systems | North   | Saint Petersburg
+(2 rows)
+
+\echo '=== Partition pruning: only users_b for user_id=10000 ==='
+=== Partition pruning: only users_b for user_id=10000 ===
+EXPLAIN (COSTS OFF) SELECT * FROM users WHERE user_id=10000;
+          QUERY PLAN           
+-------------------------------
+ Foreign Scan on users_b users
+(1 row)
+
+\connect shop postgres nt-shard-users-a
+You are now connected to database "shop" as user "postgres" on host "nt-shard-users-a" (address "172.26.0.4") at port "5432".
+\echo '=== Direct shard A: [1,10000); primary read-write ==='
+=== Direct shard A: [1,10000); primary read-write ===
+SELECT pg_is_in_recovery() AS recovery, current_setting('transaction_read_only') AS read_only;
+ recovery | read_only 
+----------+-----------
+ f        | off
+(1 row)
+
+TABLE users;
+ user_id |   full_name    |       email        
+---------+----------------+--------------------
+       1 | Pavel Logachev | pavel@example.test
+      42 | Anna           | anna@example.test
+    9999 | Lower boundary | lower@example.test
+(3 rows)
+
+\connect shop postgres nt-shard-users-b
+You are now connected to database "shop" as user "postgres" on host "nt-shard-users-b" (address "172.26.0.2") at port "5432".
+\echo '=== Direct shard B: [10000,+infinity); primary read-write ==='
+=== Direct shard B: [10000,+infinity); primary read-write ===
+SELECT pg_is_in_recovery() AS recovery, current_setting('transaction_read_only') AS read_only;
+ recovery | read_only 
+----------+-----------
+ f        | off
+(1 row)
+
+TABLE users;
+ user_id |   full_name    |       email        
+---------+----------------+--------------------
+   10000 | Upper boundary | upper@example.test
+   10001 | Boris          | boris@example.test
+   20000 | Vera           | vera@example.test
+(3 rows)
+
+\connect shop postgres nt-shard-catalog
+You are now connected to database "shop" as user "postgres" on host "nt-shard-catalog" (address "172.26.0.3") at port "5432".
+\echo '=== Direct catalog: physical tables and local FK ==='
+=== Direct catalog: physical tables and local FK ===
+SELECT tablename FROM pg_tables WHERE schemaname='public' ORDER BY tablename;
+ tablename 
+-----------
+ books
+ stores
+(2 rows)
+
+SELECT b.book_id,b.title,s.name FROM books b JOIN stores s USING(store_id) ORDER BY book_id;
+ book_id |        title        |  name   
+---------+---------------------+---------
+     101 | PostgreSQL Basics   | Central
+     102 | Distributed Systems | North
+(2 rows)
+
+PASS: nt-shard-replica-a replayed primary WAL through 0/3041F68
+PASS: nt-shard-replica-b replayed primary WAL through 0/3041DD8
+PASS: nt-shard-users-a => 1,42,9999
+PASS: nt-shard-users-b => 10000,10001,20000
+PASS: nt-shard-replica-a => t
+PASS: nt-shard-replica-b => t
+PASS: nt-shard-catalog => 2
+PASS: nt-shard-users-a => 0
+PASS: nt-shard-users-b => 0
+PASS: nt-shard-coordinator => 0
+ERROR:  23514: no partition of relation "users" found for row
+DETAIL:  Partition key of the failing row contains (user_id) = (0).
+SCHEMA NAME:  public
+TABLE NAME:  users
+LOCATION:  ExecFindPartition, execPartition.c:328
+PASS: expected SQLSTATE 23514
+ERROR:  23505: duplicate key value violates unique constraint "users_pkey"
+DETAIL:  Key (user_id)=(1) already exists.
+CONTEXT:  remote SQL command: INSERT INTO public.users(user_id, full_name, email) VALUES ($1, $2, $3)
+LOCATION:  pgfdw_report_error, connection.c:944
+PASS: expected SQLSTATE 23505
+ERROR:  23514: new row for relation "users" violates check constraint "users_range"
+DETAIL:  Failing row contains (10000, Wrong shard, wrong@example.test).
+SCHEMA NAME:  public
+TABLE NAME:  users
+CONSTRAINT NAME:  users_range
+LOCATION:  ExecConstraints, execMain.c:2109
+PASS: expected SQLSTATE 23514
+ERROR:  23514: new row for relation "users" violates check constraint "users_range"
+DETAIL:  Failing row contains (9999, Wrong shard, wrong@example.test).
+SCHEMA NAME:  public
+TABLE NAME:  users
+CONSTRAINT NAME:  users_range
+LOCATION:  ExecConstraints, execMain.c:2109
+PASS: expected SQLSTATE 23514
+ERROR:  23503: insert or update on table "books" violates foreign key constraint "books_store_id_fkey"
+DETAIL:  Key (store_id)=(999) is not present in table "stores".
+SCHEMA NAME:  public
+TABLE NAME:  books
+CONSTRAINT NAME:  books_store_id_fkey
+LOCATION:  ri_ReportViolation, ri_triggers.c:2608
+PASS: expected SQLSTATE 23503
+ERROR:  25006: cannot execute INSERT in a read-only transaction
+LOCATION:  PreventCommandIfReadOnly, utility.c:414
+PASS: expected SQLSTATE 25006
+PASS: nt-shard-replica-a => t
+PASS: nt-shard-users-a => 1
+ERROR:  25006: cannot execute INSERT in a read-only transaction
+LOCATION:  PreventCommandIfReadOnly, utility.c:414
+PASS: expected SQLSTATE 25006
+PASS: nt-shard-replica-b => t
+PASS: nt-shard-users-b => 1
+ALL CHECKS PASSED
+\set ON_ERROR_STOP on
+\pset pager off
+Pager usage is off.
+\connect shop postgres nt-shard-replica-a
+You are now connected to database "shop" as user "postgres" on host "nt-shard-replica-a" (address "172.26.0.7") at port "5432".
+\echo '=== Replica A: hot standby, read-only, rows 1 / 42 / 9999 ==='
+=== Replica A: hot standby, read-only, rows 1 / 42 / 9999 ===
+SELECT pg_is_in_recovery() AS recovery, current_setting('transaction_read_only') AS read_only;
+ recovery | read_only 
+----------+-----------
+ t        | on
+(1 row)
+
+SELECT user_id,full_name FROM users ORDER BY user_id;
+ user_id |   full_name    
+---------+----------------
+       1 | Pavel Logachev
+      42 | Anna
+    9999 | Lower boundary
+(3 rows)
+
+SELECT status,slot_name FROM pg_stat_wal_receiver;
+  status   | slot_name 
+-----------+-----------
+ streaming | replica_a
+(1 row)
+
+\connect shop postgres nt-shard-replica-b
+You are now connected to database "shop" as user "postgres" on host "nt-shard-replica-b" (address "172.26.0.5") at port "5432".
+\echo '=== Replica B: hot standby, read-only, rows 10000 / 10001 / 20000 ==='
+=== Replica B: hot standby, read-only, rows 10000 / 10001 / 20000 ===
+SELECT pg_is_in_recovery() AS recovery, current_setting('transaction_read_only') AS read_only;
+ recovery | read_only 
+----------+-----------
+ t        | on
+(1 row)
+
+SELECT user_id,full_name FROM users ORDER BY user_id;
+ user_id |   full_name    
+---------+----------------
+   10000 | Upper boundary
+   10001 | Boris
+   20000 | Vera
+(3 rows)
+
+SELECT status,slot_name FROM pg_stat_wal_receiver;
+  status   | slot_name 
+-----------+-----------
+ streaming | replica_b
+(1 row)
+
+\connect shop postgres nt-shard-users-a
+You are now connected to database "shop" as user "postgres" on host "nt-shard-users-a" (address "172.26.0.4") at port "5432".
+SELECT application_name,state,sync_state FROM pg_stat_replication;
+ application_name |   state   | sync_state 
+------------------+-----------+------------
+ replica_a        | streaming | async
+(1 row)
+
+\connect shop postgres nt-shard-users-b
+You are now connected to database "shop" as user "postgres" on host "nt-shard-users-b" (address "172.26.0.2") at port "5432".
+SELECT application_name,state,sync_state FROM pg_stat_replication;
+ application_name |   state   | sync_state 
+------------------+-----------+------------
+ replica_b        | streaming | async
+(1 row)
+
+NAME                   IMAGE                COMMAND                  SERVICE                CREATED         STATUS                   PORTS
+nt-shard-catalog       postgres:16-alpine   "docker-entrypoint.s…"   nt-shard-catalog       6 minutes ago   Up 6 minutes (healthy)   127.0.0.1:13323->5432/tcp
+nt-shard-client        postgres:16-alpine   "bash /lab/scripts/c…"   nt-shard-client        6 minutes ago   Up 6 minutes             127.0.0.1:7683->7681/tcp
+nt-shard-coordinator   postgres:16-alpine   "docker-entrypoint.s…"   nt-shard-coordinator   6 minutes ago   Up 6 minutes (healthy)   127.0.0.1:13320->5432/tcp
+nt-shard-replica-a     postgres:16-alpine   "bash /lab/replica.sh"   nt-shard-replica-a     6 minutes ago   Up 6 minutes (healthy)   127.0.0.1:13324->5432/tcp
+nt-shard-replica-b     postgres:16-alpine   "bash /lab/replica.sh"   nt-shard-replica-b     6 minutes ago   Up 6 minutes (healthy)   127.0.0.1:13325->5432/tcp
+nt-shard-users-a       postgres:16-alpine   "docker-entrypoint.s…"   nt-shard-users-a       6 minutes ago   Up 6 minutes (healthy)   127.0.0.1:13321->5432/tcp
+nt-shard-users-b       postgres:16-alpine   "docker-entrypoint.s…"   nt-shard-users-b       6 minutes ago   Up 6 minutes (healthy)   127.0.0.1:13322->5432/tcp
+

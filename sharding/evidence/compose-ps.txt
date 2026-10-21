@@ -1,0 +1,11 @@
+﻿Host command: docker compose ps
+Working directory: wt-12-07/sharding
+
+NAME                   IMAGE                COMMAND                  SERVICE                CREATED              STATUS                        PORTS
+nt-shard-catalog       postgres:16-alpine   "docker-entrypoint.s…"   nt-shard-catalog       About a minute ago   Up About a minute (healthy)   127.0.0.1:13323->5432/tcp
+nt-shard-client        postgres:16-alpine   "bash /lab/scripts/c…"   nt-shard-client        About a minute ago   Up About a minute             127.0.0.1:7683->7681/tcp
+nt-shard-coordinator   postgres:16-alpine   "docker-entrypoint.s…"   nt-shard-coordinator   About a minute ago   Up About a minute (healthy)   127.0.0.1:13320->5432/tcp
+nt-shard-replica-a     postgres:16-alpine   "bash /lab/replica.sh"   nt-shard-replica-a     About a minute ago   Up About a minute (healthy)   127.0.0.1:13324->5432/tcp
+nt-shard-replica-b     postgres:16-alpine   "bash /lab/replica.sh"   nt-shard-replica-b     About a minute ago   Up About a minute (healthy)   127.0.0.1:13325->5432/tcp
+nt-shard-users-a       postgres:16-alpine   "docker-entrypoint.s…"   nt-shard-users-a       About a minute ago   Up About a minute (healthy)   127.0.0.1:13321->5432/tcp
+nt-shard-users-b       postgres:16-alpine   "docker-entrypoint.s…"   nt-shard-users-b       About a minute ago   Up About a minute (healthy)   127.0.0.1:13322->5432/tcp
