@@ -1,0 +1,22 @@
++ pg_dump -Fc -d demo -f /backups/demo.dump
++ pg_dumpall --globals-only --no-role-passwords -f /backups/globals.sql
++ ls -lh /backups/demo.dump /backups/globals.sql
+-rw-r--r-- 1 root root 4.4K Oct 21 10:13 /backups/demo.dump
+-rw-r--r-- 1 root root  526 Oct 21 10:13 /backups/globals.sql
++ sha256sum /backups/demo.dump /backups/globals.sql
+3cc0756120f8216869bf6a73c02ce4c2a9e9b40421b824b022b3ce0eba4754d8  /backups/demo.dump
+cf003b1dbc736cc25dc6f01aa2a0f0b7e23e8e650d646c7ea2b75f9c5b9fa6ef  /backups/globals.sql
++ pg_restore --list /backups/demo.dump
++ tail -n 12
+220; 1259 16390 TABLE public customers postgres
+219; 1259 16389 SEQUENCE public customers_id_seq postgres
+222; 1259 16402 TABLE public payments postgres
+221; 1259 16401 SEQUENCE public payments_id_seq postgres
+3450; 0 16390 TABLE DATA public customers postgres
+3452; 0 16402 TABLE DATA public payments postgres
+3459; 0 0 SEQUENCE SET public customers_id_seq postgres
+3460; 0 0 SEQUENCE SET public payments_id_seq postgres
+3296; 2606 16400 CONSTRAINT public customers customers_name_key postgres
+3298; 2606 16398 CONSTRAINT public customers customers_pkey postgres
+3300; 2606 16410 CONSTRAINT public payments payments_pkey postgres
+3301; 2606 16411 FK CONSTRAINT public payments payments_customer_id_fkey postgres

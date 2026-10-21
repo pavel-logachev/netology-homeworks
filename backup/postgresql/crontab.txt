@@ -1,0 +1,5 @@
+# Example: postgres user's crontab INSIDE a host/container with cron, bash and PostgreSQL clients.
+# Install backup.sh as /opt/backup/backup.sh; ensure /backups is durable and owned by postgres.
+# Cron was NOT installed or started in the lab. 02:00 in cron daemon's configured timezone.
+# Log directory must exist and be writable; monitor exit status/logs and rotate logs separately.
+0 2 * * * PGUSER=postgres /bin/bash /opt/backup/backup.sh >> /backups/backup.log 2>&1

@@ -1,0 +1,36 @@
++ start_file=binlog.000005
+++ mysql --defaults-extra-file=/root/source.cnf -NBe 'SHOW MASTER STATUS'
+++ cut -f1
++ current_file=binlog.000005
++ test binlog.000005 = binlog.000005
++ mysql --defaults-extra-file=/root/source.cnf -t
++----+-------------+---------+
+| id | customer_id | amount  |
++----+-------------+---------+
+|  1 |           1 | 1250.00 |
+|  2 |           2 |  800.50 |
+|  3 |           1 |  100.00 |
+|  4 |           3 |  500.00 |
++----+-------------+---------+
++----------+---------+
+| payments | total   |
++----------+---------+
+|        4 | 2650.50 |
++----------+---------+
++---------------+-----------+-----------+
+| Log_name      | File_size | Encrypted |
++---------------+-----------+-----------+
+| binlog.000001 |       180 | No        |
+| binlog.000002 |   2997942 | No        |
+| binlog.000003 |      1633 | No        |
+| binlog.000004 |       201 | No        |
+| binlog.000005 |       744 | No        |
+| binlog.000006 |       157 | No        |
++---------------+-----------+-----------+
++ cp /var/lib/mysql/binlog.000005 /backups/incremental/
++ ls -lh /backups/incremental/
+total 4.0K
+-rw-r----- 1 root root 744 Oct 21 10:18 binlog.000005
++ sha256sum /backups/incremental/binlog.000005
+bb2c3854202f86f7eb27ab48b3d801522867204d1b08e519252aeb5d923466f3  /backups/incremental/binlog.000005
++ mysql --defaults-extra-file=/root/source.cnf -NB -e 'SELECT c.id,c.name,p.id,p.amount FROM demo.customers c JOIN demo.payments p ON p.customer_id=c.id ORDER BY p.id'

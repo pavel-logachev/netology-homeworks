@@ -1,0 +1,63 @@
++ dropdb demo
++ createdb -T template0 demo
++ pg_restore --exit-on-error -d demo /backups/demo.dump
++ psql -X -At -d demo -c 'SELECT c.id,c.name,p.id,p.amount FROM customers c JOIN payments p ON p.customer_id=c.id ORDER BY p.id'
++ diff -u /backups/before.tsv /backups/after.tsv
++ psql -X -d demo -v ON_ERROR_STOP=1
+ id | name  
+----+-------
+  1 | Pavel
+  2 | Anna
+(2 rows)
+
+ id | customer_id | amount  
+----+-------------+---------
+  1 |           1 | 1250.00
+  2 |           2 |  750.50
+  3 |           1 |  100.00
+(3 rows)
+
+ payments |  total  
+----------+---------
+        3 | 2100.50
+(1 row)
+
+            conname            | contype | convalidated 
+-------------------------------+---------+--------------
+ customers_id_not_null         | n       | t
+ customers_name_key            | u       | t
+ customers_name_not_null       | n       | t
+ customers_pkey                | p       | t
+ payments_amount_check         | c       | t
+ payments_amount_not_null      | n       | t
+ payments_customer_id_fkey     | f       | t
+ payments_customer_id_not_null | n       | t
+ payments_id_not_null          | n       | t
+ payments_pkey                 | p       | t
+(10 rows)
+
+ tablename |     indexname      
+-----------+--------------------
+ customers | customers_name_key
+ customers | customers_pkey
+ payments  | payments_pkey
+(3 rows)
+
+  relname  |  owner   
+-----------+----------
+ customers | postgres
+ payments  | postgres
+(2 rows)
+
+ last_value | is_called 
+------------+-----------
+          2 | t
+(1 row)
+
+ last_value | is_called 
+------------+-----------
+          3 | t
+(1 row)
+
++ printf 'PASS: exact ordered rows, counts, totals, constraints, indexes, owners and sequences checked\n'
+PASS: exact ordered rows, counts, totals, constraints, indexes, owners and sequences checked

@@ -1,0 +1,36 @@
++ postgres --version
+postgres (PostgreSQL) 18.6 (Debian 18.6-1.pgdg13+2)
++ pg_dump --version
+pg_dump (PostgreSQL) 18.6 (Debian 18.6-1.pgdg13+2)
++ psql -X -d postgres -v ON_ERROR_STOP=1 -c 'SELECT current_database(), current_user, version();'
+ current_database | current_user |                                                      version                                                       
+------------------+--------------+--------------------------------------------------------------------------------------------------------------------
+ postgres         | postgres     | PostgreSQL 18.6 (Debian 18.6-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+(1 row)
+
++ createdb demo
++ psql -X -d demo -v ON_ERROR_STOP=1
+CREATE TABLE
+CREATE TABLE
+INSERT 0 2
+INSERT 0 3
+ id | name  
+----+-------
+  1 | Pavel
+  2 | Anna
+(2 rows)
+
+ id | customer_id | amount  
+----+-------------+---------
+  1 |           1 | 1250.00
+  2 |           2 |  750.50
+  3 |           1 |  100.00
+(3 rows)
+
+ payments |  total  
+----------+---------
+        3 | 2100.50
+(1 row)
+
++ mkdir -p /backups
++ psql -X -At -d demo -c 'SELECT c.id,c.name,p.id,p.amount FROM customers c JOIN payments p ON p.customer_id=c.id ORDER BY p.id'

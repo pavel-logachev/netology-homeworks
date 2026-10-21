@@ -1,0 +1,9 @@
+﻿nt-bkp-pg
+nt-bkp-mysql
+nt-bkp-mysql-restore
+nt-bkp-pg-data
+nt-bkp-mysql-data
+nt-bkp-mysql-restore-data
+nt-bkp-net
+Remaining nt-bkp containers/volumes/networks:
+PASS: no nt-bkp containers/volumes/networks remain; bkp-hw browser closed.

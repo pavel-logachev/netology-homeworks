@@ -1,0 +1,26 @@
++ dropdb demo
++ createdb -T template0 demo
++ pg_restore --exit-on-error -d demo /backups/demo.dump
++ psql -X -d demo -v ON_ERROR_STOP=1 -c 'SELECT * FROM customers ORDER BY id; SELECT * FROM payments ORDER BY id; SELECT count(*) AS payments,sum(amount) AS total FROM payments;'
+ id | name  
+----+-------
+  1 | Pavel
+  2 | Anna
+(2 rows)
+
+ id | customer_id | amount  
+----+-------------+---------
+  1 |           1 | 1250.00
+  2 |           2 |  750.50
+  3 |           1 |  100.00
+(3 rows)
+
+ payments |  total  
+----------+---------
+        3 | 2100.50
+(1 row)
+
++ psql -X -At -d demo -c 'SELECT c.id,c.name,p.id,p.amount FROM customers c JOIN payments p ON p.customer_id=c.id ORDER BY p.id'
++ diff -u /backups/before.tsv /backups/after.tsv
++ echo 'PASS: restored rows exactly match the pre-backup query'
+PASS: restored rows exactly match the pre-backup query

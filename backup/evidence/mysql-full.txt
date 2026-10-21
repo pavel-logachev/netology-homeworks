@@ -1,0 +1,22 @@
++ mysqldump --defaults-extra-file=/root/source.cnf --single-transaction --source-data=2 --flush-logs --set-gtid-purged=OFF --databases demo
++ sed -n '/^-- CHANGE .* TO /p' /backups/full.sql
+-- CHANGE MASTER TO MASTER_LOG_FILE='binlog.000005', MASTER_LOG_POS=157;
++ sed -n 's/.*[A-Z]*_LOG_FILE='\''\([^'\'']*\)'\''.*/\1/p' /backups/full.sql
++ sed -n 's/.*[A-Z]*_LOG_POS=\([0-9]*\).*/\1/p' /backups/full.sql
++ test -s /backups/start-file.txt
++ test -s /backups/start-position.txt
++ ls -lh /backups/full.sql
+-rw-r--r-- 1 root root 3.2K Oct 21 10:18 /backups/full.sql
++ sha256sum /backups/full.sql
+9bc698527aade3fd57dd4964c3733589a942aaaac0b587bbbc42d06845489845  /backups/full.sql
++ mysql --defaults-extra-file=/root/source.cnf -t -e 'SHOW MASTER STATUS; SELECT count(*) AS payments,sum(amount) AS total FROM demo.payments;'
++---------------+----------+--------------+------------------+-------------------+
+| File          | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |
++---------------+----------+--------------+------------------+-------------------+
+| binlog.000005 |      157 |              |                  |                   |
++---------------+----------+--------------+------------------+-------------------+
++----------+---------+
+| payments | total   |
++----------+---------+
+|        2 | 2000.50 |
++----------+---------+

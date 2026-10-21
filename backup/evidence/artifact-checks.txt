@@ -1,0 +1,36 @@
+Artifact validation 2026-10-21
+backup/evidence/mysql-01-full.png 40862 bytes
+backup/evidence/mysql-02-incremental.png 46488 bytes
+backup/evidence/mysql-03-restore.png 55580 bytes
+backup/evidence/mysql-expected.txt 68 bytes
+backup/evidence/mysql-full.txt 1352 bytes
+backup/evidence/mysql-incremental.txt 1479 bytes
+backup/evidence/mysql-restore-summary.txt 1832 bytes
+backup/evidence/mysql-restore.txt 2555 bytes
+backup/evidence/mysql-restored.txt 68 bytes
+backup/evidence/mysql-setup.txt 1733 bytes
+backup/evidence/pg-01-backup.png 56235 bytes
+backup/evidence/pg-02-restore.png 34650 bytes
+backup/evidence/pg-03-automation.png 53333 bytes
+backup/evidence/pg-after.txt 51 bytes
+backup/evidence/pg-automation.txt 1348 bytes
+backup/evidence/pg-backup.txt 1276 bytes
+backup/evidence/pg-before.txt 51 bytes
+backup/evidence/pg-restore-summary.txt 857 bytes
+backup/evidence/pg-restore.txt 1783 bytes
+backup/evidence/pg-setup.txt 1235 bytes
+backup/mysql/00-client-tools.sh 722 bytes
+backup/mysql/01-setup.sh 1281 bytes
+backup/mysql/02-full-backup.sh 840 bytes
+backup/mysql/03-incremental.sh 1088 bytes
+backup/mysql/04-restore.sh 1649 bytes
+backup/mysql/05-restore-summary.sh 1107 bytes
+backup/postgresql/01-setup.sh 1043 bytes
+backup/postgresql/02-backup.sh 305 bytes
+backup/postgresql/03-restore.sh 1127 bytes
+backup/postgresql/04-automation-test.sh 828 bytes
+backup/postgresql/05-restore-summary.sh 652 bytes
+backup/postgresql/backup.sh 980 bytes
+backup/postgresql/crontab.txt 470 bytes
+Checks: all shell files LF/no BOM; PNG 1500x1100; paired row outputs byte-equal; PASS logs present; no obvious credential literals; bash -n all scripts.
+PASS

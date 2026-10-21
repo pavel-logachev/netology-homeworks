@@ -1,0 +1,36 @@
++ mysql --version
+mysql  Ver 8.0.46 for Linux on x86_64 (MySQL Community Server - GPL)
++ mysqldump --version
+mysqldump  Ver 8.0.46 for Linux on x86_64 (MySQL Community Server - GPL)
++ mysqlbinlog --version
+mysqlbinlog  Ver 8.0.46 for Linux on x86_64 (MySQL Community Server - GPL)
++ mysql --defaults-extra-file=/root/source.cnf -t
++--------------+-----------+-------------+-----------+-----------------+-------------+
+| @@hostname   | @@version | @@server_id | @@log_bin | @@binlog_format | @@gtid_mode |
++--------------+-----------+-------------+-----------+-----------------+-------------+
+| 2bb1f91f86d5 | 8.0.46    |         108 |         1 | ROW             | OFF         |
++--------------+-----------+-------------+-----------+-----------------+-------------+
++----+-------------+---------+
+| id | customer_id | amount  |
++----+-------------+---------+
+|  1 |           1 | 1250.00 |
+|  2 |           2 |  750.50 |
++----+-------------+---------+
++---------------+-----------+-----------+
+| Log_name      | File_size | Encrypted |
++---------------+-----------+-----------+
+| binlog.000001 |       180 | No        |
+| binlog.000002 |   2997942 | No        |
+| binlog.000003 |      1589 | No        |
++---------------+-----------+-----------+
++ mysql --defaults-extra-file=/root/target.cnf -t -e 'SELECT @@hostname,@@version,@@server_id; SELECT count(*) AS demo_exists FROM information_schema.schemata WHERE schema_name='\''demo'\'';'
++--------------+-----------+-------------+
+| @@hostname   | @@version | @@server_id |
++--------------+-----------+-------------+
+| 9fa40bd8c2ad | 8.0.46    |         109 |
++--------------+-----------+-------------+
++-------------+
+| demo_exists |
++-------------+
+|           0 |
++-------------+

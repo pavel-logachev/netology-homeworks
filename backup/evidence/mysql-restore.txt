@@ -1,0 +1,52 @@
++ mysql --defaults-extra-file=/root/target.cnf -t -e 'SELECT @@hostname,@@server_id;'
++--------------+-------------+
+| @@hostname   | @@server_id |
++--------------+-------------+
+| 9fa40bd8c2ad |         109 |
++--------------+-------------+
+++ mysql --defaults-extra-file=/root/target.cnf -NBe 'SELECT count(*) FROM information_schema.schemata WHERE schema_name='\''demo'\'''
++ test 0 = 0
++ mysql --defaults-extra-file=/root/target.cnf
++ mysql --defaults-extra-file=/root/target.cnf -t -e 'SELECT count(*) AS full_only_rows,sum(amount) AS full_only_total FROM demo.payments;'
++----------------+-----------------+
+| full_only_rows | full_only_total |
++----------------+-----------------+
+|              2 |         2000.50 |
++----------------+-----------------+
+++ mysql --defaults-extra-file=/root/target.cnf -NBe 'SELECT count(*) FROM demo.payments'
++ test 2 = 2
++ start_file=binlog.000005
++ start_pos=157
++ mysqlbinlog --start-position=157 /backups/incremental/binlog.000005
++ mysql --defaults-extra-file=/root/target.cnf --binary-mode
++ mysql --defaults-extra-file=/root/target.cnf -t -e 'SELECT * FROM demo.customers ORDER BY id; SELECT * FROM demo.payments ORDER BY id; SELECT count(*) AS restored_rows,sum(amount) AS restored_total FROM demo.payments;'
++----+-------+
+| id | name  |
++----+-------+
+|  1 | Pavel |
+|  2 | Anna  |
+|  3 | Boris |
++----+-------+
++----+-------------+---------+
+| id | customer_id | amount  |
++----+-------------+---------+
+|  1 |           1 | 1250.00 |
+|  2 |           2 |  800.50 |
+|  3 |           1 |  100.00 |
+|  4 |           3 |  500.00 |
++----+-------------+---------+
++---------------+----------------+
+| restored_rows | restored_total |
++---------------+----------------+
+|             4 |        2650.50 |
++---------------+----------------+
++ mysql --defaults-extra-file=/root/target.cnf -NB -e 'SELECT c.id,c.name,p.id,p.amount FROM demo.customers c JOIN demo.payments p ON p.customer_id=c.id ORDER BY p.id'
+++ sha256sum /backups/expected.tsv
+++ cut -d ' ' -f1
+++ sha256sum /backups/restored.tsv
+++ cut -d ' ' -f1
++ test c0c34938a4403fb46966e20c6ecd394037927b44724df287d8a3ca4c90b1245f = c0c34938a4403fb46966e20c6ecd394037927b44724df287d8a3ca4c90b1245f
+++ mysql --defaults-extra-file=/root/target.cnf -NBe 'SELECT CONCAT(count(*),CHAR(58),sum(amount)) FROM demo.payments'
++ test 4:2650.50 = 4:2650.50
++ echo 'PASS: full backup = 2 payments; binlog replay = 4 payments, total 2650.50; exact rows match source'
+PASS: full backup = 2 payments; binlog replay = 4 payments, total 2650.50; exact rows match source

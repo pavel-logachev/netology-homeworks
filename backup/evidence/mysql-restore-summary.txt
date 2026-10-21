@@ -1,0 +1,37 @@
++ mysql --defaults-extra-file=/root/target.cnf -t -e 'SELECT @@hostname,@@server_id; DROP DATABASE demo;'
++--------------+-------------+
+| @@hostname   | @@server_id |
++--------------+-------------+
+| 9fa40bd8c2ad |         109 |
++--------------+-------------+
++ mysql --defaults-extra-file=/root/target.cnf -e 'source /backups/full.sql'
++ mysql --defaults-extra-file=/root/target.cnf -t -e 'SELECT count(*) AS full_rows,sum(amount) AS total FROM demo.payments;'
++-----------+---------+
+| full_rows | total   |
++-----------+---------+
+|         2 | 2000.50 |
++-----------+---------+
++ mysqlbinlog --start-position=157 /backups/incremental/binlog.000005
++ mysql --defaults-extra-file=/root/target.cnf --binary-mode
++ mysql --defaults-extra-file=/root/target.cnf -t -e 'SELECT * FROM demo.payments ORDER BY id; SELECT count(*) AS recovered_rows,sum(amount) AS total FROM demo.payments;'
++----+-------------+---------+
+| id | customer_id | amount  |
++----+-------------+---------+
+|  1 |           1 | 1250.00 |
+|  2 |           2 |  800.50 |
+|  3 |           1 |  100.00 |
+|  4 |           3 |  500.00 |
++----+-------------+---------+
++----------------+---------+
+| recovered_rows | total   |
++----------------+---------+
+|              4 | 2650.50 |
++----------------+---------+
++ mysql --defaults-extra-file=/root/target.cnf -NB -e 'SELECT c.id,c.name,p.id,p.amount FROM demo.customers c JOIN demo.payments p ON p.customer_id=c.id ORDER BY p.id'
+++ sha256sum /backups/expected.tsv
+++ cut -d ' ' -f1
+++ sha256sum /backups/restored-summary.tsv
+++ cut -d ' ' -f1
++ test c0c34938a4403fb46966e20c6ecd394037927b44724df287d8a3ca4c90b1245f = c0c34938a4403fb46966e20c6ecd394037927b44724df287d8a3ca4c90b1245f
++ echo 'PASS: full + binlog = exact source rows (4 payments, 2650.50)'
+PASS: full + binlog = exact source rows (4 payments, 2650.50)

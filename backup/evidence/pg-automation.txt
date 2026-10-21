@@ -1,0 +1,26 @@
++ mkdir -p /backups/daily
++ touch -d '10 days ago' /backups/daily/demo_retention_fixture.dump
++ touch /backups/daily/demo_recent_fixture.dump
++ bash /lab/backup.sh
+/backups/daily/demo_retention_fixture.dump
+Created /backups/daily/demo_20261021T101310_555065349Z.dump
+-rw------- 1 root root 4.4K Oct 21 10:13 /backups/daily/demo_20261021T101310_555065349Z.dump
+7d5bec303e4ffd0a26dca341a355a24c5151b53b2a923922e857a90244d158c3  /backups/daily/demo_20261021T101310_555065349Z.dump
++ test '!' -e /backups/daily/demo_retention_fixture.dump
++ test -e /backups/daily/demo_recent_fixture.dump
+++ find /backups/daily -name 'demo_20*.dump' -type f
+++ sort
+++ tail -n 1
++ latest=/backups/daily/demo_20261021T101310_555065349Z.dump
++ createdb demo_auto
++ pg_restore --exit-on-error -d demo_auto /backups/daily/demo_20261021T101310_555065349Z.dump
++ psql -X -At -d demo_auto -c 'SELECT c.id,c.name,p.id,p.amount FROM customers c JOIN payments p ON p.customer_id=c.id ORDER BY p.id'
++ diff -u /backups/before.tsv /backups/auto.tsv
++ psql -X -d demo_auto -c 'SELECT count(*) AS payments, sum(amount) AS total FROM payments;'
+ payments |  total  
+----------+---------
+        3 | 2100.50
+(1 row)
+
++ printf 'PASS: automation dump restored; old fixture deleted, recent fixture retained\n'
+PASS: automation dump restored; old fixture deleted, recent fixture retained
