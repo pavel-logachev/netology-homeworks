@@ -1,0 +1,11 @@
+--------------
+SELECT COUNT(*) AS films_above_average,
+       (SELECT AVG(length) FROM film) AS average_length_minutes
+FROM film WHERE length > (SELECT AVG(length) FROM film)
+--------------
+
++---------------------+------------------------+
+| films_above_average | average_length_minutes |
++---------------------+------------------------+
+|                 489 |               115.2720 |
++---------------------+------------------------+

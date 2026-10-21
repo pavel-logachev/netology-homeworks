@@ -1,0 +1,47 @@
+--------------
+SELECT store_id, COUNT(*) AS customers FROM customer GROUP BY store_id
+--------------
+
++----------+-----------+
+| store_id | customers |
++----------+-----------+
+|        1 |       326 |
+|        2 |       273 |
++----------+-----------+
+--------------
+SELECT DATE_FORMAT(payment_date, '%Y-%m') AS month, SUM(amount) AS amount,
+       COUNT(*) AS payments FROM payment GROUP BY month ORDER BY amount DESC
+--------------
+
++---------+----------+----------+
+| month   | amount   | payments |
++---------+----------+----------+
+| 2005-07 | 28368.91 |     6709 |
+| 2005-08 | 24070.14 |     5686 |
+| 2005-06 |  9629.89 |     2311 |
+| 2005-05 |  4823.44 |     1156 |
+| 2006-02 |   514.18 |      182 |
++---------+----------+----------+
+--------------
+SELECT staff_id, COUNT(*) AS rentals FROM rental GROUP BY staff_id
+--------------
+
++----------+---------+
+| staff_id | rentals |
++----------+---------+
+|        1 |    8040 |
+|        2 |    8004 |
++----------+---------+
+--------------
+SELECT COUNT(*) AS never_rented,
+       SUM(NOT EXISTS (SELECT 1 FROM inventory i WHERE i.film_id=f.film_id)) AS without_inventory
+FROM film f WHERE NOT EXISTS (
+ SELECT 1 FROM inventory i JOIN rental r ON r.inventory_id=i.inventory_id
+ WHERE i.film_id=f.film_id)
+--------------
+
++--------------+-------------------+
+| never_rented | without_inventory |
++--------------+-------------------+
+|           42 |                42 |
++--------------+-------------------+
