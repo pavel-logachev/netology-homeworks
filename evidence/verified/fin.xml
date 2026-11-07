@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.99 scan initiated Sat Nov  7 09:33:02 2026 as: nmap -sF -n -Pn -&#45;reason -p 21,22,80,445,65000 -&#45;max-retries 1 -&#45;host-timeout 90s -T3 -oA /evidence/verified/fin 172.24.0.2 -->
+<nmaprun scanner="nmap" args="nmap -sF -n -Pn -&#45;reason -p 21,22,80,445,65000 -&#45;max-retries 1 -&#45;host-timeout 90s -T3 -oA /evidence/verified/fin 172.24.0.2" start="1794043982" startstr="Sat Nov  7 09:33:02 2026" version="7.99" xmloutputversion="1.05">
+<scaninfo type="fin" protocol="tcp" numservices="5" services="21-22,80,445,65000"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="172.24.0.2" addrtype="ipv4"/>
+<address addr="C6:2E:89:E4:99:49" addrtype="mac"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1794043982" endtime="1794043984"><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="172.24.0.2" addrtype="ipv4"/>
+<address addr="C6:2E:89:E4:99:49" addrtype="mac"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="445"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="65000"><state state="closed" reason="reset" reason_ttl="64"/></port>
+</ports>
+<times srtt="38" rttvar="3755" to="100000"/>
+</host>
+<runstats><finished time="1794043984" timestr="Sat Nov  7 09:33:04 2026" summary="Nmap done at Sat Nov  7 09:33:04 2026; 1 IP address (1 host up) scanned in 1.30 seconds" elapsed="1.30" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

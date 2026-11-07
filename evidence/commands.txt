@@ -1,0 +1,1130 @@
+﻿
+[2026-11-07T12:27:57.8351400+03:00] docker image inspect tleemcjr/metasploitable2:latest nicolaka/netshoot:latest --format '{{json .}}'
+{"Id":"sha256:e559450b37dccc1909eafa2df5b20bb052e1bd801246f4539a3ef183d5f7288a","RepoTags":["tleemcjr/metasploitable2:latest"],"RepoDigests":["tleemcjr/metasploitable2@sha256:e559450b37dccc1909eafa2df5b20bb052e1bd801246f4539a3ef183d5f7288a"],"Comment":"Ok, really final tweaks","Created":"2018-01-28T07:09:54.264366137Z","Author":"Lee McWhorter","Config":{"Cmd":["sh","-c","/bin/services.sh && bash"]},"Architecture":"amd64","Os":"linux","Size":2303464745,"RootFS":{"Type":"layers","Layers":["sha256:8a511b594b4c172ed1708d67c2cca8cbbfebf1e2b485da25323fedcafcd392d3","sha256:92cbcc23c5746c859d26ab25b7189dd4702bd19a155e18c41bedd76754feb5dd","sha256:63663de3e70153a4895d74b9db31c6718a262346f7a19502c1a2c2e7e4149d52","sha256:379cb9d51e89323fdcfa3f9c8857d38907f6a4433aefaa9ec11aef60a13861ec","sha256:a4178d03cf5e5e04312cf26db80aae75fd991f8216bcf4ddc6d3314e1df66ed4","sha256:ff47ab1d9a26ea9cd81a6a5a2ace3b6ee24b742ebf0688d6a5018051df53dcf0","sha256:f365c0d7baa9a22423a33e681ef0c6cae031f7591f783d46a9238ff145286615","sha256:3dfb77d212927ac65ece07b6018af0da1152069fa37841c249cb619e91824c8f"]},"Metadata":{"LastTagTime":"2026-11-07T09:27:20.364705844Z"},"Descriptor":{"mediaType":"application/vnd.docker.distribution.manifest.v2+json","digest":"sha256:e559450b37dccc1909eafa2df5b20bb052e1bd801246f4539a3ef183d5f7288a","size":2000},"Identity":{"Pull":[{"Repository":"docker.io/tleemcjr/metasploitable2"}]}}
+{"Id":"sha256:b09d9b21381f47a79b3cbcb30da25266dc17186ea00ae65e99fdc51396f48e70","RepoTags":["nicolaka/netshoot:latest"],"RepoDigests":["nicolaka/netshoot@sha256:b09d9b21381f47a79b3cbcb30da25266dc17186ea00ae65e99fdc51396f48e70"],"Comment":"buildkit.dockerfile.v0","Created":"2026-07-01T17:04:52.151720149Z","Config":{"User":"root","Env":["PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin","HOSTNAME=netshoot"],"Cmd":["zsh"],"WorkingDir":"/root","ArgsEscaped":true},"Architecture":"amd64","Os":"linux","Size":897745954,"RootFS":{"Type":"layers","Layers":["sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c","sha256:e545e98a767dbf1a4c05237507802484c1bc552df4f948e8950a15b7216625f0","sha256:c3a9fb636bb0d3059c031adb87ccdec177e80b7a42e216565b9c33d78d421695","sha256:3af3d1099a59a8e1104333d93e3233d23cb2eabc5ec6ca4e96fda156c80e2c0a","sha256:a3785046822dcac84d20ff6b213200810a4979a4e328f54de0d2823c27d76e67","sha256:3eac85efb39607b9a8cc729b2c71ead937d038e340072456de133e69a8e62f64","sha256:b4f8aacc3de553efd6506003eed4c1ed5bad1f7a04ba6c9f7c491da69663287f","sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef","sha256:f24473171d718f2bf68925de6b85d3537c264bddda03e5bf73b540f7221afaa6","sha256:3602f96f1e6745c3050db1415e377b45de2cf14ee11df7b533e2ca5ddbf01e6c","sha256:93203c145e5d316330da50af3375213fa49421faeeb9b6673d26f379da9ec455","sha256:52c43157389590875c399f191104ecaf5571661f635da8ea34f27743c48d42d0","sha256:35758dc0b838eaaf72e6ce300499b67592a4d672cf46e18796944f36d44f9b18","sha256:e2d95e48fa81a79b94d1d7c1d431ff5c72a6bc2d55f98a09f3619d0ae0e80a6e","sha256:9bd794bacd33d0323c7deb61e24f921c3651a2751d4f708b9596b4d6e6e5ab3c"]},"Metadata":{"LastTagTime":"2026-11-07T09:27:39.294476138Z"},"Descriptor":{"mediaType":"application/vnd.oci.image.index.v1+json","digest":"sha256:b09d9b21381f47a79b3cbcb30da25266dc17186ea00ae65e99fdc51396f48e70","size":1609},"Identity":{"Pull":[{"Repository":"docker.io/nicolaka/netshoot"}]}}
+exit=0
+
+[2026-11-07T12:27:57.9848254+03:00] docker network create --internal --driver bridge nt1301-lab
+5ddc887495c724104cb851dfaf783e9ff0ddd02b539478a44c6e0ba2f716ef23
+exit=0
+
+[2026-11-07T12:27:58.0623979+03:00] docker run -d --name nt1301-target --hostname nt1301-target --network nt1301-lab tleemcjr/metasploitable2:latest /bin/sh -c 'while :; do sleep 3600; done'
+f8cd8bebbb06583509555c5f98779ab5d38633fb99b465f80f2471b0cfdd66b3
+exit=0
+
+[2026-11-07T12:27:58.7948732+03:00] docker exec nt1301-target sh -c 'cat /bin/services.sh; uname -a; cat /etc/issue; netstat -lntup'
+#!/bin/sh
+#Start up script for metasploitable2 docker/gns3 image tleemcjr/metasploitable2
+
+service apache2 start
+service atd start
+#service bind9 start
+service cron start
+service distcc start
+#service klogd start
+service mysql start
+service mysql-ndb start
+service mysql-ndb-mgm start
+service networking start
+#service nfs-common start
+#service nfs-kernel-server start
+service openbsd-inetd start
+service portmap start
+service postfix start
+service postgresql-8.3 start
+service proftpd start
+service rmnologin start
+service rsync start
+service samba start
+service snmpd start
+service ssh start
+service sysklogd start
+service tomcat5.5 start
+service xinetd start
+service x11-common start
+service xserver-xorg-input-wacom start
+
+/etc/init.d/rc.local start
+
+Linux nt1301-target 7.0.14-linuxkit #1 SMP PREEMPT_DYNAMIC Fri Sep 18 10:17:53 UTC 2026 x86_64 GNU/Linux
+                _                  _       _ _        _     _      ____  
+ _ __ ___   ___| |_ __ _ ___ _ __ | | ___ (_) |_ __ _| |__ | | ___|___ \ 
+| '_ ` _ \ / _ \ __/ _` / __| '_ \| |/ _ \| | __/ _` | '_ \| |/ _ \ __) |
+| | | | | |  __/ || (_| \__ \ |_) | | (_) | | || (_| | |_) | |  __// __/ 
+|_| |_| |_|\___|\__\__,_|___/ .__/|_|\___/|_|\__\__,_|_.__/|_|\___|_____|
+                            |_|                                          
+
+
+Warning: Never expose this VM to an untrusted network!
+
+Contact: msfdev[at]metasploit.com
+
+Login with msfadmin/msfadmin to get started
+
+
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 127.0.0.11:43167        0.0.0.0:*               LISTEN      -               
+udp        0      0 127.0.0.11:52754        0.0.0.0:*                           -               
+exit=0
+
+[2026-11-07T12:27:58.9245265+03:00] docker exec nt1301-target sh -c /bin/services.sh
+
+[2026-11-07T12:28:47.7462034+03:00] docker exec nt1301-target sh -c 'ps aux; netstat -lntup'
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0   2804  2260 ?        Ss   04:27   0:00 /bin/sh -c while :; do sleep 3600; done
+root           7  0.0  0.0   1928  1268 ?        S    04:27   0:00 sleep 3600
+root          50  0.0  0.0  10676  3632 ?        Ss   04:27   0:00 /usr/sbin/apache2 -k start
+www-data      52  0.0  0.0  10676  3176 ?        S    04:27   0:00 /usr/sbin/apache2 -k start
+www-data      53  0.0  0.0  10676  3176 ?        S    04:27   0:00 /usr/sbin/apache2 -k start
+www-data      54  0.0  0.0  10676  3176 ?        S    04:27   0:00 /usr/sbin/apache2 -k start
+www-data      55  0.0  0.0  10676  3176 ?        S    04:27   0:00 /usr/sbin/apache2 -k start
+www-data      56  0.0  0.0  10676  3176 ?        S    04:27   0:00 /usr/sbin/apache2 -k start
+daemon        78  0.0  0.0   2064  1212 ?        Ss   04:27   0:00 /usr/sbin/atd
+root         101  0.0  0.0   2184  1772 ?        Ss   04:27   0:00 /usr/sbin/cron
+daemon       123  0.0  0.0   2396  1188 ?        SNs  04:27   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       124  0.0  0.0   2396   744 ?        SN   04:27   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+root         170  0.0  0.0   2848  2288 ?        S    04:27   0:00 /bin/sh /usr/bin/mysqld_safe
+mysql        212  0.4  0.1 135828 20804 ?        Sl   04:27   0:00 /usr/sbin/mysqld --basedir=/usr --datadir=/var/lib/mysql --user=mysql --pid-file=/var/run/mysqld/mysqld.pid --skip-external-locking --port=3306 --socket=/var/run/mysqld/mysqld.sock
+root         213  0.0  0.0   1780  1316 ?        S    04:27   0:00 logger -p daemon.err -t mysqld_safe -i -t mysqld
+daemon       224  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       385  0.0  0.0   6016  1204 ?        Ss   04:28   0:00 /sbin/portmap
+daemon       388  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+root         464  0.0  0.0   5492  3144 ?        Ss   04:28   0:00 /usr/lib/postfix/master
+postfix      472  0.0  0.0   5500  3144 ?        S    04:28   0:00 pickup -l -t fifo -u -c
+postfix      473  0.0  0.0   5540  3176 ?        S    04:28   0:00 qmgr -l -t fifo -u
+postgres     500  0.6  0.0  41420  9392 ?        S    04:28   0:00 /usr/lib/postgresql/8.3/bin/postgres -D /var/lib/postgresql/8.3/main -c config_file=/etc/postgresql/8.3/main/postgresql.conf
+postgres     502  0.0  0.0  41420  3880 ?        Ss   04:28   0:00 postgres: writer process                                                                                                    
+postgres     503  0.0  0.0  41420  3780 ?        Ss   04:28   0:00 postgres: wal writer process                                                                                                
+postgres     504  0.0  0.0  41420  3932 ?        Ss   04:28   0:00 postgres: autovacuum launcher process                                                                                       
+postgres     505  0.0  0.0  12740  3420 ?        Ss   04:28   0:00 postgres: stats collector process                                                                                           
+daemon       508  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       515  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+proftpd      545  0.0  0.0  10028  2808 ?        Ss   04:28   0:00 proftpd: (accepting connections)
+root         605  0.0  0.0   5468  2692 ?        Ss   04:28   0:00 /usr/sbin/nmbd -D
+root         607  0.0  0.0   7804  3448 ?        Ss   04:28   0:00 /usr/sbin/smbd -D
+root         629  0.0  0.0   7804  2384 ?        S    04:28   0:00 /usr/sbin/smbd -D
+snmp         631  0.0  0.0   8836  6132 ?        S    04:28   0:00 /usr/sbin/snmpd -Lsd -Lf /dev/null -u snmp -I -smux -p /var/run/snmpd.pid 127.0.0.1
+root         656  0.0  0.0   5392  3000 ?        Ss   04:28   0:00 /usr/sbin/sshd
+syslog       698  0.3  0.0   6116  5572 ?        Ss   04:28   0:00 /sbin/syslogd -u syslog
+daemon       724  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+root         733  0.0  0.0   2132   940 ?        Ss   04:28   0:00 /usr/bin/jsvc -user tomcat55 -cp /usr/share/java/commons-daemon.jar:/usr/share/tomcat5.5/bin/bootstrap.jar -outfile SYSLOG -errfile SYSLOG -pidfile /var/run/tomcat5.5.pid -Djava.awt.headless=true -Xmx128M -Djava.endorsed.dirs=/usr/share/tomcat5.5/common/endorsed -Dcatalina.base=/var/lib/tomcat5.5 -Dcatalina.home=/usr/share/tomcat5.5 -Djava.io.tmpdir=/var/lib/tomcat5.5/temp -Djava.security.manager -Djava.security.policy=/var/lib/tomcat5.5/conf/catalina.policy org.apache.catalina.startup.Bootstrap
+root         734  0.0  0.0   2132  1208 ?        S    04:28   0:00 /usr/bin/jsvc -user tomcat55 -cp /usr/share/java/commons-daemon.jar:/usr/share/tomcat5.5/bin/bootstrap.jar -outfile SYSLOG -errfile SYSLOG -pidfile /var/run/tomcat5.5.pid -Djava.awt.headless=true -Xmx128M -Djava.endorsed.dirs=/usr/share/tomcat5.5/common/endorsed -Dcatalina.base=/var/lib/tomcat5.5 -Dcatalina.home=/usr/share/tomcat5.5 -Djava.io.tmpdir=/var/lib/tomcat5.5/temp -Djava.security.manager -Djava.security.policy=/var/lib/tomcat5.5/conf/catalina.policy org.apache.catalina.startup.Bootstrap
+tomcat55     735  5.8  0.6 357600 84952 ?        Sl   04:28   0:02 /usr/bin/jsvc -user tomcat55 -cp /usr/share/java/commons-daemon.jar:/usr/share/tomcat5.5/bin/bootstrap.jar -outfile SYSLOG -errfile SYSLOG -pidfile /var/run/tomcat5.5.pid -Djava.awt.headless=true -Xmx128M -Djava.endorsed.dirs=/usr/share/tomcat5.5/common/endorsed -Dcatalina.base=/var/lib/tomcat5.5 -Dcatalina.home=/usr/share/tomcat5.5 -Djava.io.tmpdir=/var/lib/tomcat5.5/temp -Djava.security.manager -Djava.security.policy=/var/lib/tomcat5.5/conf/catalina.policy org.apache.catalina.startup.Bootstrap
+root         816  0.0  0.2  66424 30776 ?        Sl   04:28   0:00 /usr/bin/rmiregistry
+root         820  0.1  0.0  12288  3496 ?        Sl   04:28   0:00 ruby /usr/sbin/druby_timeserver.rb
+root         830  0.3  0.1  14108 13260 ?        S    04:28   0:00 Xtightvnc :0 -desktop X -auth /root/.Xauthority -geometry 1024x768 -depth 24 -rfbwait 120000 -rfbauth /root/.vnc/passwd -rfbport 5900 -fp /usr/X11R6/lib/X11/fonts/Type1/,/usr/X11R6/lib/X11/fonts/Speedo/,/usr/X11R6/lib/X11/fonts/misc/,/usr/X11R6/lib/X11/fonts/75dpi/,/usr/X11R6/lib/X11/fonts/100dpi/,/usr/share/fonts/X11/misc/,/usr/share/fonts/X11/Type1/,/usr/share/fonts/X11/75dpi/,/usr/share/fonts/X11/100dpi/ -co /etc/X11/rgb
+root         834  0.0  0.0   8620  3812 ?        S    04:28   0:00 /usr/bin/unrealircd
+root         835  0.0  0.0   2504  1728 ?        Ss   04:28   0:00 /usr/sbin/xinetd -pidfile /var/run/xinetd.pid -stayalive -inetd_compat
+daemon       838  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+root         842  0.0  0.0   2804  2248 ?        S    04:28   0:00 /bin/sh /root/.vnc/xstartup
+root         845  0.0  0.0   6016  4568 ?        S    04:28   0:00 xterm -geometry 80x24+10+10 -ls -title X Desktop
+root         847  0.3  0.0   9068  7676 ?        S    04:28   0:00 fluxbox
+root         882  0.0  0.0   2924  2524 pts/0    Ss+  04:28   0:00 -bash
+daemon       894  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       927  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       928  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       929  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       930  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       931  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       932  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       933  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       934  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       935  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       936  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       937  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       938  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       939  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       940  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       941  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       942  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       943  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       944  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       945  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       946  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       947  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       948  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       949  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       950  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       951  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       952  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+root         953  0.0  0.0   2804  2224 ?        Ss   04:28   0:00 sh -c ps aux; netstat -lntup
+root         959  0.0  0.0   2444  1600 ?        R    04:28   0:00 ps aux
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:3306            0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:1099            0.0.0.0:*               LISTEN      816/rmiregistry 
+tcp        0      0 0.0.0.0:1524            0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      50/apache2      
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:25              0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:23              0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:21              0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:139             0.0.0.0:*               LISTEN      607/smbd        
+tcp        0      0 0.0.0.0:41089           0.0.0.0:*               LISTEN      816/rmiregistry 
+tcp        0      0 0.0.0.0:445             0.0.0.0:*               LISTEN      607/smbd        
+tcp        0      0 0.0.0.0:8787            0.0.0.0:*               LISTEN      820/ruby        
+tcp        0      0 0.0.0.0:514             0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:512             0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:513             0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:8009            0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:8180            0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:6667            0.0.0.0:*               LISTEN      834/unrealircd  
+tcp        0      0 0.0.0.0:6697            0.0.0.0:*               LISTEN      834/unrealircd  
+tcp        0      0 0.0.0.0:5432            0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:6000            0.0.0.0:*               LISTEN      830/Xtightvnc   
+tcp        0      0 0.0.0.0:5900            0.0.0.0:*               LISTEN      830/Xtightvnc   
+tcp        0      0 127.0.0.11:43167        0.0.0.0:*               LISTEN      -               
+tcp6       0      0 :::3632                 :::*                    LISTEN      -               
+tcp6       0      0 :::2121                 :::*                    LISTEN      -               
+tcp6       0      0 :::22                   :::*                    LISTEN      656/sshd        
+tcp6       0      0 :::5432                 :::*                    LISTEN      -               
+udp        0      0 127.0.0.11:52754        0.0.0.0:*                           -               
+udp        0      0 0.0.0.0:69              0.0.0.0:*                           835/xinetd      
+udp        0      0 0.0.0.0:111             0.0.0.0:*                           -               
+udp        0      0 172.24.0.2:137          0.0.0.0:*                           605/nmbd        
+udp        0      0 0.0.0.0:137             0.0.0.0:*                           605/nmbd        
+udp        0      0 172.24.0.2:138          0.0.0.0:*                           605/nmbd        
+udp        0      0 0.0.0.0:138             0.0.0.0:*                           605/nmbd        
+udp        0      0 127.0.0.1:161           0.0.0.0:*                           -               
+exit=0
+
+[2026-11-07T12:28:47.9420094+03:00] docker exec nt1301-target sh -c /bin/services.sh
+ * Starting web server apache2
+docker.exe : /etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+At C:\Users\pavel\Documents\DeepSeekHarness\cache\netology-20261107\w-1301\lab.ps1:10 char:10
++  $result=& docker @A 2>&1
++          ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (/etc/lsb-base-l...le or directory:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+apache2: Could not reliably determine the server's fully qualified domain name, using 172.24.0.2 for ServerName
+httpd (pid 50) already running
+   ...done.
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ * Starting deferred execution scheduler atd
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...done.
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ * Starting periodic command scheduler crond
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...fail!
+Starting distccd
+ * Starting MySQL database server mysqld
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...done.
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ * Configuring network interfaces...
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...done.
+ * Starting portmap daemon...
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ * Already running.
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...done.
+ * Starting Postfix Mail Transport Agent postfix
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...fail!
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ * Starting PostgreSQL 8.3 database server
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...done.
+ * Starting ftp server proftpd
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...done.
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+Starting Samba daemons: nmbd smbd.
+Starting network management services: snmpd.
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ * Starting OpenBSD Secure Shell server sshd
+   ...done.
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ * Starting system log daemon...
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...fail!
+ * Starting Tomcat servlet engine tomcat5.5
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...done.
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ * Starting internet superserver xinetd
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...fail!
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ * Doing Wacom setup...
+   ...done.
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ * Running local boot scripts (/etc/rc.local)
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...done.
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ _   _                      _ ___________  _____     _ 
+| | | |                    | |_   _| ___ \/  __ \   | |
+| | | |_ __  _ __ ___  __ _| | | | | |_/ /| /  \/ __| |
+| | | | '_ \| '__/ _ \/ _` | | | | |    / | |    / _` |
+| |_| | | | | | |  __/ (_| | |_| |_| |\ \ | \__/\ (_| |
+ \___/|_| |_|_|  \___|\__,_|_|\___/\_| \_| \____/\__,_|
+                           v3.2.8.1
+                     using TRE 0.7.5 (LGPL)
+                     using libcurl/7.18.0 OpenSSL/0.9.8g zlib/1.2.3.3 libidn/1.1
+
+* Loading IRCd configuration ..
+/usr/lib/ruby/1.8/drb/drb.rb:865:in `initialize': Address already in use - bind(2) (Errno::EADDRINUSE)
+	from /usr/lib/ruby/1.8/drb/drb.rb:865:in `open'
+	from /usr/lib/ruby/1.8/drb/drb.rb:865:in `open_server'
+	from /usr/lib/ruby/1.8/drb/drb.rb:759:in `open_server'
+	from /usr/lib/ruby/1.8/drb/drb.rb:757:in `each'
+	from /usr/lib/ruby/1.8/drb/drb.rb:757:in `open_server'
+	from /usr/lib/ruby/1.8/drb/drb.rb:1339:in `initialize'
+	from /usr/lib/ruby/1.8/drb/drb.rb:1627:in `new'
+	from /usr/lib/ruby/1.8/drb/drb.rb:1627:in `start_service'
+	from /usr/sbin/druby_timeserver.rb:12
+* Configuration loaded without any problems ..
+* Loading tunefile..
+* Dynamic configuration initialized .. booting IRCd.
+---------------------------------------------------------------------
+exit=0
+
+[2026-11-07T12:28:48.7092111+03:00] docker run -d --name nt1301-scanner --hostname nt1301-scanner --network nt1301-lab --mount type=bind,source=C:\Users\pavel\Documents\DeepSeekHarness\cache\netology-20261107\w-1301\wt\evidence,target=/evidence --cap-add NET_RAW --cap-add NET_ADMIN nicolaka/netshoot:latest sleep infinity
+0f468a16fcd46db22e9b47ba63a0c40a86d785ebf9ffbfe5edb12d6ab6b90193
+exit=0
+
+[2026-11-07T12:28:52.6029991+03:00] docker exec nt1301-scanner sh -c 'nmap --version; tshark --version; tcpdump --version; ip -4 addr; ip route'
+Nmap version 7.99 ( https://nmap.org )
+Platform: x86_64-alpine-linux-musl
+Compiled with: liblua-5.4.8 openssl-3.5.7 libssh2-1.11.1 libz-1.3.2 nmap-libpcre2-10.47 libpcap-1.10.6 nmap-libdnet-1.18.0 ipv6
+Compiled without:
+Available nsock engines: epoll poll select
+TShark (Wireshark) 4.6.6 (Git commit 3a22c3ef473d).
+
+Copyright 1998-2026 Gerald Combs <gerald@wireshark.org> and contributors.
+Licensed under the terms of the GNU General Public License (version 2 or later).
+This is free software; see the file named COPYING in the distribution. There is
+NO WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+Compile-time info:
+ Bit width: 64-bit
+  Compiler: GCC 15.2.0
+      GLib: 2.88.1
+ With:
+  +brotli                      +Lua 5.4.8
+  +Gcrypt 1.12.2               +LZ4 1.10.0
+  +GnuTLS 3.8.13 and PKCS#11   +MaxMind
+  +Kerberos (MIT)              +nghttp2 1.69.0
+  +libnl 3                     +PCRE2 10.47 2025-10-21
+  +libpcap                     +POSIX capabilities (Linux)
+  +libsmi 0.5.0                +zlib 1.3.2
+  +libxml2 2.13.9              +Zstandard 1.5.7
+ Without:
+  -nghttp3  -Snappy   -xxhash   -zlib-ng
+
+Runtime info:
+      OS: Linux 7.0.14-linuxkit
+     CPU: AMD Ryzen 9 9950X 16-Core Processor (with SSE4.2)
+  Memory: 11950 MB of physical memory
+    GLib: 2.88.2
+  Locale: LC_TYPE=C.UTF-8
+ Plugins: supported, 0 loaded
+ With:
+  +brotli 1.2.0
+  +c-ares 1.34.6
+  +Gcrypt 1.12.2
+  +GnuTLS 3.8.13
+  +libpcap 1.10.6 (64-bit time_t, with TPACKET_V3)
+  +libsmi 0.5.0
+  +LZ4 1.10.0
+  +nghttp2 1.69.0
+  +PCRE2 10.47 2025-10-21
+  +zlib 1.3.2
+  +Zstandard 1.5.7
+tcpdump version 4.99.6
+libpcap version 1.10.6 (64-bit time_t, with TPACKET_V3)
+OpenSSL 3.5.7 9 Jun 2026
+64-bit build, 64-bit time_t
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+11: eth0@if35: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default  link-netnsid 0
+    inet 172.24.0.3/16 brd 172.24.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+172.24.0.0/16 dev eth0 proto kernel scope link src 172.24.0.3 
+exit=0
+
+[2026-11-07T12:28:52.8055904+03:00] docker exec nt1301-target sh -c 'netstat -lntup; /usr/sbin/smbd -V; grep -i "username map script" /etc/samba/smb.conf'
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:3306            0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:1099            0.0.0.0:*               LISTEN      816/rmiregistry 
+tcp        0      0 0.0.0.0:1524            0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      50/apache2      
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:25              0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:23              0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:21              0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:139             0.0.0.0:*               LISTEN      607/smbd        
+tcp        0      0 0.0.0.0:41089           0.0.0.0:*               LISTEN      816/rmiregistry 
+tcp        0      0 0.0.0.0:445             0.0.0.0:*               LISTEN      607/smbd        
+tcp        0      0 0.0.0.0:8787            0.0.0.0:*               LISTEN      820/ruby        
+tcp        0      0 0.0.0.0:514             0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:512             0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:513             0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:8009            0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:8180            0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:6667            0.0.0.0:*               LISTEN      834/unrealircd  
+tcp        0      0 0.0.0.0:6697            0.0.0.0:*               LISTEN      834/unrealircd  
+tcp        0      0 0.0.0.0:5432            0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:6000            0.0.0.0:*               LISTEN      830/Xtightvnc   
+tcp        0      0 0.0.0.0:5900            0.0.0.0:*               LISTEN      830/Xtightvnc   
+tcp        0      0 127.0.0.11:43167        0.0.0.0:*               LISTEN      -               
+tcp6       0      0 :::3632                 :::*                    LISTEN      -               
+tcp6       0      0 :::2121                 :::*                    LISTEN      -               
+tcp6       0      0 :::22                   :::*                    LISTEN      656/sshd        
+tcp6       0      0 :::5432                 :::*                    LISTEN      -               
+udp        0      0 127.0.0.11:52754        0.0.0.0:*                           -               
+udp        0      0 0.0.0.0:69              0.0.0.0:*                           835/xinetd      
+udp        0      0 0.0.0.0:111             0.0.0.0:*                           -               
+udp        0      0 172.24.0.2:137          0.0.0.0:*                           605/nmbd        
+udp        0      0 0.0.0.0:137             0.0.0.0:*                           605/nmbd        
+udp        0      0 172.24.0.2:138          0.0.0.0:*                           605/nmbd        
+udp        0      0 0.0.0.0:138             0.0.0.0:*                           605/nmbd        
+udp        0      0 127.0.0.1:161           0.0.0.0:*                           -               
+Version 3.0.20-Debian
+exit=1
+docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nt1301-target => 172.24.0.2
+
+[2026-11-07T12:29:39.4583169+03:00] docker exec nt1301-scanner nmap -sS -sV -p- -n -Pn --reason --version-light -T4 --max-retries 2 --host-timeout 12m -oA /evidence/services 172.24.0.2
+Starting Nmap 7.99 ( https://nmap.org ) at 2026-11-07 09:29 +0000
+Nmap scan report for 172.24.0.2
+Host is up, received arp-response (0.000013s latency).
+Not shown: 65510 closed tcp ports (reset)
+PORT      STATE SERVICE     REASON         VERSION
+21/tcp    open  ftp         syn-ack ttl 64 vsftpd 2.3.4
+22/tcp    open  ssh         syn-ack ttl 64 OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
+23/tcp    open  telnet      syn-ack ttl 64 Linux telnetd
+25/tcp    open  smtp        syn-ack ttl 64 Postfix smtpd
+80/tcp    open  http        syn-ack ttl 64 Apache httpd 2.2.8 ((Ubuntu) DAV/2)
+111/tcp   open  rpcbind     syn-ack ttl 64
+139/tcp   open  netbios-ssn syn-ack ttl 64 Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+445/tcp   open  netbios-ssn syn-ack ttl 64 Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+512/tcp   open  exec?       syn-ack ttl 64
+513/tcp   open  login       syn-ack ttl 64
+514/tcp   open  tcpwrapped  syn-ack ttl 64
+1099/tcp  open  java-rmi    syn-ack ttl 64 GNU Classpath grmiregistry
+1524/tcp  open  ingreslock? syn-ack ttl 64
+2121/tcp  open  ftp         syn-ack ttl 64 ProFTPD 1.3.1
+3306/tcp  open  mysql       syn-ack ttl 64 MySQL 5.0.51a-3ubuntu5
+3632/tcp  open  distccd     syn-ack ttl 64 distccd v1 ((GNU) 4.2.4 (Ubuntu 4.2.4-1ubuntu4))
+5432/tcp  open  postgresql  syn-ack ttl 64 PostgreSQL DB 8.3.0 - 8.3.7
+5900/tcp  open  vnc         syn-ack ttl 64 VNC (protocol 3.3)
+6000/tcp  open  X11         syn-ack ttl 64 (access denied)
+6667/tcp  open  irc         syn-ack ttl 64 UnrealIRCd
+6697/tcp  open  irc         syn-ack ttl 64 UnrealIRCd
+8009/tcp  open  ajp13       syn-ack ttl 64 Apache Jserv (Protocol v1.3)
+8180/tcp  open  http        syn-ack ttl 64 Apache Tomcat/Coyote JSP engine 1.1
+8787/tcp  open  drb         syn-ack ttl 64 Ruby DRb RMI (Ruby 1.8; path /usr/lib/ruby/1.8/drb)
+41089/tcp open  unknown     syn-ack ttl 64
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port1524-TCP:V=7.99%I=2%D=11/7%Time=6AEEEF8B%P=x86_64-alpine-linux-musl
+SF:%r(NULL,16,"root@nt1301-target:/#\x20")%r(GenericLines,72,"root@nt1301-
+SF:target:/#\x20\nroot@nt1301-target:/#\x20\nroot@nt1301-target:/#\x20\nro
+SF:ot@nt1301-target:/#\x20\nroot@nt1301-target:/#\x20")%r(GetRequest,479,"
+SF:root@nt1301-target:/#\x20GET\x20/\x20HTTP/1\.0\n<HTML>\n<HEAD>\n<TITLE>
+SF:Directory\x20/</TITLE>\n<BASE\x20HREF=\"file:/\">\n</HEAD>\n<BODY>\n<H1
+SF:>Directory\x20listing\x20of\x20/</H1>\n<UL>\n<LI><A\x20HREF=\"\./\">\./
+SF:</A>\n<LI><A\x20HREF=\"\.\./\">\.\./</A>\n<LI><A\x20HREF=\"\.dockerenv\
+SF:">\.dockerenv</A>\n<LI><A\x20HREF=\"bin/\">bin/</A>\n<LI><A\x20HREF=\"b
+SF:oot/\">boot/</A>\n<LI><A\x20HREF=\"cdrom/\">cdrom/</A>\n<LI><A\x20HREF=
+SF:\"core\">core</A>\n<LI><A\x20HREF=\"dev/\">dev/</A>\n<LI><A\x20HREF=\"e
+SF:tc/\">etc/</A>\n<LI><A\x20HREF=\"home/\">home/</A>\n<LI><A\x20HREF=\"in
+SF:itrd/\">initrd/</A>\n<LI><A\x20HREF=\"initrd\.img\">initrd\.img</A>\n<L
+SF:I><A\x20HREF=\"lib/\">lib/</A>\n<LI><A\x20HREF=\"lost%2Bfound/\">lost\+
+SF:found/</A>\n<LI><A\x20HREF=\"media/\">media/</A>\n<LI><A\x20HREF=\"mnt/
+SF:\">mnt/</A>\n<LI><A\x20HREF=\"nohup\.out\">nohup\.out</A>\n<LI><A\x20HR
+SF:EF=\"opt/\">opt/</A>\n<LI><A\x20HREF=\"proc/\">proc/</A>\n<LI><A\x20HRE
+SF:F=\"root/\">root/</A>\n<LI><A\x20HREF=\"sbin/\">sbin/</A>\n<LI><A\x20HR
+SF:EF=\"srv/\">srv/</A>\n<LI><A\x20HREF=\"sys/\">sys/</A>\n<LI><A\x20HREF=
+SF:\"tmp/\">tmp/</A>\n<LI><A\x20HR")%r(SSLSessionReq,1C9,"root@nt1301-targ
+SF:et:/#\x20\^CS\x08\x08\x08O\^CS\x08\x08\x08\x07\?\^CS\x08\x08\x08G\^CS\x
+SF:08\x08\x08\x07\x07\x07,\^CS\x08\x08\x08\x08\x08\x08\x08:\x20\x20\x20\x2
+SF:0\x20\x20\x08\x08\x08\x08\x08\x08\xea\xb2`~\xf3\x08\x08\x08\x08\x08\x08
+SF:O\?G,\^CS\x07\x08\x08\x08\x08\x08\x08\x08\x07\x07{O\?G,\^CS\x08\x08\x08
+SF:\x08\x08\x08\x08\r\(arg:\x201\)\x20{O\?G,\^CS\x20\x20\x20\x20\x20\x20\x
+SF:20\x20\x20\x20\x20\x20\x20\r\(arg:\x201\)\x20{\x08\x08\x08\x089\)\x20{O
+SF:\?G,\^CS\x08\x08\x08\x08\x08\x08\x08\rroot@nt1301-target:/#\x20{O\?G,\^
+SF:CS\x08\x08\x08\x08\x08\x08\x08O\?G,\^CS\x07\x07w\x07\x07=\x07\x07\x07n\
+SF:(\r\(i-search\)`':\x20{O\?G,\^CSw=n\(\x20\x20\x20\x20\x20\x20\x20\x20\x
+SF:08\x08\x08\x08\x08\x08\x08\x08\rroot@nt1301-target:/#\x20{O\?G,\^CSw=\^
+SF:@\(\nbash:\x20{O\?G,\x03Sw=:\x20command\x20not\x20found\nroot@nt1301-ta
+SF:rget:/#\x20f\x07edcba`\x08\x08\x08\x08\x08\x08\x08\x20\x20\x20\x20\x20\
+SF:x20\x20\x08\x08\x08\x08\x08\x08\x08\r\(reverse-i-search\)`':\x20\rroot@
+SF:nt1301-target:/#\x20\x07\x07\x07\x07\x07");
+MAC Address: C6:2E:89:E4:99:49 (Unknown)
+Service Info: Hosts:  metasploitable.localdomain, irc.Metasploitable.LAN; OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 27.57 seconds
+exit=0
+
+[2026-11-07T12:30:07.2176592+03:00] docker run -d --name nt1301-capture --network container:nt1301-target --mount type=bind,source=C:\Users\pavel\Documents\DeepSeekHarness\cache\netology-20261107\w-1301\wt\evidence,target=/evidence --cap-add NET_RAW --cap-add NET_ADMIN nicolaka/netshoot:latest sleep infinity
+cf68df174b958383fb43d2f08b52848f947695fd78c4faf6c283ff0c7973e812
+exit=0
+
+[2026-11-07T12:31:08.0279805+03:00] docker exec -d nt1301-capture sh -c 'tcpdump -i eth0 -U -nn -w /evidence/syn.pcap ''host 172.24.0.2 and (tcp or udp or icmp)'' > /evidence/syn-capture.txt 2>&1 & echo $! > /tmp/nt1301-capture.pid; wait'
+exit=0
+
+[2026-11-07T12:31:08.1266269+03:00] docker exec nt1301-capture sh -c 'for i in 1 2 3 4 5; do test -s /evidence/syn.pcap && exit 0; sleep 1; done; exit 1'
+exit=0
+
+[2026-11-07T12:31:08.2163399+03:00] docker exec nt1301-scanner nmap -sS -n -Pn --reason -p 21,22,80,445,65000 --max-retries 1 --host-timeout 90s -T3 -oA /evidence/syn 172.24.0.2
+Starting Nmap 7.99 ( https://nmap.org ) at 2026-11-07 09:31 +0000
+Nmap scan report for 172.24.0.2
+Host is up, received arp-response (0.000030s latency).
+
+PORT      STATE  SERVICE      REASON
+21/tcp    open   ftp          syn-ack ttl 64
+22/tcp    open   ssh          syn-ack ttl 64
+80/tcp    open   http         syn-ack ttl 64
+445/tcp   open   microsoft-ds syn-ack ttl 64
+65000/tcp closed unknown      reset ttl 64
+MAC Address: C6:2E:89:E4:99:49 (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.10 seconds
+exit=0
+
+[2026-11-07T12:31:08.4460985+03:00] docker exec nt1301-capture sh -c 'kill -INT $(cat /tmp/nt1301-capture.pid); for i in 1 2 3 4 5; do kill -0 $(cat /tmp/nt1301-capture.pid) 2>/dev/null || exit 0; sleep 1; done; exit 1'
+exit=0
+
+[2026-11-07T12:31:09.5296527+03:00] docker exec nt1301-capture tshark -r /evidence/syn.pcap -n
+exit=0
+
+[2026-11-07T12:31:09.6898242+03:00] docker exec nt1301-capture capinfos /evidence/syn.pcap
+File name:           /evidence/syn.pcap
+File type:           Wireshark/tcpdump/... - pcap
+File encapsulation:  Ethernet
+File timestamp precision:  microseconds (6)
+Packet size limit:   file hdr: 262144 bytes
+Number of packets:   0
+File size:           24 bytes
+Data size:           0 bytes
+Capture duration:    n/a
+Earliest packet time: n/a
+Latest packet time:   n/a
+Data byte rate:      0 bytes/s
+Data bit rate:       0 bits/s
+Average packet size: 0.00 bytes
+Average packet rate: 0 packets/s
+SHA256:              704e5e5b3234433c01fcfd1b20a306e77e985038120492dc53965c3edd38a4ea
+SHA1:                d704b895199ec8e45a6d33b0e8b3dfc6deb5f73c
+Strict time order:   True
+Number of interfaces in file: 1
+Interface #0 info:
+                     Encapsulation = Ethernet (1 - ether)
+                     Capture length = 262144
+                     Time precision = microseconds (6)
+                     Time ticks per second = 1000000
+                     Number of stat entries = 0
+                     Number of packets = 0
+exit=0
+
+[2026-11-07T12:31:09.7953877+03:00] docker exec -d nt1301-capture sh -c 'tcpdump -i eth0 -U -nn -w /evidence/fin.pcap ''host 172.24.0.2 and (tcp or udp or icmp)'' > /evidence/fin-capture.txt 2>&1 & echo $! > /tmp/nt1301-capture.pid; wait'
+exit=0
+
+[2026-11-07T12:31:09.8783907+03:00] docker exec nt1301-capture sh -c 'for i in 1 2 3 4 5; do test -s /evidence/fin.pcap && exit 0; sleep 1; done; exit 1'
+exit=0
+
+[2026-11-07T12:31:09.9650660+03:00] docker exec nt1301-scanner nmap -sF -n -Pn --reason -p 21,22,80,445,65000 --max-retries 1 --host-timeout 90s -T3 -oA /evidence/fin 172.24.0.2
+Starting Nmap 7.99 ( https://nmap.org ) at 2026-11-07 09:31 +0000
+Nmap scan report for 172.24.0.2
+Host is up, received arp-response (0.000041s latency).
+
+PORT      STATE         SERVICE      REASON
+21/tcp    open|filtered ftp          no-response
+22/tcp    open|filtered ssh          no-response
+80/tcp    open|filtered http         no-response
+445/tcp   open|filtered microsoft-ds no-response
+65000/tcp closed        unknown      reset ttl 64
+MAC Address: C6:2E:89:E4:99:49 (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 1.31 seconds
+exit=0
+
+[2026-11-07T12:31:11.3821011+03:00] docker exec nt1301-capture sh -c 'kill -INT $(cat /tmp/nt1301-capture.pid); for i in 1 2 3 4 5; do kill -0 $(cat /tmp/nt1301-capture.pid) 2>/dev/null || exit 0; sleep 1; done; exit 1'
+exit=0
+
+[2026-11-07T12:31:12.4589687+03:00] docker exec nt1301-capture tshark -r /evidence/fin.pcap -n
+    1   0.000000   172.24.0.3 → 172.24.0.2   TCP 54 48647 → 21 [FIN] Seq=1 Win=1024 Len=0
+    2   0.000017   172.24.0.3 → 172.24.0.2   TCP 54 48647 → 22 [FIN] Seq=1 Win=1024 Len=0
+    3   0.000025   172.24.0.3 → 172.24.0.2   TCP 54 48647 → 80 [FIN] Seq=1 Win=1024 Len=0
+    4   0.000032   172.24.0.3 → 172.24.0.2   TCP 54 48647 → 445 [FIN] Seq=1 Win=1024 Len=0
+    5   0.000040   172.24.0.3 → 172.24.0.2   TCP 54 48647 → 65000 [FIN] Seq=1 Win=1024 Len=0
+    6   0.000049   172.24.0.2 → 172.24.0.3   TCP 54 65000 → 48647 [RST, ACK] Seq=1 Ack=2 Win=0 Len=0
+exit=0
+
+[2026-11-07T12:31:12.6275442+03:00] docker exec nt1301-capture capinfos /evidence/fin.pcap
+File name:           /evidence/fin.pcap
+File type:           Wireshark/tcpdump/... - pcap
+File encapsulation:  Ethernet
+File timestamp precision:  microseconds (6)
+Packet size limit:   file hdr: 262144 bytes
+Number of packets:   6
+File size:           444 bytes
+Data size:           324 bytes
+Capture duration:    0.000049 seconds
+Earliest packet time: 2026-11-07 09:31:10.118294
+Latest packet time:   2026-11-07 09:31:10.118343
+Data byte rate:      6596 kBps
+Data bit rate:       52 Mbps
+Average packet size: 54.00 bytes
+Average packet rate: 122 kpackets/s
+SHA256:              7f2c706b015497244ac1d9fb6acdb84d80af359590898de6093bf55e7a12be4b
+SHA1:                f3e8af0d3d4b6068385316dfdc5ae71521660c6f
+Strict time order:   True
+Number of interfaces in file: 1
+Interface #0 info:
+                     Encapsulation = Ethernet (1 - ether)
+                     Capture length = 262144
+                     Time precision = microseconds (6)
+                     Time ticks per second = 1000000
+                     Number of stat entries = 0
+                     Number of packets = 6
+exit=0
+
+[2026-11-07T12:31:12.7403991+03:00] docker exec -d nt1301-capture sh -c 'tcpdump -i eth0 -U -nn -w /evidence/xmas.pcap ''host 172.24.0.2 and (tcp or udp or icmp)'' > /evidence/xmas-capture.txt 2>&1 & echo $! > /tmp/nt1301-capture.pid; wait'
+exit=0
+
+[2026-11-07T12:31:12.8177601+03:00] docker exec nt1301-capture sh -c 'for i in 1 2 3 4 5; do test -s /evidence/xmas.pcap && exit 0; sleep 1; done; exit 1'
+exit=0
+
+[2026-11-07T12:31:12.8990846+03:00] docker exec nt1301-scanner nmap -sX -n -Pn --reason -p 21,22,80,445,65000 --max-retries 1 --host-timeout 90s -T3 -oA /evidence/xmas 172.24.0.2
+Starting Nmap 7.99 ( https://nmap.org ) at 2026-11-07 09:31 +0000
+Nmap scan report for 172.24.0.2
+Host is up, received arp-response (0.000031s latency).
+
+PORT      STATE         SERVICE      REASON
+21/tcp    open|filtered ftp          no-response
+22/tcp    open|filtered ssh          no-response
+80/tcp    open|filtered http         no-response
+445/tcp   open|filtered microsoft-ds no-response
+65000/tcp closed        unknown      reset ttl 64
+MAC Address: C6:2E:89:E4:99:49 (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 1.30 seconds
+exit=0
+
+[2026-11-07T12:31:14.3131546+03:00] docker exec nt1301-capture sh -c 'kill -INT $(cat /tmp/nt1301-capture.pid); for i in 1 2 3 4 5; do kill -0 $(cat /tmp/nt1301-capture.pid) 2>/dev/null || exit 0; sleep 1; done; exit 1'
+exit=0
+
+[2026-11-07T12:31:15.4076131+03:00] docker exec nt1301-capture tshark -r /evidence/xmas.pcap -n
+    1   0.000000   172.24.0.3 → 172.24.0.2   TCP 54 61039 → 22 [FIN, PSH, URG] Seq=1 Win=1024 Urg=0 Len=0
+    2   0.000016   172.24.0.3 → 172.24.0.2   TCP 54 61039 → 445 [FIN, PSH, URG] Seq=1 Win=1024 Urg=0 Len=0
+    3   0.000024   172.24.0.3 → 172.24.0.2   TCP 54 61039 → 80 [FIN, PSH, URG] Seq=1 Win=1024 Urg=0 Len=0
+    4   0.000032   172.24.0.3 → 172.24.0.2   TCP 54 61039 → 21 [FIN, PSH, URG] Seq=1 Win=1024 Urg=0 Len=0
+    5   0.000039   172.24.0.3 → 172.24.0.2   TCP 54 61039 → 65000 [FIN, PSH, URG] Seq=1 Win=1024 Urg=0 Len=0
+    6   0.000047   172.24.0.2 → 172.24.0.3   TCP 54 65000 → 61039 [RST, ACK] Seq=1 Ack=2 Win=0 Len=0
+exit=0
+
+[2026-11-07T12:31:15.5828814+03:00] docker exec nt1301-capture capinfos /evidence/xmas.pcap
+File name:           /evidence/xmas.pcap
+File type:           Wireshark/tcpdump/... - pcap
+File encapsulation:  Ethernet
+File timestamp precision:  microseconds (6)
+Packet size limit:   file hdr: 262144 bytes
+Number of packets:   6
+File size:           444 bytes
+Data size:           324 bytes
+Capture duration:    0.000047 seconds
+Earliest packet time: 2026-11-07 09:31:13.052307
+Latest packet time:   2026-11-07 09:31:13.052354
+Data byte rate:      6863 kBps
+Data bit rate:       54 Mbps
+Average packet size: 54.00 bytes
+Average packet rate: 127 kpackets/s
+SHA256:              fa2e3248ad7aa0f0397e5c3e55347a02cf23905902889a3b7a2ecbe74bd0d2cb
+SHA1:                fb9b89b2574335dbb2ebcd1cc8eec0f356997066
+Strict time order:   True
+Number of interfaces in file: 1
+Interface #0 info:
+                     Encapsulation = Ethernet (1 - ether)
+                     Capture length = 262144
+                     Time precision = microseconds (6)
+                     Time ticks per second = 1000000
+                     Number of stat entries = 0
+                     Number of packets = 6
+exit=0
+
+[2026-11-07T12:31:15.7034312+03:00] docker exec -d nt1301-capture sh -c 'tcpdump -i eth0 -U -nn -w /evidence/udp.pcap ''host 172.24.0.2 and (tcp or udp or icmp)'' > /evidence/udp-capture.txt 2>&1 & echo $! > /tmp/nt1301-capture.pid; wait'
+exit=0
+
+[2026-11-07T12:31:15.7909205+03:00] docker exec nt1301-capture sh -c 'for i in 1 2 3 4 5; do test -s /evidence/udp.pcap && exit 0; sleep 1; done; exit 1'
+exit=0
+
+[2026-11-07T12:31:15.8745064+03:00] docker exec nt1301-scanner nmap -sU -n -Pn --reason -p 53,69,111,137,161,65000 --max-retries 1 --host-timeout 90s -T3 -oA /evidence/udp 172.24.0.2
+Starting Nmap 7.99 ( https://nmap.org ) at 2026-11-07 09:31 +0000
+Nmap scan report for 172.24.0.2
+Host is up, received arp-response (0.000050s latency).
+
+PORT      STATE         SERVICE    REASON
+53/udp    closed        domain     port-unreach ttl 64
+69/udp    open|filtered tftp       no-response
+111/udp   open          rpcbind    udp-response ttl 64
+137/udp   open          netbios-ns udp-response ttl 64
+161/udp   closed        snmp       port-unreach ttl 64
+65000/udp closed        unknown    port-unreach ttl 64
+MAC Address: C6:2E:89:E4:99:49 (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 1.35 seconds
+exit=0
+
+[2026-11-07T12:31:17.3494472+03:00] docker exec nt1301-capture sh -c 'kill -INT $(cat /tmp/nt1301-capture.pid); for i in 1 2 3 4 5; do kill -0 $(cat /tmp/nt1301-capture.pid) 2>/dev/null || exit 0; sleep 1; done; exit 1'
+exit=0
+
+[2026-11-07T12:31:18.4367633+03:00] docker exec nt1301-capture tshark -r /evidence/udp.pcap -n
+    1   0.000000   172.24.0.3 → 172.24.0.2   UDP 82 48466 → 65000 Len=40
+    2   0.000021   172.24.0.2 → 172.24.0.3   ICMP 110 Destination unreachable (Port unreachable)
+    3   0.000041   172.24.0.3 → 172.24.0.2   DNS 72 Standard query 0x0006 TXT version.bind
+    4   0.000048   172.24.0.2 → 172.24.0.3   ICMP 100 Destination unreachable (Port unreachable)
+    5   0.000059   172.24.0.3 → 172.24.0.2   DNS 54 Server status request 0x0000
+    6   0.000063   172.24.0.2 → 172.24.0.3   ICMP 82 Destination unreachable (Port unreachable)
+    7   0.000074   172.24.0.3 → 172.24.0.2   DNS 88 Standard query 0x0000 PTR _services._dns-sd._udp.local
+    8   0.000077   172.24.0.2 → 172.24.0.3   ICMP 116 Destination unreachable (Port unreachable)
+    9   0.000090   172.24.0.3 → 172.24.0.2   Portmap 82 V104316 proc-0 Call
+   10   0.000129   172.24.0.3 → 172.24.0.2   RPC 82 Continuation
+   11   0.000143   172.24.0.3 → 172.24.0.2   NBNS 92 Name query NBSTAT *<00><00><00><00><00><00><00><00><00><00><00><00><00><00><00>
+   12   0.000163   172.24.0.2 → 172.24.0.3   Portmap 74 V104316 proc-0 Reply (Call In 9)
+   13   0.000177   172.24.0.3 → 172.24.0.2   NBNS 92 Name query NBSTAT *<00><00><00><00><00><00><00><00><00><00><00><00><00><00><00>
+   14   0.000185   172.24.0.3 → 172.24.0.2   NBNS 92 Name query NBSTAT *<00><00><00><00><00><00><00><00><00><00><00><00><00><00><00>
+   15   0.000188   172.24.0.3 → 172.24.0.2   ICMP 102 Destination unreachable (Port unreachable)
+   16   0.000196   172.24.0.2 → 172.24.0.3   RPC 66 Continuation
+   17   0.000197   172.24.0.3 → 172.24.0.2   SNMP 93 get-request 1.3.6.1.2.1.1.5.0
+   18   0.000203   172.24.0.2 → 172.24.0.3   ICMP 121 Destination unreachable (Port unreachable)
+   19   0.000207   172.24.0.3 → 172.24.0.2   ICMP 94 Destination unreachable (Port unreachable)
+   20   0.000216   172.24.0.3 → 172.24.0.2   SNMP 102 get-request
+   21   0.000219   172.24.0.2 → 172.24.0.3   ICMP 130 Destination unreachable (Port unreachable)
+   22   0.000235   172.24.0.3 → 172.24.0.2   TFTP 54 Unknown (0x0000)
+   23   0.000239   172.24.0.2 → 172.24.0.3   NBNS 325 Name query response NBSTAT
+   24   0.000262   172.24.0.3 → 172.24.0.2   ICMP 353 Destination unreachable (Port unreachable)
+   25   0.000267   172.24.0.3 → 172.24.0.2   TFTP 61 Read Request, File: r7tftp.txt, Transfer type: octet
+   26   0.000299   172.24.0.2 → 172.24.255.255 BROWSER 285 Host Announcement NT1301-TARGET, Workstation, Server, Print Queue Server, Xenix Server, NT Workstation, NT Server, Potential Browser
+   27   0.000321   172.24.0.2 → 172.24.255.255 BROWSER 285 Host Announcement NT1301-TARGET, Workstation, Server, Print Queue Server, Xenix Server, NT Workstation, NT Server, Potential Browser
+   28   0.000354   172.24.0.2 → 172.24.0.3   TFTP 235 Unknown (0x0191)
+   29   0.000388   172.24.0.3 → 172.24.0.2   ICMP 263 Destination unreachable (Port unreachable)
+   30   0.000420   172.24.0.2 → 172.24.0.3   TFTP 325 Unknown (0x0191)
+   31   0.000455   172.24.0.3 → 172.24.0.2   ICMP 353 Destination unreachable (Port unreachable)
+exit=0
+
+[2026-11-07T12:31:18.6273691+03:00] docker exec nt1301-capture capinfos /evidence/udp.pcap
+File name:           /evidence/udp.pcap
+File type:           Wireshark/tcpdump/... - pcap
+File encapsulation:  Ethernet
+File timestamp precision:  microseconds (6)
+Packet size limit:   file hdr: 262144 bytes
+Number of packets:   31
+File size:           4985 bytes
+Data size:           4465 bytes
+Capture duration:    0.000455 seconds
+Earliest packet time: 2026-11-07 09:31:16.080312
+Latest packet time:   2026-11-07 09:31:16.080767
+Data byte rate:      9815 kBps
+Data bit rate:       78 Mbps
+Average packet size: 144.03 bytes
+Average packet rate: 68 kpackets/s
+SHA256:              c5cbd023c05b0872968a76ec519f5c2df95520df524c3953f7571a7b7c5d3b1e
+SHA1:                6c537729f9011a57deafc584d27cd9deb459d4bb
+Strict time order:   True
+Number of interfaces in file: 1
+Interface #0 info:
+                     Encapsulation = Ethernet (1 - ether)
+                     Capture length = 262144
+                     Time precision = microseconds (6)
+                     Time ticks per second = 1000000
+                     Number of stat entries = 0
+                     Number of packets = 31
+exit=0
+
+[2026-11-07T12:31:18.7353697+03:00] docker cp C:\Users\pavel\Documents\DeepSeekHarness\cache\netology-20261107\w-1301\analyze.sh nt1301-capture:/tmp/nt1301-analyze.sh
+exit=0
+
+[2026-11-07T12:31:18.8056749+03:00] docker exec nt1301-capture sh /tmp/nt1301-analyze.sh
+Counts from original pcaps. tshark display filters follow; IP direction constraints exclude embedded UDP headers in ICMP.
+syn.pcap | scanner_SYN | ip.src==172.24.0.3 && ip.dst==172.24.0.2 && tcp.flags==0x0002 | 0
+syn.pcap | target_SYN_ACK | ip.src==172.24.0.2 && ip.dst==172.24.0.3 && tcp.flags==0x0012 | 0
+syn.pcap | target_RST_ACK | ip.src==172.24.0.2 && ip.dst==172.24.0.3 && tcp.flags==0x0014 | 0
+syn.pcap | scanner_RST | ip.src==172.24.0.3 && ip.dst==172.24.0.2 && tcp.flags.reset==1 | 0
+syn.pcap | target_closed_65000 | ip.src==172.24.0.2 && tcp.srcport==65000 && tcp.flags.reset==1 | 0
+fin.pcap | scanner_probes | ip.src==172.24.0.3 && ip.dst==172.24.0.2 && tcp.flags==0x0001 | 5
+fin.pcap | probes_to_open | ip.src==172.24.0.3 && ip.dst==172.24.0.2 && tcp.flags==0x0001 && tcp.dstport!=65000 | 4
+fin.pcap | probes_to_closed | ip.src==172.24.0.3 && ip.dst==172.24.0.2 && tcp.flags==0x0001 && tcp.dstport==65000 | 1
+fin.pcap | target_replies_open | ip.src==172.24.0.2 && ip.dst==172.24.0.3 && tcp.srcport in {21 22 80 445} | 0
+fin.pcap | target_closed_RST_ACK | ip.src==172.24.0.2 && ip.dst==172.24.0.3 && tcp.srcport==65000 && tcp.flags==0x0014 | 1
+xmas.pcap | scanner_probes | ip.src==172.24.0.3 && ip.dst==172.24.0.2 && tcp.flags==0x0029 | 5
+xmas.pcap | probes_to_open | ip.src==172.24.0.3 && ip.dst==172.24.0.2 && tcp.flags==0x0029 && tcp.dstport!=65000 | 4
+xmas.pcap | probes_to_closed | ip.src==172.24.0.3 && ip.dst==172.24.0.2 && tcp.flags==0x0029 && tcp.dstport==65000 | 1
+xmas.pcap | target_replies_open | ip.src==172.24.0.2 && ip.dst==172.24.0.3 && tcp.srcport in {21 22 80 445} | 0
+xmas.pcap | target_closed_RST_ACK | ip.src==172.24.0.2 && ip.dst==172.24.0.3 && tcp.srcport==65000 && tcp.flags==0x0014 | 1
+udp.pcap | scanner_UDP | ip.src==172.24.0.3 && ip.dst==172.24.0.2 && udp && !icmp | 13
+udp.pcap | target_UDP | ip.src==172.24.0.2 && ip.dst==172.24.0.3 && udp && !icmp | 5
+udp.pcap | target_RPC_reply | ip.src==172.24.0.2 && ip.dst==172.24.0.3 && udp.srcport==111 && !icmp | 2
+udp.pcap | target_NBNS_reply | ip.src==172.24.0.2 && ip.dst==172.24.0.3 && udp.srcport==137 && !icmp | 3
+udp.pcap | target_ICMP_unreachable | ip.src==172.24.0.2 && ip.dst==172.24.0.3 && icmp.type==3 && icmp.code==3 | 11
+udp.pcap | closed_53_ICMP | ip.src==172.24.0.2 && ip.dst==172.24.0.3 && icmp.type==3 && icmp.code==3 && udp.dstport==53 | 3
+udp.pcap | closed_161_ICMP | ip.src==172.24.0.2 && ip.dst==172.24.0.3 && icmp.type==3 && icmp.code==3 && udp.dstport==161 | 2
+udp.pcap | closed_65000_ICMP | ip.src==172.24.0.2 && ip.dst==172.24.0.3 && icmp.type==3 && icmp.code==3 && udp.dstport==65000 | 1
+udp.pcap | TFTP_probes | ip.src==172.24.0.3 && ip.dst==172.24.0.2 && udp.dstport==69 && !icmp | 2
+udp.pcap | TFTP_replies | ip.src==172.24.0.2 && ip.dst==172.24.0.3 && (udp || icmp) && udp.srcport==69 | 0
+exit=0
+
+[2026-11-07T12:32:59.6692008+03:00] docker exec -d nt1301-capture sh -c 'tcpdump --immediate-mode -i eth0 -U -nn -w /evidence/verified/syn.pcap ''host 172.24.0.2 and host 172.24.0.3 and (tcp or udp or icmp)'' > /evidence/verified/syn-capture.txt 2>&1 & echo $! > /tmp/nt1301-capture.pid; wait'
+exit=0
+
+[2026-11-07T12:32:59.7550714+03:00] docker exec nt1301-capture sh -c 'for i in 1 2 3 4 5; do test -s /evidence/verified/syn.pcap && exit 0; sleep 1; done; exit 1'
+exit=0
+
+[2026-11-07T12:32:59.8403086+03:00] docker exec nt1301-scanner nmap -sS -n -Pn --reason -p 21,22,80,445,65000 --max-retries 1 --host-timeout 90s -T3 -oA /evidence/verified/syn 172.24.0.2
+Starting Nmap 7.99 ( https://nmap.org ) at 2026-11-07 09:32 +0000
+Nmap scan report for 172.24.0.2
+Host is up, received arp-response (0.000041s latency).
+
+PORT      STATE  SERVICE      REASON
+21/tcp    open   ftp          syn-ack ttl 64
+22/tcp    open   ssh          syn-ack ttl 64
+80/tcp    open   http         syn-ack ttl 64
+445/tcp   open   microsoft-ds syn-ack ttl 64
+65000/tcp closed unknown      reset ttl 64
+MAC Address: C6:2E:89:E4:99:49 (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.11 seconds
+exit=0
+
+[2026-11-07T12:33:00.0638386+03:00] docker exec nt1301-capture sh -c 'sleep 1; kill -INT $(cat /tmp/nt1301-capture.pid); for i in 1 2 3 4 5; do kill -0 $(cat /tmp/nt1301-capture.pid) 2>/dev/null || exit 0; sleep 1; done; exit 1'
+exit=0
+
+[2026-11-07T12:33:02.1985044+03:00] docker exec nt1301-capture tshark -r /evidence/verified/syn.pcap -n
+    1   0.000000   172.24.0.3 → 172.24.0.2   TCP 58 57076 → 80 [SYN] Seq=0 Win=1024 Len=0 MSS=1460
+    2   0.000038   172.24.0.2 → 172.24.0.3   TCP 58 80 → 57076 [SYN, ACK] Seq=0 Ack=1 Win=64240 Len=0 MSS=1460
+    3   0.000067   172.24.0.3 → 172.24.0.2   TCP 54 57076 → 80 [RST] Seq=1 Win=0 Len=0
+    4   0.000089   172.24.0.3 → 172.24.0.2   TCP 58 57076 → 21 [SYN] Seq=0 Win=1024 Len=0 MSS=1460
+    5   0.000094   172.24.0.2 → 172.24.0.3   TCP 58 21 → 57076 [SYN, ACK] Seq=0 Ack=1 Win=64240 Len=0 MSS=1460
+    6   0.000139   172.24.0.3 → 172.24.0.2   TCP 54 57076 → 21 [RST] Seq=1 Win=0 Len=0
+    7   0.000161   172.24.0.3 → 172.24.0.2   TCP 58 57076 → 22 [SYN] Seq=0 Win=1024 Len=0 MSS=1460
+    8   0.000169   172.24.0.2 → 172.24.0.3   TCP 58 22 → 57076 [SYN, ACK] Seq=0 Ack=1 Win=64240 Len=0 MSS=1460
+    9   0.000181   172.24.0.3 → 172.24.0.2   TCP 54 57076 → 22 [RST] Seq=1 Win=0 Len=0
+   10   0.000192   172.24.0.3 → 172.24.0.2   TCP 58 57076 → 445 [SYN] Seq=0 Win=1024 Len=0 MSS=1460
+   11   0.000197   172.24.0.2 → 172.24.0.3   TCP 58 445 → 57076 [SYN, ACK] Seq=0 Ack=1 Win=64240 Len=0 MSS=1460
+   12   0.000208   172.24.0.3 → 172.24.0.2   TCP 54 57076 → 445 [RST] Seq=1 Win=0 Len=0
+   13   0.000219   172.24.0.3 → 172.24.0.2   TCP 58 57076 → 65000 [SYN] Seq=0 Win=1024 Len=0 MSS=1460
+   14   0.000223   172.24.0.2 → 172.24.0.3   TCP 54 65000 → 57076 [RST, ACK] Seq=1 Ack=1 Win=0 Len=0
+exit=0
+
+[2026-11-07T12:33:02.3914014+03:00] docker exec nt1301-capture capinfos /evidence/verified/syn.pcap
+File name:           /evidence/verified/syn.pcap
+File type:           Wireshark/tcpdump/... - pcap
+File encapsulation:  Ethernet
+File timestamp precision:  microseconds (6)
+Packet size limit:   file hdr: 262144 bytes
+Number of packets:   14
+File size:           1040 bytes
+Data size:           792 bytes
+Capture duration:    0.000223 seconds
+Earliest packet time: 2026-11-07 09:33:00.004553
+Latest packet time:   2026-11-07 09:33:00.004776
+Data byte rate:      3552 kBps
+Data bit rate:       28 Mbps
+Average packet size: 56.57 bytes
+Average packet rate: 62 kpackets/s
+SHA256:              382a356ec958503ff58ab8845304feac43452fccbc1e3f29d5214f4aa20bee63
+SHA1:                27690de5b20d5d49070244fd119d2ebb2410a9d6
+Strict time order:   True
+Number of interfaces in file: 1
+Interface #0 info:
+                     Encapsulation = Ethernet (1 - ether)
+                     Capture length = 262144
+                     Time precision = microseconds (6)
+                     Time ticks per second = 1000000
+                     Number of stat entries = 0
+                     Number of packets = 14
+exit=0
+
+[2026-11-07T12:33:02.5012994+03:00] docker exec -d nt1301-capture sh -c 'tcpdump --immediate-mode -i eth0 -U -nn -w /evidence/verified/fin.pcap ''host 172.24.0.2 and host 172.24.0.3 and (tcp or udp or icmp)'' > /evidence/verified/fin-capture.txt 2>&1 & echo $! > /tmp/nt1301-capture.pid; wait'
+exit=0
+
+[2026-11-07T12:33:02.5820771+03:00] docker exec nt1301-capture sh -c 'for i in 1 2 3 4 5; do test -s /evidence/verified/fin.pcap && exit 0; sleep 1; done; exit 1'
+exit=0
+
+[2026-11-07T12:33:02.6663064+03:00] docker exec nt1301-scanner nmap -sF -n -Pn --reason -p 21,22,80,445,65000 --max-retries 1 --host-timeout 90s -T3 -oA /evidence/verified/fin 172.24.0.2
+Starting Nmap 7.99 ( https://nmap.org ) at 2026-11-07 09:33 +0000
+Nmap scan report for 172.24.0.2
+Host is up, received arp-response (0.000038s latency).
+
+PORT      STATE         SERVICE      REASON
+21/tcp    open|filtered ftp          no-response
+22/tcp    open|filtered ssh          no-response
+80/tcp    open|filtered http         no-response
+445/tcp   open|filtered microsoft-ds no-response
+65000/tcp closed        unknown      reset ttl 64
+MAC Address: C6:2E:89:E4:99:49 (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 1.30 seconds
+exit=0
+
+[2026-11-07T12:33:04.1205528+03:00] docker exec nt1301-capture sh -c 'sleep 1; kill -INT $(cat /tmp/nt1301-capture.pid); for i in 1 2 3 4 5; do kill -0 $(cat /tmp/nt1301-capture.pid) 2>/dev/null || exit 0; sleep 1; done; exit 1'
+exit=0
+
+[2026-11-07T12:33:06.6767982+03:00] docker exec nt1301-capture tshark -r /evidence/verified/fin.pcap -n
+    1   0.000000   172.24.0.3 → 172.24.0.2   TCP 54 42911 → 80 [FIN] Seq=1 Win=1024 Len=0
+    2   0.000023   172.24.0.3 → 172.24.0.2   TCP 54 42911 → 21 [FIN] Seq=1 Win=1024 Len=0
+    3   0.000031   172.24.0.3 → 172.24.0.2   TCP 54 42911 → 22 [FIN] Seq=1 Win=1024 Len=0
+    4   0.000040   172.24.0.3 → 172.24.0.2   TCP 54 42911 → 445 [FIN] Seq=1 Win=1024 Len=0
+    5   0.000048   172.24.0.3 → 172.24.0.2   TCP 54 42911 → 65000 [FIN] Seq=1 Win=1024 Len=0
+    6   0.000057   172.24.0.2 → 172.24.0.3   TCP 54 65000 → 42911 [RST, ACK] Seq=1 Ack=2 Win=0 Len=0
+    7   1.101284   172.24.0.3 → 172.24.0.2   TCP 54 42913 → 445 [FIN] Seq=1 Win=1024 Len=0
+    8   1.101312   172.24.0.3 → 172.24.0.2   TCP 54 42913 → 22 [FIN] Seq=1 Win=1024 Len=0
+    9   1.101320   172.24.0.3 → 172.24.0.2   TCP 54 42913 → 21 [FIN] Seq=1 Win=1024 Len=0
+   10   1.101328   172.24.0.3 → 172.24.0.2   TCP 54 42913 → 80 [FIN] Seq=1 Win=1024 Len=0
+exit=0
+
+[2026-11-07T12:33:06.8647271+03:00] docker exec nt1301-capture capinfos /evidence/verified/fin.pcap
+File name:           /evidence/verified/fin.pcap
+File type:           Wireshark/tcpdump/... - pcap
+File encapsulation:  Ethernet
+File timestamp precision:  microseconds (6)
+Packet size limit:   file hdr: 262144 bytes
+Number of packets:   10
+File size:           724 bytes
+Data size:           540 bytes
+Capture duration:    1.101328 second
+Earliest packet time: 2026-11-07 09:33:02.820264
+Latest packet time:   2026-11-07 09:33:03.921592
+Data byte rate:      490 bytes/s
+Data bit rate:       3922 bits/s
+Average packet size: 54.00 bytes
+Average packet rate: 9 packets/s
+SHA256:              020dee5216cefdef3dea98a935eb54679357dc2d9608bfd24920ddf7047490a6
+SHA1:                f183075d21314f3b31a6d47b86b652d42d8b01ef
+Strict time order:   True
+Number of interfaces in file: 1
+Interface #0 info:
+                     Encapsulation = Ethernet (1 - ether)
+                     Capture length = 262144
+                     Time precision = microseconds (6)
+                     Time ticks per second = 1000000
+                     Number of stat entries = 0
+                     Number of packets = 10
+exit=0
+
+[2026-11-07T12:33:06.9836875+03:00] docker exec -d nt1301-capture sh -c 'tcpdump --immediate-mode -i eth0 -U -nn -w /evidence/verified/xmas.pcap ''host 172.24.0.2 and host 172.24.0.3 and (tcp or udp or icmp)'' > /evidence/verified/xmas-capture.txt 2>&1 & echo $! > /tmp/nt1301-capture.pid; wait'
+exit=0
+
+[2026-11-07T12:33:07.0705745+03:00] docker exec nt1301-capture sh -c 'for i in 1 2 3 4 5; do test -s /evidence/verified/xmas.pcap && exit 0; sleep 1; done; exit 1'
+exit=0
+
+[2026-11-07T12:33:07.1681509+03:00] docker exec nt1301-scanner nmap -sX -n -Pn --reason -p 21,22,80,445,65000 --max-retries 1 --host-timeout 90s -T3 -oA /evidence/verified/xmas 172.24.0.2
+Starting Nmap 7.99 ( https://nmap.org ) at 2026-11-07 09:33 +0000
+Nmap scan report for 172.24.0.2
+Host is up, received arp-response (0.000038s latency).
+
+PORT      STATE         SERVICE      REASON
+21/tcp    open|filtered ftp          no-response
+22/tcp    open|filtered ssh          no-response
+80/tcp    open|filtered http         no-response
+445/tcp   open|filtered microsoft-ds no-response
+65000/tcp closed        unknown      reset ttl 64
+MAC Address: C6:2E:89:E4:99:49 (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 1.31 seconds
+exit=0
+
+[2026-11-07T12:33:08.7142149+03:00] docker exec nt1301-capture sh -c 'sleep 1; kill -INT $(cat /tmp/nt1301-capture.pid); for i in 1 2 3 4 5; do kill -0 $(cat /tmp/nt1301-capture.pid) 2>/dev/null || exit 0; sleep 1; done; exit 1'
+exit=0
+
+[2026-11-07T12:33:11.3358296+03:00] docker exec nt1301-capture tshark -r /evidence/verified/xmas.pcap -n
+    1   0.000000   172.24.0.3 → 172.24.0.2   TCP 54 38882 → 445 [FIN, PSH, URG] Seq=1 Win=1024 Urg=0 Len=0
+    2   0.000023   172.24.0.3 → 172.24.0.2   TCP 54 38882 → 80 [FIN, PSH, URG] Seq=1 Win=1024 Urg=0 Len=0
+    3   0.000031   172.24.0.3 → 172.24.0.2   TCP 54 38882 → 21 [FIN, PSH, URG] Seq=1 Win=1024 Urg=0 Len=0
+    4   0.000039   172.24.0.3 → 172.24.0.2   TCP 54 38882 → 22 [FIN, PSH, URG] Seq=1 Win=1024 Urg=0 Len=0
+    5   0.000046   172.24.0.3 → 172.24.0.2   TCP 54 38882 → 65000 [FIN, PSH, URG] Seq=1 Win=1024 Urg=0 Len=0
+    6   0.000054   172.24.0.2 → 172.24.0.3   TCP 54 65000 → 38882 [RST, ACK] Seq=1 Ack=2 Win=0 Len=0
+    7   1.101305   172.24.0.3 → 172.24.0.2   TCP 54 38884 → 22 [FIN, PSH, URG] Seq=1 Win=1024 Urg=0 Len=0
+    8   1.101333   172.24.0.3 → 172.24.0.2   TCP 54 38884 → 21 [FIN, PSH, URG] Seq=1 Win=1024 Urg=0 Len=0
+    9   1.101342   172.24.0.3 → 172.24.0.2   TCP 54 38884 → 80 [FIN, PSH, URG] Seq=1 Win=1024 Urg=0 Len=0
+   10   1.101350   172.24.0.3 → 172.24.0.2   TCP 54 38884 → 445 [FIN, PSH, URG] Seq=1 Win=1024 Urg=0 Len=0
+exit=0
+
+[2026-11-07T12:33:11.5330966+03:00] docker exec nt1301-capture capinfos /evidence/verified/xmas.pcap
+File name:           /evidence/verified/xmas.pcap
+File type:           Wireshark/tcpdump/... - pcap
+File encapsulation:  Ethernet
+File timestamp precision:  microseconds (6)
+Packet size limit:   file hdr: 262144 bytes
+Number of packets:   10
+File size:           724 bytes
+Data size:           540 bytes
+Capture duration:    1.101350 second
+Earliest packet time: 2026-11-07 09:33:07.336263
+Latest packet time:   2026-11-07 09:33:08.437613
+Data byte rate:      490 bytes/s
+Data bit rate:       3922 bits/s
+Average packet size: 54.00 bytes
+Average packet rate: 9 packets/s
+SHA256:              484da744dbff6a57ecce49f4c16c0e8750255cee66e0fd3b0a37a90278cd0cc0
+SHA1:                2636debe233007c9cf75301497390fbc7feaa172
+Strict time order:   True
+Number of interfaces in file: 1
+Interface #0 info:
+                     Encapsulation = Ethernet (1 - ether)
+                     Capture length = 262144
+                     Time precision = microseconds (6)
+                     Time ticks per second = 1000000
+                     Number of stat entries = 0
+                     Number of packets = 10
+exit=0
+
+[2026-11-07T12:33:11.6459181+03:00] docker exec -d nt1301-capture sh -c 'tcpdump --immediate-mode -i eth0 -U -nn -w /evidence/verified/udp.pcap ''host 172.24.0.2 and host 172.24.0.3 and (tcp or udp or icmp)'' > /evidence/verified/udp-capture.txt 2>&1 & echo $! > /tmp/nt1301-capture.pid; wait'
+exit=0
+
+[2026-11-07T12:33:11.7285165+03:00] docker exec nt1301-capture sh -c 'for i in 1 2 3 4 5; do test -s /evidence/verified/udp.pcap && exit 0; sleep 1; done; exit 1'
+exit=0
+
+[2026-11-07T12:33:11.8169502+03:00] docker exec nt1301-scanner nmap -sU -n -Pn --reason -p 53,69,111,137,161,65000 --max-retries 1 --host-timeout 90s -T3 -oA /evidence/verified/udp 172.24.0.2
+Starting Nmap 7.99 ( https://nmap.org ) at 2026-11-07 09:33 +0000
+Nmap scan report for 172.24.0.2
+Host is up, received arp-response (0.000049s latency).
+
+PORT      STATE         SERVICE    REASON
+53/udp    closed        domain     port-unreach ttl 64
+69/udp    open|filtered tftp       no-response
+111/udp   open          rpcbind    udp-response ttl 64
+137/udp   open          netbios-ns udp-response ttl 64
+161/udp   closed        snmp       port-unreach ttl 64
+65000/udp closed        unknown    port-unreach ttl 64
+MAC Address: C6:2E:89:E4:99:49 (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 1.36 seconds
+exit=0
+
+[2026-11-07T12:33:13.2872596+03:00] docker exec nt1301-capture sh -c 'sleep 1; kill -INT $(cat /tmp/nt1301-capture.pid); for i in 1 2 3 4 5; do kill -0 $(cat /tmp/nt1301-capture.pid) 2>/dev/null || exit 0; sleep 1; done; exit 1'
+exit=0
+
+[2026-11-07T12:33:15.7956410+03:00] docker exec nt1301-capture tshark -r /evidence/verified/udp.pcap -n
+    1   0.000000   172.24.0.3 → 172.24.0.2   DNS 72 Standard query 0x0006 TXT version.bind
+    2   0.000023   172.24.0.2 → 172.24.0.3   ICMP 100 Destination unreachable (Port unreachable)
+    3   0.000039   172.24.0.3 → 172.24.0.2   DNS 54 Server status request 0x0000
+    4   0.000042   172.24.0.2 → 172.24.0.3   ICMP 82 Destination unreachable (Port unreachable)
+    5   0.000053   172.24.0.3 → 172.24.0.2   DNS 88 Standard query 0x0000 PTR _services._dns-sd._udp.local
+    6   0.000057   172.24.0.2 → 172.24.0.3   ICMP 116 Destination unreachable (Port unreachable)
+    7   0.000072   172.24.0.3 → 172.24.0.2   Portmap 82 V104316 proc-0 Call
+    8   0.000108   172.24.0.3 → 172.24.0.2   RPC 82 Continuation
+    9   0.000121   172.24.0.3 → 172.24.0.2   SNMP 93 get-request 1.3.6.1.2.1.1.5.0
+   10   0.000127   172.24.0.2 → 172.24.0.3   Portmap 74 V104316 proc-0 Reply (Call In 7)
+   11   0.000128   172.24.0.2 → 172.24.0.3   ICMP 121 Destination unreachable (Port unreachable)
+   12   0.000141   172.24.0.3 → 172.24.0.2   SNMP 102 get-request
+   13   0.000144   172.24.0.2 → 172.24.0.3   ICMP 130 Destination unreachable (Port unreachable)
+   14   0.000150   172.24.0.3 → 172.24.0.2   ICMP 102 Destination unreachable (Port unreachable)
+   15   0.000158   172.24.0.2 → 172.24.0.3   RPC 66 Continuation
+   16   0.000159   172.24.0.3 → 172.24.0.2   TFTP 54 Unknown (0x0000)
+   17   0.000169   172.24.0.3 → 172.24.0.2   ICMP 94 Destination unreachable (Port unreachable)
+   18   0.000191   172.24.0.3 → 172.24.0.2   TFTP 61 Read Request, File: r7tftp.txt, Transfer type: octet
+   19   0.000206   172.24.0.3 → 172.24.0.2   UDP 82 49230 → 65000 Len=40
+   20   0.000212   172.24.0.2 → 172.24.0.3   ICMP 110 Destination unreachable (Port unreachable)
+   21   0.000227   172.24.0.3 → 172.24.0.2   NBNS 92 Name query NBSTAT *<00><00><00><00><00><00><00><00><00><00><00><00><00><00><00>
+   22   0.000260   172.24.0.3 → 172.24.0.2   NBNS 92 Name query NBSTAT *<00><00><00><00><00><00><00><00><00><00><00><00><00><00><00>
+   23   0.000269   172.24.0.3 → 172.24.0.2   NBNS 92 Name query NBSTAT *<00><00><00><00><00><00><00><00><00><00><00><00><00><00><00>
+   24   0.000326   172.24.0.2 → 172.24.0.3   TFTP 325 Unknown (0x80f0)
+   25   0.000350   172.24.0.3 → 172.24.0.2   ICMP 353 Destination unreachable (Port unreachable)
+   26   0.000402   172.24.0.2 → 172.24.0.3   TFTP 235 Unknown (0x0191)
+   27   0.000437   172.24.0.3 → 172.24.0.2   ICMP 263 Destination unreachable (Port unreachable)
+   28   0.000470   172.24.0.2 → 172.24.0.3   TFTP 325 Unknown (0x0191)
+   29   0.000536   172.24.0.3 → 172.24.0.2   ICMP 353 Destination unreachable (Port unreachable)
+   30   1.101565   172.24.0.3 → 172.24.0.2   TFTP 54 Unknown (0x0000)
+   31   1.101683   172.24.0.3 → 172.24.0.2   TFTP 61 Read Request, File: r7tftp.txt, Transfer type: octet
+exit=0
+
+[2026-11-07T12:33:15.9823103+03:00] docker exec nt1301-capture capinfos /evidence/verified/udp.pcap
+File name:           /evidence/verified/udp.pcap
+File type:           Wireshark/tcpdump/... - pcap
+File encapsulation:  Ethernet
+File timestamp precision:  microseconds (6)
+Packet size limit:   file hdr: 262144 bytes
+Number of packets:   31
+File size:           4530 bytes
+Data size:           4010 bytes
+Capture duration:    1.101683 second
+Earliest packet time: 2026-11-07 09:33:12.026151
+Latest packet time:   2026-11-07 09:33:13.127834
+Data byte rate:      3639 bytes/s
+Data bit rate:       29 kbps
+Average packet size: 129.35 bytes
+Average packet rate: 28 packets/s
+SHA256:              8d1d675088623970edd373d26f79df11daf56a49706ce1434d05f936b845170b
+SHA1:                1dfe83dafeeba6ada47e57e1d17fbde081ef5a10
+Strict time order:   True
+Number of interfaces in file: 1
+Interface #0 info:
+                     Encapsulation = Ethernet (1 - ether)
+                     Capture length = 262144
+                     Time precision = microseconds (6)
+                     Time ticks per second = 1000000
+                     Number of stat entries = 0
+                     Number of packets = 31
+exit=0
+
+[2026-11-07T12:33:16.0919133+03:00] docker cp C:\Users\pavel\Documents\DeepSeekHarness\cache\netology-20261107\w-1301\analyze.sh nt1301-capture:/tmp/nt1301-analyze-verified.sh
+exit=0
+
+[2026-11-07T12:33:16.1522063+03:00] docker exec nt1301-capture sh /tmp/nt1301-analyze-verified.sh
+Counts from verified pcaps. tshark filters use #1 outer IPv4 occurrence to exclude scanner ICMP with quoted target IPv4.
+syn.pcap | scanner_SYN | ip.src#1==172.24.0.3 && ip.dst#1==172.24.0.2 && tcp.flags==0x0002 | 5
+syn.pcap | target_SYN_ACK | ip.src#1==172.24.0.2 && ip.dst#1==172.24.0.3 && tcp.flags==0x0012 | 4
+syn.pcap | target_RST_ACK | ip.src#1==172.24.0.2 && ip.dst#1==172.24.0.3 && tcp.flags==0x0014 | 1
+syn.pcap | scanner_RST | ip.src#1==172.24.0.3 && ip.dst#1==172.24.0.2 && tcp.flags.reset==1 | 4
+syn.pcap | target_closed_65000 | ip.src#1==172.24.0.2 && tcp.srcport==65000 && tcp.flags.reset==1 | 1
+fin.pcap | scanner_probes | ip.src#1==172.24.0.3 && ip.dst#1==172.24.0.2 && tcp.flags==0x0001 | 9
+fin.pcap | probes_to_open | ip.src#1==172.24.0.3 && ip.dst#1==172.24.0.2 && tcp.flags==0x0001 && tcp.dstport!=65000 | 8
+fin.pcap | probes_to_closed | ip.src#1==172.24.0.3 && ip.dst#1==172.24.0.2 && tcp.flags==0x0001 && tcp.dstport==65000 | 1
+fin.pcap | target_replies_open | ip.src#1==172.24.0.2 && ip.dst#1==172.24.0.3 && tcp.srcport in {21 22 80 445} | 0
+fin.pcap | target_closed_RST_ACK | ip.src#1==172.24.0.2 && ip.dst#1==172.24.0.3 && tcp.srcport==65000 && tcp.flags==0x0014 | 1
+xmas.pcap | scanner_probes | ip.src#1==172.24.0.3 && ip.dst#1==172.24.0.2 && tcp.flags==0x0029 | 9
+xmas.pcap | probes_to_open | ip.src#1==172.24.0.3 && ip.dst#1==172.24.0.2 && tcp.flags==0x0029 && tcp.dstport!=65000 | 8
+xmas.pcap | probes_to_closed | ip.src#1==172.24.0.3 && ip.dst#1==172.24.0.2 && tcp.flags==0x0029 && tcp.dstport==65000 | 1
+xmas.pcap | target_replies_open | ip.src#1==172.24.0.2 && ip.dst#1==172.24.0.3 && tcp.srcport in {21 22 80 445} | 0
+xmas.pcap | target_closed_RST_ACK | ip.src#1==172.24.0.2 && ip.dst#1==172.24.0.3 && tcp.srcport==65000 && tcp.flags==0x0014 | 1
+udp.pcap | scanner_UDP | ip.src#1==172.24.0.3 && ip.dst#1==172.24.0.2 && udp && !icmp | 15
+udp.pcap | target_UDP | ip.src#1==172.24.0.2 && ip.dst#1==172.24.0.3 && udp && !icmp | 5
+udp.pcap | target_RPC_reply | ip.src#1==172.24.0.2 && ip.dst#1==172.24.0.3 && udp.srcport==111 && !icmp | 2
+udp.pcap | target_NBNS_reply | ip.src#1==172.24.0.2 && ip.dst#1==172.24.0.3 && udp.srcport==137 && !icmp | 3
+udp.pcap | target_ICMP_unreachable | ip.src#1==172.24.0.2 && ip.dst#1==172.24.0.3 && icmp.type==3 && icmp.code==3 | 6
+udp.pcap | closed_53_ICMP | ip.src#1==172.24.0.2 && ip.dst#1==172.24.0.3 && icmp.type==3 && icmp.code==3 && udp.dstport==53 | 3
+udp.pcap | closed_161_ICMP | ip.src#1==172.24.0.2 && ip.dst#1==172.24.0.3 && icmp.type==3 && icmp.code==3 && udp.dstport==161 | 2
+udp.pcap | closed_65000_ICMP | ip.src#1==172.24.0.2 && ip.dst#1==172.24.0.3 && icmp.type==3 && icmp.code==3 && udp.dstport==65000 | 1
+udp.pcap | TFTP_probes | ip.src#1==172.24.0.3 && ip.dst#1==172.24.0.2 && udp.dstport==69 && !icmp | 4
+udp.pcap | TFTP_replies | ip.src#1==172.24.0.2 && ip.dst#1==172.24.0.3 && (udp || icmp) && udp.srcport==69 | 0
+exit=0
+docker exec nt1301-scanner nmap -sV --version-all --script smb-os-discovery,irc-info -p 21,139,445,6667 -n -Pn --host-timeout 2m -oA /evidence/versions-confirmed 172.24.0.2
+
+[2026-11-07T12:36:46.4825383+03:00] docker inspect nt1301-target nt1301-scanner nt1301-capture --format '{{.Name}} network={{.HostConfig.NetworkMode}} ports={{json .HostConfig.PortBindings}} mounts={{json .Mounts}}'
+/nt1301-target network=nt1301-lab ports={} mounts=[]
+/nt1301-scanner network=nt1301-lab ports={} mounts=[{"Type":"bind","Source":"C:\\Users\\pavel\\Documents\\DeepSeekHarness\\cache\\netology-20261107\\w-1301\\wt\\evidence","Destination":"/evidence","Mode":"","RW":true,"Propagation":"rprivate"}]
+/nt1301-capture network=container:f8cd8bebbb06583509555c5f98779ab5d38633fb99b465f80f2471b0cfdd66b3 ports={} mounts=[{"Type":"bind","Source":"C:\\Users\\pavel\\Documents\\DeepSeekHarness\\cache\\netology-20261107\\w-1301\\wt\\evidence","Destination":"/evidence","Mode":"","RW":true,"Propagation":"rprivate"}]
+exit=0
+
+[2026-11-07T12:36:46.5660311+03:00] docker rm -f nt1301-capture nt1301-scanner nt1301-target
+nt1301-capture
+nt1301-scanner
+nt1301-target
+exit=0
+
+[2026-11-07T12:36:46.8608690+03:00] docker network rm nt1301-lab
+nt1301-lab
+exit=0
+
+[2026-11-07T12:36:47.0160445+03:00] docker ps -a --filter name=nt1301-
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+exit=0
+
+[2026-11-07T12:36:47.0702246+03:00] docker network ls --filter name=nt1301-
+NETWORK ID   NAME      DRIVER    SCOPE
+exit=0

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.99 scan initiated Sat Nov  7 09:29:39 2026 as: nmap -sS -sV -p- -n -Pn -&#45;reason -&#45;version-light -T4 -&#45;max-retries 2 -&#45;host-timeout 12m -oA /evidence/services 172.24.0.2 -->
+<nmaprun scanner="nmap" args="nmap -sS -sV -p- -n -Pn -&#45;reason -&#45;version-light -T4 -&#45;max-retries 2 -&#45;host-timeout 12m -oA /evidence/services 172.24.0.2" start="1794043779" startstr="Sat Nov  7 09:29:39 2026" version="7.99" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="172.24.0.2" addrtype="ipv4"/>
+<address addr="C6:2E:89:E4:99:49" addrtype="mac"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1794043779" endtime="1794043807"><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="172.24.0.2" addrtype="ipv4"/>
+<address addr="C6:2E:89:E4:99:49" addrtype="mac"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65510">
+<extrareasons reason="reset" count="65510" proto="tcp" ports="1-20,24,26-79,81-110,112-138,140-444,446-511,515-1098,1100-1523,1525-2120,2122-3305,3307-3631,3633-5431,5433-5899,5901-5999,6001-6666,6668-6696,6698-8008,8010-8179,8181-8786,8788-41088,41090-65535"/>
+</extraports>
+<port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ftp" product="vsftpd" version="2.3.4" ostype="Unix" method="probed" conf="10"><cpe>cpe:/a:vsftpd:vsftpd:2.3.4</cpe></service></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ssh" product="OpenSSH" version="4.7p1 Debian 8ubuntu1" extrainfo="protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:4.7p1</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service></port>
+<port protocol="tcp" portid="23"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="telnet" product="Linux telnetd" ostype="Linux" method="probed" conf="10"><cpe>cpe:/o:linux:linux_kernel</cpe></service></port>
+<port protocol="tcp" portid="25"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="smtp" product="Postfix smtpd" hostname=" metasploitable.localdomain" method="probed" conf="10"><cpe>cpe:/a:postfix:postfix</cpe></service></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="Apache httpd" version="2.2.8" extrainfo="(Ubuntu) DAV/2" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.2.8</cpe></service></port>
+<port protocol="tcp" portid="111"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="rpcbind" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="netbios-ssn" product="Samba smbd" version="3.X - 4.X" extrainfo="workgroup: WORKGROUP" method="probed" conf="10"><cpe>cpe:/a:samba:samba</cpe></service></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="netbios-ssn" product="Samba smbd" version="3.X - 4.X" extrainfo="workgroup: WORKGROUP" method="probed" conf="10"><cpe>cpe:/a:samba:samba</cpe></service></port>
+<port protocol="tcp" portid="512"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="exec" method="table" conf="3"/></port>
+<port protocol="tcp" portid="513"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="login" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="514"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="1099"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="java-rmi" product="GNU Classpath grmiregistry" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="1524"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ingreslock" servicefp="SF-Port1524-TCP:V=7.99%I=2%D=11/7%Time=6AEEEF8B%P=x86_64-alpine-linux-musl%r(NULL,16,&quot;root@nt1301-target:/#\x20&quot;)%r(GenericLines,72,&quot;root@nt1301-target:/#\x20\nroot@nt1301-target:/#\x20\nroot@nt1301-target:/#\x20\nroot@nt1301-target:/#\x20\nroot@nt1301-target:/#\x20&quot;)%r(GetRequest,479,&quot;root@nt1301-target:/#\x20GET\x20/\x20HTTP/1\.0\n&lt;HTML&gt;\n&lt;HEAD&gt;\n&lt;TITLE&gt;Directory\x20/&lt;/TITLE&gt;\n&lt;BASE\x20HREF=\&quot;file:/\&quot;&gt;\n&lt;/HEAD&gt;\n&lt;BODY&gt;\n&lt;H1&gt;Directory\x20listing\x20of\x20/&lt;/H1&gt;\n&lt;UL&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;\./\&quot;&gt;\./&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;\.\./\&quot;&gt;\.\./&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;\.dockerenv\&quot;&gt;\.dockerenv&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;bin/\&quot;&gt;bin/&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;boot/\&quot;&gt;boot/&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;cdrom/\&quot;&gt;cdrom/&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;core\&quot;&gt;core&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;dev/\&quot;&gt;dev/&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;etc/\&quot;&gt;etc/&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;home/\&quot;&gt;home/&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;initrd/\&quot;&gt;initrd/&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;initrd\.img\&quot;&gt;initrd\.img&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;lib/\&quot;&gt;lib/&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;lost%2Bfound/\&quot;&gt;lost\+found/&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;media/\&quot;&gt;media/&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;mnt/\&quot;&gt;mnt/&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;nohup\.out\&quot;&gt;nohup\.out&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;opt/\&quot;&gt;opt/&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;proc/\&quot;&gt;proc/&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;root/\&quot;&gt;root/&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;sbin/\&quot;&gt;sbin/&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;srv/\&quot;&gt;srv/&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;sys/\&quot;&gt;sys/&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HREF=\&quot;tmp/\&quot;&gt;tmp/&lt;/A&gt;\n&lt;LI&gt;&lt;A\x20HR&quot;)%r(SSLSessionReq,1C9,&quot;root@nt1301-target:/#\x20\^CS\x08\x08\x08O\^CS\x08\x08\x08\x07\?\^CS\x08\x08\x08G\^CS\x08\x08\x08\x07\x07\x07,\^CS\x08\x08\x08\x08\x08\x08\x08:\x20\x20\x20\x20\x20\x20\x08\x08\x08\x08\x08\x08\xea\xb2`~\xf3\x08\x08\x08\x08\x08\x08O\?G,\^CS\x07\x08\x08\x08\x08\x08\x08\x08\x07\x07{O\?G,\^CS\x08\x08\x08\x08\x08\x08\x08\r\(arg:\x201\)\x20{O\?G,\^CS\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\r\(arg:\x201\)\x20{\x08\x08\x08\x089\)\x20{O\?G,\^CS\x08\x08\x08\x08\x08\x08\x08\rroot@nt1301-target:/#\x20{O\?G,\^CS\x08\x08\x08\x08\x08\x08\x08O\?G,\^CS\x07\x07w\x07\x07=\x07\x07\x07n\(\r\(i-search\)`&apos;:\x20{O\?G,\^CSw=n\(\x20\x20\x20\x20\x20\x20\x20\x20\x08\x08\x08\x08\x08\x08\x08\x08\rroot@nt1301-target:/#\x20{O\?G,\^CSw=\^@\(\nbash:\x20{O\?G,\x03Sw=:\x20command\x20not\x20found\nroot@nt1301-target:/#\x20f\x07edcba`\x08\x08\x08\x08\x08\x08\x08\x20\x20\x20\x20\x20\x20\x20\x08\x08\x08\x08\x08\x08\x08\r\(reverse-i-search\)`&apos;:\x20\rroot@nt1301-target:/#\x20\x07\x07\x07\x07\x07&quot;);" method="table" conf="3"/></port>
+<port protocol="tcp" portid="2121"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ftp" product="ProFTPD" version="1.3.1" ostype="Unix" method="probed" conf="10"><cpe>cpe:/a:proftpd:proftpd:1.3.1</cpe></service></port>
+<port protocol="tcp" portid="3306"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="mysql" product="MySQL" version="5.0.51a-3ubuntu5" method="probed" conf="10"><cpe>cpe:/a:mysql:mysql:5.0.51a-3ubuntu5</cpe></service></port>
+<port protocol="tcp" portid="3632"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="distccd" product="distccd" version="v1" extrainfo="(GNU) 4.2.4 (Ubuntu 4.2.4-1ubuntu4)" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="5432"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="postgresql" product="PostgreSQL DB" version="8.3.0 - 8.3.7" method="probed" conf="10"><cpe>cpe:/a:postgresql:postgresql:8.3</cpe></service></port>
+<port protocol="tcp" portid="5900"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="vnc" product="VNC" extrainfo="protocol 3.3" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="6000"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="X11" extrainfo="access denied" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="6667"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="irc" product="UnrealIRCd" hostname="irc.Metasploitable.LAN" method="probed" conf="10"><cpe>cpe:/a:unrealircd:unrealircd</cpe></service></port>
+<port protocol="tcp" portid="6697"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="irc" product="UnrealIRCd" hostname="irc.Metasploitable.LAN" method="probed" conf="10"><cpe>cpe:/a:unrealircd:unrealircd</cpe></service></port>
+<port protocol="tcp" portid="8009"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ajp13" product="Apache Jserv" extrainfo="Protocol v1.3" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="8180"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="Apache Tomcat/Coyote JSP engine" version="1.1" method="probed" conf="10"><cpe>cpe:/a:apache:coyote_http_connector:1.1</cpe></service></port>
+<port protocol="tcp" portid="8787"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="drb" product="Ruby DRb RMI" extrainfo="Ruby 1.8; path /usr/lib/ruby/1.8/drb" method="probed" conf="10"><cpe>cpe:/a:ruby-lang:ruby:1.8</cpe></service></port>
+<port protocol="tcp" portid="41089"><state state="open" reason="syn-ack" reason_ttl="64"/></port>
+</ports>
+<times srtt="13" rttvar="0" to="100000"/>
+</host>
+<runstats><finished time="1794043807" timestr="Sat Nov  7 09:30:07 2026" summary="Nmap done at Sat Nov  7 09:30:07 2026; 1 IP address (1 host up) scanned in 27.57 seconds" elapsed="27.57" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

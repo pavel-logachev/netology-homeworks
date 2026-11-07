@@ -1,0 +1,59 @@
+﻿[
+    {
+        "Name": "nt1301-lab",
+        "Id": "5ddc887495c724104cb851dfaf783e9ff0ddd02b539478a44c6e0ba2f716ef23",
+        "Created": "2026-11-07T09:27:58.02616038Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.24.0.0/16",
+                    "Gateway": "172.24.0.1"
+                }
+            ]
+        },
+        "Internal": true,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {
+            "com.docker.network.enable_ipv4": "true",
+            "com.docker.network.enable_ipv6": "false"
+        },
+        "Labels": {},
+        "Containers": {
+            "0f468a16fcd46db22e9b47ba63a0c40a86d785ebf9ffbfe5edb12d6ab6b90193": {
+                "Name": "nt1301-scanner",
+                "EndpointID": "5b0a23394c702f6a5bb6257f82fa1502a9ea4180a3569fb08771abd0ad98e1f8",
+                "MacAddress": "ce:9b:7b:c8:80:c7",
+                "IPv4Address": "172.24.0.3/16",
+                "IPv6Address": ""
+            },
+            "f8cd8bebbb06583509555c5f98779ab5d38633fb99b465f80f2471b0cfdd66b3": {
+                "Name": "nt1301-target",
+                "EndpointID": "48a1f31e8c000341567317e65eb938c7e42fc7f4823231cab1f6b164c44b1b08",
+                "MacAddress": "c6:2e:89:e4:99:49",
+                "IPv4Address": "172.24.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+                    "172.24.0.0/16": {
+                        "IPsInUse": 5,
+                        "DynamicIPsAvailable": 65531
+                    }
+                }
+            }
+        }
+    }
+]

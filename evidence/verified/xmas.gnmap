@@ -1,0 +1,4 @@
+# Nmap 7.99 scan initiated Sat Nov  7 09:33:07 2026 as: nmap -sX -n -Pn --reason -p 21,22,80,445,65000 --max-retries 1 --host-timeout 90s -T3 -oA /evidence/verified/xmas 172.24.0.2
+Host: 172.24.0.2 ()	Status: Up
+Host: 172.24.0.2 ()	Ports: 21/open|filtered/tcp//ftp///, 22/open|filtered/tcp//ssh///, 80/open|filtered/tcp//http///, 445/open|filtered/tcp//microsoft-ds///, 65000/closed/tcp/////
+# Nmap done at Sat Nov  7 09:33:08 2026 -- 1 IP address (1 host up) scanned in 1.31 seconds

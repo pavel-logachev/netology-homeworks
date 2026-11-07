@@ -1,0 +1,87 @@
+.gitattributes	84 bytes	Raw named-phase evidence
+01-services.png	108635 bytes	Real-output terminal screenshot, visually inspected with read_image
+02-tcp.png	164246 bytes	Real-output terminal screenshot, visually inspected with read_image
+03-udp.png	173056 bytes	Real-output terminal screenshot, visually inspected with read_image
+analyze.sh	2479 bytes	Exact host/container execution or evidence-generation script
+capture-notes.txt	603 bytes	Canonical capture location and superseded-attempt cautions
+capture-verified.ps1	1597 bytes	Exact host/container execution or evidence-generation script
+capture.ps1	1382 bytes	Exact host/container execution or evidence-generation script
+cleanup.ps1	1152 bytes	Exact host/container execution or evidence-generation script
+cleanup.txt	902 bytes	Exact owned-object deletion outputs and empty final listings
+command-appendix.md	9101 bytes	Host/source/browser commands outside Docker logger
+commands.txt	78492 bytes	Timestamped Docker commands, output and exit codes, includes superseded first attempts
+containers.json	14653 bytes	Container configuration, no published ports and limited bind mounts
+images.jsonl	3377 bytes	Image inspection tags, IDs and RepoDigests
+independent-check.txt	1324 bytes	Independent byte-parser packet and image checks, failures0
+inventory.mjs	4145 bytes	Exact host/container execution or evidence-generation script
+lab.ps1	1095 bytes	Exact host/container execution or evidence-generation script
+network.json	1979 bytes	Internal bridge network, subnet and owned IP addresses
+packages-and-samba.txt	1119 bytes	Package versions and effective Samba configuration
+preflight.txt	998 bytes	Host, Docker version, branch and initial prefix listings
+pulls.txt	444 bytes	Pull digest receipt transcribed from successful job
+render-server.mjs	553 bytes	Exact host/container execution or evidence-generation script
+render.mjs	1703 bytes	Exact host/container execution or evidence-generation script
+resume-setup.ps1	967 bytes	Exact host/container execution or evidence-generation script
+scan.ps1	2033 bytes	Exact host/container execution or evidence-generation script
+services-console.txt	4935 bytes	Raw console output of named phase
+services-start.txt	5064 bytes	Service startup warnings and outputs
+services.gnmap	1486 bytes	Nmap grepable scan output
+services.nmap	5006 bytes	Nmap human-readable scan output
+services.xml	10359 bytes	Nmap machine-readable scan results and exact invocation
+setup.ps1	1418 bytes	Exact host/container execution or evidence-generation script
+setup.txt	267 bytes	Raw named-phase evidence
+source-confirmed.txt	2930 bytes	Successful DSH HTTP200 EDB title/version/description quotations
+startup-diagnostic.txt	14292 bytes	Diagnostic process/listener snapshot after stderr interruption
+target-before.txt	1833 bytes	Original startup script, kernel, issue and initial listeners
+target-ready.txt	3598 bytes	Listening ports and Samba binary version
+tools.txt	2244 bytes	Nmap/tshark/tcpdump versions and scanner IP/routes
+verified/analysis-console.txt	2925 bytes	Raw console output of named phase
+verified/fin-capinfos.txt	1124 bytes	Packet count, capture metadata, pcap SHA256
+verified/fin-capture.txt	164 bytes	tcpdump capture/received/drop statistics
+verified/fin-console.txt	559 bytes	Raw console output of named phase
+verified/fin-fields.txt	1123 bytes	Frame-numbered fields (IPv4 may include quoted nested headers)
+verified/fin-tshark-stderr.txt	0 bytes	Tshark diagnostic stderr (empty if clean)
+verified/fin-tshark.txt	966 bytes	Readable tshark packet summary
+verified/fin.gnmap	483 bytes	Nmap grepable scan output
+verified/fin.nmap	692 bytes	Nmap human-readable scan output
+verified/fin.pcap	724 bytes	Canonical original packet capture
+verified/fin.xml	2204 bytes	Nmap machine-readable scan results and exact invocation
+verified/syn-capinfos.txt	1122 bytes	Packet count, capture metadata, pcap SHA256
+verified/syn-capture.txt	164 bytes	tcpdump capture/received/drop statistics
+verified/syn-console.txt	529 bytes	Raw console output of named phase
+verified/syn-fields.txt	1630 bytes	Frame-numbered fields (IPv4 may include quoted nested headers)
+verified/syn-tshark-stderr.txt	0 bytes	Tshark diagnostic stderr (empty if clean)
+verified/syn-tshark.txt	1464 bytes	Readable tshark packet summary
+verified/syn.gnmap	447 bytes	Nmap grepable scan output
+verified/syn.nmap	662 bytes	Nmap human-readable scan output
+verified/syn.pcap	1040 bytes	Canonical original packet capture
+verified/syn.xml	2156 bytes	Nmap machine-readable scan results and exact invocation
+verified/traffic-counts.txt	2899 bytes	Final exact tshark filters and counts
+verified/udp-capinfos.txt	1125 bytes	Packet count, capture metadata, pcap SHA256
+verified/udp-capture.txt	164 bytes	tcpdump capture/received/drop statistics
+verified/udp-console.txt	634 bytes	Raw console output of named phase
+verified/udp-fields.txt	3170 bytes	Frame-numbered fields (IPv4 may include quoted nested headers)
+verified/udp-tshark-stderr.txt	0 bytes	Tshark diagnostic stderr (empty if clean)
+verified/udp-tshark.txt	2920 bytes	Readable tshark packet summary
+verified/udp.gnmap	494 bytes	Nmap grepable scan output
+verified/udp.nmap	771 bytes	Nmap human-readable scan output
+verified/udp.pcap	4530 bytes	Canonical original packet capture
+verified/udp.xml	2362 bytes	Nmap machine-readable scan results and exact invocation
+verified/xmas-capinfos.txt	1125 bytes	Packet count, capture metadata, pcap SHA256
+verified/xmas-capture.txt	164 bytes	tcpdump capture/received/drop statistics
+verified/xmas-console.txt	559 bytes	Raw console output of named phase
+verified/xmas-fields.txt	1267 bytes	Frame-numbered fields (IPv4 may include quoted nested headers)
+verified/xmas-tshark-stderr.txt	0 bytes	Tshark diagnostic stderr (empty if clean)
+verified/xmas-tshark.txt	1110 bytes	Readable tshark packet summary
+verified/xmas.gnmap	484 bytes	Nmap grepable scan output
+verified/xmas.nmap	693 bytes	Nmap human-readable scan output
+verified/xmas.pcap	724 bytes	Canonical original packet capture
+verified/xmas.xml	2207 bytes	Nmap machine-readable scan results and exact invocation
+verify.mjs	3105 bytes	Exact host/container execution or evidence-generation script
+version-details.txt	603 bytes	Effective Samba option and local Unreal/distccd binary versions
+versions-confirmed-console.txt	1233 bytes	Raw console output of named phase
+versions-confirmed.gnmap	568 bytes	Nmap grepable scan output
+versions-confirmed.nmap	1364 bytes	Nmap human-readable scan output
+versions-confirmed.xml	3917 bytes	Nmap machine-readable scan results and exact invocation
+file-inventory.txt	Inventory
+sha256.txt	SHA256 manifest excludes itself

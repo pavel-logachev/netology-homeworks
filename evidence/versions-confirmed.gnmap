@@ -1,0 +1,4 @@
+# Nmap 7.99 scan initiated Sat Nov  7 09:36:22 2026 as: nmap -sV --version-all --script smb-os-discovery,irc-info -p 21,139,445,6667 -n -Pn --host-timeout 2m -oA /evidence/versions-confirmed 172.24.0.2
+Host: 172.24.0.2 ()	Status: Up
+Host: 172.24.0.2 ()	Ports: 21/open/tcp//ftp//vsftpd 2.3.4/, 139/open/tcp//netbios-ssn//Samba smbd 3.X - 4.X (workgroup: WORKGROUP)/, 445/open/tcp//netbios-ssn//Samba smbd 3.0.20-Debian (workgroup: WORKGROUP)/, 6667/open/tcp//irc//UnrealIRCd/
+# Nmap done at Sat Nov  7 09:36:34 2026 -- 1 IP address (1 host up) scanned in 12.28 seconds

@@ -1,0 +1,53 @@
+﻿#!/bin/sh
+#Start up script for metasploitable2 docker/gns3 image tleemcjr/metasploitable2
+
+service apache2 start
+service atd start
+#service bind9 start
+service cron start
+service distcc start
+#service klogd start
+service mysql start
+service mysql-ndb start
+service mysql-ndb-mgm start
+service networking start
+#service nfs-common start
+#service nfs-kernel-server start
+service openbsd-inetd start
+service portmap start
+service postfix start
+service postgresql-8.3 start
+service proftpd start
+service rmnologin start
+service rsync start
+service samba start
+service snmpd start
+service ssh start
+service sysklogd start
+service tomcat5.5 start
+service xinetd start
+service x11-common start
+service xserver-xorg-input-wacom start
+
+/etc/init.d/rc.local start
+
+Linux nt1301-target 7.0.14-linuxkit #1 SMP PREEMPT_DYNAMIC Fri Sep 18 10:17:53 UTC 2026 x86_64 GNU/Linux
+                _                  _       _ _        _     _      ____  
+ _ __ ___   ___| |_ __ _ ___ _ __ | | ___ (_) |_ __ _| |__ | | ___|___ \ 
+| '_ ` _ \ / _ \ __/ _` / __| '_ \| |/ _ \| | __/ _` | '_ \| |/ _ \ __) |
+| | | | | |  __/ || (_| \__ \ |_) | | (_) | | || (_| | |_) | |  __// __/ 
+|_| |_| |_|\___|\__\__,_|___/ .__/|_|\___/|_|\__\__,_|_.__/|_|\___|_____|
+                            |_|                                          
+
+
+Warning: Never expose this VM to an untrusted network!
+
+Contact: msfdev[at]metasploit.com
+
+Login with msfadmin/msfadmin to get started
+
+
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 127.0.0.11:43167        0.0.0.0:*               LISTEN      -               
+udp        0      0 127.0.0.11:52754        0.0.0.0:*                           -               

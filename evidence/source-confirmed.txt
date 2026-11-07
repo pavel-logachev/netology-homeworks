@@ -1,0 +1,27 @@
+Source verification record. Retrieval date 2026-11-07. The DSH web_fetch tool returned HTTP 200 and the following quoted contents. These are retrieved source quotations, not observed exploit success. Exploit code was not executed.
+
+https://www.exploit-db.com/exploits/17491
+Title: "vsftpd 2.3.4 - Backdoor Command Execution (Metasploit)"
+EDB-ID: 17491. CVE 2011-2523. Date 2011-07-05.
+Description quote: "This module exploits a malicious backdoor that was added to the VSFTPD download archive." "This backdoor was introdcued into the vsftpd-2.3.4.tar.gz archive between June 30th 2011 and July 1st 2011"; "This backdoor was removed on July 3rd 2011."
+Affected version named in title/archive: vsftpd 2.3.4, specifically the compromised download, not every build.
+
+https://www.exploit-db.com/exploits/16320
+Title: "Samba 3.0.20 < 3.0.25rc3 - 'Username' map script' Command Execution (Metasploit)"
+EDB-ID: 16320. CVE 2007-2447. Date 2010-08-18.
+Description quote: "This module exploits a command execution vulerability in Samba versions 3.0.20 through 3.0.25rc3 when using the non-default \"username map script\" configuration option." "No authentication is needed to exploit this vulnerability since this option is used to map usernames prior to authentication!"
+Affected range as the source states: 3.0.20 through 3.0.25rc3 with the non-default configuration. Preserve the difference between the title's '<' and description's 'through'; no claim is made here about the upper boundary beyond this quotation.
+
+https://www.exploit-db.com/exploits/16922
+Title: "UnrealIRCd 3.2.8.1 - Backdoor Command Execution (Metasploit)"
+EDB-ID: 16922. CVE 2010-2075. Date 2010-12-05.
+Description quote: "This module exploits a malicious backdoor that was added to the Unreal IRCD 3.2.8.1 download archive." "This backdoor was present in the Unreal3.2.8.1.tar.gz archive between November 2009 and June 12th 2010."
+Affected version: UnrealIRCd 3.2.8.1 compromised archive, not every build.
+
+Other links fetched during research, not used as three distinct vulnerabilities
+https://www.exploit-db.com/exploits/49757
+HTTP 200. Title "vsftpd 2.3.4 - Backdoor Command Execution". EDB-ID 49757, CVE 2011-2523. Code comment "Version: vsftpd 2.3.4". Duplicate of the vsftpd vulnerability above.
+https://www.exploit-db.com/exploits/10099
+HTTP 200. Title "Hewlett-Packard (HP) Power Manager Administration Power Manager Administration - Universal Buffer Overflow". EDB-ID 10099. CVE 2009-2685. Source comment "Tested on Win2k3 Ent SP2 English, Win XP Sp2 English". Unrelated to the observed stand; discarded. No affected application version asserted.
+
+Diagnostic. An attempt to save the HTML using Node fetch received HTTP 403 Sucuri Website Firewall for all five URLs. The successful DSH web_fetch response is the basis of this record. Failed direct-fetch outputs were retained as source-<id>.txt solely as access diagnostics, not citations for applicability.

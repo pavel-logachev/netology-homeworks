@@ -1,0 +1,13 @@
+Starting Nmap 7.99 ( https://nmap.org ) at 2026-11-07 09:32 +0000
+Nmap scan report for 172.24.0.2
+Host is up, received arp-response (0.000041s latency).
+
+PORT      STATE  SERVICE      REASON
+21/tcp    open   ftp          syn-ack ttl 64
+22/tcp    open   ssh          syn-ack ttl 64
+80/tcp    open   http         syn-ack ttl 64
+445/tcp   open   microsoft-ds syn-ack ttl 64
+65000/tcp closed unknown      reset ttl 64
+MAC Address: C6:2E:89:E4:99:49 (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.11 seconds

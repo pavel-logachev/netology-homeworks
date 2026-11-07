@@ -1,0 +1,98 @@
+﻿ * Starting web server apache2
+docker.exe : /etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+At C:\Users\pavel\Documents\DeepSeekHarness\cache\netology-20261107\w-1301\lab.ps1:10 char:10
++  $result=& docker @A 2>&1
++          ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (/etc/lsb-base-l...le or directory:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+apache2: Could not reliably determine the server's fully qualified domain name, using 172.24.0.2 for ServerName
+httpd (pid 50) already running
+   ...done.
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ * Starting deferred execution scheduler atd
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...done.
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ * Starting periodic command scheduler crond
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...fail!
+Starting distccd
+ * Starting MySQL database server mysqld
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...done.
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ * Configuring network interfaces...
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...done.
+ * Starting portmap daemon...
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ * Already running.
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...done.
+ * Starting Postfix Mail Transport Agent postfix
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...fail!
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ * Starting PostgreSQL 8.3 database server
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...done.
+ * Starting ftp server proftpd
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...done.
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+Starting Samba daemons: nmbd smbd.
+Starting network management services: snmpd.
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ * Starting OpenBSD Secure Shell server sshd
+   ...done.
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ * Starting system log daemon...
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...fail!
+ * Starting Tomcat servlet engine tomcat5.5
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...done.
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ * Starting internet superserver xinetd
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...fail!
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ * Doing Wacom setup...
+   ...done.
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ * Running local boot scripts (/etc/rc.local)
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+   ...done.
+/etc/lsb-base-logging.sh: line 22: /dev/console: No such file or directory
+ _   _                      _ ___________  _____     _ 
+| | | |                    | |_   _| ___ \/  __ \   | |
+| | | |_ __  _ __ ___  __ _| | | | | |_/ /| /  \/ __| |
+| | | | '_ \| '__/ _ \/ _` | | | | |    / | |    / _` |
+| |_| | | | | | |  __/ (_| | |_| |_| |\ \ | \__/\ (_| |
+ \___/|_| |_|_|  \___|\__,_|_|\___/\_| \_| \____/\__,_|
+                           v3.2.8.1
+                     using TRE 0.7.5 (LGPL)
+                     using libcurl/7.18.0 OpenSSL/0.9.8g zlib/1.2.3.3 libidn/1.1
+
+* Loading IRCd configuration ..
+/usr/lib/ruby/1.8/drb/drb.rb:865:in `initialize': Address already in use - bind(2) (Errno::EADDRINUSE)
+	from /usr/lib/ruby/1.8/drb/drb.rb:865:in `open'
+	from /usr/lib/ruby/1.8/drb/drb.rb:865:in `open_server'
+	from /usr/lib/ruby/1.8/drb/drb.rb:759:in `open_server'
+	from /usr/lib/ruby/1.8/drb/drb.rb:757:in `each'
+	from /usr/lib/ruby/1.8/drb/drb.rb:757:in `open_server'
+	from /usr/lib/ruby/1.8/drb/drb.rb:1339:in `initialize'
+	from /usr/lib/ruby/1.8/drb/drb.rb:1627:in `new'
+	from /usr/lib/ruby/1.8/drb/drb.rb:1627:in `start_service'
+	from /usr/sbin/druby_timeserver.rb:12
+* Configuration loaded without any problems ..
+* Loading tunefile..
+* Dynamic configuration initialized .. booting IRCd.
+---------------------------------------------------------------------

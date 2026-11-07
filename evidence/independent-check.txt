@@ -1,0 +1,41 @@
+PASS syn pcap magic
+PASS syn complete record boundaries
+PASS syn 14 packets
+PASS syn only owned target/scanner outer addresses
+PASS syn scanner SYN=5
+PASS syn target SYN ACK=4
+PASS syn scanner RST=4
+PASS syn closed target RST ACK=1
+PASS syn tcpdump captured=14, kernel drops=0
+PASS fin pcap magic
+PASS fin complete record boundaries
+PASS fin 10 packets
+PASS fin only owned target/scanner outer addresses
+PASS fin 9 probes with flags 1
+PASS fin no reply from known-open ports
+PASS fin closed RST ACK=1
+PASS fin tcpdump captured=10, kernel drops=0
+PASS xmas pcap magic
+PASS xmas complete record boundaries
+PASS xmas 10 packets
+PASS xmas only owned target/scanner outer addresses
+PASS xmas 9 probes with flags 41
+PASS xmas no reply from known-open ports
+PASS xmas closed RST ACK=1
+PASS xmas tcpdump captured=10, kernel drops=0
+PASS udp pcap magic
+PASS udp complete record boundaries
+PASS udp 31 packets
+PASS udp only owned target/scanner outer addresses
+PASS udp scanner UDP=15
+PASS udp target UDP=5
+PASS udp target ICMP 3/3=6
+PASS udp scanner ICMP 3/3=5
+PASS udp target UDP 111=2
+PASS udp target UDP 137=3
+PASS udp tcpdump captured=31, kernel drops=0
+PASS 25 open TCP ports
+PASS 01-services.png dimensions 1560x1450
+PASS 02-tcp.png dimensions 1560x1450
+PASS 03-udp.png dimensions 1560x1450
+Independent parser check failures=0

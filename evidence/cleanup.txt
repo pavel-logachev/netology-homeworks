@@ -1,0 +1,14 @@
+/nt1301-target network=nt1301-lab ports={} mounts=[]
+/nt1301-scanner network=nt1301-lab ports={} mounts=[{"Type":"bind","Source":"C:\\Users\\pavel\\Documents\\DeepSeekHarness\\cache\\netology-20261107\\w-1301\\wt\\evidence","Destination":"/evidence","Mode":"","RW":true,"Propagation":"rprivate"}]
+/nt1301-capture network=container:f8cd8bebbb06583509555c5f98779ab5d38633fb99b465f80f2471b0cfdd66b3 ports={} mounts=[{"Type":"bind","Source":"C:\\Users\\pavel\\Documents\\DeepSeekHarness\\cache\\netology-20261107\\w-1301\\wt\\evidence","Destination":"/evidence","Mode":"","RW":true,"Propagation":"rprivate"}]
+nt1301-capture
+nt1301-scanner
+nt1301-target
+nt1301-lab
+
+docker ps -a --filter name=nt1301-
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+docker network ls --filter name=nt1301-
+NETWORK ID   NAME      DRIVER    SCOPE
+PASS remaining nt1301 containers=0 networks=0

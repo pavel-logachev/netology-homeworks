@@ -1,0 +1,70 @@
+# Nmap 7.99 scan initiated Sat Nov  7 09:29:39 2026 as: nmap -sS -sV -p- -n -Pn --reason --version-light -T4 --max-retries 2 --host-timeout 12m -oA /evidence/services 172.24.0.2
+Nmap scan report for 172.24.0.2
+Host is up, received arp-response (0.000013s latency).
+Not shown: 65510 closed tcp ports (reset)
+PORT      STATE SERVICE     REASON         VERSION
+21/tcp    open  ftp         syn-ack ttl 64 vsftpd 2.3.4
+22/tcp    open  ssh         syn-ack ttl 64 OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
+23/tcp    open  telnet      syn-ack ttl 64 Linux telnetd
+25/tcp    open  smtp        syn-ack ttl 64 Postfix smtpd
+80/tcp    open  http        syn-ack ttl 64 Apache httpd 2.2.8 ((Ubuntu) DAV/2)
+111/tcp   open  rpcbind     syn-ack ttl 64
+139/tcp   open  netbios-ssn syn-ack ttl 64 Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+445/tcp   open  netbios-ssn syn-ack ttl 64 Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+512/tcp   open  exec?       syn-ack ttl 64
+513/tcp   open  login       syn-ack ttl 64
+514/tcp   open  tcpwrapped  syn-ack ttl 64
+1099/tcp  open  java-rmi    syn-ack ttl 64 GNU Classpath grmiregistry
+1524/tcp  open  ingreslock? syn-ack ttl 64
+2121/tcp  open  ftp         syn-ack ttl 64 ProFTPD 1.3.1
+3306/tcp  open  mysql       syn-ack ttl 64 MySQL 5.0.51a-3ubuntu5
+3632/tcp  open  distccd     syn-ack ttl 64 distccd v1 ((GNU) 4.2.4 (Ubuntu 4.2.4-1ubuntu4))
+5432/tcp  open  postgresql  syn-ack ttl 64 PostgreSQL DB 8.3.0 - 8.3.7
+5900/tcp  open  vnc         syn-ack ttl 64 VNC (protocol 3.3)
+6000/tcp  open  X11         syn-ack ttl 64 (access denied)
+6667/tcp  open  irc         syn-ack ttl 64 UnrealIRCd
+6697/tcp  open  irc         syn-ack ttl 64 UnrealIRCd
+8009/tcp  open  ajp13       syn-ack ttl 64 Apache Jserv (Protocol v1.3)
+8180/tcp  open  http        syn-ack ttl 64 Apache Tomcat/Coyote JSP engine 1.1
+8787/tcp  open  drb         syn-ack ttl 64 Ruby DRb RMI (Ruby 1.8; path /usr/lib/ruby/1.8/drb)
+41089/tcp open  unknown     syn-ack ttl 64
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port1524-TCP:V=7.99%I=2%D=11/7%Time=6AEEEF8B%P=x86_64-alpine-linux-musl
+SF:%r(NULL,16,"root@nt1301-target:/#\x20")%r(GenericLines,72,"root@nt1301-
+SF:target:/#\x20\nroot@nt1301-target:/#\x20\nroot@nt1301-target:/#\x20\nro
+SF:ot@nt1301-target:/#\x20\nroot@nt1301-target:/#\x20")%r(GetRequest,479,"
+SF:root@nt1301-target:/#\x20GET\x20/\x20HTTP/1\.0\n<HTML>\n<HEAD>\n<TITLE>
+SF:Directory\x20/</TITLE>\n<BASE\x20HREF=\"file:/\">\n</HEAD>\n<BODY>\n<H1
+SF:>Directory\x20listing\x20of\x20/</H1>\n<UL>\n<LI><A\x20HREF=\"\./\">\./
+SF:</A>\n<LI><A\x20HREF=\"\.\./\">\.\./</A>\n<LI><A\x20HREF=\"\.dockerenv\
+SF:">\.dockerenv</A>\n<LI><A\x20HREF=\"bin/\">bin/</A>\n<LI><A\x20HREF=\"b
+SF:oot/\">boot/</A>\n<LI><A\x20HREF=\"cdrom/\">cdrom/</A>\n<LI><A\x20HREF=
+SF:\"core\">core</A>\n<LI><A\x20HREF=\"dev/\">dev/</A>\n<LI><A\x20HREF=\"e
+SF:tc/\">etc/</A>\n<LI><A\x20HREF=\"home/\">home/</A>\n<LI><A\x20HREF=\"in
+SF:itrd/\">initrd/</A>\n<LI><A\x20HREF=\"initrd\.img\">initrd\.img</A>\n<L
+SF:I><A\x20HREF=\"lib/\">lib/</A>\n<LI><A\x20HREF=\"lost%2Bfound/\">lost\+
+SF:found/</A>\n<LI><A\x20HREF=\"media/\">media/</A>\n<LI><A\x20HREF=\"mnt/
+SF:\">mnt/</A>\n<LI><A\x20HREF=\"nohup\.out\">nohup\.out</A>\n<LI><A\x20HR
+SF:EF=\"opt/\">opt/</A>\n<LI><A\x20HREF=\"proc/\">proc/</A>\n<LI><A\x20HRE
+SF:F=\"root/\">root/</A>\n<LI><A\x20HREF=\"sbin/\">sbin/</A>\n<LI><A\x20HR
+SF:EF=\"srv/\">srv/</A>\n<LI><A\x20HREF=\"sys/\">sys/</A>\n<LI><A\x20HREF=
+SF:\"tmp/\">tmp/</A>\n<LI><A\x20HR")%r(SSLSessionReq,1C9,"root@nt1301-targ
+SF:et:/#\x20\^CS\x08\x08\x08O\^CS\x08\x08\x08\x07\?\^CS\x08\x08\x08G\^CS\x
+SF:08\x08\x08\x07\x07\x07,\^CS\x08\x08\x08\x08\x08\x08\x08:\x20\x20\x20\x2
+SF:0\x20\x20\x08\x08\x08\x08\x08\x08\xea\xb2`~\xf3\x08\x08\x08\x08\x08\x08
+SF:O\?G,\^CS\x07\x08\x08\x08\x08\x08\x08\x08\x07\x07{O\?G,\^CS\x08\x08\x08
+SF:\x08\x08\x08\x08\r\(arg:\x201\)\x20{O\?G,\^CS\x20\x20\x20\x20\x20\x20\x
+SF:20\x20\x20\x20\x20\x20\x20\r\(arg:\x201\)\x20{\x08\x08\x08\x089\)\x20{O
+SF:\?G,\^CS\x08\x08\x08\x08\x08\x08\x08\rroot@nt1301-target:/#\x20{O\?G,\^
+SF:CS\x08\x08\x08\x08\x08\x08\x08O\?G,\^CS\x07\x07w\x07\x07=\x07\x07\x07n\
+SF:(\r\(i-search\)`':\x20{O\?G,\^CSw=n\(\x20\x20\x20\x20\x20\x20\x20\x20\x
+SF:08\x08\x08\x08\x08\x08\x08\x08\rroot@nt1301-target:/#\x20{O\?G,\^CSw=\^
+SF:@\(\nbash:\x20{O\?G,\x03Sw=:\x20command\x20not\x20found\nroot@nt1301-ta
+SF:rget:/#\x20f\x07edcba`\x08\x08\x08\x08\x08\x08\x08\x20\x20\x20\x20\x20\
+SF:x20\x20\x08\x08\x08\x08\x08\x08\x08\r\(reverse-i-search\)`':\x20\rroot@
+SF:nt1301-target:/#\x20\x07\x07\x07\x07\x07");
+MAC Address: C6:2E:89:E4:99:49 (Unknown)
+Service Info: Hosts:  metasploitable.localdomain, irc.Metasploitable.LAN; OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Nov  7 09:30:07 2026 -- 1 IP address (1 host up) scanned in 27.57 seconds

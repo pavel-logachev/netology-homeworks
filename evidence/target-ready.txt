@@ -1,0 +1,38 @@
+﻿Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:3306            0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:1099            0.0.0.0:*               LISTEN      816/rmiregistry 
+tcp        0      0 0.0.0.0:1524            0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      50/apache2      
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:25              0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:23              0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:21              0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:139             0.0.0.0:*               LISTEN      607/smbd        
+tcp        0      0 0.0.0.0:41089           0.0.0.0:*               LISTEN      816/rmiregistry 
+tcp        0      0 0.0.0.0:445             0.0.0.0:*               LISTEN      607/smbd        
+tcp        0      0 0.0.0.0:8787            0.0.0.0:*               LISTEN      820/ruby        
+tcp        0      0 0.0.0.0:514             0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:512             0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:513             0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:8009            0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:8180            0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:6667            0.0.0.0:*               LISTEN      834/unrealircd  
+tcp        0      0 0.0.0.0:6697            0.0.0.0:*               LISTEN      834/unrealircd  
+tcp        0      0 0.0.0.0:5432            0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:6000            0.0.0.0:*               LISTEN      830/Xtightvnc   
+tcp        0      0 0.0.0.0:5900            0.0.0.0:*               LISTEN      830/Xtightvnc   
+tcp        0      0 127.0.0.11:43167        0.0.0.0:*               LISTEN      -               
+tcp6       0      0 :::3632                 :::*                    LISTEN      -               
+tcp6       0      0 :::2121                 :::*                    LISTEN      -               
+tcp6       0      0 :::22                   :::*                    LISTEN      656/sshd        
+tcp6       0      0 :::5432                 :::*                    LISTEN      -               
+udp        0      0 127.0.0.11:52754        0.0.0.0:*                           -               
+udp        0      0 0.0.0.0:69              0.0.0.0:*                           835/xinetd      
+udp        0      0 0.0.0.0:111             0.0.0.0:*                           -               
+udp        0      0 172.24.0.2:137          0.0.0.0:*                           605/nmbd        
+udp        0      0 0.0.0.0:137             0.0.0.0:*                           605/nmbd        
+udp        0      0 172.24.0.2:138          0.0.0.0:*                           605/nmbd        
+udp        0      0 0.0.0.0:138             0.0.0.0:*                           605/nmbd        
+udp        0      0 127.0.0.1:161           0.0.0.0:*                           -               
+Version 3.0.20-Debian

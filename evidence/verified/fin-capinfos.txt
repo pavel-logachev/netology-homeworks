@@ -1,0 +1,26 @@
+File name:           /evidence/verified/fin.pcap
+File type:           Wireshark/tcpdump/... - pcap
+File encapsulation:  Ethernet
+File timestamp precision:  microseconds (6)
+Packet size limit:   file hdr: 262144 bytes
+Number of packets:   10
+File size:           724 bytes
+Data size:           540 bytes
+Capture duration:    1.101328 second
+Earliest packet time: 2026-11-07 09:33:02.820264
+Latest packet time:   2026-11-07 09:33:03.921592
+Data byte rate:      490 bytes/s
+Data bit rate:       3922 bits/s
+Average packet size: 54.00 bytes
+Average packet rate: 9 packets/s
+SHA256:              020dee5216cefdef3dea98a935eb54679357dc2d9608bfd24920ddf7047490a6
+SHA1:                f183075d21314f3b31a6d47b86b652d42d8b01ef
+Strict time order:   True
+Number of interfaces in file: 1
+Interface #0 info:
+                     Encapsulation = Ethernet (1 - ether)
+                     Capture length = 262144
+                     Time precision = microseconds (6)
+                     Time ticks per second = 1000000
+                     Number of stat entries = 0
+                     Number of packets = 10

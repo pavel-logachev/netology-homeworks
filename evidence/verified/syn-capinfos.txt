@@ -1,0 +1,26 @@
+File name:           /evidence/verified/syn.pcap
+File type:           Wireshark/tcpdump/... - pcap
+File encapsulation:  Ethernet
+File timestamp precision:  microseconds (6)
+Packet size limit:   file hdr: 262144 bytes
+Number of packets:   14
+File size:           1040 bytes
+Data size:           792 bytes
+Capture duration:    0.000223 seconds
+Earliest packet time: 2026-11-07 09:33:00.004553
+Latest packet time:   2026-11-07 09:33:00.004776
+Data byte rate:      3552 kBps
+Data bit rate:       28 Mbps
+Average packet size: 56.57 bytes
+Average packet rate: 62 kpackets/s
+SHA256:              382a356ec958503ff58ab8845304feac43452fccbc1e3f29d5214f4aa20bee63
+SHA1:                27690de5b20d5d49070244fd119d2ebb2410a9d6
+Strict time order:   True
+Number of interfaces in file: 1
+Interface #0 info:
+                     Encapsulation = Ethernet (1 - ether)
+                     Capture length = 262144
+                     Time precision = microseconds (6)
+                     Time ticks per second = 1000000
+                     Number of stat entries = 0
+                     Number of packets = 14

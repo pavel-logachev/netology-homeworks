@@ -1,0 +1,2 @@
+# Preserve raw evidence bytes, mixed log line endings and SHA256 manifests.
+* -text

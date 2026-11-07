@@ -1,0 +1,116 @@
+﻿USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0   2804  2260 ?        Ss   04:27   0:00 /bin/sh -c while :; do sleep 3600; done
+root           7  0.0  0.0   1928  1268 ?        S    04:27   0:00 sleep 3600
+root          50  0.0  0.0  10676  3632 ?        Ss   04:27   0:00 /usr/sbin/apache2 -k start
+www-data      52  0.0  0.0  10676  3176 ?        S    04:27   0:00 /usr/sbin/apache2 -k start
+www-data      53  0.0  0.0  10676  3176 ?        S    04:27   0:00 /usr/sbin/apache2 -k start
+www-data      54  0.0  0.0  10676  3176 ?        S    04:27   0:00 /usr/sbin/apache2 -k start
+www-data      55  0.0  0.0  10676  3176 ?        S    04:27   0:00 /usr/sbin/apache2 -k start
+www-data      56  0.0  0.0  10676  3176 ?        S    04:27   0:00 /usr/sbin/apache2 -k start
+daemon        78  0.0  0.0   2064  1212 ?        Ss   04:27   0:00 /usr/sbin/atd
+root         101  0.0  0.0   2184  1772 ?        Ss   04:27   0:00 /usr/sbin/cron
+daemon       123  0.0  0.0   2396  1188 ?        SNs  04:27   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       124  0.0  0.0   2396   744 ?        SN   04:27   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+root         170  0.0  0.0   2848  2288 ?        S    04:27   0:00 /bin/sh /usr/bin/mysqld_safe
+mysql        212  0.4  0.1 135828 20804 ?        Sl   04:27   0:00 /usr/sbin/mysqld --basedir=/usr --datadir=/var/lib/mysql --user=mysql --pid-file=/var/run/mysqld/mysqld.pid --skip-external-locking --port=3306 --socket=/var/run/mysqld/mysqld.sock
+root         213  0.0  0.0   1780  1316 ?        S    04:27   0:00 logger -p daemon.err -t mysqld_safe -i -t mysqld
+daemon       224  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       385  0.0  0.0   6016  1204 ?        Ss   04:28   0:00 /sbin/portmap
+daemon       388  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+root         464  0.0  0.0   5492  3144 ?        Ss   04:28   0:00 /usr/lib/postfix/master
+postfix      472  0.0  0.0   5500  3144 ?        S    04:28   0:00 pickup -l -t fifo -u -c
+postfix      473  0.0  0.0   5540  3176 ?        S    04:28   0:00 qmgr -l -t fifo -u
+postgres     500  0.6  0.0  41420  9392 ?        S    04:28   0:00 /usr/lib/postgresql/8.3/bin/postgres -D /var/lib/postgresql/8.3/main -c config_file=/etc/postgresql/8.3/main/postgresql.conf
+postgres     502  0.0  0.0  41420  3880 ?        Ss   04:28   0:00 postgres: writer process                                                                                                    
+postgres     503  0.0  0.0  41420  3780 ?        Ss   04:28   0:00 postgres: wal writer process                                                                                                
+postgres     504  0.0  0.0  41420  3932 ?        Ss   04:28   0:00 postgres: autovacuum launcher process                                                                                       
+postgres     505  0.0  0.0  12740  3420 ?        Ss   04:28   0:00 postgres: stats collector process                                                                                           
+daemon       508  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       515  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+proftpd      545  0.0  0.0  10028  2808 ?        Ss   04:28   0:00 proftpd: (accepting connections)
+root         605  0.0  0.0   5468  2692 ?        Ss   04:28   0:00 /usr/sbin/nmbd -D
+root         607  0.0  0.0   7804  3448 ?        Ss   04:28   0:00 /usr/sbin/smbd -D
+root         629  0.0  0.0   7804  2384 ?        S    04:28   0:00 /usr/sbin/smbd -D
+snmp         631  0.0  0.0   8836  6132 ?        S    04:28   0:00 /usr/sbin/snmpd -Lsd -Lf /dev/null -u snmp -I -smux -p /var/run/snmpd.pid 127.0.0.1
+root         656  0.0  0.0   5392  3000 ?        Ss   04:28   0:00 /usr/sbin/sshd
+syslog       698  0.3  0.0   6116  5572 ?        Ss   04:28   0:00 /sbin/syslogd -u syslog
+daemon       724  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+root         733  0.0  0.0   2132   940 ?        Ss   04:28   0:00 /usr/bin/jsvc -user tomcat55 -cp /usr/share/java/commons-daemon.jar:/usr/share/tomcat5.5/bin/bootstrap.jar -outfile SYSLOG -errfile SYSLOG -pidfile /var/run/tomcat5.5.pid -Djava.awt.headless=true -Xmx128M -Djava.endorsed.dirs=/usr/share/tomcat5.5/common/endorsed -Dcatalina.base=/var/lib/tomcat5.5 -Dcatalina.home=/usr/share/tomcat5.5 -Djava.io.tmpdir=/var/lib/tomcat5.5/temp -Djava.security.manager -Djava.security.policy=/var/lib/tomcat5.5/conf/catalina.policy org.apache.catalina.startup.Bootstrap
+root         734  0.0  0.0   2132  1208 ?        S    04:28   0:00 /usr/bin/jsvc -user tomcat55 -cp /usr/share/java/commons-daemon.jar:/usr/share/tomcat5.5/bin/bootstrap.jar -outfile SYSLOG -errfile SYSLOG -pidfile /var/run/tomcat5.5.pid -Djava.awt.headless=true -Xmx128M -Djava.endorsed.dirs=/usr/share/tomcat5.5/common/endorsed -Dcatalina.base=/var/lib/tomcat5.5 -Dcatalina.home=/usr/share/tomcat5.5 -Djava.io.tmpdir=/var/lib/tomcat5.5/temp -Djava.security.manager -Djava.security.policy=/var/lib/tomcat5.5/conf/catalina.policy org.apache.catalina.startup.Bootstrap
+tomcat55     735  5.8  0.6 357600 84952 ?        Sl   04:28   0:02 /usr/bin/jsvc -user tomcat55 -cp /usr/share/java/commons-daemon.jar:/usr/share/tomcat5.5/bin/bootstrap.jar -outfile SYSLOG -errfile SYSLOG -pidfile /var/run/tomcat5.5.pid -Djava.awt.headless=true -Xmx128M -Djava.endorsed.dirs=/usr/share/tomcat5.5/common/endorsed -Dcatalina.base=/var/lib/tomcat5.5 -Dcatalina.home=/usr/share/tomcat5.5 -Djava.io.tmpdir=/var/lib/tomcat5.5/temp -Djava.security.manager -Djava.security.policy=/var/lib/tomcat5.5/conf/catalina.policy org.apache.catalina.startup.Bootstrap
+root         816  0.0  0.2  66424 30776 ?        Sl   04:28   0:00 /usr/bin/rmiregistry
+root         820  0.1  0.0  12288  3496 ?        Sl   04:28   0:00 ruby /usr/sbin/druby_timeserver.rb
+root         830  0.3  0.1  14108 13260 ?        S    04:28   0:00 Xtightvnc :0 -desktop X -auth /root/.Xauthority -geometry 1024x768 -depth 24 -rfbwait 120000 -rfbauth /root/.vnc/passwd -rfbport 5900 -fp /usr/X11R6/lib/X11/fonts/Type1/,/usr/X11R6/lib/X11/fonts/Speedo/,/usr/X11R6/lib/X11/fonts/misc/,/usr/X11R6/lib/X11/fonts/75dpi/,/usr/X11R6/lib/X11/fonts/100dpi/,/usr/share/fonts/X11/misc/,/usr/share/fonts/X11/Type1/,/usr/share/fonts/X11/75dpi/,/usr/share/fonts/X11/100dpi/ -co /etc/X11/rgb
+root         834  0.0  0.0   8620  3812 ?        S    04:28   0:00 /usr/bin/unrealircd
+root         835  0.0  0.0   2504  1728 ?        Ss   04:28   0:00 /usr/sbin/xinetd -pidfile /var/run/xinetd.pid -stayalive -inetd_compat
+daemon       838  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+root         842  0.0  0.0   2804  2248 ?        S    04:28   0:00 /bin/sh /root/.vnc/xstartup
+root         845  0.0  0.0   6016  4568 ?        S    04:28   0:00 xterm -geometry 80x24+10+10 -ls -title X Desktop
+root         847  0.3  0.0   9068  7676 ?        S    04:28   0:00 fluxbox
+root         882  0.0  0.0   2924  2524 pts/0    Ss+  04:28   0:00 -bash
+daemon       894  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       927  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       928  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       929  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       930  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       931  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       932  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       933  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       934  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       935  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       936  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       937  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       938  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       939  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       940  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       941  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       942  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       943  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       944  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       945  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       946  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       947  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       948  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       949  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       950  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       951  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon       952  0.0  0.0   2396   744 ?        SN   04:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+root         953  0.0  0.0   2804  2224 ?        Ss   04:28   0:00 sh -c ps aux; netstat -lntup
+root         959  0.0  0.0   2444  1600 ?        R    04:28   0:00 ps aux
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:3306            0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:1099            0.0.0.0:*               LISTEN      816/rmiregistry 
+tcp        0      0 0.0.0.0:1524            0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      50/apache2      
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:25              0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:23              0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:21              0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:139             0.0.0.0:*               LISTEN      607/smbd        
+tcp        0      0 0.0.0.0:41089           0.0.0.0:*               LISTEN      816/rmiregistry 
+tcp        0      0 0.0.0.0:445             0.0.0.0:*               LISTEN      607/smbd        
+tcp        0      0 0.0.0.0:8787            0.0.0.0:*               LISTEN      820/ruby        
+tcp        0      0 0.0.0.0:514             0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:512             0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:513             0.0.0.0:*               LISTEN      835/xinetd      
+tcp        0      0 0.0.0.0:8009            0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:8180            0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:6667            0.0.0.0:*               LISTEN      834/unrealircd  
+tcp        0      0 0.0.0.0:6697            0.0.0.0:*               LISTEN      834/unrealircd  
+tcp        0      0 0.0.0.0:5432            0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:6000            0.0.0.0:*               LISTEN      830/Xtightvnc   
+tcp        0      0 0.0.0.0:5900            0.0.0.0:*               LISTEN      830/Xtightvnc   
+tcp        0      0 127.0.0.11:43167        0.0.0.0:*               LISTEN      -               
+tcp6       0      0 :::3632                 :::*                    LISTEN      -               
+tcp6       0      0 :::2121                 :::*                    LISTEN      -               
+tcp6       0      0 :::22                   :::*                    LISTEN      656/sshd        
+tcp6       0      0 :::5432                 :::*                    LISTEN      -               
+udp        0      0 127.0.0.11:52754        0.0.0.0:*                           -               
+udp        0      0 0.0.0.0:69              0.0.0.0:*                           835/xinetd      
+udp        0      0 0.0.0.0:111             0.0.0.0:*                           -               
+udp        0      0 172.24.0.2:137          0.0.0.0:*                           605/nmbd        
+udp        0      0 0.0.0.0:137             0.0.0.0:*                           605/nmbd        
+udp        0      0 172.24.0.2:138          0.0.0.0:*                           605/nmbd        
+udp        0      0 0.0.0.0:138             0.0.0.0:*                           605/nmbd        
+udp        0      0 127.0.0.1:161           0.0.0.0:*                           -               

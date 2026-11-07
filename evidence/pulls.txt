@@ -1,0 +1,7 @@
+﻿docker pull tleemcjr/metasploitable2:latest
+Digest: sha256:e559450b37dccc1909eafa2df5b20bb052e1bd801246f4539a3ef183d5f7288a
+Status: Downloaded newer image for tleemcjr/metasploitable2:latest
+docker pull nicolaka/netshoot:latest
+Digest: sha256:b09d9b21381f47a79b3cbcb30da25266dc17186ea00ae65e99fdc51396f48e70
+Status: Downloaded newer image for nicolaka/netshoot:latest
+Transcribed from successful background job pwsh-78b6f47c92524df8.

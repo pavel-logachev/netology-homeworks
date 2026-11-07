@@ -1,0 +1,14 @@
+# Nmap 7.99 scan initiated Sat Nov  7 09:33:11 2026 as: nmap -sU -n -Pn --reason -p 53,69,111,137,161,65000 --max-retries 1 --host-timeout 90s -T3 -oA /evidence/verified/udp 172.24.0.2
+Nmap scan report for 172.24.0.2
+Host is up, received arp-response (0.000049s latency).
+
+PORT      STATE         SERVICE    REASON
+53/udp    closed        domain     port-unreach ttl 64
+69/udp    open|filtered tftp       no-response
+111/udp   open          rpcbind    udp-response ttl 64
+137/udp   open          netbios-ns udp-response ttl 64
+161/udp   closed        snmp       port-unreach ttl 64
+65000/udp closed        unknown    port-unreach ttl 64
+MAC Address: C6:2E:89:E4:99:49 (Unknown)
+
+# Nmap done at Sat Nov  7 09:33:13 2026 -- 1 IP address (1 host up) scanned in 1.36 seconds

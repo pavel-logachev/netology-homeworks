@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.99 scan initiated Sat Nov  7 09:36:22 2026 as: nmap -sV -&#45;version-all -&#45;script smb-os-discovery,irc-info -p 21,139,445,6667 -n -Pn -&#45;host-timeout 2m -oA /evidence/versions-confirmed 172.24.0.2 -->
+<nmaprun scanner="nmap" args="nmap -sV -&#45;version-all -&#45;script smb-os-discovery,irc-info -p 21,139,445,6667 -n -Pn -&#45;host-timeout 2m -oA /evidence/versions-confirmed 172.24.0.2" start="1794044182" startstr="Sat Nov  7 09:36:22 2026" version="7.99" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="4" services="21,139,445,6667"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="172.24.0.2" addrtype="ipv4"/>
+<address addr="C6:2E:89:E4:99:49" addrtype="mac"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1794044182" endtime="1794044194"><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="172.24.0.2" addrtype="ipv4"/>
+<address addr="C6:2E:89:E4:99:49" addrtype="mac"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ftp" product="vsftpd" version="2.3.4" ostype="Unix" method="probed" conf="10"><cpe>cpe:/a:vsftpd:vsftpd:2.3.4</cpe></service></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="netbios-ssn" product="Samba smbd" version="3.X - 4.X" extrainfo="workgroup: WORKGROUP" method="probed" conf="10"><cpe>cpe:/a:samba:samba</cpe></service></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="netbios-ssn" product="Samba smbd" version="3.0.20-Debian" extrainfo="workgroup: WORKGROUP" method="probed" conf="10"><cpe>cpe:/a:samba:samba</cpe></service></port>
+<port protocol="tcp" portid="6667"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="irc" product="UnrealIRCd" hostname="irc.Metasploitable.LAN" method="probed" conf="10"><cpe>cpe:/a:unrealircd:unrealircd</cpe></service><script id="irc-info" output="&#xa;  users: 1&#xa;  servers: 1&#xa;  lusers: 1&#xa;  lservers: 0&#xa;  server: irc.Metasploitable.LAN&#xa;  version: Unreal3.2.8.1. irc.Metasploitable.LAN &#xa;  uptime: 0 days, 0:08:30&#xa;  source ident: nmap&#xa;  source host: Test-1A328E20.nt1301-lab&#xa;  error: Closing Link: bpoqxowrt[nt1301-scanner.nt1301-lab] (Quit: bpoqxowrt)"><elem key="users">1</elem>
+<elem key="servers">1</elem>
+<elem key="lusers">1</elem>
+<elem key="lservers">0</elem>
+<elem key="server">irc.Metasploitable.LAN</elem>
+<elem key="version">Unreal3.2.8.1. irc.Metasploitable.LAN </elem>
+<elem key="uptime">0 days, 0:08:30</elem>
+<elem key="source ident">nmap</elem>
+<elem key="source host">Test-1A328E20.nt1301-lab</elem>
+<elem key="error">Closing Link: bpoqxowrt[nt1301-scanner.nt1301-lab] (Quit: bpoqxowrt)</elem>
+</script></port>
+</ports>
+<hostscript><script id="smb-os-discovery" output="&#xa;  OS: Unix (Samba 3.0.20-Debian)&#xa;  Computer name: nt1301-target&#xa;  NetBIOS computer name: &#xa;  Domain name: &#xa;  FQDN: nt1301-target&#xa;  System time: 2026-11-07T04:36:33-05:00&#xa;"><elem key="os">Unix</elem>
+<elem key="lanmanager">Samba 3.0.20-Debian</elem>
+<elem key="server"></elem>
+<elem key="date">2026-11-07T04:36:33-05:00</elem>
+<elem key="fqdn">nt1301-target</elem>
+<elem key="domain_dns"></elem>
+<elem key="workgroup">WORKGROUP\x00</elem>
+</script></hostscript><times srtt="37" rttvar="1602" to="100000"/>
+</host>
+<runstats><finished time="1794044194" timestr="Sat Nov  7 09:36:34 2026" summary="Nmap done at Sat Nov  7 09:36:34 2026; 1 IP address (1 host up) scanned in 12.28 seconds" elapsed="12.28" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
