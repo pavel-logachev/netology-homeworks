@@ -1,0 +1,48 @@
+Cleanup UTC 2026-11-07T09:41:43.4914737Z
+docker inspect --format {{.Name}} {{.Image}} nt1303-defender nt1303-attacker
+/nt1303-defender sha256:702c4e0ed785704aaf9478b4550fb33bae648e602cff434cdebb6530bdb2d544
+/nt1303-attacker sha256:702c4e0ed785704aaf9478b4550fb33bae648e602cff434cdebb6530bdb2d544
+[exit code: 0]
+docker network inspect --format {{.Name}} {{.Internal}} nt1303-isolated
+nt1303-isolated true
+[exit code: 0]
+docker compose -f stand/compose.yaml down
+docker.exe :  Container nt1303-defender Stopping 
+At C:\Users\pavel\Documents\DeepSeekHarness\cache\netology-20261107\w-1303\wt\stand\cleanup.ps1:7 char:12
++     $out = & docker @DockerArgs 2>&1
++            ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( Container nt1303-defender Stopping :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ Container nt1303-attacker Stopping 
+ Container nt1303-defender Stopped 
+ Container nt1303-defender Removing 
+ Container nt1303-attacker Stopped 
+ Container nt1303-attacker Removing 
+ Container nt1303-defender Removed 
+ Container nt1303-attacker Removed 
+ Network nt1303-isolated Removing 
+ Network nt1303-isolated Removed 
+[exit code: 0]
+docker image rm nt1303-lab:noble
+Untagged: nt1303-lab:noble
+Deleted: sha256:46a35177ba8025c119e8e72a3c54d27b84119ba1d3bc26c19e51076ce8cc6204
+[exit code: 0]
+docker image rm sha256:702c4e0ed785704aaf9478b4550fb33bae648e602cff434cdebb6530bdb2d544
+docker.exe : Error response from daemon: No such image: sha256:702c4e0ed785704aaf9478b4550fb33bae648e602cff434cdebb6530
+bdb2d544
+At C:\Users\pavel\Documents\DeepSeekHarness\cache\netology-20261107\w-1303\wt\stand\cleanup.ps1:7 char:12
++     $out = & docker @DockerArgs 2>&1
++            ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Error response ...ebb6530bdb2d544:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[exit code: 1]
+Diagnostic: original image rm returned No such image after tagged-image deletion; no retry needed.
+docker ps -a --filter name=nt1303-
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+docker network ls --filter name=nt1303-
+NETWORK ID   NAME      DRIVER    SCOPE
+containers_count=0
+networks_count=0
+images_count=0

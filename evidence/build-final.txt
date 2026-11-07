@@ -1,0 +1,78 @@
+﻿docker :  Image nt1303-lab:noble Building 
+At line:1 char:584
++ ... ; sleep 3'; docker compose --progress plain -f stand\compose.yaml bui ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( Image nt1303-lab:noble Building :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+#1 [internal] load local bake definitions
+#1 reading from stdin 642B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 854B 0.0s done
+#2 DONE 0.0s
+
+#3 resolve image config for docker-image://docker.io/docker/dockerfile:1
+#3 DONE 1.2s
+
+#4 docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
+#4 resolve docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e 0.0s done
+#4 CACHED
+
+#5 [internal] load metadata for docker.io/library/ubuntu:24.04
+#5 DONE 0.8s
+
+#6 [internal] load .dockerignore
+#6 transferring context: 78B done
+#6 DONE 0.0s
+
+#7 [ 1/10] FROM docker.io/library/ubuntu:24.04@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852
+#7 resolve docker.io/library/ubuntu:24.04@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852 0.0s done
+#7 DONE 0.0s
+
+#8 [internal] load build context
+#8 transferring context: 5.51kB 0.0s done
+#8 DONE 0.0s
+
+#9 [ 4/10] RUN suricata-update --no-test --no-reload
+#9 CACHED
+
+#10 [ 5/10] COPY start-defender.sh /lab/start-defender.sh
+#10 CACHED
+
+#11 [ 6/10] COPY local.rules /lab/local.rules
+#11 CACHED
+
+#12 [ 8/10] COPY jail.local /lab/jail.local
+#12 CACHED
+
+#13 [ 3/10] RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends suricata suricata-update fail2ban openssh-server rsyslog iptables nftables nmap hydra iproute2 curl ca-certificates python3 procps && rm -rf /var/lib/apt/lists/*
+#13 CACHED
+
+#14 [ 7/10] COPY sshd_config /lab/sshd_config
+#14 CACHED
+
+#15 [ 2/10] WORKDIR /lab
+#15 CACHED
+
+#16 [ 9/10] COPY users.txt pass.txt /lab/
+#16 CACHED
+
+#17 [10/10] COPY *.py /lab/
+#17 DONE 0.0s
+
+#18 exporting to image
+#18 exporting layers 0.1s done
+#18 exporting manifest sha256:05887f9cba9018d906fe173f22ba04fece963e2046e6c9e3b37f1d9189dab5ae 0.0s done
+#18 exporting config sha256:84c87a0139dca98b0a8e15352feae8e2b2d86ede4c9e3a9ad2231c4c529e17e4 0.0s done
+#18 exporting attestation manifest sha256:40de43faa4ae1447bcac715ce9469ec88ca7d8a799da0772ed8819a59872797b 0.0s done
+#18 exporting manifest list sha256:46a35177ba8025c119e8e72a3c54d27b84119ba1d3bc26c19e51076ce8cc6204
+#18 exporting manifest list sha256:46a35177ba8025c119e8e72a3c54d27b84119ba1d3bc26c19e51076ce8cc6204 0.0s done
+#18 naming to docker.io/library/nt1303-lab:noble done
+#18 unpacking to docker.io/library/nt1303-lab:noble 0.0s done
+#18 DONE 0.3s
+
+#19 resolving provenance for metadata file
+#19 DONE 0.0s
+ Image nt1303-lab:noble Built 

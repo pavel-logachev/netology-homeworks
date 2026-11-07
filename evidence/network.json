@@ -1,0 +1,64 @@
+﻿[
+    {
+        "Name": "nt1303-isolated",
+        "Id": "2b65aa40b0b4561bb8d386d8101b48068063286bd79da282b05400fb6260c8ec",
+        "Created": "2026-11-07T09:30:34.447093212Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.30.133.0/24",
+                    "Gateway": "172.30.133.1"
+                }
+            ]
+        },
+        "Internal": true,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {
+            "com.docker.network.enable_ipv4": "true",
+            "com.docker.network.enable_ipv6": "false"
+        },
+        "Labels": {
+            "com.docker.compose.config-hash": "6bdb73e1da28b2f0e3bb8d9ba12ad9482a69fa720e13abe4b0524e929212aa2e",
+            "com.docker.compose.network": "isolated",
+            "com.docker.compose.project": "nt1303-lab",
+            "com.docker.compose.version": "5.5.1"
+        },
+        "Containers": {
+            "05aa4a10006ec549ae7ac708a837f9c88a777d14d49963ffd0a400f1db6288ec": {
+                "Name": "nt1303-attacker",
+                "EndpointID": "f24a80d35c5db494fefcaab54de597a9c8d8675f653b1780f3abe9de29eec91c",
+                "MacAddress": "86:cb:54:c3:22:06",
+                "IPv4Address": "172.30.133.20/24",
+                "IPv6Address": ""
+            },
+            "9125a23ba10161b2032d893a75cd6b4d62f91b9e6b5fbb279972f41f064cefb7": {
+                "Name": "nt1303-defender",
+                "EndpointID": "6a4d891e9213498e4ab0f6ccb0b011e531e7ca8cc05f464881d392dbbc64d2dc",
+                "MacAddress": "82:01:4d:02:f6:4a",
+                "IPv4Address": "172.30.133.10/24",
+                "IPv6Address": ""
+            }
+        },
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+                    "172.30.133.0/24": {
+                        "IPsInUse": 5,
+                        "DynamicIPsAvailable": 251
+                    }
+                }
+            }
+        }
+    }
+]

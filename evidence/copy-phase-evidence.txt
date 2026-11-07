@@ -1,0 +1,2 @@
+docker cp nt1303-defender:/evidence/. evidence/
+[exit code: 0]

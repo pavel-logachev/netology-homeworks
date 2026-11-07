@@ -1,0 +1,29 @@
+﻿-P INPUT ACCEPT
+-P FORWARD ACCEPT
+-P OUTPUT ACCEPT
+-N f2b-sshd
+-A INPUT -p tcp -m multiport --dports 22 -j f2b-sshd
+-A f2b-sshd -j RETURN
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	0
+|  |- Total failed:	4
+|  `- File list:	/var/log/auth.log
+`- Actions
+   |- Currently banned:	0
+   |- Total banned:	1
+   `- Banned IP list:	
+  33 /var/log/auth.log
+  41 /var/log/fail2ban.log
+  74 total
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+tunl0@NONE       DOWN           
+gre0@NONE        DOWN           
+gretap0@NONE     DOWN           
+erspan0@NONE     DOWN           
+ip_vti0@NONE     DOWN           
+ip6_vti0@NONE    DOWN           
+sit0@NONE        DOWN           
+ip6tnl0@NONE     DOWN           
+ip6gre0@NONE     DOWN           
+eth0@if41        UP             172.30.133.10/24 

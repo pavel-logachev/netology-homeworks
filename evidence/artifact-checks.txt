@@ -1,0 +1,14 @@
+﻿PASS ownership/isolation: internal network, exactly two owned containers, no published ports, no privileged mode
+PASS sA: 1002 alerts (0 non-local), Fail2Ban delta 0 bytes, cumulative failures 4, currently banned 0
+PASS sT: 1006 alerts (5 non-local), Fail2Ban delta 0 bytes, cumulative failures 4, currently banned 0
+PASS sS: 1004 alerts (4 non-local), Fail2Ban delta 0 bytes, cumulative failures 4, currently banned 0
+PASS sV: 1008 alerts (4 non-local), Fail2Ban delta 0 bytes, cumulative failures 4, currently banned 0
+PASS hydra disabled: 5 failed passwords then 1 accepted password, F2B delta 0, ET SID 2001219
+PASS hydra enabled: Found=4 Ban=1, banned status=1, REJECT rule, zero valid passwords, post-ban connection refused, local SID 9901303
+PASS 01-nmap-ack-connect.png: 1600x1100, 124458 bytes; visual legibility independently checked using read_image
+PASS 02-nmap-syn-version.png: 1600x1100, 154771 bytes; visual legibility independently checked using read_image
+PASS 03-hydra-disabled.png: 1600x1100, 123795 bytes; visual legibility independently checked using read_image
+PASS 04-hydra-ban.png: 1600x1100, 112125 bytes; visual legibility independently checked using read_image
+PASS original corrected scan readiness and final startup helper live canary
+Evidence files observed: 161
+PASS exact artifact checks complete

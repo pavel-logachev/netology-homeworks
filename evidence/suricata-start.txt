@@ -1,0 +1,3 @@
+docker exec nt1303-defender suricata -D -c /etc/suricata/suricata.yaml --af-packet=eth0 -k none --pidfile /var/run/suricata.pid
+i: suricata: This is Suricata version 7.0.3 RELEASE running in SYSTEM mode
+[exit code: 0]

@@ -1,0 +1,2 @@
+docker cp nt1303-defender:/etc/suricata/suricata.yaml stand/suricata.observed.yaml
+[exit code: 0]

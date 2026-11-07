@@ -1,0 +1,22 @@
+﻿docker :  Network nt1303-isolated Creating 
+At line:1 char:186
++ ... ] = 'utf8'; docker compose -f stand\compose.yaml up -d --wait --wait- ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( Network nt1303-isolated Creating :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ Network nt1303-isolated Creating 
+ Network nt1303-isolated Created 
+ Network nt1303-isolated Created 
+ Container nt1303-defender Creating 
+ Container nt1303-attacker Creating 
+ Container nt1303-defender Created 
+ Container nt1303-attacker Created 
+ Container nt1303-defender Starting 
+ Container nt1303-attacker Starting 
+ Container nt1303-defender Started 
+ Container nt1303-attacker Started 
+ Container nt1303-attacker Waiting 
+ Container nt1303-defender Waiting 
+ Container nt1303-attacker Healthy 
+ Container nt1303-defender Healthy 

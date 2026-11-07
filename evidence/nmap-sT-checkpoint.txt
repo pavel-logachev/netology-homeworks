@@ -1,0 +1,6 @@
+docker exec nt1303-defender python3 /lab/checkpoint.py nmap-sT
+nmap-sT suricata-fast.log: start=0 end=0 bytes=0 lines=0
+nmap-sT suricata-eve.json: start=0 end=0 bytes=0 lines=0
+nmap-sT fail2ban.log: start=1643 end=1643 bytes=0 lines=0
+nmap-sT auth.log: start=93 end=93 bytes=0 lines=0
+[exit code: 0]

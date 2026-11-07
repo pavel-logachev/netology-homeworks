@@ -1,0 +1,6 @@
+# Preserve raw evidence bytes, including intentional empty deltas and native whitespace.
+evidence/** -text
+# Linux entrypoint and configuration must remain LF on Windows checkout.
+stand/** text eol=lf
+stand/*.ps1 text eol=crlf
+*.png binary

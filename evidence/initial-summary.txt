@@ -1,0 +1,38 @@
+﻿baseline-suricata-eve.json events= 0 alerts= 0
+before-hydra-disabled-suricata-eve.json events= 0 alerts= 0
+before-hydra-enabled-suricata-eve.json events= 0 alerts= 0
+final-suricata-eve.json events= 431 alerts= 0
+hydra-disabled-suricata-eve.json events= 14 alerts= 9
+  9901301 2 LAB LOCAL TCP SYN probe or connection 2026-11-07T09:31:48.241468+0000 .. 2026-11-07T09:31:48.501287+0000
+  9901302 6 LAB LOCAL TCP ACK probe 2026-11-07T09:31:48.241502+0000 .. 2026-11-07T09:32:04.021933+0000
+  2001219 1 ET SCAN Potential SSH Scan 2026-11-07T09:31:48.501287+0000 .. 2026-11-07T09:31:48.501287+0000
+hydra-enabled-suricata-eve.json events= 1641 alerts= 42
+  9901301 26 LAB LOCAL TCP SYN probe or connection 2026-11-07T09:32:08.493356+0000 .. 2026-11-07T09:32:46.452635+0000
+  9901302 15 LAB LOCAL TCP ACK probe 2026-11-07T09:32:08.493390+0000 .. 2026-11-07T09:32:47.641757+0000
+  9901303 1 LAB LOCAL repeated SSH connections - possible brute force 2026-11-07T09:32:08.493440+0000 .. 2026-11-07T09:32:08.493440+0000
+nmap-sA-suricata-eve.json events= 0 alerts= 0
+nmap-sS-suricata-eve.json events= 1006 alerts= 1005
+  9901301 1000 LAB LOCAL TCP SYN probe or connection 2026-11-07T09:31:38.581279+0000 .. 2026-11-07T09:31:38.599194+0000
+  2010937 1 ET SCAN Suspicious inbound to mySQL port 3306 2026-11-07T09:31:38.581752+0000 .. 2026-11-07T09:31:38.581752+0000
+  2010935 1 ET SCAN Suspicious inbound to MSSQL port 1433 2026-11-07T09:31:38.584372+0000 .. 2026-11-07T09:31:38.584372+0000
+  2010939 1 ET SCAN Suspicious inbound to PostgreSQL port 5432 2026-11-07T09:31:38.589610+0000 .. 2026-11-07T09:31:38.589610+0000
+  2010936 1 ET SCAN Suspicious inbound to Oracle SQL port 1521 2026-11-07T09:31:38.591493+0000 .. 2026-11-07T09:31:38.591493+0000
+  2002910 1 ET SCAN Potential VNC Scan 5800-5820 2026-11-07T09:31:38.594547+0000 .. 2026-11-07T09:31:38.594547+0000
+nmap-sT-suricata-eve.json events= 0 alerts= 0
+nmap-sV-suricata-eve.json events= 1008 alerts= 1008
+  9901301 1001 LAB LOCAL TCP SYN probe or connection 2026-11-07T09:31:43.029527+0000 .. 2026-11-07T09:31:43.093689+0000
+  2010937 1 ET SCAN Suspicious inbound to mySQL port 3306 2026-11-07T09:31:43.029945+0000 .. 2026-11-07T09:31:43.029945+0000
+  2010935 1 ET SCAN Suspicious inbound to MSSQL port 1433 2026-11-07T09:31:43.032720+0000 .. 2026-11-07T09:31:43.032720+0000
+  2010939 1 ET SCAN Suspicious inbound to PostgreSQL port 5432 2026-11-07T09:31:43.033285+0000 .. 2026-11-07T09:31:43.033285+0000
+  2010936 1 ET SCAN Suspicious inbound to Oracle SQL port 1521 2026-11-07T09:31:43.043480+0000 .. 2026-11-07T09:31:43.043480+0000
+  9901302 3 LAB LOCAL TCP ACK probe 2026-11-07T09:31:43.093722+0000 .. 2026-11-07T09:31:43.102434+0000
+baseline-fail2ban.log bytes= 1643 Found= 0 Ban= 0
+before-hydra-disabled-fail2ban.log bytes= 448 Found= 0 Ban= 0
+before-hydra-enabled-fail2ban.log bytes= 1052 Found= 0 Ban= 0
+final-fail2ban.log bytes= 0 Found= 0 Ban= 0
+hydra-disabled-fail2ban.log bytes= 0 Found= 0 Ban= 0
+hydra-enabled-fail2ban.log bytes= 531 Found= 4 Ban= 1
+nmap-sA-fail2ban.log bytes= 0 Found= 0 Ban= 0
+nmap-sS-fail2ban.log bytes= 0 Found= 0 Ban= 0
+nmap-sT-fail2ban.log bytes= 0 Found= 0 Ban= 0
+nmap-sV-fail2ban.log bytes= 0 Found= 0 Ban= 0

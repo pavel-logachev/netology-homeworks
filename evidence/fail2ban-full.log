@@ -1,0 +1,41 @@
+2026-11-07 09:30:35,211 fail2ban.server         [35]: INFO    --------------------------------------------------
+2026-11-07 09:30:35,212 fail2ban.server         [35]: INFO    Starting Fail2ban v1.0.2
+2026-11-07 09:30:35,212 fail2ban.server         [35]: INFO    Daemon started
+2026-11-07 09:30:35,212 fail2ban.observer       [35]: INFO    Observer start...
+2026-11-07 09:30:35,224 fail2ban.database       [35]: INFO    Connected to fail2ban persistent database '/var/lib/fail2ban/fail2ban.sqlite3'
+2026-11-07 09:30:35,226 fail2ban.database       [35]: WARNING New database created. Version '4'
+2026-11-07 09:31:29,401 fail2ban.server         [35]: INFO    Reload all jails
+2026-11-07 09:31:29,401 fail2ban.jail           [35]: INFO    Creating new jail 'sshd'
+2026-11-07 09:31:29,402 fail2ban.jail           [35]: INFO    Jail 'sshd' uses poller {}
+2026-11-07 09:31:29,402 fail2ban.jail           [35]: INFO    Initiated 'polling' backend
+2026-11-07 09:31:29,402 fail2ban.filter         [35]: INFO      maxLines: 1
+2026-11-07 09:31:29,407 fail2ban.filter         [35]: INFO      maxRetry: 3
+2026-11-07 09:31:29,407 fail2ban.filter         [35]: INFO      findtime: 120
+2026-11-07 09:31:29,407 fail2ban.actions        [35]: INFO      banTime: 600
+2026-11-07 09:31:29,408 fail2ban.filter         [35]: INFO      encoding: utf-8
+2026-11-07 09:31:29,408 fail2ban.filter         [35]: INFO    Added logfile: '/var/log/auth.log' (pos = 0, hash = b21a897ab33ea2a5dbe03e85768b55e9ad8ea3fd)
+2026-11-07 09:31:29,409 fail2ban.jail           [35]: INFO    Jail 'sshd' started
+2026-11-07 09:31:29,409 fail2ban.server         [35]: INFO    Reload finished.
+2026-11-07 09:31:47,442 fail2ban.server         [35]: INFO    Reload all jails
+2026-11-07 09:31:47,442 fail2ban.filter         [35]: INFO    Removed logfile: '/var/log/auth.log'
+2026-11-07 09:31:48,014 fail2ban.actions        [35]: NOTICE  [sshd] Flush ticket(s) with iptables-multiport
+2026-11-07 09:31:48,015 fail2ban.jail           [35]: INFO    Jail 'sshd' stopped
+2026-11-07 09:31:48,015 fail2ban.server         [35]: INFO    Reload finished.
+2026-11-07 09:32:08,242 fail2ban.server         [35]: INFO    Reload all jails
+2026-11-07 09:32:08,242 fail2ban.jail           [35]: INFO    Creating new jail 'sshd'
+2026-11-07 09:32:08,242 fail2ban.jail           [35]: INFO    Jail 'sshd' uses poller {}
+2026-11-07 09:32:08,242 fail2ban.jail           [35]: INFO    Initiated 'polling' backend
+2026-11-07 09:32:08,242 fail2ban.filter         [35]: INFO      maxLines: 1
+2026-11-07 09:32:08,242 fail2ban.filter         [35]: INFO      maxRetry: 3
+2026-11-07 09:32:08,243 fail2ban.filter         [35]: INFO      findtime: 120
+2026-11-07 09:32:08,243 fail2ban.actions        [35]: INFO      banTime: 600
+2026-11-07 09:32:08,243 fail2ban.filter         [35]: INFO      encoding: utf-8
+2026-11-07 09:32:08,243 fail2ban.filter         [35]: INFO    Added logfile: '/var/log/auth.log' (pos = 2523, hash = b21a897ab33ea2a5dbe03e85768b55e9ad8ea3fd)
+2026-11-07 09:32:08,244 fail2ban.jail           [35]: INFO    Jail 'sshd' started
+2026-11-07 09:32:08,244 fail2ban.server         [35]: INFO    Reload finished.
+2026-11-07 09:32:11,047 fail2ban.filter         [35]: INFO    [sshd] Found 172.30.133.20 - 2026-11-07 09:32:10
+2026-11-07 09:32:15,049 fail2ban.filter         [35]: INFO    [sshd] Found 172.30.133.20 - 2026-11-07 09:32:14
+2026-11-07 09:32:17,651 fail2ban.filter         [35]: INFO    [sshd] Found 172.30.133.20 - 2026-11-07 09:32:17
+2026-11-07 09:32:18,246 fail2ban.actions        [35]: NOTICE  [sshd] Ban 172.30.133.20
+2026-11-07 09:32:19,852 fail2ban.filter         [35]: INFO    [sshd] Found 172.30.133.20 - 2026-11-07 09:32:19
+2026-11-07 09:33:33,873 fail2ban.actions        [35]: NOTICE  [sshd] Unban 172.30.133.20

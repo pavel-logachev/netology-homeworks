@@ -1,0 +1,6 @@
+docker exec nt1303-defender python3 /lab/checkpoint.py before-hydra-disabled
+before-hydra-disabled suricata-fast.log: start=356478 end=356478 bytes=0 lines=0
+before-hydra-disabled suricata-eve.json: start=1250453 end=1250453 bytes=0 lines=0
+before-hydra-disabled fail2ban.log: start=1643 end=2091 bytes=448 lines=5
+before-hydra-disabled auth.log: start=449 end=449 bytes=0 lines=0
+[exit code: 0]

@@ -1,0 +1,5 @@
+# LAB-ONLY instrumentation, NOT ET Open signatures and NOT proof of malicious intent.
+# Fixed owned source and destination restrict these demonstrations to this stand.
+alert tcp 172.30.133.20 any -> 172.30.133.10 any (msg:"LAB LOCAL TCP SYN probe or connection"; flags:S; flow:stateless; sid:9901301; rev:1;)
+alert tcp 172.30.133.20 any -> 172.30.133.10 any (msg:"LAB LOCAL TCP ACK probe"; flags:A; flow:stateless; sid:9901302; rev:1;)
+alert tcp 172.30.133.20 any -> 172.30.133.10 22 (msg:"LAB LOCAL repeated SSH connections - possible brute force"; flow:to_server,established; content:"SSH-2.0"; depth:7; threshold:type both,track by_src,count 3,seconds 60; sid:9901303; rev:1;)

@@ -1,0 +1,35 @@
+﻿i: suricata: This is Suricata version 7.0.3 RELEASE running in SYSTEM mode
+[715 - Suricata-Main] 2026-11-07 09:33:22 Notice: suricata: This is Suricata version 7.0.3 RELEASE running in SYSTEM mode
+[715 - Suricata-Main] 2026-11-07 09:33:22 Info: cpu: CPUs/cores online: 32
+[715 - Suricata-Main] 2026-11-07 09:33:22 Info: suricata: Setting engine mode to IDS mode by default
+[715 - Suricata-Main] 2026-11-07 09:33:22 Info: exception-policy: master exception-policy set to: auto
+[715 - Suricata-Main] 2026-11-07 09:33:22 Info: ioctl: eth0: MTU 1500
+[716 - Suricata-Main] 2026-11-07 09:33:22 Info: logopenfile: fast output device (regular) initialized: fast.log
+[716 - Suricata-Main] 2026-11-07 09:33:22 Info: logopenfile: eve-log output device (regular) initialized: eve.json
+[716 - Suricata-Main] 2026-11-07 09:33:22 Info: logopenfile: stats output device (regular) initialized: stats.log
+[716 - Suricata-Main] 2026-11-07 09:33:26 Info: detect: 2 rule files processed. 53334 rules successfully loaded, 0 rules failed, 0
+[716 - Suricata-Main] 2026-11-07 09:33:26 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[716 - Suricata-Main] 2026-11-07 09:33:26 Info: detect: 53339 signatures processed. 1257 are IP-only rules, 4533 are inspecting packet payload, 47314 inspect application layer, 108 are decoder event only
+[716 - Suricata-Main] 2026-11-07 09:33:33 Error: hugepages: unable to open /sys/devices/system/node/
+[716 - Suricata-Main] 2026-11-07 09:33:33 Error: hugepages: failed to obtain number of NUMA nodes in the system
+[716 - Suricata-Main] 2026-11-07 09:33:33 Info: runmodes: eth0: creating 1 thread
+[716 - Suricata-Main] 2026-11-07 09:33:33 Info: unix-manager: unix socket '/var/run/suricata-command.socket'
+[716 - Suricata-Main] 2026-11-07 09:33:33 Notice: threads: Threads created -> W: 1 FM: 1 FR: 1   Engine started.
+[716 - Suricata-Main] 2026-11-07 09:33:33 Error: hugepages: unable to open /sys/devices/system/node/
+[716 - Suricata-Main] 2026-11-07 09:33:33 Error: hugepages: failed to obtain number of NUMA nodes in the system
+
+1
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	1
+|  |- Total failed:	4
+|  `- File list:	/var/log/auth.log
+`- Actions
+   |- Currently banned:	0
+   |- Total banned:	1
+   `- Banned IP list:	
+verified-scans-baseline suricata-fast.log: start=365139 end=365139 bytes=0 lines=0
+verified-scans-baseline suricata-eve.json: start=2550655 end=2550655 bytes=0 lines=0
+verified-scans-baseline fail2ban.log: start=3674 end=3763 bytes=89 lines=1
+verified-scans-baseline auth.log: start=3711 end=3711 bytes=0 lines=0
+READY_FOR_SCANS

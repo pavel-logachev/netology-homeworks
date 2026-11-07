@@ -1,0 +1,67 @@
+﻿[
+    {
+        "Id": "sha256:702c4e0ed785704aaf9478b4550fb33bae648e602cff434cdebb6530bdb2d544",
+        "RepoTags": [
+            "nt1303-lab:noble"
+        ],
+        "RepoDigests": [
+            "nt1303-lab@sha256:702c4e0ed785704aaf9478b4550fb33bae648e602cff434cdebb6530bdb2d544"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-11-07T09:30:02.570925403Z",
+        "Config": {
+            "ExposedPorts": {
+                "22/tcp": {}
+            },
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "sleep",
+                "infinity"
+            ],
+            "WorkingDir": "/lab",
+            "Labels": {
+                "com.docker.compose.project": "nt1303-lab",
+                "com.docker.compose.service": "defender",
+                "com.docker.compose.version": "5.5.1",
+                "org.opencontainers.image.description": "Disposable Netology 13-03 security lab, never expose to production",
+                "org.opencontainers.image.version": "24.04"
+            },
+            "ArgsEscaped": true
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 483171774,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:bec87777bc2fb2edcdf9af11df1531469e7df911309c1413082b18fcb8610278",
+                "sha256:146889046a33b611e84959aa2bf64d28d83daba4ebcd8718748c6e81ebca2b62",
+                "sha256:9fdc77d3c83aa5f96f606b147f7baba24a174a8de8badafa9998543fdcd81701",
+                "sha256:edc416be6d9faa26b5729cc43a16b23220b9cb2ff3cd4d10ffb70817b1243e5f",
+                "sha256:165553d60a69e06fc952b1ec2cfb78255743aaa859f22cec2b899258633792a8",
+                "sha256:b8e7bc1d1a53dbc8d26d02500389c3af2497c3335a5376b09e28fa5f31663909",
+                "sha256:ea982ad540d54440e350a6b611881bd66d4f75f0776b15d080daeb1bd52b7e90",
+                "sha256:ca7b54d1da291210b36e6cc81400f2114a3ae23d86ad898df41652f48be10a60",
+                "sha256:bf368252792b7957144cdb3b449f178f8137b8d32b8cc79939b89c2d5425005d"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-11-07T09:30:07.268592583Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:702c4e0ed785704aaf9478b4550fb33bae648e602cff434cdebb6530bdb2d544",
+            "size": 856
+        },
+        "Identity": {
+            "Build": [
+                {
+                    "Ref": "n84wqwmk0smgzwh7ydhhuu6ln",
+                    "CreatedAt": "2026-11-07T09:30:09.232484086Z"
+                }
+            ]
+        }
+    }
+]

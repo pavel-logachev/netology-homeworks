@@ -1,0 +1,2 @@
+docker exec nt1303-defender bash -c kill -INT $(cat /var/run/suricata.pid); sleep 3
+[exit code: 0]

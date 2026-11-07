@@ -1,0 +1,2 @@
+docker cp nt1303-defender:/etc/fail2ban/jail.local stand/jail-enabled.observed.local
+[exit code: 0]

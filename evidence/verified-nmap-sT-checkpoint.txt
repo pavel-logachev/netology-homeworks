@@ -1,0 +1,4 @@
+verified-nmap-sT suricata-fast.log: start=528455 end=706624 bytes=178169 lines=1006
+verified-nmap-sT suricata-eve.json: start=3185992 end=3815318 bytes=629326 lines=1007
+verified-nmap-sT fail2ban.log: start=3763 end=3763 bytes=0 lines=0
+verified-nmap-sT auth.log: start=3711 end=3711 bytes=0 lines=0

@@ -1,0 +1,17 @@
+2026-11-07T09:31:48.245999+00:00 9125a23ba101 sshd[361]: Connection from 172.30.133.20 port 44240 on 172.30.133.10 port 22 rdomain ""
+2026-11-07T09:31:48.290588+00:00 9125a23ba101 sshd[361]: Received disconnect from 172.30.133.20 port 44240:11: Bye Bye [preauth]
+2026-11-07T09:31:48.290628+00:00 9125a23ba101 sshd[361]: Disconnected from authenticating user labuser 172.30.133.20 port 44240 [preauth]
+2026-11-07T09:31:48.505929+00:00 9125a23ba101 sshd[363]: Connection from 172.30.133.20 port 44252 on 172.30.133.10 port 22 rdomain ""
+2026-11-07T09:31:48.564996+00:00 9125a23ba101 sshd[363]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=172.30.133.20  user=labuser
+2026-11-07T09:31:51.193434+00:00 9125a23ba101 sshd[363]: Failed password for labuser from 172.30.133.20 port 44252 ssh2
+2026-11-07T09:31:53.700849+00:00 9125a23ba101 sshd[363]: Failed password for labuser from 172.30.133.20 port 44252 ssh2
+2026-11-07T09:31:57.681937+00:00 9125a23ba101 sshd[363]: Failed password for labuser from 172.30.133.20 port 44252 ssh2
+2026-11-07T09:32:00.856883+00:00 9125a23ba101 sshd[363]: Failed password for labuser from 172.30.133.20 port 44252 ssh2
+2026-11-07T09:32:03.835717+00:00 9125a23ba101 sshd[363]: Failed password for labuser from 172.30.133.20 port 44252 ssh2
+2026-11-07T09:32:04.012951+00:00 9125a23ba101 sshd[363]: Accepted password for labuser from 172.30.133.20 port 44252 ssh2
+2026-11-07T09:32:04.013999+00:00 9125a23ba101 sshd[363]: pam_unix(sshd:session): session opened for user labuser(uid=1001) by labuser(uid=0)
+2026-11-07T09:32:04.020426+00:00 9125a23ba101 sshd[363]: User child is on pid 414
+2026-11-07T09:32:04.020884+00:00 9125a23ba101 sshd[414]: Connection closed by 172.30.133.20 port 44252
+2026-11-07T09:32:04.020925+00:00 9125a23ba101 sshd[414]: Transferred: sent 2464, received 1472 bytes
+2026-11-07T09:32:04.020932+00:00 9125a23ba101 sshd[414]: Closing connection to 172.30.133.20 port 44252
+2026-11-07T09:32:04.021067+00:00 9125a23ba101 sshd[363]: pam_unix(sshd:session): session closed for user labuser

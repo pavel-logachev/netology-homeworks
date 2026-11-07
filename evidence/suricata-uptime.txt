@@ -1,0 +1,16 @@
+﻿docker : Traceback (most recent call last):
+At line:1 char:274
++ ... tartup.log; docker exec nt1303-defender suricatasc -c uptime 2>&1 | O ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "/usr/bin/suricatasc", line 63, in <module>
+    sc.connect()
+  File "/usr/lib/suricata/python/suricata/sc/suricatasc.py", line 191, in connect
+    cmdret = self.json_recv()
+             ^^^^^^^^^^^^^^^^
+  File "/usr/lib/suricata/python/suricata/sc/suricatasc.py", line 132, in json_recv
+    received = self.socket.recv(INC_SIZE).decode('iso-8859-1')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [Errno 104] Connection reset by peer

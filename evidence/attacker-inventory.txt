@@ -1,0 +1,24 @@
+﻿lo               UNKNOWN        127.0.0.1/8 ::1/128 
+tunl0@NONE       DOWN           
+gre0@NONE        DOWN           
+gretap0@NONE     DOWN           
+erspan0@NONE     DOWN           
+ip_vti0@NONE     DOWN           
+ip6_vti0@NONE    DOWN           
+sit0@NONE        DOWN           
+ip6tnl0@NONE     DOWN           
+ip6gre0@NONE     DOWN           
+eth0@if42        UP             172.30.133.20/24 
+172.30.133.0/24 dev eth0 proto kernel scope link src 172.30.133.20 
+docker : OpenSSH_9.6p1 Ubuntu-3ubuntu13.20, OpenSSL 3.0.13 30 Jan 2024
+At line:1 char:463
++ ... entory.txt; docker exec nt1303-attacker bash -c 'ip -br a; ip route;  ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (OpenSSH_9.6p1 U....13 30 Jan 2024:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+fail2ban	1.0.2-3ubuntu0.1
+hydra	9.5-1build3
+nmap	7.94+git20230807.3be01efb1+dfsg-3build2
+openssh-server	1:9.6p1-3ubuntu13.20
+suricata	1:7.0.3-1build3

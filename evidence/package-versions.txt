@@ -1,0 +1,7 @@
+﻿OpenSSH_9.6p1 Ubuntu-3ubuntu13.20, OpenSSL 3.0.13 30 Jan 2024
+fail2ban	1.0.2-3ubuntu0.1
+hydra	9.5-1build3
+nmap	7.94+git20230807.3be01efb1+dfsg-3build2
+openssh-server	1:9.6p1-3ubuntu13.20
+suricata	1:7.0.3-1build3
+172.30.133.0/24 dev eth0 proto kernel scope link src 172.30.133.20 

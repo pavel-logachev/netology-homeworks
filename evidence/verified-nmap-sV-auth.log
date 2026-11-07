@@ -1,0 +1,3 @@
+2026-11-07T09:34:24.423146+00:00 9125a23ba101 sshd[925]: Connection from 172.30.133.20 port 50406 on 172.30.133.10 port 22 rdomain ""
+2026-11-07T09:34:24.426725+00:00 9125a23ba101 sshd[925]: kex_exchange_identification: Connection closed by remote host
+2026-11-07T09:34:24.426761+00:00 9125a23ba101 sshd[925]: Connection closed by 172.30.133.20 port 50406

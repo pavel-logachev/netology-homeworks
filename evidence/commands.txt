@@ -1,0 +1,78 @@
+
+docker exec nt1303-defender suricata -D -c /etc/suricata/suricata.yaml --af-packet=eth0 -k none --pidfile /var/run/suricata.pid
+
+docker exec nt1303-defender bash -c sed -i 's/enabled = false/enabled = true/' /etc/fail2ban/jail.local; fail2ban-client reload; fail2ban-client status sshd
+
+docker exec nt1303-defender python3 /lab/checkpoint.py baseline
+
+docker exec nt1303-attacker timeout 90 nmap -sA 172.30.133.10
+
+docker exec nt1303-defender fail2ban-client status sshd
+
+docker exec nt1303-defender python3 /lab/checkpoint.py nmap-sA
+
+docker exec nt1303-attacker timeout 90 nmap -sT 172.30.133.10
+
+docker exec nt1303-defender fail2ban-client status sshd
+
+docker exec nt1303-defender python3 /lab/checkpoint.py nmap-sT
+
+docker exec nt1303-attacker timeout 90 nmap -sS 172.30.133.10
+
+docker exec nt1303-defender fail2ban-client status sshd
+
+docker exec nt1303-defender python3 /lab/checkpoint.py nmap-sS
+
+docker exec nt1303-attacker timeout 90 nmap -sV 172.30.133.10
+
+docker exec nt1303-defender fail2ban-client status sshd
+
+docker exec nt1303-defender python3 /lab/checkpoint.py nmap-sV
+
+docker exec nt1303-defender bash -c sed -i 's/enabled = true/enabled = false/' /etc/fail2ban/jail.local; fail2ban-client reload; fail2ban-client status
+
+docker exec nt1303-defender python3 /lab/checkpoint.py before-hydra-disabled
+
+docker exec -w /lab nt1303-attacker timeout 120 hydra -I -L users.txt -P pass.txt -t 1 -W 1 -f -V 172.30.133.10 ssh
+
+docker exec nt1303-defender python3 /lab/checkpoint.py hydra-disabled
+
+docker exec nt1303-defender bash -c sed -i 's/enabled = false/enabled = true/; s|logpath = /var/log/auth.log|logpath = /var/log/auth.log tail|' /etc/fail2ban/jail.local; fail2ban-client reload; fail2ban-client status sshd
+
+docker exec nt1303-defender python3 /lab/checkpoint.py before-hydra-enabled
+
+docker exec -w /lab nt1303-attacker timeout 100 hydra -I -L users.txt -P pass.txt -t 1 -W 1 -w 5 -f -V 172.30.133.10 ssh
+
+docker exec nt1303-defender fail2ban-client status sshd
+
+docker exec nt1303-defender bash -c iptables -S; iptables -L -n -v; nft list ruleset
+
+docker exec -w /lab nt1303-attacker timeout 20 hydra -I -l labuser -p LabOnly-1303-Throwaway! -t 1 -w 5 172.30.133.10 ssh
+
+docker exec nt1303-defender python3 /lab/checkpoint.py hydra-enabled
+
+docker exec nt1303-defender bash -c kill -INT $(cat /var/run/suricata.pid); sleep 3
+
+docker exec nt1303-defender python3 /lab/checkpoint.py final
+
+docker exec nt1303-defender bash -c wc -l /var/lib/suricata/rules/suricata.rules; sha256sum /var/lib/suricata/rules/*.rules; grep -E 'ET SCAN.*(SSH|Nmap|Potential SSH)' /var/lib/suricata/rules/suricata.rules | head -15
+
+docker cp nt1303-defender:/evidence/. evidence/
+
+docker cp nt1303-defender:/var/log/suricata/. evidence/suricata-full/
+
+docker cp nt1303-defender:/var/log/auth.log evidence/auth-full.log
+
+docker cp nt1303-defender:/var/log/fail2ban.log evidence/fail2ban-full.log
+
+docker cp nt1303-defender:/etc/suricata/suricata.yaml stand/suricata.observed.yaml
+
+docker cp nt1303-defender:/etc/fail2ban/jail.local stand/jail-enabled.observed.local
+
+docker exec nt1303-attacker timeout 90 nmap -sA 172.30.133.10
+
+docker exec nt1303-attacker timeout 90 nmap -sT 172.30.133.10
+
+docker exec nt1303-attacker timeout 90 nmap -sS 172.30.133.10
+
+docker exec nt1303-attacker timeout 90 nmap -sV 172.30.133.10

@@ -1,0 +1,417 @@
+﻿suricata-start: exit=0
+i: suricata: This is Suricata version 7.0.3 RELEASE running in SYSTEM mode
+[exit code: 0]
+
+enable-for-scans: exit=0
+docker.exe : 2026-11-07 09:31:29,397 fail2ban.configreader   [215]: WARNING 'allowipv6' not defined in 'Definition'. Us
+ing default one: 'auto'
+At C:\Users\pavel\Documents\DeepSeekHarness\cache\netology-20261107\w-1303\wt\stand\run-lab.ps1:8 char:15
++     $result = & docker @DockerArgs 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (2026-11-07 09:3...ult one: 'auto':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+OK
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	0
+|  |- Total failed:	0
+|  `- File list:	/var/log/auth.log
+`- Actions
+   |- Currently banned:	0
+   |- Total banned:	0
+   `- Banned IP list:	
+[exit code: 0]
+
+baseline-checkpoint: exit=0
+baseline suricata-fast.log: start=0 end=0 bytes=0 lines=0
+baseline suricata-eve.json: start=0 end=0 bytes=0 lines=0
+baseline fail2ban.log: start=0 end=1643 bytes=1643 lines=18
+baseline auth.log: start=0 end=93 bytes=93 lines=1
+[exit code: 0]
+
+nmap-sA: exit=0
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-11-07 09:31 UTC
+Nmap scan report for nt1303-defender.nt1303-isolated (172.30.133.10)
+Host is up (0.000013s latency).
+All 1000 scanned ports on nt1303-defender.nt1303-isolated (172.30.133.10) are in ignored states.
+Not shown: 1000 unfiltered tcp ports (reset)
+MAC Address: 82:01:4D:02:F6:4A (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.10 seconds
+[exit code: 0]
+
+nmap-sA-jail-status: exit=0
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	0
+|  |- Total failed:	0
+|  `- File list:	/var/log/auth.log
+`- Actions
+   |- Currently banned:	0
+   |- Total banned:	0
+   `- Banned IP list:	
+[exit code: 0]
+
+nmap-sA-checkpoint: exit=0
+nmap-sA suricata-fast.log: start=0 end=0 bytes=0 lines=0
+nmap-sA suricata-eve.json: start=0 end=0 bytes=0 lines=0
+nmap-sA fail2ban.log: start=1643 end=1643 bytes=0 lines=0
+nmap-sA auth.log: start=93 end=93 bytes=0 lines=0
+[exit code: 0]
+
+nmap-sT: exit=0
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-11-07 09:31 UTC
+Nmap scan report for nt1303-defender.nt1303-isolated (172.30.133.10)
+Host is up (0.00015s latency).
+Not shown: 999 closed tcp ports (conn-refused)
+PORT   STATE SERVICE
+22/tcp open  ssh
+MAC Address: 82:01:4D:02:F6:4A (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.08 seconds
+[exit code: 0]
+
+nmap-sT-jail-status: exit=0
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	0
+|  |- Total failed:	0
+|  `- File list:	/var/log/auth.log
+`- Actions
+   |- Currently banned:	0
+   |- Total banned:	0
+   `- Banned IP list:	
+[exit code: 0]
+
+nmap-sT-checkpoint: exit=0
+nmap-sT suricata-fast.log: start=0 end=0 bytes=0 lines=0
+nmap-sT suricata-eve.json: start=0 end=0 bytes=0 lines=0
+nmap-sT fail2ban.log: start=1643 end=1643 bytes=0 lines=0
+nmap-sT auth.log: start=93 end=93 bytes=0 lines=0
+[exit code: 0]
+
+nmap-sS: exit=0
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-11-07 09:31 UTC
+Nmap scan report for nt1303-defender.nt1303-isolated (172.30.133.10)
+Host is up (0.000013s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT   STATE SERVICE
+22/tcp open  ssh
+MAC Address: 82:01:4D:02:F6:4A (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.12 seconds
+[exit code: 0]
+
+nmap-sS-jail-status: exit=0
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	0
+|  |- Total failed:	0
+|  `- File list:	/var/log/auth.log
+`- Actions
+   |- Currently banned:	0
+   |- Total banned:	0
+   `- Banned IP list:	
+[exit code: 0]
+
+nmap-sS-checkpoint: exit=0
+nmap-sS suricata-fast.log: start=0 end=178008 bytes=178008 lines=1005
+nmap-sS suricata-eve.json: start=0 end=627729 bytes=627729 lines=1006
+nmap-sS fail2ban.log: start=1643 end=1643 bytes=0 lines=0
+nmap-sS auth.log: start=93 end=93 bytes=0 lines=0
+[exit code: 0]
+
+nmap-sV: exit=0
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-11-07 09:31 UTC
+Nmap scan report for nt1303-defender.nt1303-isolated (172.30.133.10)
+Host is up (0.000013s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 9.6p1 Ubuntu 3ubuntu13.20 (Ubuntu Linux; protocol 2.0)
+MAC Address: 82:01:4D:02:F6:4A (Unknown)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 0.17 seconds
+[exit code: 0]
+
+nmap-sV-jail-status: exit=0
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	0
+|  |- Total failed:	0
+|  `- File list:	/var/log/auth.log
+`- Actions
+   |- Currently banned:	0
+   |- Total banned:	0
+   `- Banned IP list:	
+[exit code: 0]
+
+nmap-sV-checkpoint: exit=0
+nmap-sV suricata-fast.log: start=178008 end=356478 bytes=178470 lines=1008
+nmap-sV suricata-eve.json: start=627729 end=1250453 bytes=622724 lines=1008
+nmap-sV fail2ban.log: start=1643 end=1643 bytes=0 lines=0
+nmap-sV auth.log: start=93 end=449 bytes=356 lines=3
+[exit code: 0]
+
+disable-before-hydra: exit=0
+docker.exe : 2026-11-07 09:31:47,441 fail2ban.configreader   [346]: WARNING 'allowipv6' not defined in 'Definition'. Us
+ing default one: 'auto'
+At C:\Users\pavel\Documents\DeepSeekHarness\cache\netology-20261107\w-1303\wt\stand\run-lab.ps1:8 char:15
++     $result = & docker @DockerArgs 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (2026-11-07 09:3...ult one: 'auto':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+OK
+Status
+|- Number of jail:	0
+`- Jail list:	
+[exit code: 0]
+
+before-hydra-disabled-checkpoint: exit=0
+before-hydra-disabled suricata-fast.log: start=356478 end=356478 bytes=0 lines=0
+before-hydra-disabled suricata-eve.json: start=1250453 end=1250453 bytes=0 lines=0
+before-hydra-disabled fail2ban.log: start=1643 end=2091 bytes=448 lines=5
+before-hydra-disabled auth.log: start=449 end=449 bytes=0 lines=0
+[exit code: 0]
+
+hydra-disabled: exit=0
+Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-11-07 09:31:48
+[DATA] max 1 task per 1 server, overall 1 task, 12 login tries (l:2/p:6), ~12 tries per task
+[DATA] attacking ssh://172.30.133.10:22/
+[ATTEMPT] target 172.30.133.10 - login "labuser" - pass "wrong-one" - 1 of 12 [child 0] (0/0)
+[ATTEMPT] target 172.30.133.10 - login "labuser" - pass "wrong-two" - 2 of 12 [child 0] (0/0)
+[ATTEMPT] target 172.30.133.10 - login "labuser" - pass "wrong-three" - 3 of 12 [child 0] (0/0)
+[ATTEMPT] target 172.30.133.10 - login "labuser" - pass "wrong-four" - 4 of 12 [child 0] (0/0)
+[ATTEMPT] target 172.30.133.10 - login "labuser" - pass "wrong-five" - 5 of 12 [child 0] (0/0)
+[ATTEMPT] target 172.30.133.10 - login "labuser" - pass "LabOnly-1303-Throwaway!" - 6 of 12 [child 0] (0/0)
+[22][ssh] host: 172.30.133.10   login: labuser   password: LabOnly-1303-Throwaway!
+[STATUS] attack finished for 172.30.133.10 (valid pair found)
+1 of 1 target successfully completed, 1 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-11-07 09:32:04
+[exit code: 0]
+
+hydra-disabled-checkpoint: exit=0
+hydra-disabled suricata-fast.log: start=356478 end=357979 bytes=1501 lines=9
+hydra-disabled suricata-eve.json: start=1250453 end=1281023 bytes=30570 lines=14
+hydra-disabled fail2ban.log: start=2091 end=2091 bytes=0 lines=0
+hydra-disabled auth.log: start=449 end=2523 bytes=2074 lines=17
+[exit code: 0]
+
+enable-before-hydra: exit=0
+docker.exe : 2026-11-07 09:32:08,238 fail2ban.configreader   [436]: WARNING 'allowipv6' not defined in 'Definition'. Us
+ing default one: 'auto'
+At C:\Users\pavel\Documents\DeepSeekHarness\cache\netology-20261107\w-1303\wt\stand\run-lab.ps1:8 char:15
++     $result = & docker @DockerArgs 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (2026-11-07 09:3...ult one: 'auto':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+OK
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	0
+|  |- Total failed:	0
+|  `- File list:	/var/log/auth.log
+`- Actions
+   |- Currently banned:	0
+   |- Total banned:	0
+   `- Banned IP list:	
+[exit code: 0]
+
+before-hydra-enabled-checkpoint: exit=0
+before-hydra-enabled suricata-fast.log: start=357979 end=357979 bytes=0 lines=0
+before-hydra-enabled suricata-eve.json: start=1281023 end=1281023 bytes=0 lines=0
+before-hydra-enabled fail2ban.log: start=2091 end=3143 bytes=1052 lines=12
+before-hydra-enabled auth.log: start=2523 end=2523 bytes=0 lines=0
+[exit code: 0]
+
+hydra-enabled: exit=255
+Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-11-07 09:32:08
+[DATA] max 1 task per 1 server, overall 1 task, 12 login tries (l:2/p:6), ~12 tries per task
+[DATA] attacking ssh://172.30.133.10:22/
+[ATTEMPT] target 172.30.133.10 - login "labuser" - pass "wrong-one" - 1 of 12 [child 0] (0/0)
+[ATTEMPT] target 172.30.133.10 - login "labuser" - pass "wrong-two" - 2 of 12 [child 0] (0/0)
+[ATTEMPT] target 172.30.133.10 - login "labuser" - pass "wrong-three" - 3 of 12 [child 0] (0/0)
+[ATTEMPT] target 172.30.133.10 - login "labuser" - pass "wrong-four" - 4 of 12 [child 0] (0/0)
+[ATTEMPT] target 172.30.133.10 - login "labuser" - pass "wrong-five" - 5 of 12 [child 0] (0/0)
+[ATTEMPT] target 172.30.133.10 - login "labuser" - pass "LabOnly-1303-Throwaway!" - 6 of 12 [child 0] (0/0)
+[ATTEMPT] target 172.30.133.10 - login "invalidlab" - pass "wrong-one" - 7 of 12 [child 0] (0/0)
+[RE-ATTEMPT] target 172.30.133.10 - login "invalidlab" - pass "wrong-one" - 7 of 12 [child 0] (0/0)
+[RE-ATTEMPT] target 172.30.133.10 - login "invalidlab" - pass "wrong-one" - 7 of 12 [child 0] (0/0)
+[RE-ATTEMPT] target 172.30.133.10 - login "invalidlab" - pass "wrong-one" - 7 of 12 [child 0] (0/0)
+[RE-ATTEMPT] target 172.30.133.10 - login "invalidlab" - pass "wrong-one" - 7 of 12 [child 0] (0/0)
+[RE-ATTEMPT] target 172.30.133.10 - login "invalidlab" - pass "wrong-one" - 7 of 12 [child 0] (0/0)
+[RE-ATTEMPT] target 172.30.133.10 - login "invalidlab" - pass "wrong-one" - 7 of 12 [child 0] (0/0)
+[RE-ATTEMPT] target 172.30.133.10 - login "invalidlab" - pass "wrong-one" - 7 of 12 [child 0] (0/0)
+[RE-ATTEMPT] target 172.30.133.10 - login "invalidlab" - pass "wrong-one" - 7 of 12 [child 0] (0/0)
+[RE-ATTEMPT] target 172.30.133.10 - login "invalidlab" - pass "wrong-one" - 7 of 12 [child 0] (0/0)
+[RE-ATTEMPT] target 172.30.133.10 - login "invalidlab" - pass "wrong-one" - 7 of 12 [child 0] (0/0)
+[RE-ATTEMPT] target 172.30.133.10 - login "invalidlab" - pass "wrong-one" - 7 of 12 [child 0] (0/0)
+[RE-ATTEMPT] target 172.30.133.10 - login "invalidlab" - pass "wrong-one" - 7 of 12 [child 0] (0/0)
+[RE-ATTEMPT] target 172.30.133.10 - login "invalidlab" - pass "wrong-one" - 7 of 12 [child 0] (0/0)
+[RE-ATTEMPT] target 172.30.133.10 - login "invalidlab" - pass "wrong-one" - 7 of 12 [child 0] (0/0)
+0 of 1 target completed, 0 valid password found
+[INFO] Writing restore file because 2 server scans could not be completed
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-11-07 09:32:42
+docker.exe : [ERROR] all children were disabled due too many connection errors
+At C:\Users\pavel\Documents\DeepSeekHarness\cache\netology-20261107\w-1303\wt\stand\run-lab.ps1:8 char:15
++     $result = & docker @DockerArgs 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([ERROR] all chi...nnection errors:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[ERROR] 1 target was disabled because of too many errors
+[ERROR] 1 targets did not complete
+[exit code: 255]
+
+fail2ban-status-banned: exit=0
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	1
+|  |- Total failed:	4
+|  `- File list:	/var/log/auth.log
+`- Actions
+   |- Currently banned:	1
+   |- Total banned:	1
+   `- Banned IP list:	172.30.133.20
+[exit code: 0]
+
+firewall-banned: exit=0
+-P INPUT ACCEPT
+-P FORWARD ACCEPT
+-P OUTPUT ACCEPT
+-N f2b-sshd
+-A INPUT -p tcp -m multiport --dports 22 -j f2b-sshd
+-A f2b-sshd -s 172.30.133.20/32 -j REJECT --reject-with icmp-port-unreachable
+-A f2b-sshd -j RETURN
+Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+   38  2916 f2b-sshd   6    --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 22
+
+Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain f2b-sshd (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+   38  2916 REJECT     0    --  *      *       172.30.133.20        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 RETURN     0    --  *      *       0.0.0.0/0            0.0.0.0/0           
+table ip nat {
+	chain DOCKER_OUTPUT {
+docker.exe : # Warning: table ip nat is managed by iptables-nft, do not touch!
+At C:\Users\pavel\Documents\DeepSeekHarness\cache\netology-20261107\w-1303\wt\stand\run-lab.ps1:8 char:15
++     $result = & docker @DockerArgs 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (# Warning: tabl..., do not touch!:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+# Warning: table ip filter is managed by iptables-nft, do not touch!
+		ip daddr 127.0.0.11 tcp dport 53 counter packets 0 bytes 0 dnat to 127.0.0.11:37193
+		ip daddr 127.0.0.11 udp dport 53 counter packets 1 bytes 58 dnat to 127.0.0.11:56983
+	}
+
+	chain OUTPUT {
+		type nat hook output priority dstnat; policy accept;
+		ip daddr 127.0.0.11 counter packets 1 bytes 58 jump DOCKER_OUTPUT
+	}
+
+	chain DOCKER_POSTROUTING {
+		ip saddr 127.0.0.11 tcp sport 37193 counter packets 0 bytes 0 snat to :53
+		ip saddr 127.0.0.11 udp sport 56983 counter packets 0 bytes 0 snat to :53
+	}
+
+	chain POSTROUTING {
+		type nat hook postrouting priority srcnat; policy accept;
+		ip daddr 127.0.0.11 counter packets 1 bytes 58 jump DOCKER_POSTROUTING
+	}
+}
+table ip filter {
+	chain f2b-sshd {
+		ip saddr 172.30.133.20 counter packets 38 bytes 2916 reject
+		counter packets 0 bytes 0 return
+	}
+
+	chain INPUT {
+		type filter hook input priority filter; policy accept;
+		ip protocol tcp tcp dport 22 counter packets 38 bytes 2916 jump f2b-sshd
+	}
+}
+[exit code: 0]
+
+hydra-post-ban: exit=255
+Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-11-07 09:32:46
+[DATA] max 1 task per 1 server, overall 1 task, 1 login try (l:1/p:1), ~1 try per task
+[DATA] attacking ssh://172.30.133.10:22/
+docker.exe : [ERROR] could not connect to ssh://172.30.133.10:22 - Connection refused
+At C:\Users\pavel\Documents\DeepSeekHarness\cache\netology-20261107\w-1303\wt\stand\run-lab.ps1:8 char:15
++     $result = & docker @DockerArgs 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([ERROR] could n...nection refused:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[exit code: 255]
+
+hydra-enabled-checkpoint: exit=0
+hydra-enabled suricata-fast.log: start=357979 end=365139 bytes=7160 lines=42
+hydra-enabled suricata-eve.json: start=1281023 end=2288631 bytes=1007608 lines=1641
+hydra-enabled fail2ban.log: start=3143 end=3674 bytes=531 lines=5
+hydra-enabled auth.log: start=2523 end=3711 bytes=1188 lines=9
+[exit code: 0]
+
+stop-suricata: exit=0
+[exit code: 0]
+
+final-checkpoint: exit=0
+final suricata-fast.log: start=365139 end=365139 bytes=0 lines=0
+final suricata-eve.json: start=2288631 end=2550655 bytes=262024 lines=431
+final fail2ban.log: start=3674 end=3674 bytes=0 lines=0
+final auth.log: start=3711 end=3711 bytes=0 lines=0
+[exit code: 0]
+
+rules-metadata: exit=0
+69300 /var/lib/suricata/rules/suricata.rules
+1b5dfc9b2150dd2b26eb9ba0f4c4474097b26de2893a4631b2f614d0bcc966bb  /var/lib/suricata/rules/local.rules
+7281efd0e9b2785bbdbacbabed7c8aeeed0ba8d3edbd0e78b0ab07574c628860  /var/lib/suricata/rules/suricata.rules
+# alert tcp 188.95.234.6 any -> $HOME_NET [22,443] (msg:"ET SCAN Non-Malicious SSH/SSL Scanner on the run"; threshold: type limit, track by_src, seconds 60, count 1; reference:url,pki.net.in.tum.de/node/21; reference:url,isc.sans.edu/diary/SSH%2bscans%2bfrom%2b188.95.234.6/15532; classtype:network-scan; sid:2016763; rev:7; metadata:created_at 2013_04_17, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)
+alert ssh $EXTERNAL_NET any -> $HOME_NET 22 (msg:"ET SCAN LibSSH Based Frequent SSH Connections Likely BruteForce Attack"; flow:established,to_server; content:"SSH-"; content:"libssh"; within:20; threshold: type both, count 5, seconds 30, track by_src; classtype:attempted-admin; sid:2006546; rev:9; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 22 (msg:"ET SCAN Potential SSH Scan"; flow:to_server; flags:S,12; threshold: type both, track by_src, count 5, seconds 120; reference:url,en.wikipedia.org/wiki/Brute_force_attack; classtype:attempted-recon; sid:2001219; rev:20; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)
+alert tcp $HOME_NET any -> $EXTERNAL_NET 22 (msg:"ET SCAN Potential SSH Scan OUTBOUND"; flow:to_server; flags:S,12; threshold: type threshold, track by_src, count 5, seconds 120; reference:url,en.wikipedia.org/wiki/Brute_force_attack; classtype:attempted-recon; sid:2003068; rev:7; metadata:created_at 2010_07_30, confidence Medium, signature_severity Informational, updated_at 2019_07_26;)
+alert ssh $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN SSH BruteForce Tool with fake PUTTY version"; flow:established,to_server; ssh_proto; content:"PUTTY"; threshold: type limit, track by_src, count 1, seconds 30; classtype:network-scan; sid:2019876; rev:6; metadata:created_at 2014_12_05, confidence Medium, signature_severity Informational, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2019_07_26;)
+alert tcp any any -> $HOME_NET any (msg:"ET SCAN Nmap NSE Heartbleed Request"; flow:established,to_server; content:"|18 03|"; depth:2; byte_test:1,<,4,2; content:"|01|"; offset:5; depth:1; byte_test:2,>,2,3; byte_test:2,>,200,6; content:"|40 00|Nmap ssl-heartbleed"; fast_pattern; classtype:attempted-recon; sid:2021023; rev:2; metadata:created_at 2015_04_28, confidence Medium, signature_severity Minor, updated_at 2022_03_17, reviewed_at 2024_04_19;)
+alert tcp any any -> any 3389 (msg:"ET SCAN RDP Connection Attempt from Nmap"; flow:established,to_server; content:"|00 00 00 00 00|Cookie|3a 20|mstshash|3d|nmap|0d 0a|"; fast_pattern; reference:url,github.com/nmap/nmap/blob/4b46fa7097673f157e7b93e72f0c8b3249c54b4c/nselib/rdp.lua#L211; classtype:network-scan; sid:2036252; rev:1; metadata:affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target Client_and_Server, created_at 2022_04_19, deployment Perimeter, deployment Internal, performance_impact Low, confidence High, signature_severity Minor, tag Description_Generated_By_Proofpoint_Nexus, updated_at 2022_04_19;)
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Nmap Scripting Engine User-Agent Detected (Nmap NSE)"; flow:established,to_server; http.user_agent; content:"Nmap NSE"; classtype:web-application-attack; sid:2009359; rev:6; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_03_06;)
+alert tcp $HOME_NET any -> any any (msg:"ET SCAN Nmap NSE Heartbleed Response"; flow:established,to_client; content:"|18 03|"; depth:2; byte_test:1,<,4,2; byte_test:2,>,200,3; content:"|40 00|Nmap ssl-heartbleed"; fast_pattern; classtype:attempted-recon; sid:2021024; rev:3; metadata:created_at 2015_04_28, confidence Medium, signature_severity Minor, updated_at 2024_03_06;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 6379 (msg:"ET SCAN Redis SSH Key Overwrite Probing"; flow:established,to_server; content:"*"; depth:1; content:"config"; content:"set"; distance:0; content:"dir"; distance:0; content:"/.ssh"; distance:0; isdataat:!5,relative; reference:url,antirez.com/news/96; classtype:misc-attack; sid:2023510; rev:3; metadata:attack_target Client_Endpoint, created_at 2016_07_07, deployment Datacenter, performance_impact Low, confidence Medium, signature_severity Minor, tag SCAN_Redis_SSH, updated_at 2024_03_07;)
+alert http $HOME_NET any -> any any (msg:"ET SCAN Possible Nmap User-Agent Observed"; flow:established,to_server; http.user_agent; content:"|20|Nmap"; fast_pattern; classtype:web-application-attack; sid:2024364; rev:5; metadata:affected_product Any, attack_target Client_and_Server, created_at 2017_06_08, deployment Perimeter, performance_impact Low, confidence Medium, signature_severity Informational, updated_at 2024_03_07, reviewed_at 2024_05_06;)
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Nmap Scripting Engine User-Agent Detected (Nmap Scripting Engine)"; flow:established,to_server; http.user_agent; content:"Mozilla/5.0 (compatible|3b| Nmap Scripting Engine"; nocase; startswith; classtype:web-application-attack; sid:2009358; rev:8; metadata:created_at 2010_07_30, confidence High, signature_severity Informational, updated_at 2024_04_13;)
+[exit code: 0]
+
+copy-phase-evidence: exit=0
+[exit code: 0]
+
+copy-suricata-full: exit=0
+[exit code: 0]
+
+copy-auth-full: exit=0
+[exit code: 0]
+
+copy-fail2ban-full: exit=0
+[exit code: 0]
+
+copy-suricata-config: exit=0
+[exit code: 0]
+
+copy-enabled-jail: exit=0
+[exit code: 0]
+

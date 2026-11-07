@@ -1,0 +1,11 @@
+docker exec nt1303-defender fail2ban-client status sshd
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	1
+|  |- Total failed:	4
+|  `- File list:	/var/log/auth.log
+`- Actions
+   |- Currently banned:	1
+   |- Total banned:	1
+   `- Banned IP list:	172.30.133.20
+[exit code: 0]

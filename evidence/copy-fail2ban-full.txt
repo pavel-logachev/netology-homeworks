@@ -1,0 +1,2 @@
+docker cp nt1303-defender:/var/log/fail2ban.log evidence/fail2ban-full.log
+[exit code: 0]

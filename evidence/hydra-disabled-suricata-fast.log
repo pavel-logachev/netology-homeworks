@@ -1,0 +1,9 @@
+11/07/2026-09:31:48.241468  [**] [1:9901301:1] LAB LOCAL TCP SYN probe or connection [**] [Classification: (null)] [Priority: 3] {TCP} 172.30.133.20:44240 -> 172.30.133.10:22
+11/07/2026-09:31:48.241502  [**] [1:9901302:1] LAB LOCAL TCP ACK probe [**] [Classification: (null)] [Priority: 3] {TCP} 172.30.133.20:44240 -> 172.30.133.10:22
+11/07/2026-09:31:48.246081  [**] [1:9901302:1] LAB LOCAL TCP ACK probe [**] [Classification: (null)] [Priority: 3] {TCP} 172.30.133.20:44240 -> 172.30.133.10:22
+11/07/2026-09:31:48.291063  [**] [1:9901302:1] LAB LOCAL TCP ACK probe [**] [Classification: (null)] [Priority: 3] {TCP} 172.30.133.20:44240 -> 172.30.133.10:22
+11/07/2026-09:31:48.501287  [**] [1:2001219:20] ET SCAN Potential SSH Scan [**] [Classification: Attempted Information Leak] [Priority: 2] {TCP} 172.30.133.20:44252 -> 172.30.133.10:22
+11/07/2026-09:31:48.501287  [**] [1:9901301:1] LAB LOCAL TCP SYN probe or connection [**] [Classification: (null)] [Priority: 3] {TCP} 172.30.133.20:44252 -> 172.30.133.10:22
+11/07/2026-09:31:48.501321  [**] [1:9901302:1] LAB LOCAL TCP ACK probe [**] [Classification: (null)] [Priority: 3] {TCP} 172.30.133.20:44252 -> 172.30.133.10:22
+11/07/2026-09:31:48.506008  [**] [1:9901302:1] LAB LOCAL TCP ACK probe [**] [Classification: (null)] [Priority: 3] {TCP} 172.30.133.20:44252 -> 172.30.133.10:22
+11/07/2026-09:32:04.021933  [**] [1:9901302:1] LAB LOCAL TCP ACK probe [**] [Classification: (null)] [Priority: 3] {TCP} 172.30.133.20:44252 -> 172.30.133.10:22

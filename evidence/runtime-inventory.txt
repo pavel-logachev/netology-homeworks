@@ -1,0 +1,18 @@
+﻿USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0   2708  1592 ?        Ss   09:30   0:00 sleep infinity
+root          26  0.0  0.0 152480  2900 ?        Ssl  09:30   0:00 rsyslogd
+root          29  0.0  0.0  12032  4464 ?        Ss   09:30   0:00 sshd: /usr/sbin/sshd [listener] 0 of 100-100 startups
+root          35  0.0  0.1 325464 20112 ?        Sl   09:30   0:00 /usr/bin/python3 /usr/bin/fail2ban-server -b
+root         199 58.6  4.2 961836 526180 ?       Ssl  09:31   0:10 suricata -D -c /etc/suricata/suricata.yaml --af-packet=eth0 -k none --pidfile /var/run/suricata.pid
+root         295  100  0.0   4336  3468 ?        Ss   09:31   0:00 bash -c ps aux | head -12; fail2ban-client status; iptables -S; sha256sum /lab/local.rules /var/lib/suricata/rules/local.rules; grep -c ^alert /var/lib/suricata/rules/suricata.rules
+root         301  0.0  0.0   7920  4148 ?        R    09:31   0:00 ps aux
+root         302  0.0  0.0   2720  1544 ?        S    09:31   0:00 head -12
+Status
+|- Number of jail:	1
+`- Jail list:	sshd
+-P INPUT ACCEPT
+-P FORWARD ACCEPT
+-P OUTPUT ACCEPT
+1b5dfc9b2150dd2b26eb9ba0f4c4474097b26de2893a4631b2f614d0bcc966bb  /lab/local.rules
+1b5dfc9b2150dd2b26eb9ba0f4c4474097b26de2893a4631b2f614d0bcc966bb  /var/lib/suricata/rules/local.rules
+53330

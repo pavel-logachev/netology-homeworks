@@ -1,0 +1,32 @@
+<!doctype html><meta charset="utf-8"><title>Task 1 | ACK and TCP connect scans</title><style>html{background:#101923;color:#e9f0f7}body{margin:28px;font:16px/1.4 Consolas,monospace}h1{font:600 24px Segoe UI,sans-serif;color:#8ed7f7;margin:0 0 8px}p{color:#b2c6d7;margin:8px 0 18px}section{background:#182634;border:1px solid #31485b;padding:10px 14px;margin:10px 0;border-radius:6px}h2{font:600 16px Segoe UI,sans-serif;color:#9fe2c1;margin:0 0 5px}pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.35 Consolas,monospace}.cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}</style><h1>Task 1 | ACK and TCP connect scans</h1><p>Netology 13-03 | real Docker output | UTC 2026-11-07 | defender 172.30.133.10, attacker 172.30.133.20<br>LAB LOCAL signatures are lab instrumentation, not ET Open. Excerpts retain raw text; full logs are adjacent.</p><div class="cols"><div><section><h2>verified-nmap-sA.txt</h2><pre>docker exec nt1303-attacker timeout 90 nmap -sA 172.30.133.10
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-11-07 09:34 UTC
+Nmap scan report for nt1303-defender.nt1303-isolated (172.30.133.10)
+Host is up (0.000015s latency).
+All 1000 scanned ports on nt1303-defender.nt1303-isolated (172.30.133.10) are in ignored states.
+Not shown: 1000 unfiltered tcp ports (reset)
+MAC Address: 82:01:4D:02:F6:4A (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.12 seconds
+[exit code: 0]
+</pre></section><section><h2>verified-nmap-sA-suricata-fast.log (selected raw lines)</h2><pre>11/07/2026-09:34:05.466171  [**] [1:9901302:1] LAB LOCAL TCP ACK probe [**] [Classification: (null)] [Priority: 3] {TCP} 172.30.133.20:53188 -&gt; 172.30.133.10:22</pre></section><section><h2>verified-nmap-sA-checkpoint.txt (exact log sizes)</h2><pre>verified-nmap-sA suricata-fast.log: start=365139 end=528455 bytes=163316 lines=1002
+verified-nmap-sA fail2ban.log: start=3763 end=3763 bytes=0 lines=0
+verified-nmap-sA auth.log: start=3711 end=3711 bytes=0 lines=0</pre></section><section><h2>verified-nmap-sA-jail-status.txt (selected raw lines)</h2><pre>|  |- Total failed:	4
+   |- Currently banned:	0
+   |- Total banned:	1</pre></section></div><div><section><h2>verified-nmap-sT.txt</h2><pre>docker exec nt1303-attacker timeout 90 nmap -sT 172.30.133.10
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-11-07 09:34 UTC
+Nmap scan report for nt1303-defender.nt1303-isolated (172.30.133.10)
+Host is up (0.00016s latency).
+Not shown: 999 closed tcp ports (conn-refused)
+PORT   STATE SERVICE
+22/tcp open  ssh
+MAC Address: 82:01:4D:02:F6:4A (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.09 seconds
+[exit code: 0]
+</pre></section><section><h2>verified-nmap-sT-suricata-fast.log (selected raw lines)</h2><pre>11/07/2026-09:34:12.988389  [**] [1:9901301:1] LAB LOCAL TCP SYN probe or connection [**] [Classification: (null)] [Priority: 3] {TCP} 172.30.133.20:44006 -&gt; 172.30.133.10:143
+11/07/2026-09:34:12.989022  [**] [1:2010937:3] ET SCAN Suspicious inbound to mySQL port 3306 [**] [Classification: Potentially Bad Traffic] [Priority: 2] {TCP} 172.30.133.20:58530 -&gt; 172.30.133.10:3306
+11/07/2026-09:34:12.996880  [**] [1:2010936:3] ET SCAN Suspicious inbound to Oracle SQL port 1521 [**] [Classification: Potentially Bad Traffic] [Priority: 2] {TCP} 172.30.133.20:55482 -&gt; 172.30.133.10:1521</pre></section><section><h2>verified-nmap-sT-checkpoint.txt (exact log sizes)</h2><pre>verified-nmap-sT suricata-fast.log: start=528455 end=706624 bytes=178169 lines=1006
+verified-nmap-sT fail2ban.log: start=3763 end=3763 bytes=0 lines=0
+verified-nmap-sT auth.log: start=3711 end=3711 bytes=0 lines=0</pre></section><section><h2>verified-nmap-sT-jail-status.txt (selected raw lines)</h2><pre>|  |- Total failed:	4
+   |- Currently banned:	0
+   |- Total banned:	1</pre></section></div></div>

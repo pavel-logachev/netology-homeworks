@@ -1,0 +1,31 @@
+name: nt1303-lab
+services:
+  defender:
+    image: nt1303-lab:noble
+    build: .
+    container_name: nt1303-defender
+    cap_add: [NET_ADMIN, NET_RAW]
+    command: ["bash", "/lab/start-defender.sh"]
+    networks:
+      isolated:
+        ipv4_address: 172.30.133.10
+    healthcheck:
+      test: ["CMD-SHELL", "test -S /var/run/fail2ban/fail2ban.sock && ss -lnt | grep -q ':22 '"]
+      interval: 3s
+      timeout: 2s
+      retries: 10
+  attacker:
+    image: nt1303-lab:noble
+    container_name: nt1303-attacker
+    cap_add: [NET_ADMIN, NET_RAW]
+    command: ["sleep", "infinity"]
+    networks:
+      isolated:
+        ipv4_address: 172.30.133.20
+networks:
+  isolated:
+    name: nt1303-isolated
+    internal: true
+    ipam:
+      config:
+        - subnet: 172.30.133.0/24

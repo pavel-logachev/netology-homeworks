@@ -1,0 +1,4 @@
+﻿verified-scans-final suricata-fast.log: start=1062906 end=1062906 bytes=0 lines=0
+verified-scans-final suricata-eve.json: start=5071163 end=7354781 bytes=2283618 lines=4004
+verified-scans-final fail2ban.log: start=3763 end=3763 bytes=0 lines=0
+verified-scans-final auth.log: start=4067 end=4067 bytes=0 lines=0

@@ -1,0 +1,14 @@
+docker exec nt1303-defender bash -c sed -i 's/enabled = true/enabled = false/' /etc/fail2ban/jail.local; fail2ban-client reload; fail2ban-client status
+docker.exe : 2026-11-07 09:31:47,441 fail2ban.configreader   [346]: WARNING 'allowipv6' not defined in 'Definition'. Us
+ing default one: 'auto'
+At C:\Users\pavel\Documents\DeepSeekHarness\cache\netology-20261107\w-1303\wt\stand\run-lab.ps1:8 char:15
++     $result = & docker @DockerArgs 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (2026-11-07 09:3...ult one: 'auto':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+OK
+Status
+|- Number of jail:	0
+`- Jail list:	
+[exit code: 0]

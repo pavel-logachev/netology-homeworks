@@ -1,0 +1,33 @@
+﻿This is Suricata version 7.0.3 RELEASE
+Fail2Ban v1.0.2
+Nmap version 7.94SVN ( https://nmap.org )
+Platform: x86_64-pc-linux-gnu
+Compiled with: liblua-5.4.6 openssl-3.0.13 libssh2-1.11.0 libz-1.3 libpcre2-10.42 libpcap-1.10.4 nmap-libdnet-1.12 ipv6
+Compiled without:
+Available nsock engines: epoll poll select
+Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Syntax: hydra [[[-l LOGIN|-L FILE] [-p PASS|-P FILE]] | [-C FILE]] [-e nsr] [-o FILE] [-t TASKS] [-M FILE [-T TASKS]] [-w TIME] [-W TIME] [-f] [-s PORT] [-x MIN:MAX:CHARSET] [-c TIME] [-ISOuvVd46] [-m MODULE_OPT] [service://server[:PORT][/OPT]]
+docker : OpenSSH_9.6p1 Ubuntu-3ubuntu13.20, OpenSSL 3.0.13 30 Jan 2024
+At line:1 char:497
++ ... uricata.py; docker exec nt1303-defender bash -c 'suricata -V; fail2ba ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (OpenSSH_9.6p1 U....13 30 Jan 2024:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+tunl0@NONE       DOWN           
+gre0@NONE        DOWN           
+gretap0@NONE     DOWN           
+erspan0@NONE     DOWN           
+ip_vti0@NONE     DOWN           
+ip6_vti0@NONE    DOWN           
+sit0@NONE        DOWN           
+ip6tnl0@NONE     DOWN           
+ip6gre0@NONE     DOWN           
+eth0@if41        UP             172.30.133.10/24 
+Linux 9125a23ba101 7.0.14-linuxkit #1 SMP PREEMPT_DYNAMIC Fri Sep 18 10:17:53 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess
+LISTEN 0      4096      127.0.0.11:37193      0.0.0.0:*          
+LISTEN 0      128          0.0.0.0:22         0.0.0.0:*    users:(("sshd",pid=29,fd=3))
+iptables v1.8.10 (nf_tables)

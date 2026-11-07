@@ -1,0 +1,5 @@
+﻿git diff --exit-code origin/main -- README.md
+readme_diff_exit=0
+13-03-network-protection
+dbd6eeed9afcffc55d8a6dface183fc866dec72d
+Final commit and clean status are recorded outside the worktree in FINAL-CHECKS.txt to avoid self-modifying the commit.

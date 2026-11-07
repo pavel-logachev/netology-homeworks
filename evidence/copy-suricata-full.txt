@@ -1,0 +1,2 @@
+docker cp nt1303-defender:/var/log/suricata/. evidence/suricata-full/
+[exit code: 0]

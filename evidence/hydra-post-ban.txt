@@ -1,0 +1,14 @@
+docker exec -w /lab nt1303-attacker timeout 20 hydra -I -l labuser -p LabOnly-1303-Throwaway! -t 1 -w 5 172.30.133.10 ssh
+Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-11-07 09:32:46
+[DATA] max 1 task per 1 server, overall 1 task, 1 login try (l:1/p:1), ~1 try per task
+[DATA] attacking ssh://172.30.133.10:22/
+docker.exe : [ERROR] could not connect to ssh://172.30.133.10:22 - Connection refused
+At C:\Users\pavel\Documents\DeepSeekHarness\cache\netology-20261107\w-1303\wt\stand\run-lab.ps1:8 char:15
++     $result = & docker @DockerArgs 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([ERROR] could n...nection refused:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[exit code: 255]

@@ -1,0 +1,11 @@
+docker exec nt1303-attacker timeout 90 nmap -sT 172.30.133.10
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-11-07 09:34 UTC
+Nmap scan report for nt1303-defender.nt1303-isolated (172.30.133.10)
+Host is up (0.00016s latency).
+Not shown: 999 closed tcp ports (conn-refused)
+PORT   STATE SERVICE
+22/tcp open  ssh
+MAC Address: 82:01:4D:02:F6:4A (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.09 seconds
+[exit code: 0]

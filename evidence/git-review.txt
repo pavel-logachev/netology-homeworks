@@ -1,0 +1,188 @@
+﻿git diff --cached --check -- stand .gitattributes
+source_whitespace_exit=0
+Raw evidence whitespace retained verbatim; earlier whole-tree diff check warned on native output padding.
+ .gitattributes                                     |     6 +
+ evidence/01-nmap-ack-connect.html                  |    32 +
+ evidence/01-nmap-ack-connect.png                   |   Bin 0 -> 124458 bytes
+ evidence/02-nmap-syn-version.html                  |    37 +
+ evidence/02-nmap-syn-version.png                   |   Bin 0 -> 154771 bytes
+ evidence/03-hydra-disabled.html                    |    20 +
+ evidence/03-hydra-disabled.png                     |   Bin 0 -> 123795 bytes
+ evidence/04-hydra-ban.html                         |    30 +
+ evidence/04-hydra-ban.png                          |   Bin 0 -> 112125 bytes
+ evidence/artifact-checks.txt                       |    14 +
+ evidence/attacker-inventory.txt                    |    24 +
+ evidence/auth-full.log                             |    33 +
+ evidence/baseline-auth.log                         |     1 +
+ evidence/baseline-checkpoint.txt                   |     6 +
+ evidence/baseline-fail2ban.log                     |    18 +
+ evidence/baseline-suricata-eve.json                |     0
+ evidence/baseline-suricata-fast.log                |     0
+ evidence/before-hydra-disabled-auth.log            |     0
+ evidence/before-hydra-disabled-checkpoint.txt      |     6 +
+ evidence/before-hydra-disabled-fail2ban.log        |     5 +
+ evidence/before-hydra-disabled-suricata-eve.json   |     0
+ evidence/before-hydra-disabled-suricata-fast.log   |     0
+ evidence/before-hydra-enabled-auth.log             |     0
+ evidence/before-hydra-enabled-checkpoint.txt       |     6 +
+ evidence/before-hydra-enabled-fail2ban.log         |    12 +
+ evidence/before-hydra-enabled-suricata-eve.json    |     0
+ evidence/before-hydra-enabled-suricata-fast.log    |     0
+ evidence/build-final.txt                           |    78 +
+ evidence/build-info.txt                            |    95 +
+ evidence/build-ubuntu.txt                          |  1237 ++
+ evidence/build.txt                                 |   124 +
+ evidence/classification.config.observed            |    43 +
+ evidence/cleanup.txt                               |    48 +
+ evidence/commands.txt                              |    78 +
+ evidence/containers.json                           |   465 +
+ evidence/copy-auth-full.txt                        |     2 +
+ evidence/copy-enabled-jail.txt                     |     2 +
+ evidence/copy-fail2ban-full.txt                    |     2 +
+ evidence/copy-phase-evidence.txt                   |     2 +
+ evidence/copy-suricata-config.txt                  |     2 +
+ evidence/copy-suricata-full.txt                    |     2 +
+ evidence/disable-before-hydra.txt                  |    14 +
+ evidence/enable-before-hydra.txt                   |    20 +
+ evidence/enable-for-scans.txt                      |    20 +
+ evidence/fail2ban-effective.txt                    |    33 +
+ evidence/fail2ban-full.log                         |    41 +
+ evidence/fail2ban-status-banned.txt                |    11 +
+ evidence/final-auth.log                            |     0
+ evidence/final-checkpoint.txt                      |     6 +
+ evidence/final-fail2ban.log                        |     0
+ evidence/final-readiness-canary.txt                |    20 +
+ evidence/final-suricata-eve.json                   |   431 +
+ evidence/final-suricata-fast.log                   |     0
+ evidence/firewall-banned.txt                       |    63 +
+ evidence/git-review.txt                            |   183 +
+ evidence/hydra-disabled-auth.log                   |    17 +
+ evidence/hydra-disabled-checkpoint.txt             |     6 +
+ evidence/hydra-disabled-fail2ban.log               |     0
+ evidence/hydra-disabled-suricata-eve.json          |    14 +
+ evidence/hydra-disabled-suricata-fast.log          |     9 +
+ evidence/hydra-disabled.txt                        |    17 +
+ evidence/hydra-enabled-auth.log                    |     9 +
+ evidence/hydra-enabled-checkpoint.txt              |     6 +
+ evidence/hydra-enabled-fail2ban.log                |     5 +
+ evidence/hydra-enabled-suricata-eve.json           |  1641 +++
+ evidence/hydra-enabled-suricata-fast.log           |    42 +
+ evidence/hydra-enabled.txt                         |    40 +
+ evidence/hydra-post-ban.txt                        |    14 +
+ evidence/image.json                                |    67 +
+ evidence/initial-summary.txt                       |    38 +
+ evidence/jail.conf.observed                        |   980 ++
+ evidence/network.json                              |    64 +
+ evidence/nmap-sA-auth.log                          |     0
+ evidence/nmap-sA-checkpoint.txt                    |     6 +
+ evidence/nmap-sA-fail2ban.log                      |     0
+ evidence/nmap-sA-jail-status.txt                   |    11 +
+ evidence/nmap-sA-suricata-eve.json                 |     0
+ evidence/nmap-sA-suricata-fast.log                 |     0
+ evidence/nmap-sA.txt                               |    10 +
+ evidence/nmap-sS-auth.log                          |     0
+ evidence/nmap-sS-checkpoint.txt                    |     6 +
+ evidence/nmap-sS-fail2ban.log                      |     0
+ evidence/nmap-sS-jail-status.txt                   |    11 +
+ evidence/nmap-sS-suricata-eve.json                 |  1006 ++
+ evidence/nmap-sS-suricata-fast.log                 |  1005 ++
+ evidence/nmap-sS.txt                               |    11 +
+ evidence/nmap-sT-auth.log                          |     0
+ evidence/nmap-sT-checkpoint.txt                    |     6 +
+ evidence/nmap-sT-fail2ban.log                      |     0
+ evidence/nmap-sT-jail-status.txt                   |    11 +
+ evidence/nmap-sT-suricata-eve.json                 |     0
+ evidence/nmap-sT-suricata-fast.log                 |     0
+ evidence/nmap-sT.txt                               |    11 +
+ evidence/nmap-sV-auth.log                          |     3 +
+ evidence/nmap-sV-checkpoint.txt                    |     6 +
+ evidence/nmap-sV-fail2ban.log                      |     0
+ evidence/nmap-sV-jail-status.txt                   |    11 +
+ evidence/nmap-sV-suricata-eve.json                 |  1008 ++
+ evidence/nmap-sV-suricata-fast.log                 |  1008 ++
+ evidence/nmap-sV.txt                               |    13 +
+ evidence/no-external-route.txt                     |     7 +
+ evidence/offsets.json                              |     6 +
+ evidence/package-versions.txt                      |     7 +
+ evidence/post-scans-status.txt                     |    29 +
+ evidence/rules-metadata.txt                        |    17 +
+ evidence/run-transcript.txt                        |   417 +
+ evidence/runtime-inventory.txt                     |    18 +
+ evidence/selected-et-rules.txt                     |     7 +
+ evidence/sshd-effective.txt                        |    92 +
+ evidence/startup.txt                               |    22 +
+ evidence/stop-suricata.txt                         |     2 +
+ evidence/summary.txt                               |    69 +
+ evidence/suricata-configuration.txt                |     4 +
+ evidence/suricata-full/eve.json                    | 12131 +++++++++++++++++++
+ evidence/suricata-full/fast.log                    |  6084 ++++++++++
+ evidence/suricata-full/stats.log                   |   690 ++
+ evidence/suricata-full/suricata.log                |    56 +
+ evidence/suricata-start.txt                        |     3 +
+ evidence/suricata-startup.log                      |    31 +
+ evidence/suricata-test.txt                         |     2 +
+ evidence/suricata-uptime.txt                       |    16 +
+ evidence/verified-nmap-sA-auth.log                 |     0
+ evidence/verified-nmap-sA-checkpoint.txt           |     4 +
+ evidence/verified-nmap-sA-fail2ban.log             |     0
+ evidence/verified-nmap-sA-jail-status.txt          |     9 +
+ evidence/verified-nmap-sA-suricata-eve.json        |  1006 ++
+ evidence/verified-nmap-sA-suricata-fast.log        |  1002 ++
+ evidence/verified-nmap-sA.txt                      |    10 +
+ evidence/verified-nmap-sS-auth.log                 |     0
+ evidence/verified-nmap-sS-checkpoint.txt           |     4 +
+ evidence/verified-nmap-sS-fail2ban.log             |     0
+ evidence/verified-nmap-sS-jail-status.txt          |     9 +
+ evidence/verified-nmap-sS-suricata-eve.json        |  1005 ++
+ evidence/verified-nmap-sS-suricata-fast.log        |  1004 ++
+ evidence/verified-nmap-sS.txt                      |    11 +
+ evidence/verified-nmap-sT-auth.log                 |     0
+ evidence/verified-nmap-sT-checkpoint.txt           |     4 +
+ evidence/verified-nmap-sT-fail2ban.log             |     0
+ evidence/verified-nmap-sT-jail-status.txt          |     9 +
+ evidence/verified-nmap-sT-suricata-eve.json        |  1007 ++
+ evidence/verified-nmap-sT-suricata-fast.log        |  1006 ++
+ evidence/verified-nmap-sT.txt                      |    11 +
+ evidence/verified-nmap-sV-auth.log                 |     3 +
+ evidence/verified-nmap-sV-checkpoint.txt           |     4 +
+ evidence/verified-nmap-sV-fail2ban.log             |     0
+ evidence/verified-nmap-sV-jail-status.txt          |     9 +
+ evidence/verified-nmap-sV-suricata-eve.json        |  1009 ++
+ evidence/verified-nmap-sV-suricata-fast.log        |  1008 ++
+ evidence/verified-nmap-sV.txt                      |    13 +
+ evidence/verified-scans-baseline-auth.log          |     0
+ evidence/verified-scans-baseline-fail2ban.log      |     1 +
+ evidence/verified-scans-baseline-suricata-eve.json |     0
+ evidence/verified-scans-baseline-suricata-fast.log |     0
+ evidence/verified-scans-final-auth.log             |     0
+ evidence/verified-scans-final-checkpoint.txt       |     4 +
+ evidence/verified-scans-final-fail2ban.log         |     0
+ evidence/verified-scans-final-suricata-eve.json    |  4004 ++++++
+ evidence/verified-scans-final-suricata-fast.log    |     0
+ evidence/verified-scans-readiness.txt              |    35 +
+ evidence/verified-scans-transcript.txt             |    53 +
+ evidence/versions.txt                              |    33 +
+ stand/.dockerignore                                |     5 +
+ stand/Dockerfile                                   |    15 +
+ stand/OPERATIONS.md                                |    38 +
+ stand/checkpoint.py                                |    28 +
+ stand/cleanup.ps1                                  |    29 +
+ stand/compose.yaml                                 |    31 +
+ stand/jail-enabled.observed.local                  |    14 +
+ stand/jail.local                                   |    14 +
+ stand/local.rules                                  |     5 +
+ stand/pass.txt                                     |     6 +
+ stand/prepare-suricata.py                          |    20 +
+ stand/render-evidence.cjs                          |    25 +
+ stand/rule-inventory.py                            |     9 +
+ stand/run-lab.ps1                                  |    54 +
+ stand/run-verified-scans.ps1                       |    25 +
+ stand/sshd_config                                  |    11 +
+ stand/start-defender.sh                            |    17 +
+ stand/start-suricata.py                            |    17 +
+ stand/summarize-evidence.py                        |    16 +
+ stand/suricata.observed.yaml                       |   507 +
+ stand/users.txt                                    |     2 +
+ stand/verified-scans.py                            |    21 +
+ stand/verify-artifacts.cjs                         |    60 +
+ 184 files changed, 43340 insertions(+)

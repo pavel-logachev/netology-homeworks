@@ -1,0 +1,53 @@
+﻿Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-11-07 09:34 UTC
+Nmap scan report for nt1303-defender.nt1303-isolated (172.30.133.10)
+Host is up (0.000015s latency).
+All 1000 scanned ports on nt1303-defender.nt1303-isolated (172.30.133.10) are in ignored states.
+Not shown: 1000 unfiltered tcp ports (reset)
+MAC Address: 82:01:4D:02:F6:4A (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.12 seconds
+verified-nmap-sA suricata-fast.log: start=365139 end=528455 bytes=163316 lines=1002
+verified-nmap-sA suricata-eve.json: start=2550655 end=3185992 bytes=635337 lines=1006
+verified-nmap-sA fail2ban.log: start=3763 end=3763 bytes=0 lines=0
+verified-nmap-sA auth.log: start=3711 end=3711 bytes=0 lines=0
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-11-07 09:34 UTC
+Nmap scan report for nt1303-defender.nt1303-isolated (172.30.133.10)
+Host is up (0.00016s latency).
+Not shown: 999 closed tcp ports (conn-refused)
+PORT   STATE SERVICE
+22/tcp open  ssh
+MAC Address: 82:01:4D:02:F6:4A (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.09 seconds
+verified-nmap-sT suricata-fast.log: start=528455 end=706624 bytes=178169 lines=1006
+verified-nmap-sT suricata-eve.json: start=3185992 end=3815318 bytes=629326 lines=1007
+verified-nmap-sT fail2ban.log: start=3763 end=3763 bytes=0 lines=0
+verified-nmap-sT auth.log: start=3711 end=3711 bytes=0 lines=0
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-11-07 09:34 UTC
+Nmap scan report for nt1303-defender.nt1303-isolated (172.30.133.10)
+Host is up (0.000014s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT   STATE SERVICE
+22/tcp open  ssh
+MAC Address: 82:01:4D:02:F6:4A (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.11 seconds
+verified-nmap-sS suricata-fast.log: start=706624 end=884436 bytes=177812 lines=1004
+verified-nmap-sS suricata-eve.json: start=3815318 end=4442279 bytes=626961 lines=1005
+verified-nmap-sS fail2ban.log: start=3763 end=3763 bytes=0 lines=0
+verified-nmap-sS auth.log: start=3711 end=3711 bytes=0 lines=0
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-11-07 09:34 UTC
+Nmap scan report for nt1303-defender.nt1303-isolated (172.30.133.10)
+Host is up (0.000014s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 9.6p1 Ubuntu 3ubuntu13.20 (Ubuntu Linux; protocol 2.0)
+MAC Address: 82:01:4D:02:F6:4A (Unknown)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 0.20 seconds
+verified-nmap-sV suricata-fast.log: start=884436 end=1062906 bytes=178470 lines=1008
+verified-nmap-sV suricata-eve.json: start=4442279 end=5071163 bytes=628884 lines=1009
+verified-nmap-sV fail2ban.log: start=3763 end=3763 bytes=0 lines=0
+verified-nmap-sV auth.log: start=3711 end=4067 bytes=356 lines=3

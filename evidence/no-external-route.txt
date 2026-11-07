@@ -1,0 +1,7 @@
+﻿docker : RTNETLINK answers: Network is unreachable
+At line:1 char:771
++ ... ective.txt; docker exec nt1303-attacker timeout 2 sh -c 'ip route get ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (RTNETLINK answe... is unreachable:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

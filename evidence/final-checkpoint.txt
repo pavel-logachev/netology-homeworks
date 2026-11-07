@@ -1,0 +1,6 @@
+docker exec nt1303-defender python3 /lab/checkpoint.py final
+final suricata-fast.log: start=365139 end=365139 bytes=0 lines=0
+final suricata-eve.json: start=2288631 end=2550655 bytes=262024 lines=431
+final fail2ban.log: start=3674 end=3674 bytes=0 lines=0
+final auth.log: start=3711 end=3711 bytes=0 lines=0
+[exit code: 0]

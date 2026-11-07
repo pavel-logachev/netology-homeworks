@@ -1,0 +1,30 @@
+<!doctype html><meta charset="utf-8"><title>Task 2 | SSH jail enabled, attacker banned</title><style>html{background:#101923;color:#e9f0f7}body{margin:28px;font:16px/1.4 Consolas,monospace}h1{font:600 24px Segoe UI,sans-serif;color:#8ed7f7;margin:0 0 8px}p{color:#b2c6d7;margin:8px 0 18px}section{background:#182634;border:1px solid #31485b;padding:10px 14px;margin:10px 0;border-radius:6px}h2{font:600 16px Segoe UI,sans-serif;color:#9fe2c1;margin:0 0 5px}pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.35 Consolas,monospace}.cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}</style><h1>Task 2 | SSH jail enabled, attacker banned</h1><p>Netology 13-03 | real Docker output | UTC 2026-11-07 | defender 172.30.133.10, attacker 172.30.133.20<br>LAB LOCAL signatures are lab instrumentation, not ET Open. Excerpts retain raw text; full logs are adjacent.</p><section><h2>hydra-enabled-fail2ban.log</h2><pre>2026-11-07 09:32:11,047 fail2ban.filter         [35]: INFO    [sshd] Found 172.30.133.20 - 2026-11-07 09:32:10
+2026-11-07 09:32:15,049 fail2ban.filter         [35]: INFO    [sshd] Found 172.30.133.20 - 2026-11-07 09:32:14
+2026-11-07 09:32:17,651 fail2ban.filter         [35]: INFO    [sshd] Found 172.30.133.20 - 2026-11-07 09:32:17
+2026-11-07 09:32:18,246 fail2ban.actions        [35]: NOTICE  [sshd] Ban 172.30.133.20
+2026-11-07 09:32:19,852 fail2ban.filter         [35]: INFO    [sshd] Found 172.30.133.20 - 2026-11-07 09:32:19
+</pre></section><div class="cols"><div><section><h2>fail2ban-status-banned.txt</h2><pre>docker exec nt1303-defender fail2ban-client status sshd
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	1
+|  |- Total failed:	4
+|  `- File list:	/var/log/auth.log
+`- Actions
+   |- Currently banned:	1
+   |- Total banned:	1
+   `- Banned IP list:	172.30.133.20
+[exit code: 0]
+</pre></section><section><h2>firewall-banned.txt (iptables -S)</h2><pre>-P INPUT ACCEPT
+-P FORWARD ACCEPT
+-P OUTPUT ACCEPT
+-N f2b-sshd
+-A INPUT -p tcp -m multiport --dports 22 -j f2b-sshd
+-A f2b-sshd -s 172.30.133.20/32 -j REJECT --reject-with icmp-port-unreachable
+-A f2b-sshd -j RETURN</pre></section></div><div><section><h2>hydra-enabled.txt (selected raw lines)</h2><pre>0 of 1 target completed, 0 valid password found
+docker.exe : [ERROR] all children were disabled due too many connection errors
+[ERROR] 1 target was disabled because of too many errors
+[exit code: 255]</pre></section><section><h2>hydra-post-ban.txt (selected raw lines)</h2><pre>docker exec -w /lab nt1303-attacker timeout 20 hydra -I -l labuser -p LabOnly-1303-Throwaway! -t 1 -w 5 172.30.133.10 ssh
+[DATA] max 1 task per 1 server, overall 1 task, 1 login try (l:1/p:1), ~1 try per task
+[DATA] attacking ssh://172.30.133.10:22/
+docker.exe : [ERROR] could not connect to ssh://172.30.133.10:22 - Connection refused
+[exit code: 255]</pre></section></div></div><section><h2>hydra-enabled-suricata-fast.log (LAB LOCAL alert)</h2><pre>11/07/2026-09:32:08.493440  [**] [1:9901303:1] LAB LOCAL repeated SSH connections - possible brute force [**] [Classification: (null)] [Priority: 3] {TCP} 172.30.133.20:53176 -&gt; 172.30.133.10:22</pre></section>

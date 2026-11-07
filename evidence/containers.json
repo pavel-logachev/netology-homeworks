@@ -1,0 +1,465 @@
+﻿[
+    {
+        "Id": "9125a23ba10161b2032d893a75cd6b4d62f91b9e6b5fbb279972f41f064cefb7",
+        "Created": "2026-11-07T09:30:34.4989406Z",
+        "Path": "bash",
+        "Args": [
+            "/lab/start-defender.sh"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 70945,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-11-07T09:30:34.921830292Z",
+            "FinishedAt": "0001-01-01T00:00:00Z",
+            "Health": {
+                "Status": "healthy",
+                "FailingStreak": 0,
+                "Log": [
+                    {
+                        "Start": "2026-11-07T09:30:38.03399572Z",
+                        "End": "2026-11-07T09:30:38.059743975Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    }
+                ]
+            }
+        },
+        "Image": "sha256:702c4e0ed785704aaf9478b4550fb33bae648e602cff434cdebb6530bdb2d544",
+        "ResolvConfPath": "/var/lib/docker/containers/9125a23ba10161b2032d893a75cd6b4d62f91b9e6b5fbb279972f41f064cefb7/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/9125a23ba10161b2032d893a75cd6b4d62f91b9e6b5fbb279972f41f064cefb7/hostname",
+        "HostsPath": "/var/lib/docker/containers/9125a23ba10161b2032d893a75cd6b4d62f91b9e6b5fbb279972f41f064cefb7/hosts",
+        "LogPath": "/var/lib/docker/containers/9125a23ba10161b2032d893a75cd6b4d62f91b9e6b5fbb279972f41f064cefb7/9125a23ba10161b2032d893a75cd6b4d62f91b9e6b5fbb279972f41f064cefb7-json.log",
+        "Name": "/nt1303-defender",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "nt1303-isolated",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": [
+                "CAP_NET_ADMIN",
+                "CAP_NET_RAW"
+            ],
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": null,
+            "DnsSearch": null,
+            "ExtraHosts": [],
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": null,
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": null,
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/acpi",
+                "/proc/asound",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/sys/devices/virtual/powercap",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "Storage": {
+            "RootFS": {
+                "Snapshot": {
+                    "Name": "overlayfs"
+                }
+            }
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "9125a23ba101",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "ExposedPorts": {
+                "22/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "bash",
+                "/lab/start-defender.sh"
+            ],
+            "Healthcheck": {
+                "Test": [
+                    "CMD-SHELL",
+                    "test -S /var/run/fail2ban/fail2ban.sock \u0026\u0026 ss -lnt | grep -q ':22 '"
+                ],
+                "Interval": 3000000000,
+                "Timeout": 2000000000,
+                "Retries": 10
+            },
+            "Image": "nt1303-lab:noble",
+            "Volumes": null,
+            "WorkingDir": "/lab",
+            "Entrypoint": null,
+            "Labels": {
+                "com.docker.compose.config-hash": "6b5f344c411518b48a07802efa076ea891e442aafdaa3df8fab34ec59822e194",
+                "com.docker.compose.container-number": "1",
+                "com.docker.compose.depends_on": "",
+                "com.docker.compose.image": "sha256:36194519519d82b02a81c7c38726978e355932d3141cd9071f795f60cc38c79d",
+                "com.docker.compose.oneoff": "False",
+                "com.docker.compose.project": "nt1303-lab",
+                "com.docker.compose.project.config_files": "C:\\Users\\pavel\\Documents\\DeepSeekHarness\\cache\\netology-20261107\\w-1303\\wt\\stand\\compose.yaml",
+                "com.docker.compose.project.working_dir": "C:\\Users\\pavel\\Documents\\DeepSeekHarness\\cache\\netology-20261107\\w-1303\\wt\\stand",
+                "com.docker.compose.service": "defender",
+                "com.docker.compose.version": "5.5.1",
+                "org.opencontainers.image.description": "Disposable Netology 13-03 security lab, never expose to production",
+                "org.opencontainers.image.version": "24.04"
+            }
+        },
+        "NetworkSettings": {
+            "SandboxID": "56d3d21628e56e69c3ab749d6a902de4fdab2e5d06d20f849c2d1962ac7c3943",
+            "SandboxKey": "/var/run/docker/netns/56d3d21628e5",
+            "Ports": {
+                "22/tcp": null
+            },
+            "Networks": {
+                "nt1303-isolated": {
+                    "IPAMConfig": {
+                        "IPv4Address": "172.30.133.10"
+                    },
+                    "Links": null,
+                    "Aliases": [
+                        "nt1303-defender",
+                        "defender"
+                    ],
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "2b65aa40b0b4561bb8d386d8101b48068063286bd79da282b05400fb6260c8ec",
+                    "EndpointID": "6a4d891e9213498e4ab0f6ccb0b011e531e7ca8cc05f464881d392dbbc64d2dc",
+                    "Gateway": "",
+                    "IPAddress": "172.30.133.10",
+                    "MacAddress": "82:01:4d:02:f6:4a",
+                    "IPPrefixLen": 24,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "nt1303-defender",
+                        "defender",
+                        "9125a23ba101"
+                    ]
+                }
+            }
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:36194519519d82b02a81c7c38726978e355932d3141cd9071f795f60cc38c79d",
+            "size": 1994,
+            "platform": {
+                "architecture": "amd64",
+                "os": "linux"
+            }
+        }
+    },
+    {
+        "Id": "05aa4a10006ec549ae7ac708a837f9c88a777d14d49963ffd0a400f1db6288ec",
+        "Created": "2026-11-07T09:30:34.500191598Z",
+        "Path": "sleep",
+        "Args": [
+            "infinity"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 71028,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-11-07T09:30:35.150113878Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:702c4e0ed785704aaf9478b4550fb33bae648e602cff434cdebb6530bdb2d544",
+        "ResolvConfPath": "/var/lib/docker/containers/05aa4a10006ec549ae7ac708a837f9c88a777d14d49963ffd0a400f1db6288ec/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/05aa4a10006ec549ae7ac708a837f9c88a777d14d49963ffd0a400f1db6288ec/hostname",
+        "HostsPath": "/var/lib/docker/containers/05aa4a10006ec549ae7ac708a837f9c88a777d14d49963ffd0a400f1db6288ec/hosts",
+        "LogPath": "/var/lib/docker/containers/05aa4a10006ec549ae7ac708a837f9c88a777d14d49963ffd0a400f1db6288ec/05aa4a10006ec549ae7ac708a837f9c88a777d14d49963ffd0a400f1db6288ec-json.log",
+        "Name": "/nt1303-attacker",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "nt1303-isolated",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": [
+                "CAP_NET_ADMIN",
+                "CAP_NET_RAW"
+            ],
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": null,
+            "DnsSearch": null,
+            "ExtraHosts": [],
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": null,
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": null,
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/acpi",
+                "/proc/asound",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/sys/devices/virtual/powercap",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "Storage": {
+            "RootFS": {
+                "Snapshot": {
+                    "Name": "overlayfs"
+                }
+            }
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "05aa4a10006e",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "ExposedPorts": {
+                "22/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "sleep",
+                "infinity"
+            ],
+            "Image": "nt1303-lab:noble",
+            "Volumes": null,
+            "WorkingDir": "/lab",
+            "Entrypoint": null,
+            "Labels": {
+                "com.docker.compose.config-hash": "26ea10b31806bab93e99520095b81078efb02f2da04e4478d97aea779f6f160a",
+                "com.docker.compose.container-number": "1",
+                "com.docker.compose.depends_on": "",
+                "com.docker.compose.image": "sha256:36194519519d82b02a81c7c38726978e355932d3141cd9071f795f60cc38c79d",
+                "com.docker.compose.oneoff": "False",
+                "com.docker.compose.project": "nt1303-lab",
+                "com.docker.compose.project.config_files": "C:\\Users\\pavel\\Documents\\DeepSeekHarness\\cache\\netology-20261107\\w-1303\\wt\\stand\\compose.yaml",
+                "com.docker.compose.project.working_dir": "C:\\Users\\pavel\\Documents\\DeepSeekHarness\\cache\\netology-20261107\\w-1303\\wt\\stand",
+                "com.docker.compose.service": "attacker",
+                "com.docker.compose.version": "5.5.1",
+                "org.opencontainers.image.description": "Disposable Netology 13-03 security lab, never expose to production",
+                "org.opencontainers.image.version": "24.04"
+            }
+        },
+        "NetworkSettings": {
+            "SandboxID": "a8458acb49d3191e2dab365c53f9dbe8057316d431d4c94afcdaacb6f584b967",
+            "SandboxKey": "/var/run/docker/netns/a8458acb49d3",
+            "Ports": {
+                "22/tcp": null
+            },
+            "Networks": {
+                "nt1303-isolated": {
+                    "IPAMConfig": {
+                        "IPv4Address": "172.30.133.20"
+                    },
+                    "Links": null,
+                    "Aliases": [
+                        "nt1303-attacker",
+                        "attacker"
+                    ],
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "2b65aa40b0b4561bb8d386d8101b48068063286bd79da282b05400fb6260c8ec",
+                    "EndpointID": "f24a80d35c5db494fefcaab54de597a9c8d8675f653b1780f3abe9de29eec91c",
+                    "Gateway": "",
+                    "IPAddress": "172.30.133.20",
+                    "MacAddress": "86:cb:54:c3:22:06",
+                    "IPPrefixLen": 24,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "nt1303-attacker",
+                        "attacker",
+                        "05aa4a10006e"
+                    ]
+                }
+            }
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:36194519519d82b02a81c7c38726978e355932d3141cd9071f795f60cc38c79d",
+            "size": 1994,
+            "platform": {
+                "architecture": "amd64",
+                "os": "linux"
+            }
+        }
+    }
+]

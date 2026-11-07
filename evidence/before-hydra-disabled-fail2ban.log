@@ -1,0 +1,5 @@
+2026-11-07 09:31:47,442 fail2ban.server         [35]: INFO    Reload all jails
+2026-11-07 09:31:47,442 fail2ban.filter         [35]: INFO    Removed logfile: '/var/log/auth.log'
+2026-11-07 09:31:48,014 fail2ban.actions        [35]: NOTICE  [sshd] Flush ticket(s) with iptables-multiport
+2026-11-07 09:31:48,015 fail2ban.jail           [35]: INFO    Jail 'sshd' stopped
+2026-11-07 09:31:48,015 fail2ban.server         [35]: INFO    Reload finished.
