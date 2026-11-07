@@ -1,0 +1,7 @@
+﻿yc.exe : ...1s...6s...11s...16s...21s...26s...done (26s)
+At line:1 char:977
++ ... ismatch' }; & 'C:\Users\pavel\yandex-cloud\bin\yc.exe' compute instan ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (...1s...6s...11...6s...done (26s):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

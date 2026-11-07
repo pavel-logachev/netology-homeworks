@@ -1,0 +1,215 @@
+﻿=== kernel ===
+Linux 36249cbe7353 7.0.14-linuxkit #1 SMP PREEMPT_DYNAMIC Fri Sep 18 10:17:53 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+=== filesystems ===
+nodev	sysfs
+nodev	tmpfs
+nodev	proc
+nodev	cgroup
+nodev	cgroup2
+nodev	cpuset
+nodev	devtmpfs
+nodev	binfmt_misc
+nodev	debugfs
+nodev	tracefs
+nodev	securityfs
+nodev	sockfs
+nodev	bpf
+nodev	pipefs
+nodev	ramfs
+nodev	hugetlbfs
+nodev	rpc_pipefs
+nodev	devpts
+	ext3
+	ext2
+	ext4
+	squashfs
+	vfat
+	exfat
+	iso9660
+nodev	nfs
+nodev	nfs4
+nodev	nfsd
+nodev	cifs
+nodev	smb3
+	ntfs
+	ntfs3
+nodev	autofs
+	fuseblk
+nodev	fuse
+nodev	fusectl
+nodev	virtiofs
+nodev	overlay
+	udf
+	xfs
+nodev	9p
+	f2fs
+nodev	efivarfs
+	erofs
+nodev	mqueue
+	btrfs
+nodev	pstore
+nodev	fakeowner
+nodev	shiftfs
+nodev	selfowner
+=== crypto ===
+name         : ghash
+driver       : ghash-generic
+module       : kernel
+priority     : 100
+refcnt       : 1
+selftest     : passed
+internal     : no
+type         : shash
+blocksize    : 16
+digestsize   : 16
+
+name         : jitterentropy_rng
+driver       : jitterentropy_rng
+module       : kernel
+priority     : 100
+refcnt       : 1
+selftest     : passed
+internal     : no
+type         : rng
+seedsize     : 0
+
+name         : stdrng
+driver       : drbg_nopr_hmac_sha512
+module       : kernel
+priority     : 205
+refcnt       : 1
+selftest     : passed
+internal     : no
+type         : rng
+seedsize     : 0
+
+name         : stdrng
+driver       : drbg_nopr_hmac_sha256
+module       : kernel
+priority     : 204
+refcnt       : 1
+selftest     : passed
+internal     : no
+type         : rng
+seedsize     : 0
+
+name         : stdrng
+driver       : drbg_nopr_hmac_sha384
+module       : kernel
+priority     : 203
+refcnt       : 1
+selftest     : passed
+internal     : no
+type         : rng
+seedsize     : 0
+
+name         : stdrng
+driver       : drbg_pr_hmac_sha512
+module       : kernel
+priority     : 202
+refcnt       : 1
+selftest     : passed
+internal     : no
+type         : rng
+seedsize     : 0
+=== install probe tools ===
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package libdevmapper1.02.1:amd64.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 4393 files and directories currently installed.)
+Preparing to unpack .../libdevmapper1.02.1_2%3a1.02.175-2.1ubuntu5_amd64.deb ...
+Unpacking libdevmapper1.02.1:amd64 (2:1.02.175-2.1ubuntu5) ...
+Selecting previously unselected package dmsetup.
+Preparing to unpack .../dmsetup_2%3a1.02.175-2.1ubuntu5_amd64.deb ...
+Unpacking dmsetup (2:1.02.175-2.1ubuntu5) ...
+Selecting previously unselected package libkmod2:amd64.
+Preparing to unpack .../libkmod2_29-1ubuntu1.1_amd64.deb ...
+Unpacking libkmod2:amd64 (29-1ubuntu1.1) ...
+Selecting previously unselected package kmod.
+Preparing to unpack .../kmod_29-1ubuntu1.1_amd64.deb ...
+Unpacking kmod (29-1ubuntu1.1) ...
+Setting up libdevmapper1.02.1:amd64 (2:1.02.175-2.1ubuntu5) ...
+Setting up dmsetup (2:1.02.175-2.1ubuntu5) ...
+Setting up libkmod2:amd64 (29-1ubuntu1.1) ...
+Setting up kmod (29-1ubuntu1.1) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.15) ...
+=== modprobe ecryptfs ===
+modprobe: FATAL: Module ecryptfs not found in directory /lib/modules/7.0.14-linuxkit
+=== modprobe dm_crypt ===
+modprobe: FATAL: Module dm_crypt not found in directory /lib/modules/7.0.14-linuxkit
+=== dmsetup targets ===
+crypt            v1.29.0
+striped          v1.7.0
+linear           v1.5.0
+error            v1.7.0
+=== filesystems after modules ===
+nodev	sysfs
+nodev	tmpfs
+nodev	proc
+nodev	cgroup
+nodev	cgroup2
+nodev	cpuset
+nodev	devtmpfs
+nodev	binfmt_misc
+nodev	debugfs
+nodev	tracefs
+nodev	securityfs
+nodev	sockfs
+nodev	bpf
+nodev	pipefs
+nodev	ramfs
+nodev	hugetlbfs
+nodev	rpc_pipefs
+nodev	devpts
+	ext3
+	ext2
+	ext4
+	squashfs
+	vfat
+	exfat
+	iso9660
+nodev	nfs
+nodev	nfs4
+nodev	nfsd
+nodev	cifs
+nodev	smb3
+	ntfs
+	ntfs3
+nodev	autofs
+	fuseblk
+nodev	fuse
+nodev	fusectl
+nodev	virtiofs
+nodev	overlay
+	udf
+	xfs
+nodev	9p
+	f2fs
+nodev	efivarfs
+	erofs
+nodev	mqueue
+	btrfs
+nodev	pstore
+nodev	fakeowner
+nodev	shiftfs
+nodev	selfowner

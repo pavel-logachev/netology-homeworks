@@ -1,0 +1,115 @@
+﻿+ truncate -s 100M /var/tmp/nt1302-luks.img
+++ losetup --find --show /var/tmp/nt1302-luks.img
++ loop=/dev/loop0
++ losetup -l /dev/loop0
+NAME       SIZELIMIT OFFSET AUTOCLEAR RO BACK-FILE                DIO LOG-SEC
+/dev/loop0         0      0         0  0 /var/tmp/nt1302-luks.img   0     512
++ blockdev --getsize64 /dev/loop0
+104857600
++ set +x
++ cryptsetup luksFormat --type luks2 --batch-mode --key-file /run/nt1302-luks-key /dev/loop0
++ cryptsetup luksDump /dev/loop0
+LUKS header information
+Version:       	2
+Epoch:         	3
+Metadata area: 	16384 [bytes]
+Keyslots area: 	16744448 [bytes]
+UUID:          	2c34ed7f-21dd-40eb-9490-c1a4bc54dbff
+Label:         	(no label)
+Subsystem:     	(no subsystem)
+Flags:       	(no flags)
+
+Data segments:
+  0: crypt
+	offset: 16777216 [bytes]
+	length: (whole device)
+	cipher: aes-xts-plain64
+	sector: 512 [bytes]
+
+Keyslots:
+  0: luks2
+	Key:        512 bits
+	Priority:   normal
+	Cipher:     aes-xts-plain64
+	Cipher key: 512 bits
+	PBKDF:      argon2id
+	Time cost:  4
+	Memory:     408323
+	Threads:    2
+	Salt:       07 9d 01 4f 1d b7 18 ed ea 69 16 b0 40 42 24 20 
+	            a0 c1 b9 08 97 ba d9 e8 5a 49 1e 36 f9 93 aa fa 
+	AF stripes: 4000
+	AF hash:    sha256
+	Area offset:32768 [bytes]
+	Area length:258048 [bytes]
+	Digest ID:  0
+Tokens:
+Digests:
+  0: pbkdf2
+	Hash:       sha256
+	Iterations: 99447
+	Salt:       e4 df a0 d6 08 2a 14 7d 94 81 7d 4a 01 4c 93 c4 
+	            d3 72 a9 8f 31 24 88 ff 9b f8 03 7b 37 b4 4c 17 
+	Digest:     74 1e 55 1d 85 fe 37 89 29 86 73 2b 0a cb 05 f9 
+	            0d b8 83 0a eb 6d 2c b9 46 a9 26 67 06 56 0c 5e 
++ cryptsetup luksOpen --key-file /run/nt1302-luks-key /dev/loop0 nt1302-crypt
++ cryptsetup status nt1302-crypt
+/dev/mapper/nt1302-crypt is active.
+  type:    LUKS2
+  cipher:  aes-xts-plain64
+  keysize: 512 bits
+  key location: keyring
+  device:  /dev/loop0
+  loop:    /var/tmp/nt1302-luks.img
+  sector size:  512
+  offset:  32768 sectors
+  size:    172032 sectors
+  mode:    read/write
++ mkfs.ext4 -L nt1302-data /dev/mapper/nt1302-crypt
+mke2fs 1.46.5 (30-Dec-2021)
+Creating filesystem with 21504 4k blocks and 21504 inodes
+
+Allocating group tables: 0/1   done                            
+Writing inode tables: 0/1   done                            
+Creating journal (1024 blocks): done
+Writing superblocks and filesystem accounting information: 0/1   done
+
++ mkdir -p /mnt/nt1302-luks
++ mount /dev/mapper/nt1302-crypt /mnt/nt1302-luks
++ printf 'LUKS encrypted volume, Netology practical.\n'
++ cat /mnt/nt1302-luks/document.txt
+LUKS encrypted volume, Netology practical.
++ sha256sum /mnt/nt1302-luks/document.txt
++ cat /run/nt1302-luks-sha
+f6e0c46ca6f3ee2888f639cbe3b283cc049f75f4c607ee36477a4d43516c3454  /mnt/nt1302-luks/document.txt
++ findmnt /mnt/nt1302-luks
+TARGET           SOURCE                   FSTYPE OPTIONS
+/mnt/nt1302-luks /dev/mapper/nt1302-crypt ext4   rw,relatime
++ lsblk -o NAME,TYPE,SIZE,FSTYPE,MOUNTPOINTS /dev/loop0
+NAME           TYPE   SIZE FSTYPE      MOUNTPOINTS
+loop0          loop   100M crypto_LUKS 
+`-nt1302-crypt crypt   84M             /mnt/nt1302-luks
++ sync
++ umount /mnt/nt1302-luks
++ cryptsetup luksClose nt1302-crypt
++ cryptsetup status nt1302-crypt
+/dev/mapper/nt1302-crypt is inactive.
++ echo 'PASS: LUKS mapping inactive after close'
+PASS: LUKS mapping inactive after close
++ grep -aF 'LUKS encrypted volume, Netology practical.' /var/tmp/nt1302-luks.img
++ echo 'PASS: plaintext absent from backing image'
+PASS: plaintext absent from backing image
++ cryptsetup luksOpen --key-file /run/nt1302-luks-key /dev/loop0 nt1302-crypt
++ mount /dev/mapper/nt1302-crypt /mnt/nt1302-luks
++ sha256sum --check /run/nt1302-luks-sha
+/mnt/nt1302-luks/document.txt: OK
++ cat /mnt/nt1302-luks/document.txt
+LUKS encrypted volume, Netology practical.
++ umount /mnt/nt1302-luks
++ cryptsetup luksClose nt1302-crypt
++ losetup -d /dev/loop0
++ losetup -j /var/tmp/nt1302-luks.img
++ rm -f /run/nt1302-luks-key /run/nt1302-luks-sha /var/tmp/nt1302-luks.img
++ rmdir /mnt/nt1302-luks
++ echo 'PASS: reopen checksum verified; mapping closed; loop detached; temporary key and image removed'
+PASS: reopen checksum verified; mapping closed; loop detached; temporary key and image removed

@@ -1,0 +1,36 @@
+﻿{
+    "id":  "fhmdad4gu685d12ij6o6",
+    "name":  "nt1302-host-protection",
+    "zone_id":  "ru-central1-a",
+    "created_at":  "2026-11-07T09:27:56Z",
+    "status":  "RUNNING",
+    "resources":  {
+                      "memory":  "2147483648",
+                      "cores":  "2",
+                      "core_fraction":  "20"
+                  },
+    "boot_disk":  {
+                      "mode":  "READ_WRITE",
+                      "device_name":  "fhmdln73qssph30pop6n",
+                      "auto_delete":  true,
+                      "disk_id":  "fhmdln73qssph30pop6n"
+                  },
+    "network_interfaces":  [
+                               {
+                                   "index":  "0",
+                                   "mac_address":  "d0:0d:d5:34:90:f1",
+                                   "subnet_id":  "e9bd7l4u3g5amt2nutgv",
+                                   "primary_v4_address":  {
+                                                              "address":  "10.128.0.25",
+                                                              "one_to_one_nat":  {
+                                                                                     "address":  "51.250.91.102",
+                                                                                     "ip_version":  "IPV4"
+                                                                                 }
+                                                          }
+                               }
+                           ],
+    "scheduling_policy":  {
+                              "preemptible":  true
+                          },
+    "platform_id":  "standard-v2"
+}

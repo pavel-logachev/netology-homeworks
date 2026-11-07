@@ -1,0 +1,132 @@
+﻿ssh : Warning: Permanently added '51.250.91.102' (ED25519) to the list of known hosts.
+At line:1 char:486
++ ... .sh" -Raw | ssh -o ConnectTimeout=20 -o StrictHostKeyChecking=accept- ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Warning: Perman...of known hosts.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
++ cloud-init status --wait
+status: done
++ uname -a
+Linux fhmdad4gu685d12ij6o6 5.15.0-202-generic #212-Ubuntu SMP Thu Oct 15 16:49:38 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
++ cat /etc/os-release
+PRETTY_NAME="Ubuntu 22.04.5 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.5 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
++ apt-get update -qq
++ apt-get install -y ecryptfs-utils cryptsetup apparmor apparmor-utils keyutils
+Reading package lists...
+Building dependency tree...
+Reading state information...
+apparmor is already the newest version (3.0.4-2ubuntu2.5).
+apparmor set to manually installed.
+cryptsetup is already the newest version (2:2.4.3-1ubuntu1.3).
+cryptsetup set to manually installed.
+The following additional packages will be installed:
+  libecryptfs1 libtspi1 python3-apparmor python3-libapparmor
+Suggested packages:
+  vim-addon-manager
+The following NEW packages will be installed:
+  apparmor-utils ecryptfs-utils keyutils libecryptfs1 libtspi1
+  python3-apparmor python3-libapparmor
+0 upgraded, 7 newly installed, 0 to remove and 19 not upgraded.
+Need to get 510 kB of archives.
+After this operation, 2499 kB of additional disk space will be used.
+Get:1 http://mirror.yandex.ru/ubuntu jammy-updates/main amd64 python3-libapparmor amd64 3.0.4-2ubuntu2.5 [29.5 kB]
+Get:2 http://mirror.yandex.ru/ubuntu jammy-updates/main amd64 python3-apparmor all 3.0.4-2ubuntu2.5 [81.1 kB]
+Get:3 http://mirror.yandex.ru/ubuntu jammy-updates/main amd64 apparmor-utils all 3.0.4-2ubuntu2.5 [59.5 kB]
+Get:4 http://mirror.yandex.ru/ubuntu jammy/universe amd64 libecryptfs1 amd64 111-5ubuntu1 [36.0 kB]
+Get:5 http://mirror.yandex.ru/ubuntu jammy/universe amd64 libtspi1 amd64 0.3.15-0.2 [160 kB]
+Get:6 http://mirror.yandex.ru/ubuntu jammy/main amd64 keyutils amd64 1.6.1-2ubuntu3 [50.4 kB]
+Get:7 http://mirror.yandex.ru/ubuntu jammy/universe amd64 ecryptfs-utils amd64 111-5ubuntu1 [93.6 kB]
+Fetched 510 kB in 0s (3608 kB/s)
+Selecting previously unselected package python3-libapparmor.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 94121 files and directories currently installed.)
+Preparing to unpack .../0-python3-libapparmor_3.0.4-2ubuntu2.5_amd64.deb ...
+Unpacking python3-libapparmor (3.0.4-2ubuntu2.5) ...
+Selecting previously unselected package python3-apparmor.
+Preparing to unpack .../1-python3-apparmor_3.0.4-2ubuntu2.5_all.deb ...
+Unpacking python3-apparmor (3.0.4-2ubuntu2.5) ...
+Selecting previously unselected package apparmor-utils.
+Preparing to unpack .../2-apparmor-utils_3.0.4-2ubuntu2.5_all.deb ...
+Unpacking apparmor-utils (3.0.4-2ubuntu2.5) ...
+Selecting previously unselected package libecryptfs1.
+Preparing to unpack .../3-libecryptfs1_111-5ubuntu1_amd64.deb ...
+Unpacking libecryptfs1 (111-5ubuntu1) ...
+Selecting previously unselected package libtspi1.
+Preparing to unpack .../4-libtspi1_0.3.15-0.2_amd64.deb ...
+Unpacking libtspi1 (0.3.15-0.2) ...
+Selecting previously unselected package keyutils.
+Preparing to unpack .../5-keyutils_1.6.1-2ubuntu3_amd64.deb ...
+Unpacking keyutils (1.6.1-2ubuntu3) ...
+Selecting previously unselected package ecryptfs-utils.
+Preparing to unpack .../6-ecryptfs-utils_111-5ubuntu1_amd64.deb ...
+Unpacking ecryptfs-utils (111-5ubuntu1) ...
+Setting up python3-libapparmor (3.0.4-2ubuntu2.5) ...
+Setting up libtspi1 (0.3.15-0.2) ...
+Setting up libecryptfs1 (111-5ubuntu1) ...
+Setting up keyutils (1.6.1-2ubuntu3) ...
+Setting up python3-apparmor (3.0.4-2ubuntu2.5) ...
+Setting up ecryptfs-utils (111-5ubuntu1) ...
+Setting up apparmor-utils (3.0.4-2ubuntu2.5) ...
+Processing triggers for man-db (2.10.2-1) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.15) ...
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
++ modprobe ecryptfs
++ modprobe dm_crypt
++ grep ecryptfs /proc/filesystems
+nodev	ecryptfs
++ dmsetup targets
+crypt            v1.23.0
+multipath        v1.14.0
+striped          v1.6.0
+linear           v1.4.0
+error            v1.5.0
++ dpkg-query -W ecryptfs-utils cryptsetup apparmor apparmor-utils
+apparmor	3.0.4-2ubuntu2.5
+apparmor-utils	3.0.4-2ubuntu2.5
+cryptsetup	2:2.4.3-1ubuntu1.3
+ecryptfs-utils	111-5ubuntu1
++ command -v ecryptfs-add-passphrase
+/usr/bin/ecryptfs-add-passphrase
++ zcat /usr/share/man/man8/mount.ecryptfs.8.gz
++ grep -A5 -B2 'sig_cache\|unlink_sigs'

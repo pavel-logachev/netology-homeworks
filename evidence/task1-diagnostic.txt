@@ -1,0 +1,131 @@
+﻿+ ls -ld /home/cryptouser /home/.ecryptfs/cryptouser/.Private
+drwx------ 2 cryptouser cryptouser 4096 Nov  7 09:29 /home/.ecryptfs/cryptouser/.Private
+drwx------ 2 cryptouser cryptouser 4096 Nov  7 09:29 /home/cryptouser
++ findmnt -t ecryptfs
++ keyctl show
+Session Keyring
+ 322869929 --alswrv   1000  1000  keyring: _ses
+ 199562702 ---lswrv   1000 65534   \_ keyring: _uid.1000
++ journalctl -k -n 35 --no-pager
+Nov 07 09:28:34 fv4ifnndvc258rdppufr systemd[1]: Starting Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling...
+Nov 07 09:28:34 fv4ifnndvc258rdppufr systemd[1]: Condition check resulted in LXD - agent being skipped.
+Nov 07 09:28:34 fv4ifnndvc258rdppufr systemd[1]: Starting Load Kernel Module configfs...
+Nov 07 09:28:34 fv4ifnndvc258rdppufr systemd[1]: Starting Load Kernel Module drm...
+Nov 07 09:28:34 fv4ifnndvc258rdppufr systemd[1]: Starting Load Kernel Module efi_pstore...
+Nov 07 09:28:34 fv4ifnndvc258rdppufr systemd[1]: Starting Load Kernel Module fuse...
+Nov 07 09:28:34 fv4ifnndvc258rdppufr systemd[1]: Condition check resulted in OpenVSwitch configuration for cleanup being skipped.
+Nov 07 09:28:34 fv4ifnndvc258rdppufr systemd[1]: Condition check resulted in File System Check on Root Device being skipped.
+Nov 07 09:28:34 fv4ifnndvc258rdppufr systemd[1]: Starting Load Kernel Modules...
+Nov 07 09:28:34 fv4ifnndvc258rdppufr systemd[1]: Starting Remount Root and Kernel File Systems...
+Nov 07 09:28:34 fv4ifnndvc258rdppufr systemd[1]: Starting Coldplug All udev Devices...
+Nov 07 09:28:34 fv4ifnndvc258rdppufr systemd[1]: Started Journal Service.
+Nov 07 09:28:34 fv4ifnndvc258rdppufr kernel: EXT4-fs (vda1): re-mounted. Opts: discard,errors=remount-ro. Quota mode: none.
+Nov 07 09:28:34 fv4ifnndvc258rdppufr kernel: alua: device handler registered
+Nov 07 09:28:34 fv4ifnndvc258rdppufr kernel: emc: device handler registered
+Nov 07 09:28:34 fv4ifnndvc258rdppufr kernel: rdac: device handler registered
+Nov 07 09:28:34 fv4ifnndvc258rdppufr kernel: input: QEMU Virtio Tablet as /devices/pci0000:00/0000:00:02.0/virtio0/input/input4
+Nov 07 09:28:35 fv4ifnndvc258rdppufr kernel: audit: type=1400 audit(1794043715.676:2): apparmor="STATUS" operation="profile_load" profile="unconfined" name="nvidia_modprobe" pid=476 comm="apparmor_parser"
+Nov 07 09:28:35 fv4ifnndvc258rdppufr kernel: audit: type=1400 audit(1794043715.676:3): apparmor="STATUS" operation="profile_load" profile="unconfined" name="nvidia_modprobe//kmod" pid=476 comm="apparmor_parser"
+Nov 07 09:28:35 fv4ifnndvc258rdppufr kernel: audit: type=1400 audit(1794043715.680:4): apparmor="STATUS" operation="profile_load" profile="unconfined" name="lsb_release" pid=475 comm="apparmor_parser"
+Nov 07 09:28:35 fv4ifnndvc258rdppufr kernel: audit: type=1400 audit(1794043715.724:5): apparmor="STATUS" operation="profile_load" profile="unconfined" name="ubuntu_pro_apt_news" pid=482 comm="apparmor_parser"
+Nov 07 09:28:35 fv4ifnndvc258rdppufr kernel: audit: type=1400 audit(1794043715.732:6): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/NetworkManager/nm-dhcp-client.action" pid=481 comm="apparmor_parser"
+Nov 07 09:28:35 fv4ifnndvc258rdppufr kernel: audit: type=1400 audit(1794043715.732:7): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/NetworkManager/nm-dhcp-helper" pid=481 comm="apparmor_parser"
+Nov 07 09:28:35 fv4ifnndvc258rdppufr kernel: audit: type=1400 audit(1794043715.732:8): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/connman/scripts/dhclient-script" pid=481 comm="apparmor_parser"
+Nov 07 09:28:35 fv4ifnndvc258rdppufr kernel: audit: type=1400 audit(1794043715.732:9): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/{,usr/}sbin/dhclient" pid=481 comm="apparmor_parser"
+Nov 07 09:28:35 fv4ifnndvc258rdppufr kernel: audit: type=1400 audit(1794043715.752:10): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/bin/man" pid=484 comm="apparmor_parser"
+Nov 07 09:28:35 fv4ifnndvc258rdppufr kernel: audit: type=1400 audit(1794043715.752:11): apparmor="STATUS" operation="profile_load" profile="unconfined" name="man_filter" pid=484 comm="apparmor_parser"
+Nov 07 09:28:41 fhmdad4gu685d12ij6o6 kernel: EXT4-fs (vda1): resizing filesystem from 1942267 to 2466555 blocks
+Nov 07 09:28:41 fhmdad4gu685d12ij6o6 kernel: EXT4-fs (vda1): resized filesystem to 2466555
+Nov 07 09:29:54 fhmdad4gu685d12ij6o6 kernel: ecryptfs_parse_options: eCryptfs: unrecognized option [ecryptfs_passthrough=n]
+Nov 07 09:29:54 fhmdad4gu685d12ij6o6 kernel: Could not find key with description: [c4602c0955060865]
+Nov 07 09:29:54 fhmdad4gu685d12ij6o6 kernel: process_request_key_err: No key
+Nov 07 09:29:54 fhmdad4gu685d12ij6o6 kernel: Could not find valid key in user session keyring for sig specified in mount option: [c4602c0955060865]
+Nov 07 09:29:54 fhmdad4gu685d12ij6o6 kernel: One or more global auth toks could not properly register; rc = [-2]
+Nov 07 09:29:54 fhmdad4gu685d12ij6o6 kernel: Error parsing options; rc = [-2]
++ zcat /usr/share/man/man7/ecryptfs.7.gz
++ grep -A5 -B2 -E 'fnek|filename|sig|unlink'
+
+.TP
+.B ecryptfs_sig=(fekek_sig)
+Specify the signature of the mount wide authentication token. The authentication token must be in the kernel keyring before the mount is performed. ecryptfs-manager or the eCryptfs mount helper can be used to construct the authentication token and add it to the keyring prior to mounting.
+.TP
+.B ecryptfs_fnek_sig=(fnek_sig)
+Specify the signature of the mount wide authentication token used for filename crypto. The authentication must be in the kernel keyring before mounting.
+.TP
+.B ecryptfs_cipher=(cipher)
+Specify the symmetric cipher to be used on a per file basis
+.TP
+.B ecryptfs_key_bytes=(key_bytes)
+--
+Allows for non-eCryptfs files to be read and written from within an eCryptfs mount. This option is turned off by default.
+.TP
+.B no_sig_cache
+Do not check the mount key signature against the values in the user's ~/.ecryptfs/sig-cache.txt file. This is useful for such things as non-interactive setup scripts, so that the mount helper does not stop and prompt the user in the event that the key sig is not in the cache.
+.TP
+.B ecryptfs_encrypted_view
+This option provides a unified encrypted file format of the eCryptfs files in the lower mount point.  Currently, it is only useful if the lower mount point contains files with the metadata stored in the extended attribute.  Upon a file read in the upper mount point, the encrypted version of the file will be presented with the metadata in the file header instead of the xattr.  Files cannot be opened for writing when this option is enabled. 
+.TP
+.B ecryptfs_xattr
+--
+Specify the type of key to be used when mounting eCryptfs.
+.TP
+.B ecryptfs_enable_filename_crypto=(y/n)
+Specify whether filename encryption should be enabled. If not, the mount helper will not prompt the user for the filename encryption key signature (default).
+.TP
+.B verbosity=0/1
+If verbosity=1, the mount helper will ask you for missing values (default).  Otherwise, if verbosity=0, it will not ask for missing values and will fail if required values are omitted.
+.TP
+
+--
+The actual password is passphrase. Since the password is visible to utilities (like ps under Unix) this form should only be used where security is not important.
+.TP
+.B passphrase_passwd_file=(filename)
+The password should be specified in a file with passphrase_passwd_file=(passphrase). It is highly recommended that the file be stored on a secure medium such as a personal usb key.
+.TP
+.B passphrase_passwd_fd=(file descriptor)
+The password is specified through the specified file descriptor.
+.TP
+--
+The salt should be specified as a 16 digit hex value.
+.TP
+.B openssl_keyfile=(filename)
+The filename should be the filename of a file containing an RSA SSL key.
+.TP
+.B openssl_passwd_file=(filename)
+The password should be specified in a file with openssl_passwd=(openssl-password). It is highly recommended that the file be stored on a secure medium such as a personal usb key.
+.TP
+.B openssl_passwd_fd=(file descriptor)
+The password is specified through the specified file descriptor.
+.TP
++ zcat /usr/share/man/man8/mount.ecryptfs.8.gz
++ head -100
+.TH mount.ecryptfs 8 "May 2007" ecryptfs-utils "eCryptfs"
+.SH NAME
+mount.ecryptfs \- eCryptfs mount helper.
+
+.SH SYNOPSIS
+\fBmount \-t ecryptfs\fP [\fIlower\ directory\fP] [\fIecryptfs\ mount\ point\fP]
+
+.SH DESCRIPTION
+\fBmount.ecryptfs\fP is eCryptfs mount helper. The mount utility will defer to the mount helper to perform various configuration tasks; use the -i option to bypass the mount helper if you would rather manually specify your mount options. To mount eCryptfs, specify the lower directory (i.e., /root/crypt) for the encrypted files and the eCryptfs mountpoint (i.e., /mnt/crypt) for the decrypted view of the files:
+
+\fImount \-t ecryptfs /root/crypt /mnt/crypt\fP
+
+.SH "SEE ALSO"
+.PD 0
+.TP
+\fBecryptfs\fP(7), \fBecryptfsd\fP(8), \fBecryptfs-manager\fP(8), \fBmount\fP(8)
+
+.TP
+\fI/usr/share/doc/ecryptfs-utils/ecryptfs-faq.html\fP
+
+.TP
+\fIhttp://ecryptfs.org/\fP
+.PD
+
+.SH AUTHOR
+This manpage was written by William Lima <wlima.amadeus@gmail.com> for the Ubuntu system (but may be used by others).  Permission is granted to copy, distribute and/or modify this document under the terms of the GNU General Public License, Version 2 or any later version published by the Free Software Foundation.
+
+On Debian and Ubuntu systems, the complete text of the GNU General Public License can be found in /usr/share/common-licenses/GPL.
++ $'\r'
+bash: line 10: $'\r': command not found

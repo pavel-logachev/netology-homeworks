@@ -1,0 +1,143 @@
+﻿+ install -m 755 /bin/cat /usr/local/bin/nt1302-reader
++ printf 'AppArmor permitted document\n'
++ printf 'AppArmor protected document\n'
++ /usr/local/bin/nt1302-reader /var/tmp/nt1302-secret.txt
+AppArmor protected document
++ cat
++ cat /etc/apparmor.d/nt1302-reader
+#include <tunables/global>
+profile nt1302-reader /usr/local/bin/nt1302-reader {
+  #include <abstractions/base>
+  /usr/local/bin/nt1302-reader mr,
+  /var/tmp/nt1302-public.txt r,
+  audit deny /var/tmp/nt1302-secret.txt r,
+}
++ apparmor_parser -r /etc/apparmor.d/nt1302-reader
++ aa-status
+apparmor module is loaded.
+22 profiles are loaded.
+22 profiles are in enforce mode.
+   /usr/bin/man
+   /usr/lib/NetworkManager/nm-dhcp-client.action
+   /usr/lib/NetworkManager/nm-dhcp-helper
+   /usr/lib/connman/scripts/dhclient-script
+   /{,usr/}sbin/dhclient
+   lsb_release
+   man_filter
+   man_groff
+   nt1302-reader
+   nvidia_modprobe
+   nvidia_modprobe//kmod
+   tcpdump
+   ubuntu_pro_apt_news
+   ubuntu_pro_esm_cache
+   ubuntu_pro_esm_cache//apt_methods
+   ubuntu_pro_esm_cache//apt_methods_gpgv
+   ubuntu_pro_esm_cache//cloud_id
+   ubuntu_pro_esm_cache//dpkg
+   ubuntu_pro_esm_cache//ps
+   ubuntu_pro_esm_cache//ubuntu_distro_info
+   ubuntu_pro_esm_cache_systemctl
+   ubuntu_pro_esm_cache_systemd_detect_virt
+0 profiles are in complain mode.
+0 profiles are in kill mode.
+0 profiles are in unconfined mode.
+0 processes have profiles defined.
+0 processes are in enforce mode.
+0 processes are in complain mode.
+0 processes are unconfined but have a profile defined.
+0 processes are in mixed mode.
+0 processes are in kill mode.
++ /usr/local/bin/nt1302-reader /var/tmp/nt1302-public.txt
+AppArmor permitted document
++ set +e
++ /usr/local/bin/nt1302-reader /var/tmp/nt1302-secret.txt
+/usr/local/bin/nt1302-reader: /var/tmp/nt1302-secret.txt: Permission denied
++ rc=1
++ set -e
++ echo 'Protected file read exit code: 1'
+Protected file read exit code: 1
++ test 1 -ne 0
++ grep nt1302
++ journalctl -k --since '-2 minutes' --no-pager
++ grep 'apparmor="DENIED"'
+Nov 07 09:32:33 fhmdad4gu685d12ij6o6 kernel: audit: type=1400 audit(1794043953.440:24): apparmor="DENIED" operation="open" profile="nt1302-reader" name="/var/tmp/nt1302-secret.txt" pid=2436 comm="nt1302-reader" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
++ aa-teardown
+Unloading AppArmor profiles 
++ systemctl stop apparmor
++ systemctl is-active apparmor
+inactive
++ true
++ grep -q nt1302-reader /sys/kernel/security/apparmor/profiles
++ echo 'PASS: demo profile unloaded'
+PASS: demo profile unloaded
++ /usr/local/bin/nt1302-reader /var/tmp/nt1302-secret.txt
+AppArmor protected document
++ DEBIAN_FRONTEND=noninteractive
++ apt-get purge -y apparmor apparmor-utils
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following packages were automatically installed and are no longer required:
+  python3-apparmor python3-libapparmor
+Use 'sudo apt autoremove' to remove them.
+The following packages will be REMOVED:
+  apparmor* apparmor-utils*
+0 upgraded, 0 newly installed, 2 to remove and 19 not upgraded.
+After this operation, 3162 kB disk space will be freed.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 94316 files and directories currently installed.)
+Removing apparmor-utils (3.0.4-2ubuntu2.5) ...
+Removing apparmor (3.0.4-2ubuntu2.5) ...
+Processing triggers for man-db (2.10.2-1) ...
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 94243 files and directories currently installed.)
+Purging configuration files for apparmor (3.0.4-2ubuntu2.5) ...
+Purging configuration files for apparmor-utils (3.0.4-2ubuntu2.5) ...
++ dpkg-query -W '-f=${db:Status-Status}\n' apparmor
++ grep -qx installed
++ echo 'PASS: AppArmor package removed'
+PASS: AppArmor package removed
++ rm -f /etc/apparmor.d/nt1302-reader /usr/local/bin/nt1302-reader /var/tmp/nt1302-public.txt /var/tmp/nt1302-secret.txt
++ echo 'PASS: AppArmor enforce denial and audit verified; profiles unloaded; service stopped; userspace packages purged'
+PASS: AppArmor enforce denial and audit verified; profiles unloaded; service stopped; userspace packages purged

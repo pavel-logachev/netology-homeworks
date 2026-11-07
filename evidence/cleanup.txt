@@ -1,0 +1,11 @@
+﻿UTC check time 2026-11-07T09:34:51.0350468Z
+Expected deleted VM fhmdad4gu685d12ij6o6 / nt1302-host-protection and auto-delete disk fhmdln73qssph30pop6n / nt1302-boot
+$ yc compute instance list --format json
+[]
+
+$ yc compute disk list --format json
+[]
+
+PASS: nt1302 VM and disk absent from post-deletion lists
+$ docker ps -a --filter name=nt1302- --format {{.Names}}
+PASS: no nt1302 Docker containers remain

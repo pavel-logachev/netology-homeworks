@@ -1,0 +1,86 @@
+﻿ssh : Joined session keyring: 804309790
+At line:1 char:484
++ ... EXITCODE }; ssh -o ConnectTimeout=20 -o "UserKnownHostsFile=$root\kno ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Joined session keyring: 804309790:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
++ keyctl link @u @s
++ set +x
+Passphrase: 
+Inserted auth tok with sig [a328c1863385c7c7] into the user session keyring
+Inserted auth tok with sig [c4602c0955060865] into the user session keyring
++ keyctl show
+Session Keyring
+ 804309790 --alswrv      0     0  keyring: nt1302
+  24926596 --alswrv      0 65534   \_ keyring: _uid.0
+ 730732972 --alswrv      0     0       \_ user: a328c1863385c7c7
+ 635211971 --alswrv      0     0       \_ user: c4602c0955060865
++ mount -i -t ecryptfs /home/.ecryptfs/cryptouser/.Private /home/cryptouser -o ecryptfs_sig=a328c1863385c7c7,ecryptfs_fnek_sig=c4602c0955060865,ecryptfs_cipher=aes,ecryptfs_key_bytes=16
++ cp -a /root/nt1302-home-original/. /home/cryptouser/
++ findmnt -T /home/cryptouser
+TARGET           SOURCE                              FSTYPE   OPTIONS
+/home/cryptouser /home/.ecryptfs/cryptouser/.Private ecryptfs rw,relatime,ecryptfs_fnek_sig=c4602c0955060865,ecryptfs_sig=a328c1863385c7c7,ecryptfs_cipher=aes,ecryptfs_key_bytes=16,ecryptfs_fn_cipher=aes,ecryptfs_fn_key_bytes=16
++ sudo -u cryptouser ls -la /home/cryptouser
+total 68
+drwxr-x--- 2 cryptouser cryptouser 4096 Nov  7 09:29 .
+drwxr-xr-x 5 root       root       4096 Nov  7 09:29 ..
+-rw-r--r-- 1 cryptouser cryptouser  220 Jan  6  2022 .bash_logout
+-rw-r--r-- 1 cryptouser cryptouser 3771 Jan  6  2022 .bashrc
+-rw-r--r-- 1 cryptouser cryptouser  807 Jan  6  2022 .profile
+-rw-rw-r-- 1 cryptouser cryptouser   54 Nov  7 09:29 document.txt
+-rw-rw-r-- 1 cryptouser cryptouser   23 Nov  7 09:29 notes.txt
++ sudo -u cryptouser cat /home/cryptouser/document.txt /home/cryptouser/notes.txt
+Netology host protection. Readable personal document.
+Private project notes.
++ sha256sum /root/nt1302-home-original/document.txt /home/cryptouser/document.txt
+eedf8ef2a74dcf6c8d7176925e34f410ad00d16020bb8b8962ee52ca93aa6e77  /root/nt1302-home-original/document.txt
+eedf8ef2a74dcf6c8d7176925e34f410ad00d16020bb8b8962ee52ca93aa6e77  /home/cryptouser/document.txt
++ ls -la /home/.ecryptfs/cryptouser/.Private
+total 68
+drwxr-x--- 2 cryptouser cryptouser  4096 Nov  7 09:29 .
+drwxr-xr-x 3 root       root        4096 Nov  7 09:29 ..
+-rw-rw-r-- 1 cryptouser cryptouser 12288 Nov  7 09:29 ECRYPTFS_FNEK_ENCRYPTED.FWb2M0k7JEM6NEQf8HfdtVdZQ0y7pjjXpu6L-acDCoW981hPudkUi1lPZU--
+-rw-r--r-- 1 cryptouser cryptouser 12288 Jan  6  2022 ECRYPTFS_FNEK_ENCRYPTED.FWb2M0k7JEM6NEQf8HfdtVdZQ0y7pjjXpu6L45FtKMoVYbTCHwjdDovEkk--
+-rw-r--r-- 1 cryptouser cryptouser 12288 Jan  6  2022 ECRYPTFS_FNEK_ENCRYPTED.FWb2M0k7JEM6NEQf8HfdtVdZQ0y7pjjXpu6LOsiwVTiIh.sB7kAsyFudzE--
+-rw-rw-r-- 1 cryptouser cryptouser 12288 Nov  7 09:29 ECRYPTFS_FNEK_ENCRYPTED.FWb2M0k7JEM6NEQf8HfdtVdZQ0y7pjjXpu6LYLeV1nBheu8CyKFQlv4Wq---
+-rw-r--r-- 1 cryptouser cryptouser 12288 Jan  6  2022 ECRYPTFS_FNEK_ENCRYPTED.FWb2M0k7JEM6NEQf8HfdtVdZQ0y7pjjXpu6LtnII6BOEYvo0ZBtQ35yoF---
+++ find /home/.ecryptfs/cryptouser/.Private -maxdepth 1 -type f
+++ head -1
++ lowerfile=/home/.ecryptfs/cryptouser/.Private/ECRYPTFS_FNEK_ENCRYPTED.FWb2M0k7JEM6NEQf8HfdtVdZQ0y7pjjXpu6L45FtKMoVYbTCHwjdDovEkk--
++ file /home/.ecryptfs/cryptouser/.Private/ECRYPTFS_FNEK_ENCRYPTED.FWb2M0k7JEM6NEQf8HfdtVdZQ0y7pjjXpu6L45FtKMoVYbTCHwjdDovEkk--
+/home/.ecryptfs/cryptouser/.Private/ECRYPTFS_FNEK_ENCRYPTED.FWb2M0k7JEM6NEQf8HfdtVdZQ0y7pjjXpu6L45FtKMoVYbTCHwjdDovEkk--: data
++ od -Ax -tx1 -N 96 /home/.ecryptfs/cryptouser/.Private/ECRYPTFS_FNEK_ENCRYPTED.FWb2M0k7JEM6NEQf8HfdtVdZQ0y7pjjXpu6L45FtKMoVYbTCHwjdDovEkk--
+000000 00 00 00 00 00 00 03 27 70 c5 f6 09 4c 44 41 fc
+000010 03 00 00 0a 00 00 10 00 00 02 8c 1d 04 07 03 01
+000020 00 11 22 33 44 55 66 77 60 88 53 84 48 df 5e 10
+000030 a7 3e 16 51 77 ce cb 6e 89 ed 16 62 08 5f 43 4f
+000040 4e 53 4f 4c 45 00 00 00 00 a3 28 c1 86 33 85 c7
+000050 c7 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+000060
++ grep -aR -F 'Readable personal document' /home/.ecryptfs/cryptouser/.Private
++ echo 'PASS: plaintext marker absent from encrypted lower files'
+PASS: plaintext marker absent from encrypted lower files
++ umount /home/cryptouser
++ findmnt -t ecryptfs
++ ls -la /home/cryptouser
+total 8
+drwx------ 2 cryptouser cryptouser 4096 Nov  7 09:29 .
+drwxr-xr-x 5 root       root       4096 Nov  7 09:29 ..
++ ls -1 /home/.ecryptfs/cryptouser/.Private
+ECRYPTFS_FNEK_ENCRYPTED.FWb2M0k7JEM6NEQf8HfdtVdZQ0y7pjjXpu6L-acDCoW981hPudkUi1lPZU--
+ECRYPTFS_FNEK_ENCRYPTED.FWb2M0k7JEM6NEQf8HfdtVdZQ0y7pjjXpu6L45FtKMoVYbTCHwjdDovEkk--
+ECRYPTFS_FNEK_ENCRYPTED.FWb2M0k7JEM6NEQf8HfdtVdZQ0y7pjjXpu6LOsiwVTiIh.sB7kAsyFudzE--
+ECRYPTFS_FNEK_ENCRYPTED.FWb2M0k7JEM6NEQf8HfdtVdZQ0y7pjjXpu6LYLeV1nBheu8CyKFQlv4Wq---
+ECRYPTFS_FNEK_ENCRYPTED.FWb2M0k7JEM6NEQf8HfdtVdZQ0y7pjjXpu6LtnII6BOEYvo0ZBtQ35yoF---
++ mount -i -t ecryptfs /home/.ecryptfs/cryptouser/.Private /home/cryptouser -o ecryptfs_sig=a328c1863385c7c7,ecryptfs_fnek_sig=c4602c0955060865,ecryptfs_cipher=aes,ecryptfs_key_bytes=16
++ sudo -u cryptouser cat /home/cryptouser/document.txt
+Netology host protection. Readable personal document.
++ cmp /root/nt1302-home-original/document.txt /home/cryptouser/document.txt
++ echo 'PASS: remount restores the original document exactly'
+PASS: remount restores the original document exactly
++ umount /home/cryptouser
++ rm -rf /root/nt1302-home-original
++ rm -f /run/nt1302-ecryptfs-pass /run/nt1302-key-signatures
++ echo 'PASS: eCryptfs home unmounted; temporary passphrase and original backup removed'
+PASS: eCryptfs home unmounted; temporary passphrase and original backup removed

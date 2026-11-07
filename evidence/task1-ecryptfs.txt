@@ -1,0 +1,31 @@
+﻿ssh : Joined session keyring: 560956631
+At line:1 char:446
++ ... .sh" -Raw | ssh -o ConnectTimeout=20 -o "UserKnownHostsFile=$root\kno ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Joined session keyring: 560956631:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
++ useradd --create-home --shell /bin/bash cryptouser
++ id cryptouser
+uid=1001(cryptouser) gid=1001(cryptouser) groups=1001(cryptouser)
++ sudo -u cryptouser bash -c 'printf "Netology host protection. Readable personal document.\n" > /home/cryptouser/document.txt; printf "Private project notes.\n" > /home/cryptouser/notes.txt'
++ ls -la /home/cryptouser
+total 28
+drwxr-x--- 2 cryptouser cryptouser 4096 Nov  7 09:29 .
+drwxr-xr-x 4 root       root       4096 Nov  7 09:29 ..
+-rw-r--r-- 1 cryptouser cryptouser  220 Jan  6  2022 .bash_logout
+-rw-r--r-- 1 cryptouser cryptouser 3771 Jan  6  2022 .bashrc
+-rw-r--r-- 1 cryptouser cryptouser  807 Jan  6  2022 .profile
+-rw-rw-r-- 1 cryptouser cryptouser   54 Nov  7 09:29 document.txt
+-rw-rw-r-- 1 cryptouser cryptouser   23 Nov  7 09:29 notes.txt
++ cat /home/cryptouser/document.txt /home/cryptouser/notes.txt
+Netology host protection. Readable personal document.
+Private project notes.
++ mv /home/cryptouser /root/nt1302-home-original
++ install -d -m 700 -o cryptouser -g cryptouser /home/cryptouser /home/.ecryptfs/cryptouser/.Private
++ set +x
+Passphrase: 
+Inserted auth tok with sig [a328c1863385c7c7] into the user session keyring
+Inserted auth tok with sig [c4602c0955060865] into the user session keyring
++ mount -i -t ecryptfs /home/.ecryptfs/cryptouser/.Private /home/cryptouser -o ecryptfs_sig=a328c1863385c7c7,ecryptfs_fnek_sig=c4602c0955060865,ecryptfs_cipher=aes,ecryptfs_key_bytes=16,ecryptfs_passthrough=n,ecryptfs_unlink_sigs
+mount: /home/cryptouser: mount(2) system call failed: No such file or directory.
