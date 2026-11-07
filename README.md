@@ -1,13 +1,78 @@
-# Домашние работы по DevOps
+# 13.2. Защита хоста – Павел Логачев
 
-Здесь я собираю работы по курсу Нетологии «DevOps-инженер с нуля»; у каждой работы своя ветка с решением и проверками.
+Сначала попробовал сделать работу в Docker Desktop, но в его ядре `7.0.14-linuxkit` нет модуля eCryptfs (`modprobe: FATAL: Module ecryptfs not found`, [docker-probe.txt](evidence/docker-probe.txt)). Поэтому все задания я выполнил 7 ноября 2026 года на временной виртуальной машине в Яндекс Облаке: Ubuntu 22.04.5 LTS, ядро `5.15.0-202-generic`, 2 vCPU, 2 ГБ памяти. Версии пакетов: ecryptfs-utils 111-5ubuntu1, cryptsetup 2.4.3, apparmor 3.0.4. После работы машина и ее диск удалены ([cleanup.txt](evidence/cleanup.txt)).
 
-- [Резервное копирование баз данных](https://github.com/pavel-logachev/netology-homeworks/blob/12-08-backup/README.md) — в PostgreSQL 18.6 в Docker сделал дамп через pg_dump -Fc и восстановил его через pg_restore, восстановленные строки полностью совпали с исходными; написал для cron скрипт backup.sh с архивами по датам, проверкой через pg_restore --list и удалением старых архивов (строку cron только записал, скрипт запускал вручную) и восстановил архив в отдельную базу; в MySQL 8.0.46 сделал полный mysqldump и инкрементную копию по бинарному логу (binlog.000005 с позиции 157), восстановил их на отдельном сервере и убедился, что SHA-256 дампов строк совпадают; ответил на теорию о ежедневных копиях, PITR, failover и о том, почему реплики не заменяют резервные копии.
-- [Репликация и масштабирование. Часть 2](https://github.com/pavel-logachev/netology-homeworks/blob/12-07-sharding/README.md) — составил план шардирования таблиц users, books и stores с блок-схемой в Mermaid; в PostgreSQL 16.15 в Docker Compose развернул координатор с postgres_fdw, где users разделена через PARTITION BY RANGE на два шарда пользователей (1–9999 и ≥10000), а books и stores вынесены на отдельный сервер каталога (вертикальное шардирование); у каждого шарда пользователей есть асинхронная hot standby-реплика только для чтения; проверил, что вставки через координатор попадают в нужный шард, а реплики отклоняют запись с SQLSTATE 25006, и автоматические проверки прошли (ALL CHECKS PASSED).
-- [Репликация и масштабирование. Часть 1](https://github.com/pavel-logachev/netology-homeworks/blob/12-06-replication/README.md) — в MySQL 8.0.46 с GTID в Docker настроил репликацию master-slave: реплика работает в режиме read_only/super_read_only, запись на ней отклоняется с ERROR 1290, данные реплицируются; настроил master-master с шагом auto_increment 2 — на одном узле строки получили id 1, 3, 5, на другом 2, 4, 6, и все 6 строк есть на обоих узлах; сравнил два режима.
-- [Индексы](https://github.com/pavel-logachev/netology-homeworks/blob/12-05-indexes/README.md) — на Sakila в MySQL 8.0.46 посчитал, что индексы занимают 54,68 % от размера данных таблиц; с помощью EXPLAIN ANALYZE нашел в заданном запросе декартово произведение с film, лишнее соединение с inventory, оконную функцию и фильтр через DATE(), который мешает использовать индекс; переписал запрос и добавил индекс payment(payment_date, amount) — 1,48 мс вместо 2253 мс при тех же 391 строках; сравнил типы индексов PostgreSQL, которых нет в MySQL.
-- [Расширенные возможности SQL](https://github.com/pavel-logachev/netology-homeworks/blob/12-04-sql-part2/README.md) — написал пять запросов к Sakila в MySQL 8.0.46: нашел магазин, у которого больше 300 покупателей (магазин 1, Hillyer Mike, Lethbridge, 326), 489 фильмов длиннее среднего, месяц с наибольшей суммой платежей (2005-07, 28368,91, 6709 аренд), продажи сотрудников со столбцом «Премия» (8054 — «Да», 7990 — «Нет») и 42 фильма, которые ни разу не брали в аренду.
-- [Операции с данными в SQL](https://github.com/pavel-logachev/netology-homeworks/blob/12-03-sql-operations/README.md) — выполнил шесть SELECT-запросов к Sakila в MySQL 8.0.46: отобрал районы по шаблону, платежи больше 10 за 15–18 июня 2005 года включительно, последние пять аренд и активных клиентов Kelly/Willie с переводом имен и фамилий в нижний регистр и заменой ll→pp только в именах; разделил email на два столбца и сделал первую букву каждой части заглавной, остальные — строчными; проверил результаты в консольном клиенте mysql и сохранил текстовые выводы.
-- [Работа с данными (DDL/DML)](https://github.com/pavel-logachev/netology-homeworks/blob/12-02-sql-ddl-dml/README.md) — запустил MySQL 8.0.46 в Docker, создал sys_temp со всеми глобальными правами и переключил его на mysql_native_password; восстановил Sakila из официального архива без изменений, проверил наличие 16 таблиц и 7 представлений и составил таблицу первичных ключей через information_schema; отозвал INSERT/UPDATE/DELETE на sakila через partial_revokes и проверил, что эти команды возвращают ERROR 1142, а SELECT работает.
-- [Базы данных](https://github.com/pavel-logachev/netology-homeworks/blob/12-01-databases/README.md) — спроектировал семь таблиц PostgreSQL с ключами и ограничениями по Excel-отчету на 29 сотрудников; подготовил схему в draw.io и проверил структуру в PostgreSQL 18.6 в Docker.
-- [Очереди RabbitMQ](https://github.com/pavel-logachev/netology-homeworks/blob/11-04-rabbitmq/README.md) — собрал кластер RabbitMQ 3.12 на двух виртуальных машинах с зеркалированием очередей, взял скрипты producer и consumer на Python из условия задания и изменил в них только IP подключения; проверил отказ одного узла и повторный прогон Ansible-playbook без изменений.
+Скрипты, которые я запускал, лежат в [`evidence/commands/`](evidence/commands/), полные выводы с трассировкой `set -x` – в [`evidence/`](evidence/). Скриншоты собраны из этих выводов. Пароли для шифрования были одноразовыми и в репозиторий не попали.
+
+## Задание 1. eCryptfs
+
+```bash
+apt-get install -y ecryptfs-utils keyutils
+useradd --create-home --shell /bin/bash cryptouser
+# ключи шифрования содержимого и имен файлов кладутся в keyring
+ecryptfs-add-passphrase --fnek < passphrase-file
+# шифрованный нижний каталог монтируется на место домашнего
+mount -i -t ecryptfs /home/.ecryptfs/cryptouser/.Private /home/cryptouser \
+  -o ecryptfs_sig=<sig>,ecryptfs_fnek_sig=<fnek_sig>,ecryptfs_cipher=aes,ecryptfs_key_bytes=16
+```
+
+В домашний каталог cryptouser я положил тестовые файлы `document.txt` и `notes.txt`. Пока каталог смонтирован, пользователь видит их как обычные файлы, а SHA-256 документа совпадает с исходным:
+
+![Домашний каталог с исходными данными](evidence/01-ecryptfs-readable.png)
+
+На диске те же файлы лежат в `/home/.ecryptfs/cryptouser/.Private`. Имена зашифрованы (`ECRYPTFS_FNEK_ENCRYPTED.…`), утилита `file` определяет содержимое как `data`, а поиск строки из документа по этому каталогу ничего не находит:
+
+![Зашифрованные данные](evidence/02-ecryptfs-encrypted.png)
+
+После `umount` домашний каталог пуст, а данные остаются на диске только в зашифрованном виде в `.Private`. После повторного монтирования документ снова читается и побайтно совпадает с исходным (`cmp`):
+
+![Отключение и повторное монтирование](evidence/03-ecryptfs-remount.png)
+
+Монтирование я делал вручную от root. Автоматическое монтирование при входе пользователя через PAM не настраивал.
+
+Полный вывод: [task1-recovery.txt](evidence/task1-recovery.txt). Первая попытка ([task1-ecryptfs.txt](evidence/task1-ecryptfs.txt)) упала с ошибкой `mount(2) system call failed: No such file or directory`: ключи попали в keyring подоболочки, и ядро их не нашло. Во второй попытке ключи добавляются в keyring текущего сеанса.
+
+## Задание 2. LUKS
+
+На машине был только системный диск, поэтому раздел 100 МБ я сделал на loop-устройстве поверх файла:
+
+```bash
+apt-get install -y cryptsetup
+truncate -s 100M /var/tmp/nt1302-luks.img
+losetup --find --show /var/tmp/nt1302-luks.img
+cryptsetup luksFormat --type luks2 --batch-mode --key-file <keyfile> /dev/loopN
+cryptsetup luksDump /dev/loopN
+cryptsetup luksOpen --key-file <keyfile> /dev/loopN nt1302-crypt
+cryptsetup status nt1302-crypt
+mkfs.ext4 -L nt1302-data /dev/mapper/nt1302-crypt
+mount /dev/mapper/nt1302-crypt /mnt/nt1302-luks
+echo 'LUKS encrypted volume, Netology practical.' > /mnt/nt1302-luks/document.txt
+umount /mnt/nt1302-luks
+cryptsetup luksClose nt1302-crypt
+```
+
+Создание раздела, форматирование в LUKS2 и открытие. `cryptsetup status` показывает шифр AES-XTS с ключом 512 бит:
+
+![Форматирование и открытие LUKS](evidence/04-luks-format.png)
+
+Файловая система, монтирование, запись файла и закрытие раздела. Расшифрованное устройство имеет размер 84 МБ: первые 16 МБ раздела занимает заголовок LUKS2.
+
+![Монтирование и закрытие](evidence/05-luks-mount.png)
+
+Проверка: в самом файле-разделе текст тестового файла не находится, а после повторного открытия контрольная сумма файла совпадает (`sha256sum --check` – `OK`):
+
+![Повторное открытие](evidence/06-luks-reopen.png)
+
+Полный вывод: [task2-luks-verified.txt](evidence/task2-luks-verified.txt).
+
+## Задание 3*. AppArmor
+
+Какой именно опыт показывали в лекции, я не знаю, поэтому сделал стандартный. Скопировал `/bin/cat` в `/usr/local/bin/nt1302-reader` и написал для него профиль: чтение одного тестового файла разрешено, другого явно запрещено (`audit deny`). После загрузки профиля в режиме enforce разрешенный файл читается, а запрещенный дает `Permission denied`, и в журнале ядра появляется запись `apparmor="DENIED"`:
+
+![AppArmor запрещает чтение](evidence/07-apparmor-denial.png)
+
+Затем выгрузил профили (`aa-teardown`), остановил службу и удалил пакеты `apt-get purge -y apparmor apparmor-utils`. Тот же файл после этого читается без ошибки. Модуль безопасности AppArmor в работающем ядре при этом остается, удаляются пакет и профили.
+
+![Отключение и удаление AppArmor](evidence/08-apparmor-removal.png)
+
+Полный вывод: [task3-apparmor.txt](evidence/task3-apparmor.txt).
