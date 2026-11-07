@@ -1,0 +1,17 @@
+{
+  "id": "c9qckbgssvcrapnb721j",
+  "description": "Delete PostgreSQL cluster",
+  "created_at": "2026-11-07T10:21:25.472484Z",
+  "created_by": "ajerusbqi8iqrm82ug43",
+  "modified_at": "2026-11-07T10:24:32.404706Z",
+  "done": true,
+  "metadata": {
+    "@type": "type.googleapis.com/yandex.cloud.mdb.postgresql.v1.DeleteClusterMetadata",
+    "cluster_id": "c9qpu3r99p03oei5em9k"
+  },
+  "response": {
+    "@type": "type.googleapis.com/google.protobuf.Empty",
+    "value": {}
+  }
+}
+

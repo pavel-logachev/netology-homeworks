@@ -1,0 +1,40 @@
+{
+  "id": "c9q1oj7efdj1omfauev8",
+  "description": "Modify user in PostgreSQL cluster",
+  "created_at": "2026-11-07T10:17:50.315916Z",
+  "created_by": "ajerusbqi8iqrm82ug43",
+  "modified_at": "2026-11-07T10:19:04.570876Z",
+  "done": true,
+  "metadata": {
+    "@type": "type.googleapis.com/yandex.cloud.mdb.postgresql.v1.UpdateUserMetadata",
+    "cluster_id": "c9qpu3r99p03oei5em9k",
+    "user_name": "nt-1209-user"
+  },
+  "response": {
+    "@type": "type.googleapis.com/yandex.cloud.mdb.postgresql.v1.User",
+    "name": "nt-1209-user",
+    "cluster_id": "c9qpu3r99p03oei5em9k",
+    "permissions": [
+      {
+        "database_name": "nt-1209-db"
+      }
+    ],
+    "conn_limit": "50",
+    "settings": {},
+    "login": true,
+    "grants": [
+      "mdb_monitor"
+    ],
+    "user_password_encryption": "USER_PASSWORD_ENCRYPTION_MD5",
+    "connection_manager": {
+      "connection_id": "a5931kpvaoqm14kdchq5"
+    },
+    "user_connection_manager": {
+      "connection_id": "a5931kpvaoqm14kdchq5",
+      "connection_folder_id": "b1g6rd3uo8sajkqcmnbk",
+      "secret_folder_id": "b1g6rd3uo8sajkqcmnbk"
+    },
+    "auth_method": "AUTH_METHOD_PASSWORD"
+  }
+}
+

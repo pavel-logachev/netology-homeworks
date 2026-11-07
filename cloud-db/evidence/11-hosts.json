@@ -1,0 +1,59 @@
+[
+  {
+    "name": "rc1a-inquq2cematlh3pn.mdb.yandexcloud.net",
+    "cluster_id": "c9qpu3r99p03oei5em9k",
+    "zone_id": "ru-central1-a",
+    "resources": {
+      "resource_preset_id": "s3-c2-m8",
+      "disk_size": "10737418240",
+      "disk_type_id": "network-ssd"
+    },
+    "role": "MASTER",
+    "health": "ALIVE",
+    "services": [
+      {
+        "type": "POSTGRESQL",
+        "health": "ALIVE"
+      },
+      {
+        "type": "POOLER",
+        "health": "ALIVE"
+      }
+    ],
+    "subnet_id": "e9bd7l4u3g5amt2nutgv",
+    "priority": "0",
+    "config": {
+      "postgresql_config_16": {}
+    },
+    "assign_public_ip": true
+  },
+  {
+    "name": "rc1d-43cbhapt6apqv0c6.mdb.yandexcloud.net",
+    "cluster_id": "c9qpu3r99p03oei5em9k",
+    "zone_id": "ru-central1-d",
+    "resources": {
+      "resource_preset_id": "s3-c2-m8",
+      "disk_size": "10737418240",
+      "disk_type_id": "network-ssd"
+    },
+    "role": "REPLICA",
+    "health": "ALIVE",
+    "services": [
+      {
+        "type": "POSTGRESQL",
+        "health": "ALIVE"
+      },
+      {
+        "type": "POOLER",
+        "health": "ALIVE"
+      }
+    ],
+    "subnet_id": "fl8nn5pcgd6tt6p3mo38",
+    "priority": "0",
+    "config": {
+      "postgresql_config_16": {}
+    },
+    "assign_public_ip": true
+  }
+]
+

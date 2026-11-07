@@ -1,0 +1,25 @@
+[
+  {
+    "name": "nt-1209-user",
+    "cluster_id": "c9qpu3r99p03oei5em9k",
+    "permissions": [
+      {
+        "database_name": "nt-1209-db"
+      }
+    ],
+    "conn_limit": "50",
+    "settings": {},
+    "login": true,
+    "grants": [
+      "mdb_monitor"
+    ],
+    "user_password_encryption": "USER_PASSWORD_ENCRYPTION_MD5",
+    "user_connection_manager": {
+      "connection_id": "a5931kpvaoqm14kdchq5",
+      "connection_folder_id": "b1g6rd3uo8sajkqcmnbk",
+      "secret_folder_id": "b1g6rd3uo8sajkqcmnbk"
+    },
+    "auth_method": "AUTH_METHOD_PASSWORD"
+  }
+]
+

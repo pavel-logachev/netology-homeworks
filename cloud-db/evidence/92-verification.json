@@ -1,0 +1,22 @@
+{
+  "checks": "PASS",
+  "status": "RUNNING",
+  "roles": [
+    {
+      "zone": "ru-central1-a",
+      "role": "MASTER",
+      "health": "ALIVE"
+    },
+    {
+      "zone": "ru-central1-d",
+      "role": "REPLICA",
+      "health": "ALIVE"
+    }
+  ],
+  "masterRows": 2,
+  "replicaRows": 2,
+  "replicaReadOnly": true,
+  "clustersAfter": [],
+  "passwordMatches": 0,
+  "scannedFiles": 51
+}

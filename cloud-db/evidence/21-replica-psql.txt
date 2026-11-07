@@ -1,0 +1,27 @@
+\set ON_ERROR_STOP on
+\pset pager off
+Pager usage is off.
+\conninfo
+You are connected to database "nt-1209-db" as user "nt-1209-user" on host "rc1d-43cbhapt6apqv0c6.mdb.yandexcloud.net" (address "158.160.130.235") at port "6432".
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, compression: off)
+select case when pg_is_in_recovery() then 'REPLICA' else 'MASTER' end;
+  case   
+---------
+ REPLICA
+(1 row)
+
+select status from pg_stat_wal_receiver;
+  status   
+-----------
+ streaming
+(1 row)
+
+select * from test_table;
+   text   
+----------
+ Строка 1
+ Строка 2
+(2 rows)
+
+\q
+exit_code=0

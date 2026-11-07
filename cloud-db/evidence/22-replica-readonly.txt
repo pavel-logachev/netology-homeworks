@@ -1,0 +1,12 @@
+\set ON_ERROR_STOP on
+\pset pager off
+Pager usage is off.
+show transaction_read_only;
+ transaction_read_only 
+-----------------------
+ on
+(1 row)
+
+insert into test_table values('replica write must fail');
+psql:/work/sql/replica-write.sql:4: ERROR:  cannot execute INSERT in a read-only transaction
+exit_code=3 (expected 3)

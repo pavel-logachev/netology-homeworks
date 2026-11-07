@@ -1,0 +1,42 @@
+{
+    "name":  "nt-1209-pg",
+    "environment":  "PRODUCTION",
+    "securityGroupIds":  [
+                             "enp7kjlh514qff7lh4mo"
+                         ],
+    "networkId":  "enporko3shdet3dcnj6p",
+    "folderId":  "b1g6rd3uo8sajkqcmnbk",
+    "userSpecs":  [
+                      {
+                          "password":  "[REDACTED, random cache-only]",
+                          "name":  "nt-1209-user"
+                      }
+                  ],
+    "configSpec":  {
+                       "version":  "16",
+                       "resources":  {
+                                         "resourcePresetId":  "s3-c2-m8",
+                                         "diskTypeId":  "network-ssd",
+                                         "diskSize":  "10737418240"
+                                     }
+                   },
+    "hostSpecs":  [
+                      {
+                          "assignPublicIp":  true,
+                          "zoneId":  "ru-central1-a",
+                          "subnetId":  "e9bd7l4u3g5amt2nutgv"
+                      },
+                      {
+                          "assignPublicIp":  true,
+                          "zoneId":  "ru-central1-b",
+                          "subnetId":  "e2ls1q4540f9imh32006"
+                      }
+                  ],
+    "databaseSpecs":  [
+                          {
+                              "name":  "nt-1209-db",
+                              "owner":  "nt-1209-user"
+                          }
+                      ],
+    "deletionProtection":  false
+}

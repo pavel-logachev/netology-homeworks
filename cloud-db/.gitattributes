@@ -1,0 +1,4 @@
+*.sh text eol=lf
+*.sql text eol=lf
+# Preserve raw CLI/psql output, including aligned whitespace and blank lines.
+evidence/** -whitespace

@@ -1,0 +1,19 @@
+{
+    "id":  "c9q68p6ldo5qq43k3f3j",
+    "description":  "Create PostgreSQL cluster",
+    "createdAt":  "2026-11-07T10:06:24.717885Z",
+    "createdBy":  "ajerusbqi8iqrm82ug43",
+    "modifiedAt":  "2026-11-07T10:06:24.717885Z",
+    "done":  false,
+    "metadata":  {
+                     "@type":  "type.googleapis.com/yandex.cloud.mdb.postgresql.v1.CreateClusterMetadata",
+                     "clusterId":  "c9qpu3r99p03oei5em9k",
+                     "operationLog":  {
+
+                                      }
+                 },
+    "response":  {
+                     "@type":  "type.googleapis.com/google.rpc.Status",
+                     "message":  "OK"
+                 }
+}

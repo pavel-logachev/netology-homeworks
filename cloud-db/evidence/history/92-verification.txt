@@ -1,0 +1,50 @@
+Verification on 2026-10-23, approximately 10:12–10:13 Europe/Moscow:
+- PowerShell parser: create-cluster.ps1 and cleanup.ps1 passed.
+- cleanup.ps1 executed against real cloud; returned []. No cluster delete was necessary or performed.
+- connect-master.sh and connect-replica.sh: sh -n passed in postgres:16-alpine.
+- Actual generated password checked literally across every worktree file: 0 matches. The value was not printed.
+- Secret cache file outside worktree removed after the scan.
+- Helper nt-1209-psql removed; its anonymous Docker volume identified via container-linked Docker events and removed explicitly.
+- docker ps -a --filter name=nt-1209- --format '{{.Names}}': no output.
+- docker volume ls --filter name=nt-1209- --format '{{.Name}}': no output.
+- No temporary cloud security group created; unchanged default SG still present.
+- Browser session nt-1209-console detached.
+- README unchanged; no commit or push.
+- No assignment PNGs, SQL sessions or cluster YAML evidence.
+
+Retry verification on 2026-10-23, approximately 10:17 Europe/Moscow:
+- Authorized b+d attempt refused new resources in zone b.
+- Authorized d+e fallback failed CPU quota: not enough "cpu: 2".
+- cleanup.ps1 executed again: real cluster list [], helper removed using docker rm -f -v.
+- No cluster was created; no cluster delete was required.
+- Helper anonymous volume c30531f8ff71eb3536e062073547c0ec0e4f8b97343598394590ce935834d3e6 removed with container.
+- Current create script defaults match final attempted d+e pair.
+- New generated password scan across worktree: 0 matches; secret file removed.
+- Final PowerShell parse and UTF-8/LF checks passed.
+- Console session detached; no temporary SG or nt-1209 containers/volumes remain.
+- At this stage SQL, RUNNING state and screenshots remained unverified because CPU quota prevented creation.
+
+Retry after architect-reported quota approval (mdb.cpu.count 2 -> 4, request atdmk4709alo6ad4efno, APPROVED 10:18 MSK):
+- Created cluster object c9qn7hhug3j0mk2vd2r8, d+e, at 07:19:15.205607Z.
+- Create operation c9q3bkn1kbmuklg4klf3 failed at 07:20:16.588909Z, code 8: Not enough resources, operation_id = bg0v9sbadptb8j5ol197.
+- Cluster transitioned CREATING -> ERROR, not RUNNING. Actual YAML collected.
+- Real console error screenshot captured and viewed with read_image; readable, no password/token visible.
+- cleanup.ps1 deleted the actual ERROR cluster, delete operation c9qd7k2kcnv7alqfodgg.
+- Final cluster list [] by 07:20:59.430909Z; deletion operation done:true.
+- Helper removed with its anonymous volume using docker rm -f -v; no nt-1209 containers/volumes remain; console detached.
+- Final secret scan: 0 password matches; external secret cache removed.
+- Final text artifacts normalized to UTF-8 without BOM and LF; PowerShell parse and git diff --check passed; README unchanged.
+- At that stage SQL, replication, required success screenshots remained unverified due to platform resource provisioning failure, no longer CPU quota.
+
+Final authorized attempts, 2026-10-23 10:24–10:33 MSK:
+- s3-c2-m8 cluster c9q007l4ikthg4umip3t failed code 8: Not enough resources, operation_id = bg0pf1cd7lp02locms3e.
+- s3 delete operation c9qmnlbd6s0s9ob4172d done:true; cluster list [].
+- Single b2.medium fallback c9qf8oihnp07u5v5dd1g failed code 8: Not enough resources, operation_id = bg0psinh17ieh0me2npg.
+- b2 delete operation c9qp4d28q9cji85njcl9 done:true; final cluster list [].
+- Failed s2 YAML and screenshot moved out of repo to cache/netology/diag-12-09 with s2- prefix. s3/b2 diagnostic YAML and deletion proofs saved there too.
+- No success 10–13 YAML evidence or assignment screenshots can be supplied; no SQL executed.
+- ttyd was started at 127.0.0.1:17689 and headless terminal opened, then closed; no fabricated output used.
+- Console detached; helper removed with anonymous volume; nt-1209 containers/volumes absent.
+- Final generated password scan: 0 matches in worktree; external cache removed.
+- PowerShell parser, shell syntax, UTF-8/LF and git diff checks passed; README untouched.
+- Stop after both authorized alternatives failed. Needs platform resource availability/support.

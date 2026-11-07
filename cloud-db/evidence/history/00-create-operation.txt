@@ -1,0 +1,13 @@
+﻿id: c9qjkvmaakjqd1e2149r
+description: Create PostgreSQL cluster
+created_at: "2026-10-23T07:35:46.632242Z"
+created_by: ajerusbqi8iqrm82ug43
+modified_at: "2026-10-23T07:35:46.632242Z"
+metadata:
+  '@type': type.googleapis.com/yandex.cloud.mdb.postgresql.v1.CreateClusterMetadata
+  cluster_id: c9qgp6p0r4g4o325e8g0
+  operation_log: {}
+response:
+  '@type': type.googleapis.com/google.rpc.Status
+  message: OK
+

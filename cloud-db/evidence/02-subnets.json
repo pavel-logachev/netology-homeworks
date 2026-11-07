@@ -1,0 +1,51 @@
+[
+  {
+    "id": "ajchab21lfk2jgqhhria",
+    "folder_id": "b1g6rd3uo8sajkqcmnbk",
+    "created_at": "2026-07-28T16:59:13Z",
+    "name": "netology-smon-network-ru-central1-e",
+    "description": "Auto-created default subnet for zone ru-central1-e in netology-smon-network",
+    "network_id": "enporko3shdet3dcnj6p",
+    "zone_id": "ru-central1-e",
+    "v4_cidr_blocks": [
+      "10.131.0.0/24"
+    ]
+  },
+  {
+    "id": "e2ls1q4540f9imh32006",
+    "folder_id": "b1g6rd3uo8sajkqcmnbk",
+    "created_at": "2026-07-28T16:59:13Z",
+    "name": "netology-smon-network-ru-central1-b",
+    "description": "Auto-created default subnet for zone ru-central1-b in netology-smon-network",
+    "network_id": "enporko3shdet3dcnj6p",
+    "zone_id": "ru-central1-b",
+    "v4_cidr_blocks": [
+      "10.129.0.0/24"
+    ]
+  },
+  {
+    "id": "e9bd7l4u3g5amt2nutgv",
+    "folder_id": "b1g6rd3uo8sajkqcmnbk",
+    "created_at": "2026-07-28T16:59:13Z",
+    "name": "netology-smon-network-ru-central1-a",
+    "description": "Auto-created default subnet for zone ru-central1-a in netology-smon-network",
+    "network_id": "enporko3shdet3dcnj6p",
+    "zone_id": "ru-central1-a",
+    "v4_cidr_blocks": [
+      "10.128.0.0/24"
+    ]
+  },
+  {
+    "id": "fl8nn5pcgd6tt6p3mo38",
+    "folder_id": "b1g6rd3uo8sajkqcmnbk",
+    "created_at": "2026-07-28T16:59:13Z",
+    "name": "netology-smon-network-ru-central1-d",
+    "description": "Auto-created default subnet for zone ru-central1-d in netology-smon-network",
+    "network_id": "enporko3shdet3dcnj6p",
+    "zone_id": "ru-central1-d",
+    "v4_cidr_blocks": [
+      "10.130.0.0/24"
+    ]
+  }
+]
+

@@ -1,0 +1,1 @@
+{"code":3, "message":"no new resources can be created in zone \"ru-central1-b\"", "details":[{"@type":"type.googleapis.com/google.rpc.RequestInfo", "requestId":"c40b7935-2861-4479-87b6-4ce0852d4dc9"}]}

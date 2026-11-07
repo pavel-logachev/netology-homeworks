@@ -1,0 +1,11 @@
+{
+  "id": "s3-c2-m8",
+  "zone_ids": [
+    "ru-central1-a",
+    "ru-central1-d",
+    "ru-central1-e"
+  ],
+  "cores": "2",
+  "memory": "8589934592"
+}
+

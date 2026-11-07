@@ -1,0 +1,16 @@
+Checked 2026-11-07T13:26:43.6379990+03:00
+PASS PowerShell parser cleanup.ps1
+PASS PowerShell parser collect-evidence.ps1
+PASS PowerShell parser create-cluster.ps1
+PASS PowerShell parser enable-public-and-add-host.ps1
+PASS create missing-password boundary, rejected before IAM/create
+PASS cleanup non-owned name rejected before cloud call
+PASS current origin/main ancestor c8c46aa8308227654c97b16840b5067163c86f7b
+PASS README unchanged from integrated base 6deb3594af3396f9fd844d7fd352da4177d2e61e
+PASS git diff --cached --check; raw CLI whitespace preserved using evidence-only gitattribute
+PASS live evidence assertions and exact password scan
+PASS Docker owned object lists empty
+PASS six final PNGs inspected with read_image, legible, no secrets (manual visual observation)
+PASS both connection scripts sh -n observed in running client; live master and replica execution passed
+NOTE create-cluster.ps1 REST template matches actual cache runner body; no extra paid cluster was created just to retest the wrapper
+NOTE enable-public-and-add-host.ps1 retained historical helper, parser checked only, not used in this run

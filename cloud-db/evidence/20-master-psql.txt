@@ -1,0 +1,37 @@
+\set ON_ERROR_STOP on
+\pset pager off
+Pager usage is off.
+\conninfo
+You are connected to database "nt-1209-db" as user "nt-1209-user" on host "rc1a-inquq2cematlh3pn.mdb.yandexcloud.net" (address "84.201.134.19") at port "6432".
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, compression: off)
+select version();
+                                                                       version                                                                       
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 16.15 (Ubuntu 16.15-201-yandex.58146.d4afcfb9ca) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0, 64-bit
+(1 row)
+
+select case when pg_is_in_recovery() then 'REPLICA' else 'MASTER' end;
+  case  
+--------
+ MASTER
+(1 row)
+
+select count(*) from pg_stat_replication;
+ count 
+-------
+     1
+(1 row)
+
+CREATE TABLE test_table(text varchar);
+CREATE TABLE
+insert into test_table values('Строка 1'), ('Строка 2');
+INSERT 0 2
+select * from test_table;
+   text   
+----------
+ Строка 1
+ Строка 2
+(2 rows)
+
+\q
+exit_code=0

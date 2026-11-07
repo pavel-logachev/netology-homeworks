@@ -1,0 +1,26 @@
+2026-10-23, between 07:09:55 and 07:10:31 UTC (10:09:55–10:10:31 Europe/Moscow).
+The exact CLI failure timestamp was not captured; this interval is bounded by helper lifecycle events.
+Command: powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./cloud-db/create-cluster.ps1
+The script read NT1209_PG_PASSWORD from the process environment. No password is included here.
+
+Actual yc stderr:
+ERROR: rpc error: code = InvalidArgument desc = no new resources can be created in zone "ru-central1-a"
+
+The wrapper script then threw:
+Cluster creation failed; inspect yc error and check cluster list before leaving.
+Process exit code: 1.
+
+This was the initial attempt, before the architect authorized other zone pairs. Later attempts:
+
+2026-10-23T10:15:47+03:00: authorized b+d attempt (defaults at that time).
+ERROR: rpc error: code = InvalidArgument desc = no new resources can be created in zone "ru-central1-b"
+
+2026-10-23T10:16:06+03:00: authorized d+e fallback:
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./cloud-db/create-cluster.ps1 -Zone1 ru-central1-d -Subnet1 fl8nn5pcgd6tt6p3mo38 -Zone2 ru-central1-e -Subnet2 ajchab21lfk2jgqhhria
+ERROR: rpc error: code = FailedPrecondition desc = Quota limits exceeded, not enough "cpu: 2". Please contact support to request extra resource quota using account with quota-manager.requestOperator role or higher.
+
+Both wrapper processes exited 1. Current script defaults now match the final d+e attempt.
+Current blocker: CPU quota. No quota change requested and no other resources modified.
+Post-failure yc managed-postgresql cluster list --folder-id b1g6rd3uo8sajkqcmnbk --no-browser --format json returned [].
+Cluster id, host FQDNs and server version do not exist for this failed attempt.
+No master/replica SQL sessions or assignment screenshots were possible.
