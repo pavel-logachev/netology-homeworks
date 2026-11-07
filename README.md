@@ -1,17 +1,74 @@
-# Домашние работы по DevOps
+# 12.9. Базы данных в облаке – Павел Логачев
 
-Здесь я собираю работы по курсу Нетологии «DevOps-инженер с нуля»; у каждой работы своя ветка с решением и проверками.
+Кластер Managed Service for PostgreSQL я создал 7 ноября 2026 года в своем каталоге Яндекс Облака. Сразу после проверки удалил его: создание запущено в 13:06 по Москве, удаление закончилось в 13:24. Выводы команд и скриншоты лежат в [`cloud-db/evidence/`](cloud-db/evidence/), скрипты подключения и SQL – в [`cloud-db/`](cloud-db/).
 
-- [Защита сети](https://github.com/pavel-logachev/netology-homeworks/blob/13-03-network-protection/README.md) – в изолированной сети Docker поставил на защищаемую машину Suricata 7.0.3 с правилами ET Open и Fail2Ban 1.0.2. Сканы nmap -sA, -sT, -sS и -sV попали в логи Suricata, а Fail2Ban на них не отреагировал. Hydra без защиты подобрала тестовый пароль к SSH. После включения jail sshd Fail2Ban забанил атакующий адрес через iptables, и подключение стало невозможным даже с верным паролем.
-- [Защита хоста](https://github.com/pavel-logachev/netology-homeworks/blob/13-02-host-protection/README.md) – на временной ВМ Ubuntu 22.04 в Яндекс Облаке зашифровал домашний каталог пользователя cryptouser через eCryptfs и раздел 100 МБ через LUKS2. Показал, что на диске лежат только зашифрованные данные, а после повторного монтирования файлы совпадают с исходными. Для AppArmor сделал профиль, который запрещает чтение файла, затем отключил и удалил AppArmor.
-- [Уязвимости и атаки на информационные системы](https://github.com/pavel-logachev/netology-homeworks/blob/13-01-vulnerabilities/README.md) – просканировал Metasploitable 2 в Docker через nmap и нашел 25 открытых TCP-портов. Для vsftpd 2.3.4, Samba 3.0.20 и UnrealIRCd 3.2.8.1 нашел подходящие по версии записи в Exploit-DB. Записал сканы SYN, FIN, Xmas и UDP и по захваченному трафику разобрал, чем отличаются режимы и как отвечает сервер.
+## Создание кластера
 
-- [Резервное копирование баз данных](https://github.com/pavel-logachev/netology-homeworks/blob/12-08-backup/README.md) — в PostgreSQL 18.6 в Docker сделал дамп через pg_dump -Fc и восстановил его через pg_restore, восстановленные строки полностью совпали с исходными; написал для cron скрипт backup.sh с архивами по датам, проверкой через pg_restore --list и удалением старых архивов (строку cron только записал, скрипт запускал вручную) и восстановил архив в отдельную базу; в MySQL 8.0.46 сделал полный mysqldump и инкрементную копию по бинарному логу (binlog.000005 с позиции 157), восстановил их на отдельном сервере и убедился, что SHA-256 дампов строк совпадают; ответил на теорию о ежедневных копиях, PITR, failover и о том, почему реплики не заменяют резервные копии.
-- [Репликация и масштабирование. Часть 2](https://github.com/pavel-logachev/netology-homeworks/blob/12-07-sharding/README.md) — составил план шардирования таблиц users, books и stores с блок-схемой в Mermaid; в PostgreSQL 16.15 в Docker Compose развернул координатор с postgres_fdw, где users разделена через PARTITION BY RANGE на два шарда пользователей (1–9999 и ≥10000), а books и stores вынесены на отдельный сервер каталога (вертикальное шардирование); у каждого шарда пользователей есть асинхронная hot standby-реплика только для чтения; проверил, что вставки через координатор попадают в нужный шард, а реплики отклоняют запись с SQLSTATE 25006, и автоматические проверки прошли (ALL CHECKS PASSED).
-- [Репликация и масштабирование. Часть 1](https://github.com/pavel-logachev/netology-homeworks/blob/12-06-replication/README.md) — в MySQL 8.0.46 с GTID в Docker настроил репликацию master-slave: реплика работает в режиме read_only/super_read_only, запись на ней отклоняется с ERROR 1290, данные реплицируются; настроил master-master с шагом auto_increment 2 — на одном узле строки получили id 1, 3, 5, на другом 2, 4, 6, и все 6 строк есть на обоих узлах; сравнил два режима.
-- [Индексы](https://github.com/pavel-logachev/netology-homeworks/blob/12-05-indexes/README.md) — на Sakila в MySQL 8.0.46 посчитал, что индексы занимают 54,68 % от размера данных таблиц; с помощью EXPLAIN ANALYZE нашел в заданном запросе декартово произведение с film, лишнее соединение с inventory, оконную функцию и фильтр через DATE(), который мешает использовать индекс; переписал запрос и добавил индекс payment(payment_date, amount) — 1,48 мс вместо 2253 мс при тех же 391 строках; сравнил типы индексов PostgreSQL, которых нет в MySQL.
-- [Расширенные возможности SQL](https://github.com/pavel-logachev/netology-homeworks/blob/12-04-sql-part2/README.md) — написал пять запросов к Sakila в MySQL 8.0.46: нашел магазин, у которого больше 300 покупателей (магазин 1, Hillyer Mike, Lethbridge, 326), 489 фильмов длиннее среднего, месяц с наибольшей суммой платежей (2005-07, 28368,91, 6709 аренд), продажи сотрудников со столбцом «Премия» (8054 — «Да», 7990 — «Нет») и 42 фильма, которые ни разу не брали в аренду.
-- [Операции с данными в SQL](https://github.com/pavel-logachev/netology-homeworks/blob/12-03-sql-operations/README.md) — выполнил шесть SELECT-запросов к Sakila в MySQL 8.0.46: отобрал районы по шаблону, платежи больше 10 за 15–18 июня 2005 года включительно, последние пять аренд и активных клиентов Kelly/Willie с переводом имен и фамилий в нижний регистр и заменой ll→pp только в именах; разделил email на два столбца и сделал первую букву каждой части заглавной, остальные — строчными; проверил результаты в консольном клиенте mysql и сохранил текстовые выводы.
-- [Работа с данными (DDL/DML)](https://github.com/pavel-logachev/netology-homeworks/blob/12-02-sql-ddl-dml/README.md) — запустил MySQL 8.0.46 в Docker, создал sys_temp со всеми глобальными правами и переключил его на mysql_native_password; восстановил Sakila из официального архива без изменений, проверил наличие 16 таблиц и 7 представлений и составил таблицу первичных ключей через information_schema; отозвал INSERT/UPDATE/DELETE на sakila через partial_revokes и проверил, что эти команды возвращают ERROR 1142, а SELECT работает.
-- [Базы данных](https://github.com/pavel-logachev/netology-homeworks/blob/12-01-databases/README.md) — спроектировал семь таблиц PostgreSQL с ключами и ограничениями по Excel-отчету на 29 сотрудников; подготовил схему в draw.io и проверил структуру в PostgreSQL 18.6 в Docker.
-- [Очереди RabbitMQ](https://github.com/pavel-logachev/netology-homeworks/blob/11-04-rabbitmq/README.md) — собрал кластер RabbitMQ 3.12 на двух виртуальных машинах с зеркалированием очередей, взял скрипты producer и consumer на Python из условия задания и изменил в них только IP подключения; проверил отказ одного узла и повторный прогон Ansible-playbook без изменений.
+Параметры кластера `nt-1209-pg`:
+
+- PostgreSQL 16.15, окружение PRODUCTION;
+- два хоста в разных зонах доступности: мастер в `ru-central1-a`, реплика в `ru-central1-d`, у обоих включен публичный доступ;
+- диск network-ssd 10 ГБ на каждом хосте;
+- база `nt-1209-db`, ее владелец – пользователь `nt-1209-user`.
+
+Класс хоста – `s3-c2-m8` (2 vCPU, 8 ГБ), а не `s2.micro` из задания. 23 октября кластеры на `s2.micro` и других классах не создавались из-за ошибки `Not enough resources` (эти попытки сохранены в [`evidence/history/`](cloud-db/evidence/history/)). Поэтому в этот раз я начал с `s3-c2-m8`: у него те же 2 vCPU и 8 ГБ памяти, но новая платформа. Пару зон a+b облако не приняло (`no new resources can be created in zone "ru-central1-b"`), пара a+d создалась, и кластер перешел в статус RUNNING.
+
+Хосты кластера, оба в состоянии Alive:
+
+![Хосты кластера](cloud-db/evidence/15-console-hosts.png)
+
+### Созданная база данных
+
+![Созданная база данных](cloud-db/evidence/16-console-database.png)
+
+Описание кластера и хостов из CLI: [10-cluster.json](cloud-db/evidence/10-cluster.json), [11-hosts.json](cloud-db/evidence/11-hosts.json).
+
+## Подключение к мастеру
+
+Команду подключения взял из вкладки «Обзор», сертификат удостоверяющего центра скачал с `https://storage.yandexcloud.net/cloud-certs/CA.pem` и подключался через psql 16.15 с проверкой сертификата (`sslmode=verify-full`). В строке подключения указаны оба хоста и `target_session_attrs=read-write` ([connect-master.sh](cloud-db/connect-master.sh)):
+
+```bash
+psql "host=rc1a-inquq2cematlh3pn.mdb.yandexcloud.net,rc1d-43cbhapt6apqv0c6.mdb.yandexcloud.net \
+  port=6432 sslmode=verify-full dbname=nt-1209-db user=nt-1209-user target_session_attrs=read-write"
+```
+
+Подключение пришло на мастер, к нему подключена одна реплика. На мастере создал таблицу и вставил две строки ([20-master-psql.txt](cloud-db/evidence/20-master-psql.txt)):
+
+```text
+select case when pg_is_in_recovery() then 'REPLICA' else 'MASTER' end;
+ MASTER
+
+select count(*) from pg_stat_replication;
+     1
+
+CREATE TABLE test_table(text varchar);
+CREATE TABLE
+insert into test_table values('Строка 1'), ('Строка 2');
+INSERT 0 2
+```
+
+![Сеанс на мастере](cloud-db/evidence/30-master-psql.png)
+
+## Проверка репликации
+
+К реплике подключился без `target_session_attrs`, указав только ее хост ([connect-replica.sh](cloud-db/connect-replica.sh)):
+
+```bash
+psql "host=rc1d-43cbhapt6apqv0c6.mdb.yandexcloud.net port=6432 sslmode=verify-full dbname=nt-1209-db user=nt-1209-user"
+```
+
+Подключение пришло на реплику, она получает журнал в режиме `streaming`. Обе строки, вставленные на мастере в зоне a, читаются на реплике в зоне d ([21-replica-psql.txt](cloud-db/evidence/21-replica-psql.txt)).
+
+### Результат `select * from test_table;` на реплике
+
+![Сеанс на реплике](cloud-db/evidence/31-replica-psql.png)
+
+Чтобы `pg_stat_wal_receiver` показывал статус, пользователю понадобилась служебная роль `mdb_monitor`. Без нее запрос возвращал строку с пустым статусом, хотя данные на реплику уже пришли.
+
+Дополнительно проверил, что запись на реплике запрещена: `INSERT` возвращает `ERROR: cannot execute INSERT in a read-only transaction` ([22-replica-readonly.txt](cloud-db/evidence/22-replica-readonly.txt)).
+
+![Запись на реплике запрещена](cloud-db/evidence/32-replica-readonly.png)
+
+## Удаление кластера
+
+Кластер удален, итоговый список кластеров пуст ([90-cluster-list-after.json](cloud-db/evidence/90-cluster-list-after.json)).
