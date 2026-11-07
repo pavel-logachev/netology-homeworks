@@ -1,13 +1,84 @@
-# Домашние работы по DevOps
+# 13.1. Уязвимости и атаки на информационные системы – Павел Логачев
 
-Здесь я собираю работы по курсу Нетологии «DevOps-инженер с нуля»; у каждой работы своя ветка с решением и проверками.
+Работу я делал 7 ноября 2026 года на одноразовом стенде в Docker Desktop. Целью была Metasploitable 2 из образа `tleemcjr/metasploitable2`: это не полноценная VM, а контейнер с ее файловой системой и службами. Сканером был контейнер `nicolaka/netshoot` с Nmap 7.99. Оба контейнера стояли в изолированной сети `172.24.0.0/16` без выхода наружу: цель `172.24.0.2`, сканер `172.24.0.3`. Трафик я записывал tcpdump в сетевом пространстве цели и разбирал в TShark 4.6.6 (консольный Wireshark). Файлы `.pcap` открываются и в обычном Wireshark.
 
-- [Резервное копирование баз данных](https://github.com/pavel-logachev/netology-homeworks/blob/12-08-backup/README.md) — в PostgreSQL 18.6 в Docker сделал дамп через pg_dump -Fc и восстановил его через pg_restore, восстановленные строки полностью совпали с исходными; написал для cron скрипт backup.sh с архивами по датам, проверкой через pg_restore --list и удалением старых архивов (строку cron только записал, скрипт запускал вручную) и восстановил архив в отдельную базу; в MySQL 8.0.46 сделал полный mysqldump и инкрементную копию по бинарному логу (binlog.000005 с позиции 157), восстановил их на отдельном сервере и убедился, что SHA-256 дампов строк совпадают; ответил на теорию о ежедневных копиях, PITR, failover и о том, почему реплики не заменяют резервные копии.
-- [Репликация и масштабирование. Часть 2](https://github.com/pavel-logachev/netology-homeworks/blob/12-07-sharding/README.md) — составил план шардирования таблиц users, books и stores с блок-схемой в Mermaid; в PostgreSQL 16.15 в Docker Compose развернул координатор с postgres_fdw, где users разделена через PARTITION BY RANGE на два шарда пользователей (1–9999 и ≥10000), а books и stores вынесены на отдельный сервер каталога (вертикальное шардирование); у каждого шарда пользователей есть асинхронная hot standby-реплика только для чтения; проверил, что вставки через координатор попадают в нужный шард, а реплики отклоняют запись с SQLSTATE 25006, и автоматические проверки прошли (ALL CHECKS PASSED).
-- [Репликация и масштабирование. Часть 1](https://github.com/pavel-logachev/netology-homeworks/blob/12-06-replication/README.md) — в MySQL 8.0.46 с GTID в Docker настроил репликацию master-slave: реплика работает в режиме read_only/super_read_only, запись на ней отклоняется с ERROR 1290, данные реплицируются; настроил master-master с шагом auto_increment 2 — на одном узле строки получили id 1, 3, 5, на другом 2, 4, 6, и все 6 строк есть на обоих узлах; сравнил два режима.
-- [Индексы](https://github.com/pavel-logachev/netology-homeworks/blob/12-05-indexes/README.md) — на Sakila в MySQL 8.0.46 посчитал, что индексы занимают 54,68 % от размера данных таблиц; с помощью EXPLAIN ANALYZE нашел в заданном запросе декартово произведение с film, лишнее соединение с inventory, оконную функцию и фильтр через DATE(), который мешает использовать индекс; переписал запрос и добавил индекс payment(payment_date, amount) — 1,48 мс вместо 2253 мс при тех же 391 строках; сравнил типы индексов PostgreSQL, которых нет в MySQL.
-- [Расширенные возможности SQL](https://github.com/pavel-logachev/netology-homeworks/blob/12-04-sql-part2/README.md) — написал пять запросов к Sakila в MySQL 8.0.46: нашел магазин, у которого больше 300 покупателей (магазин 1, Hillyer Mike, Lethbridge, 326), 489 фильмов длиннее среднего, месяц с наибольшей суммой платежей (2005-07, 28368,91, 6709 аренд), продажи сотрудников со столбцом «Премия» (8054 — «Да», 7990 — «Нет») и 42 фильма, которые ни разу не брали в аренду.
-- [Операции с данными в SQL](https://github.com/pavel-logachev/netology-homeworks/blob/12-03-sql-operations/README.md) — выполнил шесть SELECT-запросов к Sakila в MySQL 8.0.46: отобрал районы по шаблону, платежи больше 10 за 15–18 июня 2005 года включительно, последние пять аренд и активных клиентов Kelly/Willie с переводом имен и фамилий в нижний регистр и заменой ll→pp только в именах; разделил email на два столбца и сделал первую букву каждой части заглавной, остальные — строчными; проверил результаты в консольном клиенте mysql и сохранил текстовые выводы.
-- [Работа с данными (DDL/DML)](https://github.com/pavel-logachev/netology-homeworks/blob/12-02-sql-ddl-dml/README.md) — запустил MySQL 8.0.46 в Docker, создал sys_temp со всеми глобальными правами и переключил его на mysql_native_password; восстановил Sakila из официального архива без изменений, проверил наличие 16 таблиц и 7 представлений и составил таблицу первичных ключей через information_schema; отозвал INSERT/UPDATE/DELETE на sakila через partial_revokes и проверил, что эти команды возвращают ERROR 1142, а SELECT работает.
-- [Базы данных](https://github.com/pavel-logachev/netology-homeworks/blob/12-01-databases/README.md) — спроектировал семь таблиц PostgreSQL с ключами и ограничениями по Excel-отчету на 29 сотрудников; подготовил схему в draw.io и проверил структуру в PostgreSQL 18.6 в Docker.
-- [Очереди RabbitMQ](https://github.com/pavel-logachev/netology-homeworks/blob/11-04-rabbitmq/README.md) — собрал кластер RabbitMQ 3.12 на двух виртуальных машинах с зеркалированием очередей, взял скрипты producer и consumer на Python из условия задания и изменил в них только IP подключения; проверил отказ одного узла и повторный прогон Ansible-playbook без изменений.
+Выводы, файлы захвата и команды лежат в [`evidence/`](evidence/). После проверки контейнеры и сеть удалены ([cleanup.txt](evidence/cleanup.txt)).
+
+## Задание 1
+
+Сначала просканировал все TCP-порты с определением версий:
+
+```bash
+nmap -sS -sV -p- -n -Pn --reason --version-light -T4 --max-retries 2 --host-timeout 12m -oA /evidence/services 172.24.0.2
+```
+
+Nmap нашел 25 открытых TCP-портов из 65535 ([services.nmap](evidence/services.nmap)). Версии Samba и IRC-сервера уточнил отдельным запуском со скриптами `smb-os-discovery` и `irc-info` ([versions-confirmed.nmap](evidence/versions-confirmed.nmap)).
+
+![Открытые порты и службы](evidence/01-services.png)
+
+### Какие сетевые службы разрешены
+
+| Порт | Служба и версия по Nmap |
+|---|---|
+| 21/tcp | FTP, vsftpd 2.3.4 |
+| 22/tcp | SSH, OpenSSH 4.7p1 Debian 8ubuntu1 |
+| 23/tcp | Telnet, Linux telnetd |
+| 25/tcp | SMTP, Postfix smtpd |
+| 80/tcp | HTTP, Apache httpd 2.2.8 (Ubuntu) DAV/2 |
+| 111/tcp | rpcbind |
+| 139, 445/tcp | Samba smbd 3.0.20-Debian |
+| 512, 513, 514/tcp | r-службы (exec, login; 514 Nmap показал как tcpwrapped) |
+| 1099/tcp | Java RMI, GNU Classpath grmiregistry |
+| 1524/tcp | ingreslock: на обычный запрос Nmap порт сразу отдал приглашение root-шелла |
+| 2121/tcp | FTP, ProFTPD 1.3.1 |
+| 3306/tcp | MySQL 5.0.51a-3ubuntu5 |
+| 3632/tcp | distccd v1 |
+| 5432/tcp | PostgreSQL 8.3.0–8.3.7 |
+| 5900/tcp | VNC, протокол 3.3 |
+| 6000/tcp | X11 (доступ запрещен) |
+| 6667, 6697/tcp | IRC, UnrealIRCd 3.2.8.1 |
+| 8009/tcp | AJP 1.3 |
+| 8180/tcp | HTTP, Apache Tomcat/Coyote JSP engine 1.1 |
+| 8787/tcp | Ruby DRb |
+| 41089/tcp | Nmap службу не определил, по netstat на цели это rmiregistry |
+
+По UDP я проверял только выбранные порты: открыты 111/rpcbind и 137/netbios-ns, порт 69/tftp получил статус `open|filtered`.
+
+### Какие уязвимости обнаружены
+
+Для трех служб версия, найденная Nmap, совпала с уязвимой версией из записей Exploit-DB. Эксплойты я не запускал, поэтому это совпадение по версии и настройкам, а не доказанный взлом.
+
+1. **vsftpd 2.3.4, порт 21** – [EDB-17491](https://www.exploit-db.com/exploits/17491), «vsftpd 2.3.4 - Backdoor Command Execution», CVE-2011-2523. В архив `vsftpd-2.3.4.tar.gz` на сайте проекта между 30 июня и 1 июля 2011 года был встроен бэкдор, который удалили 3 июля. Он дает выполнение команд на сервере.
+2. **Samba 3.0.20, порты 139 и 445** – [EDB-16320](https://www.exploit-db.com/exploits/16320), «Samba 3.0.20 < 3.0.25rc3 - 'Username' map script' Command Execution», CVE-2007-2447. Уязвимость срабатывает при включенной нестандартной опции `username map script`, и аутентификация для нее не нужна. На цели `testparm` показывает `username map script = /etc/samba/scripts/mapusers.sh` ([version-details.txt](evidence/version-details.txt)), то есть условие выполнено.
+3. **UnrealIRCd 3.2.8.1, порты 6667 и 6697** – [EDB-16922](https://www.exploit-db.com/exploits/16922), «UnrealIRCd 3.2.8.1 - Backdoor Command Execution», CVE-2010-2075. Архив `Unreal3.2.8.1.tar.gz` с ноября 2009 по 12 июня 2010 года распространялся со встроенным бэкдором для выполнения команд.
+
+Кроме этих трех, на машине видны и другие слабые места: открытый root-шелл на 1524, Telnet и r-службы без шифрования, старые MySQL и PostgreSQL, доступные из сети.
+
+## Задание 2
+
+Для наглядности сканировал не все порты, а четыре заведомо открытых (21, 22, 80, 445) и один закрытый (65000). Для UDP взял порты 53, 69, 111, 137, 161 и 65000. Каждый режим записан в отдельный файл:
+
+```bash
+nmap -sS -n -Pn --reason -p 21,22,80,445,65000 --max-retries 1 -T3 -oA /evidence/verified/syn 172.24.0.2
+nmap -sF -n -Pn --reason -p 21,22,80,445,65000 --max-retries 1 -T3 -oA /evidence/verified/fin 172.24.0.2
+nmap -sX -n -Pn --reason -p 21,22,80,445,65000 --max-retries 1 -T3 -oA /evidence/verified/xmas 172.24.0.2
+nmap -sU -n -Pn --reason -p 53,69,111,137,161,65000 --max-retries 1 -T3 -oA /evidence/verified/udp 172.24.0.2
+```
+
+Захваты: [syn.pcap](evidence/verified/syn.pcap), [fin.pcap](evidence/verified/fin.pcap), [xmas.pcap](evidence/verified/xmas.pcap), [udp.pcap](evidence/verified/udp.pcap).
+
+![SYN, FIN и Xmas в TShark](evidence/02-tcp.png)
+
+![UDP в TShark](evidence/03-udp.png)
+
+### Чем отличаются режимы и как отвечает сервер
+
+**SYN (`-sS`).** Сканер отправляет пакет только с флагом SYN, как первый шаг обычного соединения. Открытый порт отвечает SYN+ACK, после чего сканер сразу шлет RST, и соединение до конца не устанавливается. Закрытый порт отвечает RST+ACK. В захвате 14 пакетов: 5 SYN, 4 ответа SYN+ACK от портов 21, 22, 80 и 445, 4 RST от сканера и один RST+ACK от порта 65000.
+
+**FIN (`-sF`).** Сканер шлет пакет только с флагом FIN, без установленного соединения. По RFC 793 открытый порт такой пакет молча отбрасывает, а закрытый отвечает RST. Так и вышло: из 9 пакетов (по два на каждый открытый порт, потому что Nmap повторил запрос, и один на 65000) ответил только закрытый порт 65000. Поэтому про открытые порты Nmap пишет `open|filtered`: молчание может означать и открытый порт, и фильтр.
+
+**Xmas (`-sX`).** То же, что FIN, но в пакете подняты сразу три флага: FIN, PSH и URG. Ответы сервера такие же: открытые порты молчат, закрытый 65000 отвечает RST+ACK. В обычной работе такой набор флагов не встречается, поэтому такие пакеты заметны для систем обнаружения вторжений.
+
+**UDP (`-sU`).** Здесь нет флагов и рукопожатия: сканер отправляет UDP-датаграммы, для известных служб с подходящей полезной нагрузкой. Открытая служба отвечает своим UDP-пакетом: rpcbind на 111 и netbios-ns на 137 прислали 5 ответов. Закрытый порт отвечает ICMP «port unreachable» (тип 3, код 3): так ответили порты 53, 161 и 65000, всего 6 сообщений. В колонке Info на скриншоте TShark подписал ответы с порта 137 как «TFTP Unknown», но по номеру порта отправителя это ответы netbios-ns. На порт 69 ответа не было, поэтому Nmap оставил его в состоянии `open|filtered`. UDP-сканирование идет медленнее TCP: не получив ответа, Nmap ждет и повторяет запрос.
+
+Итог по трафику: SYN-скан получает ясный ответ от каждого порта, FIN и Xmas опираются на молчание открытого порта, UDP опирается на ответ службы или ICMP-ошибку. Фильтры и подсчет пакетов – в [traffic-counts.txt](evidence/verified/traffic-counts.txt).
